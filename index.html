@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naveen Kumar E — Software Developer & Creative Engineer</title>
+  <meta name="description" content="Personal developer portfolio of Naveen Kumar E. Modern web applications, full-stack engineering, React, Java & Spring Boot, and scalable real-world software." />
+  <meta name="author" content="Naveen Kumar E" />
+  
+  <!-- Open Graph / Meta for Social Sharing -->
+  <meta property="og:title" content="Naveen Kumar E — Developer Portfolio" />
+  <meta property="og:description" content="Building modern web applications with clean interfaces, practical engineering, and a focus on solving real-world problems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/images/developer-silhouette.jpg" />
+
+  <!-- Google Fonts: Anton & Onest -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2308080A' stroke='%23FF3B1D' stroke-width='4'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='42' fill='%23F3F1EA'>NK</text></svg>" />
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. CINEMATIC PRELOADER
+       ========================================================================= -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-header">
+      <span class="preloader-monogram">NK // 2026</span>
+      <span>NAVEEN KUMAR E — PORTFOLIO</span>
+    </div>
+    
+    <div class="preloader-center">
+      <div class="preloader-counter" id="preloaderCounter">00</div>
+      <div class="preloader-percent">%</div>
+    </div>
+
+    <div class="preloader-footer">
+      <div class="preloader-status" id="preloaderStatus">INITIALIZING CORE ASSETS...</div>
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar-fill" id="preloaderBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. FIXED NAVIGATION
+       ========================================================================= -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="#hero" class="brand-link" aria-label="Naveen Kumar E — Home">
+        <div class="brand-monogram">NK</div>
+        <div class="brand-text-group">
+          <span class="brand-name">NAVEEN KUMAR</span>
+          <span class="brand-status">
+            <span class="status-dot"></span> AVAILABLE FOR ROLES
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links-desktop">
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#learning" class="nav-link">Learning</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Desktop CTA & Mobile Toggle -->
+      <div class="nav-actions">
+        <a href="#contact" class="nav-cta-btn">
+          <span>Let's Talk</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-nav-links">
+      <li class="mobile-nav-item">
+        <a href="#about" class="mobile-nav-link">
+          <span>About</span>
+          <span class="num">01</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#experience" class="mobile-nav-link">
+          <span>Experience</span>
+          <span class="num">02</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#projects" class="mobile-nav-link">
+          <span>Projects</span>
+          <span class="num">03</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#skills" class="mobile-nav-link">
+          <span>Skills</span>
+          <span class="num">04</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#learning" class="mobile-nav-link">
+          <span>Learning</span>
+          <span class="num">05</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#contact" class="mobile-nav-link">
+          <span>Contact</span>
+          <span class="num">06</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mobile-menu-footer">
+      <div class="mobile-contact-email">naveenkumar.dev@outlook.com</div>
+      <div class="hero-role-item" style="color: var(--text-secondary); font-size: 0.75rem;">
+        B.TECH IT &bull; KCG COLLEGE OF TECHNOLOGY
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- =======================================================================
+         3. CINEMATIC HERO SECTION
+         ======================================================================= -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-meta-row">
+        <!-- Upper-Left Role Labels -->
+        <div class="hero-roles">
+          <div class="hero-role-item">
+            <span class="hero-role-num">01</span>
+            <span class="hero-role-divider"></span>
+            <span>Software Developer</span>
+          </div>
+          <div class="hero-role-item">
+            <span class="hero-role-num">02</span>
+            <span class="hero-role-divider"></span>
+            <span>React Developer</span>
+          </div>
+          <div class="hero-role-item">
+            <span class="hero-role-num">03</span>
+            <span class="hero-role-divider"></span>
+            <span>Full-Stack Development</span>
+          </div>
+          <div class="hero-role-item">
+            <span class="hero-role-num">04</span>
+            <span class="hero-role-divider"></span>
+            <span>Problem Solver</span>
+          </div>
+        </div>
+
+        <!-- Upper-Right Hero Introduction -->
+        <div class="hero-intro-wrap">
+          <p class="hero-intro-text">
+            Building modern web applications with clean interfaces, practical engineering, and a focus on solving real-world problems. Currently expanding my expertise in Java and Spring Boot while developing scalable, user-focused applications.
+          </p>
+          <div class="hero-intro-badges">
+            <span class="intro-badge">React.js</span>
+            <span class="intro-badge">Spring Boot</span>
+            <span class="intro-badge">REST APIs</span>
+            <span class="intro-badge">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Centerpiece: Giant Red Anton Name Layered with Developer Portrait -->
+      <div class="hero-centerpiece">
+        <!-- Giant Red 2-Line Name (Back Layer) -->
+        <div class="hero-display-name" aria-label="Naveen Kumar E">
+          <div class="hero-name-line"><span class="hero-name-chunk">NAVEEN</span></div>
+          <div class="hero-name-line"><span class="hero-name-chunk">KUMAR E</span></div>
+        </div>
+
+        <!-- Developer Portrait / Silhouette Layered in Foreground -->
+        <div class="hero-portrait-stage">
+          <img 
+            src="/assets/images/developer-silhouette.jpg" 
+            alt="Developer Silhouette Portrait" 
+            class="hero-portrait-img"
+            id="heroPortrait"
+            loading="eager"
+          />
+          <div class="portrait-note-badge" title="You can easily replace this with your photo in assets/images/">
+            <span class="badge-dot"></span>
+            <span>Developer Profile</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Bottom Row: Scroll Indicator & Coordinates -->
+      <div class="container hero-bottom-row">
+        <a href="#about" class="hero-scroll-indicator" aria-label="Scroll to explore">
+          <div class="scroll-track">
+            <div class="scroll-dot"></div>
+          </div>
+          <span>Scroll to Explore</span>
+        </a>
+
+        <div class="hero-quick-coords">
+          <span>Chennai, India &bull; Class of 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. OPERATING PRINCIPLES MARQUEE
+         ======================================================================= -->
+    <div class="marquee-container" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span class="marquee-item">BUILD WITH PURPOSE <span class="marquee-dot"></span></span>
+          <span class="marquee-item">DESIGN WITH CLARITY <span class="marquee-dot"></span></span>
+          <span class="marquee-item">ENGINEER FOR SCALE <span class="marquee-dot"></span></span>
+          <span class="marquee-item">LEARN CONTINUOUSLY <span class="marquee-dot"></span></span>
+          <span class="marquee-item">SHIP REAL SOLUTIONS <span class="marquee-dot"></span></span>
+        </div>
+        <div class="marquee-content">
+          <span class="marquee-item">BUILD WITH PURPOSE <span class="marquee-dot"></span></span>
+          <span class="marquee-item">DESIGN WITH CLARITY <span class="marquee-dot"></span></span>
+          <span class="marquee-item">ENGINEER FOR SCALE <span class="marquee-dot"></span></span>
+          <span class="marquee-item">LEARN CONTINUOUSLY <span class="marquee-dot"></span></span>
+          <span class="marquee-item">SHIP REAL SOLUTIONS <span class="marquee-dot"></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         5. ABOUT ME / PROFESSIONAL STORY
+         ======================================================================= -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">The Developer</span>
+          <h2 class="section-heading">Turning ideas into working software.</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Story & Education Column -->
+          <div class="about-story reveal">
+            <p class="about-lead-para">
+              I am <strong>Naveen Kumar E</strong>, an Information Technology graduate focused on building modern web applications and practical software solutions.
+            </p>
+            <p class="about-body-para">
+              Through internships and hands-on projects, I have developed experience with frontend development, API integration, backend fundamentals, and database-driven applications.
+            </p>
+            <p class="about-body-para">
+              I enjoy learning new technologies, understanding how complete applications work, and building interfaces that are intuitive, responsive, and genuinely useful to end users.
+            </p>
+
+            <!-- Education Editorial Card -->
+            <div class="education-card">
+              <span class="edu-tag">Academic Background</span>
+              <h3 class="edu-degree">B.Tech Information Technology</h3>
+              <p class="edu-institution">KCG College of Technology, Chennai</p>
+              <div class="edu-meta">
+                <span>Duration: 2022 – 2026</span>
+                <span class="edu-cgpa">Cumulative CGPA: <span>7.52</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Four Development Principles Column -->
+          <div class="principles-column reveal">
+            <!-- Principle 01 -->
+            <div class="principle-card">
+              <div class="principle-header">
+                <span class="principle-num">01</span>
+                <h3 class="principle-title">Build with Purpose</h3>
+              </div>
+              <p class="principle-desc">
+                Create applications that solve practical problems and offer clear, tangible value to users rather than unnecessary complexity.
+              </p>
+            </div>
+
+            <!-- Principle 02 -->
+            <div class="principle-card">
+              <div class="principle-header">
+                <span class="principle-num">02</span>
+                <h3 class="principle-title">Learn by Building</h3>
+              </div>
+              <p class="principle-desc">
+                Strengthen technical knowledge through actual implementation, rapid experimentation, deep debugging, and relentless iteration.
+              </p>
+            </div>
+
+            <!-- Principle 03 -->
+            <div class="principle-card">
+              <div class="principle-header">
+                <span class="principle-num">03</span>
+                <h3 class="principle-title">Think Full Stack</h3>
+              </div>
+              <p class="principle-desc">
+                Understand how user interfaces, APIs, business logic, authorization layers, and databases seamlessly coalesce into unified products.
+              </p>
+            </div>
+
+            <!-- Principle 04 -->
+            <div class="principle-card">
+              <div class="principle-header">
+                <span class="principle-num">04</span>
+                <h3 class="principle-title">Improve Every Detail</h3>
+              </div>
+              <p class="principle-desc">
+                Focus on readable code, responsive design, usability, accessibility, resilience, and long-term maintainability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. PROFESSIONAL EXPERIENCE
+         ======================================================================= -->
+    <section class="section" id="experience" style="background-color: #070709;">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Professional Experience</span>
+          <h2 class="section-heading">Learning by building real applications.</h2>
+          <p class="section-desc">
+            Hands-on enterprise internships where I contributed to frontend interfaces, API integrations, and cloud deployments.
+          </p>
+        </div>
+
+        <div class="experience-timeline">
+          <!-- Experience 01: Ford -->
+          <article class="experience-card reveal">
+            <div class="exp-top-row">
+              <div class="exp-role-group">
+                <h3 class="exp-company">Ford</h3>
+                <span class="exp-role">React Developer Intern</span>
+              </div>
+              <span class="exp-meta-badge">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="6" cy="6" r="4" fill="#FF3B1D"/>
+                </svg>
+                Enterprise Internship
+              </span>
+            </div>
+
+            <ul class="exp-responsibilities">
+              <li>Engineered interactive user interfaces using modern <strong>React.js</strong> principles, component composition, and responsive design systems.</li>
+              <li>Expanded expertise in <strong>Java and Spring Boot</strong>, participating in backend services architecture and engineering.</li>
+              <li>Integrated frontend client applications seamlessly with <strong>Spring Boot REST APIs</strong>, handling asynchronous state and error states.</li>
+              <li>Spearheaded UI modernization initiatives, resolving key bugs, and optimizing page load speeds and rendering performance.</li>
+              <li>Collaborated in cross-functional Agile sprint cycles utilizing <strong>Git and GitHub</strong> for branching, code reviews, and version control.</li>
+              <li>Assisted in application deployment workflows hosted on <strong>Google Cloud Platform (GCP)</strong> infrastructure.</li>
+            </ul>
+
+            <div class="exp-tech-stack">
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">GCP</span>
+              <span class="tech-tag">Git</span>
+              <span class="tech-tag">Agile</span>
+            </div>
+          </article>
+
+          <!-- Experience 02: NSIC Chennai -->
+          <article class="experience-card reveal">
+            <div class="exp-top-row">
+              <div class="exp-role-group">
+                <h3 class="exp-company">National Small Industries Corporation (NSIC)</h3>
+                <span class="exp-role">Web Development Intern &bull; Chennai</span>
+              </div>
+              <span class="exp-meta-badge">Duration: 3 Weeks</span>
+            </div>
+
+            <ul class="exp-responsibilities">
+              <li>Built and styled responsive multi-device web interfaces leveraging semantic <strong>HTML5</strong> and <strong>CSS3</strong> standards.</li>
+              <li>Strengthened foundational <strong>JavaScript (ES6+)</strong> programming skills including DOM manipulation, event handling, and asynchronous operations.</li>
+              <li>Learned core <strong>React</strong> architecture including component lifecycles, props, and one-way data flow.</li>
+              <li>Developed practical frontend modules adhering to modern cross-browser compatibility and user experience guidelines.</li>
+            </ul>
+
+            <div class="exp-tech-stack">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript ES6</span>
+              <span class="tech-tag">React Fundamentals</span>
+              <span class="tech-tag">Responsive UI</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. FEATURED PROJECTS — THE MAIN SHOWCASE
+         ======================================================================= -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Selected Projects</span>
+          <h2 class="section-heading">Projects built to solve real problems.</h2>
+          <p class="section-desc">
+            Carefully engineered real-world applications spanning smart agriculture mobility, enterprise multi-tenant architectures, and automated intelligence.
+          </p>
+        </div>
+
+        <div class="projects-editorial-grid">
+          <!-- Project 01: AgroEquipAI -->
+          <div class="project-item reveal">
+            <article class="project-card" data-project-id="agroequip">
+              <div class="project-media-wrap">
+                <img 
+                  src="/assets/images/project-agroequip.jpg" 
+                  alt="AgroEquipAI application interface preview" 
+                  class="project-img"
+                  loading="lazy"
+                />
+                <div class="project-media-overlay"></div>
+                <span class="project-badge-float">Mobile & Cloud</span>
+              </div>
+
+              <div class="project-content">
+                <div class="project-header-group">
+                  <span class="project-category">AI-Assisted Smart Agriculture</span>
+                  <h3 class="project-title">AgroEquipAI</h3>
+                  <p class="project-desc">
+                    An agriculture-focused mobile application designed to help farmers discover and rent agricultural machinery through a digital platform, bridging equipment owners and smallholder farmers.
+                  </p>
+                </div>
+
+                <ul class="project-features-list">
+                  <li>Dual-role architecture: Farmer and Equipment Owner workflows</li>
+                  <li>Secure OTP-based authentication and profile management</li>
+                  <li>Multilingual UI supporting English and Indian regional languages</li>
+                  <li>Equipment booking calendar with status tracking and rental history</li>
+                  <li>Equipment-owner management dashboard with real-time fleet CRUD operations</li>
+                  <li>Integrated telemetry and planned AI agricultural insights</li>
+                </ul>
+
+                <div class="project-footer">
+                  <div class="project-tech-pills">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Expo</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                  </div>
+                  <button class="project-btn modal-trigger-btn" data-project-id="agroequip" aria-label="View AgroEquipAI details">
+                    <span>Details</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 02: Multi-Tenant Sales & Calling Platform -->
+          <div class="project-item reveal">
+            <article class="project-card" data-project-id="crm">
+              <div class="project-media-wrap">
+                <img 
+                  src="/assets/images/project-crm.jpg" 
+                  alt="Multi-Tenant CRM and Calling Platform interface preview" 
+                  class="project-img"
+                  loading="lazy"
+                />
+                <div class="project-media-overlay"></div>
+                <span class="project-badge-float">Enterprise Architecture</span>
+              </div>
+
+              <div class="project-content">
+                <div class="project-header-group">
+                  <span class="project-category">CRM &bull; Enterprise Software</span>
+                  <h3 class="project-title">Multi-Tenant Sales & Calling Platform</h3>
+                  <p class="project-desc">
+                    A multi-tenant sales platform designed around rigorous tenant isolation, role-based permissions, and feature-level access control for high-velocity sales workflows.
+                  </p>
+                </div>
+
+                <!-- Core Architectural Principle Callout -->
+                <div class="architecture-callout">
+                  <span class="arch-label">Core Architectural Invariant</span>
+                  <code class="arch-formula">Access = Tenant Access + Feature Enabled + Role Permission</code>
+                </div>
+
+                <ul class="project-features-list">
+                  <li>Strict tenant-aware authentication, authorization, and data isolation</li>
+                  <li>Granular RBAC matrix with custom permission overrides</li>
+                  <li>Leads lifecycle, sales pipeline stages, calling logs & follow-up tracking</li>
+                  <li>Property discovery, deal forecasting, and booking workflows</li>
+                  <li>Environment segmentation planned for Development, Staging, and Production</li>
+                </ul>
+
+                <div class="project-footer">
+                  <div class="project-tech-pills">
+                    <span class="tech-tag">React / Next.js</span>
+                    <span class="tech-tag">C# / .NET</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">REST APIs</span>
+                  </div>
+                  <button class="project-btn modal-trigger-btn" data-project-id="crm" aria-label="View Multi-Tenant Platform details">
+                    <span>Details</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 03: Smart Support Ticket Classifier -->
+          <div class="project-item reveal">
+            <article class="project-card" data-project-id="classifier">
+              <div class="project-media-wrap">
+                <img 
+                  src="/assets/images/project-classifier.jpg" 
+                  alt="Smart Support Ticket Classifier interface preview" 
+                  class="project-img"
+                  loading="lazy"
+                />
+                <div class="project-media-overlay"></div>
+                <span class="project-badge-float">AI &amp; Automation</span>
+              </div>
+
+              <div class="project-content">
+                <div class="project-header-group">
+                  <span class="project-category">AI / Automation &bull; NLP</span>
+                  <h3 class="project-title">Smart Support Ticket Classifier</h3>
+                  <p class="project-desc">
+                    A Flask-based application that classifies support tickets to help organize incoming customer requests, estimate urgency, and accelerate the support response lifecycle.
+                  </p>
+                </div>
+
+                <ul class="project-features-list">
+                  <li>Automated text classification mapping raw customer queries to support categories</li>
+                  <li>NLP confidence score evaluation for routing and human escalation</li>
+                  <li>Urgency evaluation and sentiment tag detection (Positive, Neutral, Urgent)</li>
+                  <li>Streamlined dashboard for customer support reps with real-time filtering</li>
+                  <li>Lightweight RESTful API integration for external ticketing integrations</li>
+                </ul>
+
+                <div class="project-footer">
+                  <div class="project-tech-pills">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">HTML &amp; CSS</span>
+                  </div>
+                  <button class="project-btn modal-trigger-btn" data-project-id="classifier" aria-label="View Ticket Classifier details">
+                    <span>Details</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         8. TECHNICAL TOOLKIT / SKILLS SECTION
+         ======================================================================= -->
+    <section class="section" id="skills" style="background-color: #070709;">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Technical Toolkit</span>
+          <h2 class="section-heading">Tools I use to build.</h2>
+          <p class="section-desc">
+            Categorized transparently by practical implementation experience, foundational knowledge, and current deep-dive learning.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Category 1: Frontend Development -->
+          <div class="skill-category-card reveal">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Frontend</h3>
+              <span class="skill-cat-badge">Core Capability</span>
+            </div>
+            <div class="skill-tags-wrap">
+              <span class="skill-pill">React.js</span>
+              <span class="skill-pill">React Native</span>
+              <span class="skill-pill">HTML5</span>
+              <span class="skill-pill">CSS3 / Vanilla CSS</span>
+              <span class="skill-pill">JavaScript (ES6+)</span>
+              <span class="skill-pill">Responsive UI Design</span>
+              <span class="skill-pill">Component Architecture</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Backend Development -->
+          <div class="skill-category-card reveal">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Backend</h3>
+              <span class="skill-cat-badge">Engineering</span>
+            </div>
+            <div class="skill-tags-wrap">
+              <span class="skill-pill focus-learning">Java</span>
+              <span class="skill-pill focus-learning">Spring Boot</span>
+              <span class="skill-pill">REST API Integration</span>
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Flask</span>
+              <span class="skill-pill">Node.js</span>
+              <span class="skill-pill">Express.js</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Databases -->
+          <div class="skill-category-card reveal">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Databases</h3>
+              <span class="skill-cat-badge">Data Storage</span>
+            </div>
+            <div class="skill-tags-wrap">
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">Microsoft SQL</span>
+              <span class="skill-pill">MongoDB Fundamentals</span>
+              <span class="skill-pill">CRUD Operations</span>
+              <span class="skill-pill">Relational Schemas</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Tools & Platforms -->
+          <div class="skill-category-card reveal">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Tools &amp; Cloud</h3>
+              <span class="skill-cat-badge">Workflow</span>
+            </div>
+            <div class="skill-tags-wrap">
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">GitHub</span>
+              <span class="skill-pill">Google Cloud Platform</span>
+              <span class="skill-pill">Power BI</span>
+              <span class="skill-pill">Excel</span>
+              <span class="skill-pill">Canva</span>
+            </div>
+          </div>
+
+          <!-- Category 5: Additional Knowledge -->
+          <div class="skill-category-card reveal">
+            <div class="skill-cat-header">
+              <h3 class="skill-cat-title">Additional</h3>
+              <span class="skill-cat-badge">Foundations</span>
+            </div>
+            <div class="skill-tags-wrap">
+              <span class="skill-pill">C Programming</span>
+              <span class="skill-pill">Selenium Fundamentals</span>
+              <span class="skill-pill">Agile Development</span>
+              <span class="skill-pill">Software Architecture</span>
+              <span class="skill-pill">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         9. ACHIEVEMENTS / CONTINUOUS LEARNING
+         ======================================================================= -->
+    <section class="section" id="learning">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Continuous Learning</span>
+          <h2 class="section-heading">Growing through experience.</h2>
+          <p class="section-desc">
+            Certifications, academic achievements, and industry courses that shape my technical foundation.
+          </p>
+        </div>
+
+        <div class="learning-layout">
+          <!-- Certifications Left Column -->
+          <div class="learning-col reveal">
+            <div class="learning-item">
+              <div class="cert-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 15l-2 5l9-11h-7l2-5l-9 11h7z"/>
+                </svg>
+              </div>
+              <div class="cert-content">
+                <span class="cert-provider">Infosys Springboard</span>
+                <h3 class="cert-title">Technical Certifications</h3>
+                <p class="cert-desc">Core software development, enterprise programming paradigms, and modern computing fundamentals.</p>
+              </div>
+            </div>
+
+            <div class="learning-item">
+              <div class="cert-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div class="cert-content">
+                <span class="cert-provider">Accenture</span>
+                <h3 class="cert-title">Accenture Certifications</h3>
+                <p class="cert-desc">Software development workflows, agile methodologies, and enterprise project fundamentals.</p>
+              </div>
+            </div>
+
+            <div class="learning-item">
+              <div class="cert-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </div>
+              <div class="cert-content">
+                <span class="cert-provider">LinkedIn Learning</span>
+                <h3 class="cert-title">Python Programming Course</h3>
+                <p class="cert-desc">Python data structures, object-oriented concepts, scripting, and backend automation.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications Right Column -->
+          <div class="learning-col reveal">
+            <div class="learning-item">
+              <div class="cert-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <div class="cert-content">
+                <span class="cert-provider">Google</span>
+                <h3 class="cert-title">Digital Marketing Certificate</h3>
+                <p class="cert-desc">Digital user behavior, conversion metrics, audience analytics, and online platform presence.</p>
+              </div>
+            </div>
+
+            <div class="learning-item">
+              <div class="cert-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+              </div>
+              <div class="cert-content">
+                <span class="cert-provider">NPTEL</span>
+                <h3 class="cert-title">Two NPTEL Courses</h3>
+                <p class="cert-desc">Rigorous academic courses covering foundational computer science and information technology principles.</p>
+              </div>
+            </div>
+
+            <div class="learning-item">
+              <div class="cert-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div class="cert-content">
+                <span class="cert-provider">KCG College of Technology</span>
+                <h3 class="cert-title">B.Tech IT (2022 – 2026)</h3>
+                <p class="cert-desc">7.52 CGPA &bull; Specializing in Software Engineering, Web Technologies, Database Systems, and Cloud.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         10. PORTFOLIO HIGHLIGHTS / FOUR-COLUMN STATISTICS
+         ======================================================================= -->
+    <section class="highlights-strip" aria-label="Portfolio Highlights">
+      <div class="container">
+        <div class="highlights-grid">
+          <div class="highlight-item reveal">
+            <span class="highlight-number">03</span>
+            <span class="highlight-label">Featured real-world projects documented in this portfolio</span>
+          </div>
+
+          <div class="highlight-item reveal">
+            <span class="highlight-number">02</span>
+            <span class="highlight-label">Internship experiences (Ford &amp; NSIC Chennai)</span>
+          </div>
+
+          <div class="highlight-item reveal">
+            <span class="highlight-number">04</span>
+            <span class="highlight-label">Core technical focus areas: Frontend, Backend, APIs &amp; Databases</span>
+          </div>
+
+          <div class="highlight-item reveal">
+            <span class="highlight-number">2026</span>
+            <span class="highlight-label">Graduation year &bull; B.Tech Information Technology</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         11. CONTACT SECTION
+         ======================================================================= -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card-main reveal">
+          <div class="contact-content">
+            <span class="eyebrow">Let's Connect</span>
+            <h2 class="contact-heading">Have an idea worth building?</h2>
+            <p class="contact-lead">
+              I’m interested in software development opportunities where I can contribute, learn from experienced engineers, and build useful applications. Let’s connect and discuss what we can create.
+            </p>
+
+            <!-- Giant Interactive Email Anchor -->
+            <div class="email-action-row">
+              <a href="mailto:naveenkumar.dev@outlook.com" class="big-email-anchor" id="emailAnchor" aria-label="Email Naveen Kumar E">
+                <span>naveenkumar.dev@outlook.com</span>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              <button class="email-copy-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copyBtnText">Copy Email Address</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Social / Professional Links Panel -->
+          <div class="contact-links-panel">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+              <div class="social-label-group">
+                <span class="social-name">LinkedIn</span>
+                <span class="social-hint">Professional Profile &amp; Updates</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+              <div class="social-label-group">
+                <span class="social-name">GitHub</span>
+                <span class="social-hint">Source Repositories &amp; Code</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+
+            <a href="mailto:naveenkumar.dev@outlook.com?subject=Resume%20Request%20-%20Naveen%20Kumar%20E" class="contact-link-row">
+              <div class="social-label-group">
+                <span class="social-name">Request Resume</span>
+                <span class="social-hint">PDF via Direct Email</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       12. FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">NAVEEN KUMAR E</span>
+          <p class="footer-tagline">“Designed with curiosity. Built with purpose.”</p>
+        </div>
+
+        <ul class="footer-links-group">
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
+          <li><a href="mailto:naveenkumar.dev@outlook.com" class="footer-link">Email</a></li>
+          <li><a href="#hero" class="back-to-top-btn" aria-label="Back to top">
+            <span>Back to Top</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M6 9.5V2.5M6 2.5L2.5 6M6 2.5L9.5 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Naveen Kumar E. All rights reserved.</span>
+        <span>Information Technology &bull; B.Tech Class of 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       13. INTERACTIVE PROJECT DETAIL MODAL
+       ========================================================================= -->
+  <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="modal-banner">
+        <img id="modalBannerImg" src="" alt="Project Preview" />
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <span class="modal-category" id="modalCategory">Category</span>
+          <h3 class="modal-title" id="modalTitle">Project Title</h3>
+        </div>
+
+        <p class="modal-desc" id="modalDescription">Description</p>
+
+        <div class="modal-spec-section" id="modalArchSection">
+          <span class="modal-spec-title">Architecture &amp; Core Invariants</span>
+          <div id="modalArchContent"></div>
+        </div>
+
+        <div class="modal-spec-section">
+          <span class="modal-spec-title">Key Engineering Features</span>
+          <ul class="project-features-list" id="modalFeaturesList"></ul>
+        </div>
+
+        <div class="modal-spec-section">
+          <span class="modal-spec-title">Technology Stack</span>
+          <div class="exp-tech-stack" id="modalTechStack"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vite entry script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
