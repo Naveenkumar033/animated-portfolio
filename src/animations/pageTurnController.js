@@ -78,21 +78,22 @@ export function initPageTurn() {
   }
 
   // Create dedicated ScrollTrigger for the realistic page curl peel
-  // Peels smoothly over the first 75% of the transition window
+  // Peels smoothly over the final 100svh of heroContainer, synchronizing
+  // exactly with pageTurnContainer unpinning directly into the WORK section
   const trigger = ScrollTrigger.create({
     trigger: heroContainer,
     start: () => `${heroContainer.offsetHeight - window.innerHeight} top`,
-    end: () => `${heroContainer.offsetHeight - window.innerHeight * 0.15} top`,
+    end: () => `${heroContainer.offsetHeight} top`,
     scrub: 0.1,
     invalidateOnRefresh: true,
     onUpdate: (self) => {
-      const curl = Math.min(1, Math.max(0, self.progress / 0.85));
+      const curl = Math.min(1, Math.max(0, self.progress));
       updateTurn(curl);
     }
   });
 
   // Evaluate initial state immediately
-  updateTurn(trigger.progress ? Math.min(1, trigger.progress / 0.85) : 0);
+  updateTurn(trigger.progress ? Math.min(1, trigger.progress) : 0);
 
   return pageCurlInstance;
 }
