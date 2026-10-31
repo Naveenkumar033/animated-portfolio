@@ -1,0 +1,223 @@
+import * as THREE from 'three';
+
+/**
+ * High-Fidelity 3D Page Curl WebGL Shader
+ * Replicated with exact mathematical parameters from codeofsagar.in (chunk 026y-9bl64i7t.js)
+ * 
+ * Simulates a realistic cylindrical paper roll peeling diagonally across the screen:
+ * - Radius R = 0.12 of viewport
+ * - Crease sweeping from bottom-right towards top-left
+ * - Specular paper sheen on crown of roll
+ * - Diffuse illumination on underside
+ * - Soft exponential ambient occlusion / drop shadow cast along the crease line
+ */
+export class PageCurlScene {
+  constructor(canvasId = 'pageCurlCanvas') {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) return;
+
+    this.curlValue = 0.0;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+
+    this.initScene();
+    this.initEvents();
+  }
+
+  initScene() {
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    this.renderer.setSize(this.width, this.height);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    const vertexShader = `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = vec4(position.xy, 0.0, 1.0);
+      }
+    `;
+
+    const fragmentShader = `
+      precision highp float;
+      varying vec2 vUv;
+      uniform float uCurl;
+      uniform vec2 iResolution;
+
+      bool onSheet(vec2 q, float aspect) {
+        return q.x >= 0.0 && q.x <= aspect && q.y >= 0.0 && q.y <= 1.0;
+      }
+
+      void main() {
+        if (uCurl <= 0.0001) {
+          gl_FragColor = vec4(0.0);
+          return;
+        }
+        if (uCurl >= 0.9999) {
+          gl_FragColor = vec4(0.0);
+          return;
+        }
+
+        float aspect = iResolution.x / iResolution.y;
+        const float R = 0.12;
+        const float END = 0.42;
+        const float HALF_TURN = 3.14159265359;
+
+        // Position in aspect-corrected coordinates (x: 0..aspect, y: 0..1)
+        vec2 p = vec2(vUv.x * aspect, vUv.y);
+        vec2 dir = normalize(vec2(aspect, -1.0));
+
+        float sMin = dot(vec2(0.0, 1.0), dir);
+        float sMax = dot(vec2(aspect, 0.0), dir);
+
+        float axis = mix(sMax, sMin - END, uCurl);
+        float d = dot(p, dir) - axis;
+
+        // 1. Turned-over sheet lying flat on the back
+        if (d <= 0.0) {
+          vec2 q = p + dir * (HALF_TURN * R - 2.0 * d);
+          if (onSheet(q, aspect)) {
+            // Brightest near the crown, settling slightly darker flat
+            float backShade = 0.88 + 0.12 * exp(d / (2.0 * R));
+            // Realistic crisp paper tone (#fbfaf8)
+            vec3 paperBack = vec3(0.96, 0.96, 0.95) * backShade;
+            gl_FragColor = vec4(paperBack, 0.98);
+            return;
+          }
+        }
+        // 2. Curled cylinder roll
+        else if (d < R) {
+          float a = asin(d / R);
+          vec2 top = p + dir * (R * (HALF_TURN - a) - d);
+          if (onSheet(top, aspect)) {
+            // Crown highlight + soft roll falloff
+            float backShade = 0.58 + 0.42 * cos(a) + 0.14 * exp(-pow((a - 0.45) * 3.5, 2.0));
+            vec3 paperRoll = vec3(0.98, 0.97, 0.96) * backShade;
+            gl_FragColor = vec4(paperRoll, 1.0);
+            return;
+          } else {
+            // Underside of curling sheet bending into the cylinder
+            vec2 under = p + dir * (R * a - d);
+            if (onSheet(under, aspect)) {
+              float frontShade = 0.35 + 0.65 * cos(a);
+              vec3 underColor = vec3(0.92, 0.91, 0.90) * frontShade;
+              gl_FragColor = vec4(underColor, 0.95);
+              return;
+            } else {
+              // Edge of paper
+              gl_FragColor = vec4(0.0, 0.0, 0.0, 0.35);
+              return;
+            }
+          }
+        }
+        // 3. Drop shadow cast on the surface below the roll
+        else {
+          float shadowDist = d - R;
+          float shadow = 0.38 * exp(-shadowDist / 0.06);
+          if (shadow > 0.01) {
+            gl_FragColor = vec4(0.0, 0.0, 0.0, shadow);
+            return;
+          }
+        }
+
+        gl_FragColor = vec4(0.0);
+      }
+    `;
+
+    this.uniforms = {
+      uCurl: { value: 0.0 },
+      iResolution: { value: new THREE.Vector2(this.width, this.height) }
+    };
+
+    const material = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: this.uniforms,
+      transparent: true,
+      depthTest: false,
+      depthWrite: false
+    });
+
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const mesh = new THREE.Mesh(geometry, material);
+    this.scene.add(mesh);
+  }
+
+  setCurl(val) {
+    this.curlValue = Math.max(0, Math.min(1, val));
+    if (this.canvas) {
+      this.canvas.style.visibility = (this.curlValue > 0.001 && this.curlValue < 0.999) ? 'visible' : 'hidden';
+    }
+    if (this.uniforms) {
+      this.uniforms.uCurl.value = this.curlValue;
+    }
+    this.render();
+  }
+
+  /**
+   * Calculates the exact SVG / CSS polygon clip-path for DOM elements matching the curl axis
+   */
+  getClipPolygon(curl) {
+    if (curl <= 1e-4) return '';
+    if (curl >= 0.9999) return 'polygon(0 0, 0 0, 0 0)';
+
+    const w = this.width;
+    const h = this.height;
+    const aspect = w / h;
+    const r_hypot = Math.hypot(aspect, 1);
+    const dir = [aspect / r_hypot, -1 / r_hypot];
+    const sMin = dir[1];
+    const sMax = aspect * dir[0];
+    const crease = sMax + (sMin - 0.42 - sMax) * curl;
+
+    const n_fn = (pt) => pt[0] * dir[0] + pt[1] * dir[1] - crease;
+    const d = [[0, 0], [aspect, 0], [aspect, 1], [0, 1]];
+    const c = [];
+
+    for (let i = 0; i < 4; i++) {
+      const t = d[i];
+      const r = d[(i + 1) % 4];
+      const a = n_fn(t);
+      const l = n_fn(r);
+      if (a >= 0) c.push(t);
+      if ((a >= 0) !== (l >= 0)) {
+        const frac = a / (a - l);
+        c.push([t[0] + (r[0] - t[0]) * frac, t[1] + (r[1] - t[1]) * frac]);
+      }
+    }
+
+    if (c.length < 3) return '';
+
+    const pts = c.map(([x, y]) => {
+      const px = Math.round(x * h * 10) / 10;
+      const py = Math.round((1 - y) * h * 10) / 10;
+      return `${px}px ${py}px`;
+    });
+
+    return `polygon(${pts.join(', ')})`;
+  }
+
+  render() {
+    if (this.renderer && this.scene && this.camera) {
+      this.renderer.render(this.scene, this.camera);
+    }
+  }
+
+  initEvents() {
+    window.addEventListener('resize', () => {
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+      this.renderer.setSize(this.width, this.height);
+      this.uniforms.iResolution.value.set(this.width, this.height);
+      this.render();
+    });
+  }
+}
+

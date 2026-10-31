@@ -1,0 +1,681 @@
+- generic [active] [ref=f7e1]:
+  - banner:
+    - link "Sagar K. Ghosh - home" [ref=f7e2]:
+      - /url: /
+      - img "Sagar K. Ghosh" [ref=f7e3]
+    - link "CodeofSagar" [ref=f7e9]:
+      - /url: /
+    - generic [ref=f7e10]:
+      - button "Sound off" [pressed] [ref=f7e11] [cursor=pointer]:
+        - generic [aria-hidden] [ref=f7e12]: Sound
+      - button "Open menu" [ref=f7e18]:
+        - generic [ref=f7e19]: MENU
+  - main [ref=f7e21]:
+    - generic [aria-hidden]:
+      - generic:
+        - paragraph: Sagar K. Ghosh · Creative Developer
+        - paragraph [aria-hidden]:
+          - generic:
+            - generic:
+              - generic: "0"
+              - generic: "1"
+              - generic: "2"
+              - generic: "3"
+              - generic: "4"
+              - generic: "5"
+              - generic: "6"
+              - generic: "7"
+              - generic: "8"
+              - generic: "9"
+          - generic:
+            - generic:
+              - generic: "0"
+              - generic: "1"
+              - generic: "2"
+              - generic: "3"
+              - generic: "4"
+              - generic: "5"
+              - generic: "6"
+              - generic: "7"
+              - generic: "8"
+              - generic: "9"
+          - generic:
+            - generic:
+              - generic: "0"
+              - generic: "1"
+              - generic: "2"
+              - generic: "3"
+              - generic: "4"
+              - generic: "5"
+              - generic: "6"
+              - generic: "7"
+              - generic: "8"
+              - generic: "9"
+    - generic [ref=f7e23]:
+      - generic:
+        - heading "Websites that refuse to look like everyone else." [level=1]
+      - generic:
+        - generic:
+          - paragraph: Sagar K. Ghosh, full-stack developer. I design and build websites, 3D experiences, Shopify stores and AI automation for brands that want to stand out, and sell.
+      - generic [ref=f7e26]:
+        - button "Day" [pressed] [ref=f7e27]
+        - button "Sunset" [ref=f7e31]
+        - button "Night" [ref=f7e35]
+      - generic:
+        - generic:
+          - heading "SAGAR K. GHOSH" [level=2]
+      - generic:
+        - paragraph: Let's make it simple.
+    - region "Get Found. Get Chosen. Get Bought." [ref=f7e44]
+    - generic [ref=f7e45]:
+      - region "Creative Developer" [ref=f7e46]:
+        - generic [ref=f7e47]:
+          - heading "Creative Developer" [level=2] [ref=f7e48]:
+            - generic [ref=f7e49]: Creative
+            - generic [ref=f7e50]: Developer
+          - list [ref=f7e52]:
+            - listitem [ref=f7e53]:
+              - generic [ref=f7e54]: Full-stack development
+              - generic [ref=f7e55]: sites that earn their keep
+            - listitem [ref=f7e56]:
+              - generic [ref=f7e57]: WebGL & design
+              - generic [ref=f7e58]: worth remembering
+            - listitem [ref=f7e59]:
+              - generic [ref=f7e60]: Shopify
+              - generic [ref=f7e61]: built to sell
+            - listitem [ref=f7e62]:
+              - generic [ref=f7e63]: AI automation
+              - generic [ref=f7e64]: works while you sleep
+          - paragraph [ref=f7e66]: "I care about one thing: that the site does the job you hired it for. Not that it looks good in a screenshot, but that it sells, answers questions, and holds up on launch day and long after."
+          - paragraph [ref=f7e67]:
+            - generic [ref=f7e68]: Independent
+            - generic [ref=f7e69]: India based
+            - generic [ref=f7e70]: Working worldwide
+      - region "The web, built to earn its keep" [ref=f7e71]:
+        - generic [ref=f7e73]: Live ●
+        - generic [ref=f7e110]:
+          - generic [ref=f7e111]:
+            - generic [ref=f7e112]:
+              - paragraph [ref=f7e119]: Sites that earn their keep —
+              - paragraph [ref=f7e120]: 01 Full-stack development
+              - paragraph [ref=f7e121]: Next.js, React & TypeScript. APIs, databases & webhooks.
+              - generic [aria-hidden] [ref=f7e122]: ®
+              - generic [ref=f7e125]: Open for projects
+            - generic [ref=f7e127]:
+              - paragraph [ref=f7e134]: Worth remembering —
+              - paragraph [ref=f7e135]: 02 WebGL & design
+              - paragraph [ref=f7e136]: Three.js & React Three Fiber. Custom GLSL & visual effects.
+              - generic [aria-hidden] [ref=f7e137]: ®
+              - generic [ref=f7e140]: Open for projects
+            - generic [ref=f7e142]:
+              - paragraph [ref=f7e149]: Built to sell —
+              - paragraph [ref=f7e150]: 03 Shopify
+              - paragraph [ref=f7e151]: Custom themes or headless builds. Variants, bundles & product pages.
+              - generic [aria-hidden] [ref=f7e152]: ®
+              - generic [ref=f7e155]: Open for projects
+            - generic [ref=f7e157]:
+              - paragraph [ref=f7e164]: Works while you sleep —
+              - paragraph [ref=f7e165]: 04 AI automation
+              - paragraph [ref=f7e166]: n8n, Make & Zapier. OpenAI, Claude & your knowledge.
+              - generic [aria-hidden] [ref=f7e167]: ®
+              - generic [ref=f7e170]: Open for projects
+          - generic [aria-hidden] [ref=f7e172]:
+            - generic [ref=f7e173]:
+              - paragraph [ref=f7e180]: Sites that earn their keep —
+              - paragraph [ref=f7e181]: 01 Full-stack development
+              - paragraph [ref=f7e182]: Next.js, React & TypeScript. APIs, databases & webhooks.
+              - generic [aria-hidden] [ref=f7e183]: ®
+              - generic [ref=f7e186]: Open for projects
+            - generic [ref=f7e188]:
+              - paragraph [ref=f7e195]: Worth remembering —
+              - paragraph [ref=f7e196]: 02 WebGL & design
+              - paragraph [ref=f7e197]: Three.js & React Three Fiber. Custom GLSL & visual effects.
+              - generic [aria-hidden] [ref=f7e198]: ®
+              - generic [ref=f7e201]: Open for projects
+            - generic [ref=f7e203]:
+              - paragraph [ref=f7e210]: Built to sell —
+              - paragraph [ref=f7e211]: 03 Shopify
+              - paragraph [ref=f7e212]: Custom themes or headless builds. Variants, bundles & product pages.
+              - generic [aria-hidden] [ref=f7e213]: ®
+              - generic [ref=f7e216]: Open for projects
+            - generic [ref=f7e218]:
+              - paragraph [ref=f7e225]: Works while you sleep —
+              - paragraph [ref=f7e226]: 04 AI automation
+              - paragraph [ref=f7e227]: n8n, Make & Zapier. OpenAI, Claude & your knowledge.
+              - generic [aria-hidden] [ref=f7e228]: ®
+              - generic [ref=f7e231]: Open for projects
+        - img [aria-hidden] [ref=f7e233]:
+          - generic [ref=f7e238]: "1"
+          - generic [ref=f7e244]: "2"
+          - generic [ref=f7e251]: "3"
+          - generic [ref=f7e257]: "4"
+          - generic [ref=f7e264]: "5"
+      - generic [ref=f7e268]:
+        - generic [aria-hidden]:
+          - generic: Selected work ’25–26 — waiting on a full stop
+          - generic:
+            - generic:
+              - paragraph:
+                - generic: Work
+        - region [ref=f7e269]:
+          - generic [ref=f7e270]:
+            - generic [ref=f7e271]:
+              - heading "Work 2025 to 2026" [level=2] [ref=f7e272]:
+                - generic [ref=f7e273]: Work
+                - generic "2025 to 2026" [ref=f7e275]: ’25–26
+              - paragraph [ref=f7e276]: Good sites get seen.Great sites get remembered.
+            - generic [ref=f7e277]:
+              - generic [ref=f7e278]:
+                - article [ref=f7e279]:
+                  - link "View Lijoi project" [ref=f7e280]:
+                    - /url: /work/lijoi
+                    - paragraph [ref=f7e281]: Flowers, priced from the real address.
+                    - img "Lijoi project preview" [ref=f7e284]
+                    - paragraph [ref=f7e285]:
+                      - generic [ref=f7e286]: Lijoi
+                      - time [ref=f7e287]: "2026"
+                - article [ref=f7e288]:
+                  - link "View Secnd Soul project" [ref=f7e289]:
+                    - /url: /work/secnd-soul
+                    - paragraph [ref=f7e290]: A storefront that stays up when Shopify doesn't.
+                    - img "Secnd Soul project preview" [ref=f7e293]
+                    - paragraph [ref=f7e294]:
+                      - generic [ref=f7e295]: Secnd Soul
+                      - time [ref=f7e296]: "2026"
+              - generic [ref=f7e297]:
+                - article [ref=f7e298]:
+                  - link "View Marianna Caliandro project" [ref=f7e299]:
+                    - /url: /work/marianna-caliandro
+                    - paragraph [ref=f7e300]: Calm motion, so the work can speak.
+                    - img "Marianna Caliandro project preview" [ref=f7e303]
+                    - paragraph [ref=f7e304]:
+                      - generic [ref=f7e305]: Marianna Caliandro
+                      - time [ref=f7e306]: "2026"
+                - article [ref=f7e307]:
+                  - link "View Stratedgy project" [ref=f7e308]:
+                    - /url: /work/stratedgy
+                    - paragraph [ref=f7e309]: Scroll that draws the brand as you read.
+                    - img "Stratedgy project preview" [ref=f7e312]
+                    - paragraph [ref=f7e313]:
+                      - generic [ref=f7e314]: Stratedgy
+                      - time [ref=f7e315]: 2025–2026
+            - link "See all work" [ref=f7e317] [cursor=pointer]:
+              - /url: /work
+      - generic [ref=f7e318]:
+        - region [ref=f7e319]:
+          - generic [ref=f7e320]:
+            - generic [ref=f7e321]:
+              - heading "In good company." [level=2] [ref=f7e322]
+              - paragraph [ref=f7e323]: Brands from Rome to Toronto who trusted me with how they look online, and how they sell.
+            - generic [ref=f7e324]:
+              - list "Clients" [ref=f7e325]:
+                - listitem [ref=f7e326]:
+                  - img "Lijoi" [ref=f7e327]
+                - listitem [ref=f7e328]:
+                  - img "Secnd Soul" [ref=f7e329]
+                - listitem [ref=f7e330]:
+                  - img "RGA" [ref=f7e331]
+                - listitem [ref=f7e332]:
+                  - img "Marianna Caliandro" [ref=f7e333]
+                - listitem [ref=f7e334]:
+                  - img "Toronto Distillery" [ref=f7e335]
+                - listitem [ref=f7e336]:
+                  - img "Afflu" [ref=f7e337]
+                - listitem [ref=f7e338]:
+                  - img "Brass Knuckles Fight Klub" [ref=f7e339]
+                - listitem [ref=f7e340]:
+                  - img "ApexFlowLabs" [ref=f7e341]
+                - listitem [ref=f7e342]:
+                  - img "Brass Knuckles Fashion House" [ref=f7e343]
+              - list [aria-hidden] [ref=f7e344]:
+                - listitem [ref=f7e345]
+                - listitem [ref=f7e346]
+                - listitem [ref=f7e347]
+                - listitem [ref=f7e348]
+                - listitem [ref=f7e349]
+                - listitem [ref=f7e350]
+                - listitem [ref=f7e351]
+                - listitem [ref=f7e352]
+                - listitem [ref=f7e353]
+              - list [aria-hidden] [ref=f7e354]:
+                - listitem [ref=f7e355]
+                - listitem [ref=f7e356]
+                - listitem [ref=f7e357]
+                - listitem [ref=f7e358]
+                - listitem [ref=f7e359]
+                - listitem [ref=f7e360]
+                - listitem [ref=f7e361]
+                - listitem [ref=f7e362]
+                - listitem [ref=f7e363]
+          - paragraph [aria-hidden] [ref=f7e365]: Oops!
+        - region [ref=f7e366]:
+          - generic [ref=f7e367]:
+            - heading [level=2] [ref=f7e368]:
+              - generic [ref=f7e369]: Four things I do,built end to end.
+            - link "All services" [ref=f7e370] [cursor=pointer]:
+              - /url: /services
+          - list [ref=f7e374]:
+            - listitem [ref=f7e375]:
+              - heading [level=3] [ref=f7e376]:
+                - link "Full-stack development" [ref=f7e377]:
+                  - /url: /services#full-stack
+              - paragraph [ref=f7e378]: Sites that earn their keep.
+              - list [ref=f7e380]:
+                - listitem [ref=f7e381]: Websites & web apps
+                - listitem [ref=f7e382]: APIs & backends
+                - listitem [ref=f7e383]: Payments & checkout
+                - listitem [ref=f7e384]: SEO, AEO & AI visibility
+                - listitem [ref=f7e385]: Design & art direction
+                - listitem [ref=f7e386]: Hosting & speed
+            - listitem [ref=f7e387]:
+              - heading [level=3] [ref=f7e388]:
+                - link "WebGL & design" [ref=f7e389]:
+                  - /url: /services#webgl-design
+              - paragraph [ref=f7e390]: Worth remembering.
+              - list [ref=f7e392]:
+                - listitem [ref=f7e393]: Three.js & WebGL scenes
+                - listitem [ref=f7e394]: Custom shaders
+                - listitem [ref=f7e395]: 3D product scenes
+                - listitem [ref=f7e396]: Scroll-driven stories
+                - listitem [ref=f7e397]: Motion design
+                - listitem [ref=f7e398]: Design & art direction
+            - listitem [ref=f7e399]:
+              - heading [level=3] [ref=f7e400]:
+                - link "Shopify" [ref=f7e401]:
+                  - /url: /services#shopify
+              - paragraph [ref=f7e402]: Built to sell.
+              - list [ref=f7e404]:
+                - listitem [ref=f7e405]: Custom Shopify themes
+                - listitem [ref=f7e406]: Headless storefronts
+                - listitem [ref=f7e407]: Shopify apps
+                - listitem [ref=f7e408]: Product pages
+                - listitem [ref=f7e409]: Checkout & payments
+                - listitem [ref=f7e410]: Speed & conversion
+            - listitem [ref=f7e411]:
+              - heading [level=3] [ref=f7e412]:
+                - link "AI automation" [ref=f7e413]:
+                  - /url: /services#ai-automation
+              - paragraph [ref=f7e414]: Works while you sleep.
+              - list [ref=f7e416]:
+                - listitem [ref=f7e417]: Workflow automation
+                - listitem [ref=f7e418]: AI assistants
+                - listitem [ref=f7e419]: Inbox & lead handling
+                - listitem [ref=f7e420]: AI integrations
+                - listitem [ref=f7e421]: Connected tools
+                - listitem [ref=f7e422]: Runs while you sleep
+      - generic [ref=f7e425]:
+        - region [ref=f7e426]:
+          - heading "How a project runs" [level=2] [ref=f7e427]:
+            - generic [aria-hidden] [ref=f7e428]: How
+            - generic [aria-hidden] [ref=f7e429]: a
+            - generic [aria-hidden] [ref=f7e430]: project
+            - generic [aria-hidden] [ref=f7e431]: runs
+          - paragraph [ref=f7e432]: Four steps, each with something you can see and approve before the next one starts.
+        - region "The four steps" [ref=f7e433]:
+          - list [ref=f7e434]:
+            - listitem [ref=f7e435]:
+              - generic [ref=f7e436]:
+                - paragraph [ref=f7e437]: Step 01 · discovery
+                - paragraph [aria-hidden] [ref=f7e438]: "01"
+                - heading "The awkward questions" [level=3] [ref=f7e439]
+                - paragraph [ref=f7e440]: "Who is it for, what does it have to sell, and what went wrong last time? You get a written plan back: the pages, what matters most and a launch date."
+                - list [ref=f7e441]:
+                  - listitem [ref=f7e442]: Brand positioning
+                  - listitem [ref=f7e443]: User research
+                  - listitem [ref=f7e444]: Information architecture
+                  - listitem [ref=f7e445]: Competitor audit
+              - figure [ref=f7e446]:
+                - generic "discovery, on film" [ref=f7e447]
+            - listitem [ref=f7e448]:
+              - generic [ref=f7e449]:
+                - paragraph [ref=f7e450]: Step 02 · design
+                - paragraph [aria-hidden] [ref=f7e451]: "02"
+                - heading "Designed in motion" [level=3] [ref=f7e452]
+                - paragraph [ref=f7e453]: Type, colour, layout and motion made for your brand, as a prototype you can click through. You approve it before a line of final code is written.
+                - list [ref=f7e454]:
+                  - listitem [ref=f7e455]: UI/UX design
+                  - listitem [ref=f7e456]: Design system
+                  - listitem [ref=f7e457]: Typography specimen
+                  - listitem [ref=f7e458]: Interactive prototypes
+              - figure [ref=f7e459]:
+                - generic "design, on film" [ref=f7e460]
+            - listitem [ref=f7e461]:
+              - generic [ref=f7e462]:
+                - paragraph [ref=f7e463]: Step 03 · engineering
+                - paragraph [aria-hidden] [ref=f7e464]: "03"
+                - heading "Built to hold up" [level=3] [ref=f7e465]
+                - paragraph [ref=f7e466]: "Everything you can see, and everything behind it: payments, data and integrations. Built to stay fast on an older phone, not only on a new laptop."
+                - list [ref=f7e467]:
+                  - listitem [ref=f7e468]: Next.js
+                  - listitem [ref=f7e469]: TypeScript
+                  - listitem [ref=f7e470]: Three.js / WebGL
+                  - listitem [ref=f7e471]: GSAP animations
+              - figure [ref=f7e472]:
+                - generic "engineering, on film" [ref=f7e473]
+            - listitem [ref=f7e474]:
+              - generic [ref=f7e475]:
+                - paragraph [ref=f7e476]: Step 04 · launch
+                - paragraph [aria-hidden] [ref=f7e477]: "04"
+                - heading "Launch, then stay" [level=3] [ref=f7e478]
+                - paragraph [ref=f7e479]: Tested on every screen, set up for Google and AI search, and launched on your domain. Then a walkthrough of how it all works, and 90 days of support.
+                - list [ref=f7e480]:
+                  - listitem [ref=f7e481]: Cross-device QA
+                  - listitem [ref=f7e482]: Technical SEO
+                  - listitem [ref=f7e483]: Global CDN deployment
+                  - listitem [ref=f7e484]: Handover walkthrough
+              - figure [ref=f7e485]:
+                - generic "launch, on film" [ref=f7e486]
+  - contentinfo [ref=f7e488]:
+    - generic [ref=f7e489]:
+      - paragraph [aria-hidden] [ref=f7e490]: Still scrolling? Good sign.
+      - heading "Got something worth building?" [level=2] [ref=f7e491]:
+        - generic [ref=f7e492]:
+          - generic [ref=f7e493]: Got something
+          - generic [ref=f7e494]: worth building?
+    - generic [ref=f7e495]:
+      - paragraph [ref=f7e496]: Email me
+      - link "hello@codeofsagar.in" [ref=f7e497]:
+        - /url: mailto:hello@codeofsagar.in
+      - paragraph [aria-hidden] [ref=f7e499]: I usually reply within a day.
+    - generic [ref=f7e501]:
+      - navigation "Footer" [ref=f7e502]:
+        - paragraph [ref=f7e503]: Pages
+        - link [ref=f7e504]:
+          - /url: /
+          - generic "Home" [ref=f7e505]:
+            - generic [aria-hidden] [ref=f7e506]:
+              - text: H
+              - generic [ref=f7e507]: H
+            - generic [aria-hidden] [ref=f7e508]:
+              - text: o
+              - generic [ref=f7e509]: o
+            - generic [aria-hidden] [ref=f7e510]:
+              - text: m
+              - generic [ref=f7e511]: m
+            - generic [aria-hidden] [ref=f7e512]:
+              - text: e
+              - generic [ref=f7e513]: e
+        - link [ref=f7e514]:
+          - /url: /work
+          - generic "Work" [ref=f7e515]:
+            - generic [aria-hidden] [ref=f7e516]:
+              - text: W
+              - generic [ref=f7e517]: W
+            - generic [aria-hidden] [ref=f7e518]:
+              - text: o
+              - generic [ref=f7e519]: o
+            - generic [aria-hidden] [ref=f7e520]:
+              - text: r
+              - generic [ref=f7e521]: r
+            - generic [aria-hidden] [ref=f7e522]:
+              - text: k
+              - generic [ref=f7e523]: k
+        - link [ref=f7e524]:
+          - /url: /services
+          - generic "Services" [ref=f7e525]:
+            - generic [aria-hidden] [ref=f7e526]:
+              - text: S
+              - generic [ref=f7e527]: S
+            - generic [aria-hidden] [ref=f7e528]:
+              - text: e
+              - generic [ref=f7e529]: e
+            - generic [aria-hidden] [ref=f7e530]:
+              - text: r
+              - generic [ref=f7e531]: r
+            - generic [aria-hidden] [ref=f7e532]:
+              - text: v
+              - generic [ref=f7e533]: v
+            - generic [aria-hidden] [ref=f7e534]:
+              - text: i
+              - generic [ref=f7e535]: i
+            - generic [aria-hidden] [ref=f7e536]:
+              - text: c
+              - generic [ref=f7e537]: c
+            - generic [aria-hidden] [ref=f7e538]:
+              - text: e
+              - generic [ref=f7e539]: e
+            - generic [aria-hidden] [ref=f7e540]:
+              - text: s
+              - generic [ref=f7e541]: s
+        - link [ref=f7e542]:
+          - /url: /about
+          - generic "About" [ref=f7e543]:
+            - generic [aria-hidden] [ref=f7e544]:
+              - text: A
+              - generic [ref=f7e545]: A
+            - generic [aria-hidden] [ref=f7e546]:
+              - text: b
+              - generic [ref=f7e547]: b
+            - generic [aria-hidden] [ref=f7e548]:
+              - text: o
+              - generic [ref=f7e549]: o
+            - generic [aria-hidden] [ref=f7e550]:
+              - text: u
+              - generic [ref=f7e551]: u
+            - generic [aria-hidden] [ref=f7e552]:
+              - text: t
+              - generic [ref=f7e553]: t
+        - link [ref=f7e554]:
+          - /url: /photography
+          - generic "Photography" [ref=f7e555]:
+            - generic [aria-hidden] [ref=f7e556]:
+              - text: P
+              - generic [ref=f7e557]: P
+            - generic [aria-hidden] [ref=f7e558]:
+              - text: h
+              - generic [ref=f7e559]: h
+            - generic [aria-hidden] [ref=f7e560]:
+              - text: o
+              - generic [ref=f7e561]: o
+            - generic [aria-hidden] [ref=f7e562]:
+              - text: t
+              - generic [ref=f7e563]: t
+            - generic [aria-hidden] [ref=f7e564]:
+              - text: o
+              - generic [ref=f7e565]: o
+            - generic [aria-hidden] [ref=f7e566]:
+              - text: g
+              - generic [ref=f7e567]: g
+            - generic [aria-hidden] [ref=f7e568]:
+              - text: r
+              - generic [ref=f7e569]: r
+            - generic [aria-hidden] [ref=f7e570]:
+              - text: a
+              - generic [ref=f7e571]: a
+            - generic [aria-hidden] [ref=f7e572]:
+              - text: p
+              - generic [ref=f7e573]: p
+            - generic [aria-hidden] [ref=f7e574]:
+              - text: h
+              - generic [ref=f7e575]: h
+            - generic [aria-hidden] [ref=f7e576]:
+              - text: "y"
+              - generic [ref=f7e577]: "y"
+        - link [ref=f7e578]:
+          - /url: /playground
+          - generic "Playground" [ref=f7e579]:
+            - generic [aria-hidden] [ref=f7e580]:
+              - text: P
+              - generic [ref=f7e581]: P
+            - generic [aria-hidden] [ref=f7e582]:
+              - text: l
+              - generic [ref=f7e583]: l
+            - generic [aria-hidden] [ref=f7e584]:
+              - text: a
+              - generic [ref=f7e585]: a
+            - generic [aria-hidden] [ref=f7e586]:
+              - text: "y"
+              - generic [ref=f7e587]: "y"
+            - generic [aria-hidden] [ref=f7e588]:
+              - text: g
+              - generic [ref=f7e589]: g
+            - generic [aria-hidden] [ref=f7e590]:
+              - text: r
+              - generic [ref=f7e591]: r
+            - generic [aria-hidden] [ref=f7e592]:
+              - text: o
+              - generic [ref=f7e593]: o
+            - generic [aria-hidden] [ref=f7e594]:
+              - text: u
+              - generic [ref=f7e595]: u
+            - generic [aria-hidden] [ref=f7e596]:
+              - text: "n"
+              - generic [ref=f7e597]: "n"
+            - generic [aria-hidden] [ref=f7e598]:
+              - text: d
+              - generic [ref=f7e599]: d
+        - link [ref=f7e600]:
+          - /url: /faq
+          - generic "FAQ" [ref=f7e601]:
+            - generic [aria-hidden] [ref=f7e602]:
+              - text: F
+              - generic [ref=f7e603]: F
+            - generic [aria-hidden] [ref=f7e604]:
+              - text: A
+              - generic [ref=f7e605]: A
+            - generic [aria-hidden] [ref=f7e606]:
+              - text: Q
+              - generic [ref=f7e607]: Q
+        - link [ref=f7e608]:
+          - /url: /contact
+          - generic "Contact" [ref=f7e609]:
+            - generic [aria-hidden] [ref=f7e610]:
+              - text: C
+              - generic [ref=f7e611]: C
+            - generic [aria-hidden] [ref=f7e612]:
+              - text: o
+              - generic [ref=f7e613]: o
+            - generic [aria-hidden] [ref=f7e614]:
+              - text: "n"
+              - generic [ref=f7e615]: "n"
+            - generic [aria-hidden] [ref=f7e616]:
+              - text: t
+              - generic [ref=f7e617]: t
+            - generic [aria-hidden] [ref=f7e618]:
+              - text: a
+              - generic [ref=f7e619]: a
+            - generic [aria-hidden] [ref=f7e620]:
+              - text: c
+              - generic [ref=f7e621]: c
+            - generic [aria-hidden] [ref=f7e622]:
+              - text: t
+              - generic [ref=f7e623]: t
+      - generic [ref=f7e624]:
+        - paragraph [ref=f7e625]: Social
+        - link [ref=f7e626]:
+          - /url: https://www.linkedin.com/in/sagar-kumar-ghosh-1b6167346
+          - generic "LinkedIn" [ref=f7e627]:
+            - generic [aria-hidden] [ref=f7e628]:
+              - text: L
+              - generic [ref=f7e629]: L
+            - generic [aria-hidden] [ref=f7e630]:
+              - text: i
+              - generic [ref=f7e631]: i
+            - generic [aria-hidden] [ref=f7e632]:
+              - text: "n"
+              - generic [ref=f7e633]: "n"
+            - generic [aria-hidden] [ref=f7e634]:
+              - text: k
+              - generic [ref=f7e635]: k
+            - generic [aria-hidden] [ref=f7e636]:
+              - text: e
+              - generic [ref=f7e637]: e
+            - generic [aria-hidden] [ref=f7e638]:
+              - text: d
+              - generic [ref=f7e639]: d
+            - generic [aria-hidden] [ref=f7e640]:
+              - text: I
+              - generic [ref=f7e641]: I
+            - generic [aria-hidden] [ref=f7e642]:
+              - text: "n"
+              - generic [ref=f7e643]: "n"
+        - link [ref=f7e644]:
+          - /url: https://www.instagram.com/sagar_ghosh9
+          - generic "Instagram" [ref=f7e645]:
+            - generic [aria-hidden] [ref=f7e646]:
+              - text: I
+              - generic [ref=f7e647]: I
+            - generic [aria-hidden] [ref=f7e648]:
+              - text: "n"
+              - generic [ref=f7e649]: "n"
+            - generic [aria-hidden] [ref=f7e650]:
+              - text: s
+              - generic [ref=f7e651]: s
+            - generic [aria-hidden] [ref=f7e652]:
+              - text: t
+              - generic [ref=f7e653]: t
+            - generic [aria-hidden] [ref=f7e654]:
+              - text: a
+              - generic [ref=f7e655]: a
+            - generic [aria-hidden] [ref=f7e656]:
+              - text: g
+              - generic [ref=f7e657]: g
+            - generic [aria-hidden] [ref=f7e658]:
+              - text: r
+              - generic [ref=f7e659]: r
+            - generic [aria-hidden] [ref=f7e660]:
+              - text: a
+              - generic [ref=f7e661]: a
+            - generic [aria-hidden] [ref=f7e662]:
+              - text: m
+              - generic [ref=f7e663]: m
+        - link [ref=f7e664]:
+          - /url: https://github.com/codeofsagar
+          - generic "GitHub" [ref=f7e665]:
+            - generic [aria-hidden] [ref=f7e666]:
+              - text: G
+              - generic [ref=f7e667]: G
+            - generic [aria-hidden] [ref=f7e668]:
+              - text: i
+              - generic [ref=f7e669]: i
+            - generic [aria-hidden] [ref=f7e670]:
+              - text: t
+              - generic [ref=f7e671]: t
+            - generic [aria-hidden] [ref=f7e672]:
+              - text: H
+              - generic [ref=f7e673]: H
+            - generic [aria-hidden] [ref=f7e674]:
+              - text: u
+              - generic [ref=f7e675]: u
+            - generic [aria-hidden] [ref=f7e676]:
+              - text: b
+              - generic [ref=f7e677]: b
+      - generic [ref=f7e678]:
+        - paragraph [ref=f7e679]: Local time
+        - paragraph [ref=f7e680]: "--:-- in India"
+        - paragraph [ref=f7e681]: GMT +5:30
+      - generic [ref=f7e682]:
+        - paragraph [ref=f7e683]: Status
+        - paragraph [ref=f7e684]: Open for new projects
+        - paragraph [ref=f7e686]: © 2026 Sagar K. Ghosh
+        - button [ref=f7e687]:
+          - generic "Back to top" [ref=f7e688]:
+            - generic [aria-hidden] [ref=f7e689]:
+              - text: B
+              - generic [ref=f7e690]: B
+            - generic [aria-hidden] [ref=f7e691]:
+              - text: a
+              - generic [ref=f7e692]: a
+            - generic [aria-hidden] [ref=f7e693]:
+              - text: c
+              - generic [ref=f7e694]: c
+            - generic [aria-hidden] [ref=f7e695]:
+              - text: k
+              - generic [ref=f7e696]: k
+            - generic [aria-hidden] [ref=f7e698]:
+              - text: t
+              - generic [ref=f7e699]: t
+            - generic [aria-hidden] [ref=f7e700]:
+              - text: o
+              - generic [ref=f7e701]: o
+            - generic [aria-hidden] [ref=f7e703]:
+              - text: t
+              - generic [ref=f7e704]: t
+            - generic [aria-hidden] [ref=f7e705]:
+              - text: o
+              - generic [ref=f7e706]: o
+            - generic [aria-hidden] [ref=f7e707]:
+              - text: p
+              - generic [ref=f7e708]: p
+          - text: ↑
+  - alert [ref=f7e709]

@@ -1,0 +1,81 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN (DESKTOP, TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .hero-headline {
+    font-size: clamp(2rem, 1rem + 3.2vw, 4.2rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .work-col-staggered {
+    margin-top: 0;
+  }
+  .services-columns-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-step-layout {
+    grid-template-columns: 1fr;
+  }
+  .footer-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-x: 1.5rem;
+  }
+
+  .hero-hand-left {
+    left: -12vw;
+    bottom: -6svh;
+    width: clamp(260px, 60vw, 440px);
+  }
+
+  .hero-hand-right {
+    right: -14vw;
+    top: -6svh;
+    width: clamp(240px, 55vw, 400px);
+  }
+
+  .hero-bio-corner {
+    display: none;
+  }
+
+  .hero-arrow-annotation {
+    display: none;
+  }
+
+  .contact-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-character-container {
+    height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-columns-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-brand-title {
+    display: none;
+  }
+  .sound-btn span {
+    display: none;
+  }
+}
+

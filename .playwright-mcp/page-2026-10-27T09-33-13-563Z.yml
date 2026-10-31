@@ -1,0 +1,677 @@
+- generic [active] [ref=f9e1]:
+  - generic [aria-hidden] [ref=f9e2]:
+    - generic [ref=f9e3]:
+      - generic [ref=f9e4]: Naveen Kumar E · Software Developer
+      - generic [ref=f9e5]: "2026"
+    - generic [ref=f9e6]: "005"
+    - generic [ref=f9e8]: Loading workspace
+  - banner:
+    - generic [ref=f9e12]:
+      - link "Naveen Kumar E - Home" [ref=f9e13] [cursor=pointer]:
+        - /url: "#hero"
+      - link [ref=f9e20] [cursor=pointer]:
+        - /url: "#hero"
+        - generic "CodeofNaveen" [ref=f9e21]:
+          - generic [ref=f9e22]:
+            - text: C
+            - generic [ref=f9e23]: C
+          - generic [ref=f9e24]:
+            - text: o
+            - generic [ref=f9e25]: o
+          - generic [ref=f9e26]:
+            - text: d
+            - generic [ref=f9e27]: d
+          - generic [ref=f9e28]:
+            - text: e
+            - generic [ref=f9e29]: e
+          - generic [ref=f9e30]:
+            - text: o
+            - generic [ref=f9e31]: o
+          - generic [ref=f9e32]:
+            - text: f
+            - generic [ref=f9e33]: f
+          - generic [ref=f9e34]:
+            - text: "N"
+            - generic [ref=f9e35]: "N"
+          - generic [ref=f9e36]:
+            - text: a
+            - generic [ref=f9e37]: a
+          - generic [ref=f9e38]:
+            - text: v
+            - generic [ref=f9e39]: v
+          - generic [ref=f9e40]:
+            - text: e
+            - generic [ref=f9e41]: e
+          - generic [ref=f9e42]:
+            - text: e
+            - generic [ref=f9e43]: e
+          - generic [ref=f9e44]:
+            - text: "n"
+            - generic [ref=f9e45]: "n"
+    - generic [ref=f9e46]:
+      - button "Toggle ambient sound" [ref=f9e47] [cursor=pointer]:
+        - generic [ref=f9e48]: Sound
+      - button "Open menu drawer" [ref=f9e54] [cursor=pointer]:
+        - generic "MENU" [ref=f9e55]:
+          - generic [ref=f9e56]:
+            - text: M
+            - generic [ref=f9e57]: M
+          - generic [ref=f9e58]:
+            - text: E
+            - generic [ref=f9e59]: E
+          - generic [ref=f9e60]:
+            - text: "N"
+            - generic [ref=f9e61]: "N"
+          - generic [ref=f9e62]:
+            - text: U
+            - generic [ref=f9e63]: U
+  - generic [ref=f9e65]:
+    - img "3D Left Hand"
+    - img "3D Right Hand"
+    - generic:
+      - heading "Software that refuses to look like everyone else." [level=1]:
+        - generic: Software that refuses to look
+        - generic: like everyone else.
+    - generic: Naveen Kumar E, full-stack developer. I design and build web applications, enterprise systems, and AI tools for brands that want to stand out, and scale.
+    - generic: That's me, building with React & Spring Boot.
+    - generic:
+      - heading "NAVEEN KUMAR E" [level=2]
+    - generic:
+      - heading "Let's make it simple." [level=2]
+    - generic [ref=f9e69]:
+      - button "Day lighting mode" [ref=f9e70] [cursor=pointer]:
+        - generic [ref=f9e71]: ☀️ Day
+      - button "Sunset lighting mode" [ref=f9e72] [cursor=pointer]:
+        - generic [ref=f9e73]: 🌅 Sunset
+      - button "Night lighting mode" [ref=f9e74] [cursor=pointer]:
+        - generic [ref=f9e75]: 🌙 Night
+  - generic [ref=f9e78]:
+    - generic [ref=f9e79]:
+      - heading "Get Found. Get Chosen. Get Built." [level=2] [ref=f9e80]:
+        - generic [ref=f9e81]: Get Found. Get Chosen.
+        - generic [ref=f9e83]: Get Built.
+      - generic [ref=f9e85]: Me, building your next system.
+      - generic [ref=f9e89]:
+        - generic [ref=f9e90]:
+          - generic [ref=f9e91]: "01"
+          - generic [ref=f9e92]: Fast on any phone
+        - generic [ref=f9e94]:
+          - generic [ref=f9e95]: "02"
+          - generic [ref=f9e96]: Seen on Google and in AI answers
+        - generic [ref=f9e98]:
+          - generic [ref=f9e99]: "03"
+          - generic [ref=f9e100]: Built to turn visits into users
+      - paragraph [ref=f9e102]: A website should do more than sit there. It should work for you every day, long after launch.
+      - link "View selected projects →" [ref=f9e103] [cursor=pointer]:
+        - /url: "#work"
+    - generic [ref=f9e104]:
+      - generic [ref=f9e106]:
+        - generic [ref=f9e107]: 01/03
+        - generic [ref=f9e108]:
+          - button "Previous review" [ref=f9e109] [cursor=pointer]: ←
+          - button "Next review" [ref=f9e110] [cursor=pointer]: →
+      - generic [ref=f9e111]: “Consistently delivered production-ready React modules and demonstrated strong grasp of component state, API integrations, and frontend workflows.”
+      - generic [ref=f9e112]:
+        - generic [ref=f9e113]:
+          - generic [ref=f9e114]: Enterprise Project Review
+          - generic [ref=f9e115]: Engineering Mentor
+        - generic [ref=f9e116]: ★ 5.0 · FULL-STACK
+  - generic [aria-hidden] [ref=f9e117]:
+    - generic [ref=f9e118]:
+      - generic [ref=f9e119]:
+        - generic [ref=f9e120]: Live ●
+        - generic [ref=f9e121]: Sites that earn their keep
+        - generic [ref=f9e122]: —
+      - generic [ref=f9e123]:
+        - generic [ref=f9e124]: "01"
+        - generic [ref=f9e125]: Full-stack Development (React, TypeScript & Node)
+        - generic [ref=f9e126]: —
+      - generic [ref=f9e127]:
+        - generic [ref=f9e128]: "02"
+        - generic [ref=f9e129]: Backend & APIs (Java, Spring Boot & REST)
+        - generic [ref=f9e130]: —
+      - generic [ref=f9e131]:
+        - generic [ref=f9e132]: "03"
+        - generic [ref=f9e133]: Databases & Cloud (PostgreSQL, MongoDB & GCP)
+        - generic [ref=f9e134]: —
+      - generic [ref=f9e135]:
+        - generic [ref=f9e136]: "04"
+        - generic [ref=f9e137]: AI Automation (NLP & Intelligent Workflows)
+        - generic [ref=f9e138]: —
+      - generic [ref=f9e139]:
+        - generic [ref=f9e140]: Live ●
+        - generic [ref=f9e141]: Sites that earn their keep
+        - generic [ref=f9e142]: —
+      - generic [ref=f9e143]:
+        - generic [ref=f9e144]: "01"
+        - generic [ref=f9e145]: Full-stack Development (React, TypeScript & Node)
+        - generic [ref=f9e146]: —
+      - generic [ref=f9e147]:
+        - generic [ref=f9e148]: "02"
+        - generic [ref=f9e149]: Backend & APIs (Java, Spring Boot & REST)
+        - generic [ref=f9e150]: —
+      - generic [ref=f9e151]:
+        - generic [ref=f9e152]: "03"
+        - generic [ref=f9e153]: Databases & Cloud (PostgreSQL, MongoDB & GCP)
+        - generic [ref=f9e154]: —
+      - generic [ref=f9e155]:
+        - generic [ref=f9e156]: "04"
+        - generic [ref=f9e157]: AI Automation (NLP & Intelligent Workflows)
+        - generic [ref=f9e158]: —
+    - generic [ref=f9e159]:
+      - generic [ref=f9e160]:
+        - generic [ref=f9e161]: Open for engineering roles
+        - generic [ref=f9e162]: ®
+      - generic [ref=f9e163]:
+        - generic [ref=f9e164]: Ford Motor Co. Intern
+        - generic [ref=f9e165]: ®
+      - generic [ref=f9e166]:
+        - generic [ref=f9e167]: NSIC Chennai Intern
+        - generic [ref=f9e168]: ®
+      - generic [ref=f9e169]:
+        - generic [ref=f9e170]: B.Tech IT · KCG College of Tech
+        - generic [ref=f9e171]: ®
+      - generic [ref=f9e172]:
+        - generic [ref=f9e173]: CGPA 7.52
+        - generic [ref=f9e174]: ®
+      - generic [ref=f9e175]:
+        - generic [ref=f9e176]: Open for engineering roles
+        - generic [ref=f9e177]: ®
+      - generic [ref=f9e178]:
+        - generic [ref=f9e179]: Ford Motor Co. Intern
+        - generic [ref=f9e180]: ®
+      - generic [ref=f9e181]:
+        - generic [ref=f9e182]: NSIC Chennai Intern
+        - generic [ref=f9e183]: ®
+      - generic [ref=f9e184]:
+        - generic [ref=f9e185]: B.Tech IT · KCG College of Tech
+        - generic [ref=f9e186]: ®
+      - generic [ref=f9e187]:
+        - generic [ref=f9e188]: CGPA 7.52
+        - generic [ref=f9e189]: ®
+  - generic [ref=f9e191]:
+    - generic [ref=f9e192]:
+      - heading "WORK ’25–26" [level=2] [ref=f9e193]:
+        - generic [ref=f9e194]: WORK
+        - generic [ref=f9e195]: ’25–26
+      - paragraph [ref=f9e196]: Good code solves problems.Great software gets remembered.
+    - generic [ref=f9e197]:
+      - generic [ref=f9e198]:
+        - article [ref=f9e199] [cursor=pointer]:
+          - paragraph [ref=f9e200]: Agricultural equipment, priced from the real address.
+          - img "AgroEquipAI project preview" [ref=f9e202]
+          - generic [ref=f9e203]:
+            - generic [ref=f9e204]: AGROEQUIPAI
+            - time [ref=f9e205]: "2026"
+        - article [ref=f9e206] [cursor=pointer]:
+          - paragraph [ref=f9e207]: Automated support triage, classified as you submit.
+          - img "Smart Support Ticket Classifier preview" [ref=f9e209]
+          - generic [ref=f9e210]:
+            - generic [ref=f9e211]: SMART SUPPORT TICKET CLASSIFIER
+            - time [ref=f9e212]: "2025"
+      - article [ref=f9e214] [cursor=pointer]:
+        - paragraph [ref=f9e215]: A storefront & platform that stays up when others don't.
+        - generic [ref=f9e216]: Access = Tenant + Feature + Role
+        - img "Multi-Tenant Sales Platform preview" [ref=f9e219]
+        - generic [ref=f9e220]:
+          - generic [ref=f9e221]: MULTI-TENANT SALES PLATFORM
+          - time [ref=f9e222]: 2025–2026
+  - generic [ref=f9e223]:
+    - generic [ref=f9e224]:
+      - heading "In good company." [level=2] [ref=f9e225]
+      - paragraph [ref=f9e226]: Organizations, academic teams, and enterprise environments where I've delivered software and sharpened engineering standards.
+    - generic [aria-hidden] [ref=f9e227]:
+      - generic [ref=f9e228]: Ford Motor Company · React Intern
+      - generic [ref=f9e230]: NSIC Chennai · Web Development Intern
+      - generic [ref=f9e232]: KCG College of Technology · B.Tech IT
+      - generic [ref=f9e234]: Infosys Springboard · Certified
+      - generic [ref=f9e236]: Accenture · Certified
+      - generic [ref=f9e238]: Google Digital Marketing · Certified
+      - generic [ref=f9e240]: NPTEL IIT · Certified
+      - generic [ref=f9e242]: Ford Motor Company · React Intern
+      - generic [ref=f9e244]: NSIC Chennai · Web Development Intern
+      - generic [ref=f9e246]: KCG College of Technology · B.Tech IT
+      - generic [ref=f9e248]: Infosys Springboard · Certified
+      - generic [ref=f9e250]: Accenture · Certified
+      - generic [ref=f9e252]: Google Digital Marketing · Certified
+      - generic [ref=f9e254]: NPTEL IIT · Certified
+  - generic [ref=f9e257]:
+    - heading "Four things I do, built end to end." [level=2] [ref=f9e258]
+    - generic [ref=f9e259]:
+      - generic [ref=f9e260]:
+        - generic [ref=f9e261]:
+          - generic [ref=f9e262]: 01 FULL-STACK DEVELOPMENT
+          - heading "Frontend Engineering" [level=3] [ref=f9e263]
+          - paragraph [ref=f9e264]: Sites that earn their keep. Fluid, responsive, and performance-tuned.
+        - list [ref=f9e265]:
+          - listitem [ref=f9e266]: React, Next.js & TypeScript
+          - listitem [ref=f9e267]: Tailwind CSS & Vanilla CSS
+          - listitem [ref=f9e268]: State management & custom hooks
+          - listitem [ref=f9e269]: Cross-browser performance QA
+      - generic [ref=f9e270]:
+        - generic [ref=f9e271]:
+          - generic [ref=f9e272]: 02 WEBGL & DESIGN
+          - heading "Backend & APIs" [level=3] [ref=f9e273]
+          - paragraph [ref=f9e274]: Resilient servers, structured webhooks, and secure authentication.
+        - list [ref=f9e275]:
+          - listitem [ref=f9e276]: Node.js & Express.js
+          - listitem [ref=f9e277]: Java & Spring Boot
+          - listitem [ref=f9e278]: RESTful API architectures
+          - listitem [ref=f9e279]: Tenant isolation & RBAC security
+      - generic [ref=f9e280]:
+        - generic [ref=f9e281]:
+          - generic [ref=f9e282]: 03 DATABASES & CLOUD
+          - heading "Databases & Cloud" [level=3] [ref=f9e283]
+          - paragraph [ref=f9e284]: Relational & document stores optimized for queries and zero loss.
+        - list [ref=f9e285]:
+          - listitem [ref=f9e286]: PostgreSQL & MongoDB
+          - listitem [ref=f9e287]: Google Cloud Platform (GCP)
+          - listitem [ref=f9e288]: Docker containerization
+          - listitem [ref=f9e289]: Git & GitHub CI pipelines
+      - generic [ref=f9e290]:
+        - generic [ref=f9e291]:
+          - generic [ref=f9e292]: 04 AI AUTOMATION
+          - heading "AI Automation" [level=3] [ref=f9e293]
+          - paragraph [ref=f9e294]: Machine learning services and automated queues that work while you sleep.
+        - list [ref=f9e295]:
+          - listitem [ref=f9e296]: Python & Flask services
+          - listitem [ref=f9e297]: NLP text classification
+          - listitem [ref=f9e298]: Automated triage pipelines
+          - listitem [ref=f9e299]: Webhook integrations
+  - generic [ref=f9e301]:
+    - generic [ref=f9e302]:
+      - heading "How a project runs." [level=2] [ref=f9e303]
+      - paragraph [ref=f9e304]: Four steps, each with something you can see and approve before the next one starts.
+    - generic [ref=f9e306]:
+      - generic [ref=f9e307]: STEP 01 · DISCOVERY
+      - generic [ref=f9e308]: "01"
+      - heading "The awkward questions" [level=3] [ref=f9e309]
+      - paragraph [ref=f9e310]: "Who is it for, what does it have to sell, and what went wrong last time? You get a written plan back: the pages, what matters most, and a launch date."
+      - generic [ref=f9e311]:
+        - generic [ref=f9e312]: Brand positioning
+        - generic [ref=f9e313]: User research
+        - generic [ref=f9e314]: Information architecture
+    - generic [ref=f9e318]:
+      - generic [ref=f9e319]: STEP 02 · DESIGN
+      - generic [ref=f9e320]: "02"
+      - heading "Designed in motion" [level=3] [ref=f9e321]
+      - paragraph [ref=f9e322]: Type, colour, layout and motion made for your brand, as a prototype you can click through. You approve it before a line of final code is written.
+      - generic [ref=f9e323]:
+        - generic [ref=f9e324]: UI/UX design
+        - generic [ref=f9e325]: Interactive prototypes
+        - generic [ref=f9e326]: Typography specimen
+    - generic [ref=f9e330]:
+      - generic [ref=f9e331]: STEP 03 · ENGINEERING
+      - generic [ref=f9e332]: "03"
+      - heading "Built to hold up" [level=3] [ref=f9e333]
+      - paragraph [ref=f9e334]: "Everything you can see, and everything behind it: payments, data and integrations. Built to stay fast on an older phone, not only on a new laptop."
+      - generic [ref=f9e335]:
+        - generic [ref=f9e336]: React & TypeScript
+        - generic [ref=f9e337]: Three.js / WebGL
+        - generic [ref=f9e338]: GSAP animations
+    - generic [ref=f9e342]:
+      - generic [ref=f9e343]: STEP 04 · LAUNCH
+      - generic [ref=f9e344]: "04"
+      - heading "Launch, then stay" [level=3] [ref=f9e345]
+      - paragraph [ref=f9e346]: Tested on every screen, set up for Google and AI search, and launched on your domain. Then a walkthrough of how it all works, and 90 days of support.
+      - generic [ref=f9e347]:
+        - generic [ref=f9e348]: Cross-device QA
+        - generic [ref=f9e349]: Technical SEO
+        - generic [ref=f9e350]: Global deployment
+  - generic [ref=f9e355]:
+    - generic [ref=f9e356]:
+      - generic [ref=f9e357]:
+        - generic [ref=f9e358]: DEGREE PROGRAM
+        - heading "B.Tech in Information Technology" [level=3] [ref=f9e359]
+        - generic [ref=f9e360]: KCG College of Technology, Chennai
+        - paragraph [ref=f9e361]: Curriculum focused on algorithms, software architecture, distributed databases, cloud systems, and full-stack engineering.
+      - generic [ref=f9e362]:
+        - generic [ref=f9e363]:
+          - generic [ref=f9e364]: GRADUATION
+          - generic [ref=f9e365]: 2022–2026
+        - generic [ref=f9e366]:
+          - generic [ref=f9e367]: CUMULATIVE GPA
+          - generic [ref=f9e368]: 7.52 / 10
+    - generic [ref=f9e369]:
+      - generic [ref=f9e370]: CONTINUOUS LEARNING
+      - generic [ref=f9e371]:
+        - generic [ref=f9e372]:
+          - generic [ref=f9e373]: Infosys Springboard Certifications
+          - generic [ref=f9e374]: INFOSYS
+        - generic [ref=f9e375]:
+          - generic [ref=f9e376]: Accenture Industry Readiness Certifications
+          - generic [ref=f9e377]: ACCENTURE
+        - generic [ref=f9e378]:
+          - generic [ref=f9e379]: Python Essential Training
+          - generic [ref=f9e380]: LINKEDIN LEARNING
+        - generic [ref=f9e381]:
+          - generic [ref=f9e382]: Fundamentals of Digital Marketing
+          - generic [ref=f9e383]: GOOGLE
+        - generic [ref=f9e384]:
+          - generic [ref=f9e385]: NPTEL Course — Foundational Computer Science
+          - generic [ref=f9e386]: NPTEL / IIT
+        - generic [ref=f9e387]:
+          - generic [ref=f9e388]: NPTEL Course — Web Technology & Systems
+          - generic [ref=f9e389]: NPTEL / IIT
+  - contentinfo [ref=f9e390]:
+    - generic [ref=f9e391]:
+      - generic [ref=f9e392]: Still scrolling? Good sign.
+      - heading "Got something worth building?" [level=2] [ref=f9e393]
+      - generic [ref=f9e394]:
+        - generic [ref=f9e395]: Email me
+        - link [ref=f9e396] [cursor=pointer]:
+          - /url: mailto:naveenkumar.dev@outlook.com
+          - generic "naveenkumar.dev@outlook.com" [ref=f9e397]:
+            - generic [ref=f9e398]:
+              - text: "n"
+              - generic [ref=f9e399]: "n"
+            - generic [ref=f9e400]:
+              - text: a
+              - generic [ref=f9e401]: a
+            - generic [ref=f9e402]:
+              - text: v
+              - generic [ref=f9e403]: v
+            - generic [ref=f9e404]:
+              - text: e
+              - generic [ref=f9e405]: e
+            - generic [ref=f9e406]:
+              - text: e
+              - generic [ref=f9e407]: e
+            - generic [ref=f9e408]:
+              - text: "n"
+              - generic [ref=f9e409]: "n"
+            - generic [ref=f9e410]:
+              - text: k
+              - generic [ref=f9e411]: k
+            - generic [ref=f9e412]:
+              - text: u
+              - generic [ref=f9e413]: u
+            - generic [ref=f9e414]:
+              - text: m
+              - generic [ref=f9e415]: m
+            - generic [ref=f9e416]:
+              - text: a
+              - generic [ref=f9e417]: a
+            - generic [ref=f9e418]:
+              - text: r
+              - generic [ref=f9e419]: r
+            - generic [ref=f9e420]:
+              - text: .
+              - generic [ref=f9e421]: .
+            - generic [ref=f9e422]:
+              - text: d
+              - generic [ref=f9e423]: d
+            - generic [ref=f9e424]:
+              - text: e
+              - generic [ref=f9e425]: e
+            - generic [ref=f9e426]:
+              - text: v
+              - generic [ref=f9e427]: v
+            - generic [ref=f9e428]:
+              - text: "@"
+              - generic [ref=f9e429]: "@"
+            - generic [ref=f9e430]:
+              - text: o
+              - generic [ref=f9e431]: o
+            - generic [ref=f9e432]:
+              - text: u
+              - generic [ref=f9e433]: u
+            - generic [ref=f9e434]:
+              - text: t
+              - generic [ref=f9e435]: t
+            - generic [ref=f9e436]:
+              - text: l
+              - generic [ref=f9e437]: l
+            - generic [ref=f9e438]:
+              - text: o
+              - generic [ref=f9e439]: o
+            - generic [ref=f9e440]:
+              - text: o
+              - generic [ref=f9e441]: o
+            - generic [ref=f9e442]:
+              - text: k
+              - generic [ref=f9e443]: k
+            - generic [ref=f9e444]:
+              - text: .
+              - generic [ref=f9e445]: .
+            - generic [ref=f9e446]:
+              - text: c
+              - generic [ref=f9e447]: c
+            - generic [ref=f9e448]:
+              - text: o
+              - generic [ref=f9e449]: o
+            - generic [ref=f9e450]:
+              - text: m
+              - generic [ref=f9e451]: m
+        - generic [ref=f9e452]: I usually reply within a day.
+      - generic [ref=f9e453]:
+        - generic [ref=f9e454]:
+          - textbox "Your name" [ref=f9e455]
+          - textbox "Your email address" [ref=f9e456]
+        - textbox "Tell me about your project, timeline, or engineering opportunity..." [ref=f9e457]
+        - button "Send inquiry →" [ref=f9e459] [cursor=pointer]
+      - generic [ref=f9e460]:
+        - generic [ref=f9e461]:
+          - generic [ref=f9e462]: Pages
+          - list [ref=f9e463]:
+            - listitem [ref=f9e464]:
+              - link "Home" [ref=f9e465] [cursor=pointer]:
+                - /url: "#hero"
+            - listitem [ref=f9e466]:
+              - link "About" [ref=f9e467] [cursor=pointer]:
+                - /url: "#about"
+            - listitem [ref=f9e468]:
+              - link "Work" [ref=f9e469] [cursor=pointer]:
+                - /url: "#work"
+            - listitem [ref=f9e470]:
+              - link "Skills" [ref=f9e471] [cursor=pointer]:
+                - /url: "#skills"
+            - listitem [ref=f9e472]:
+              - link "Experience" [ref=f9e473] [cursor=pointer]:
+                - /url: "#experience"
+            - listitem [ref=f9e474]:
+              - link "Education" [ref=f9e475] [cursor=pointer]:
+                - /url: "#education"
+        - generic [ref=f9e476]:
+          - generic [ref=f9e477]: Social
+          - list [ref=f9e478]:
+            - listitem [ref=f9e479]:
+              - link "LinkedIn ↗" [ref=f9e480] [cursor=pointer]:
+                - /url: https://linkedin.com/in/naveen-kumar-e
+            - listitem [ref=f9e481]:
+              - link "GitHub ↗" [ref=f9e482] [cursor=pointer]:
+                - /url: https://github.com/naveenkumar-dev
+            - listitem [ref=f9e483]:
+              - link "Email ↗" [ref=f9e484] [cursor=pointer]:
+                - /url: mailto:naveenkumar.dev@outlook.com
+        - generic [ref=f9e485]:
+          - generic [ref=f9e486]: Local Time
+          - generic [ref=f9e487]: 15:03:13 in India
+          - generic [ref=f9e488]: GMT +5:30 · Chennai, TN
+        - generic [ref=f9e489]:
+          - generic [ref=f9e490]: Status
+          - generic [ref=f9e491]: Open for new projects
+          - generic [ref=f9e492]: © 2026 Naveen Kumar E
+          - button "Back to top ↑" [ref=f9e493] [cursor=pointer]
+  - dialog "Menu navigation" [ref=f9e494]:
+    - generic [ref=f9e495]:
+      - generic [ref=f9e496]: CodeofNaveen
+      - button "Close menu" [ref=f9e497] [cursor=pointer]: ✕
+    - navigation [ref=f9e498]:
+      - link [ref=f9e499] [cursor=pointer]:
+        - /url: "#hero"
+        - generic "Home" [ref=f9e500]:
+          - generic [ref=f9e501]:
+            - text: H
+            - generic [ref=f9e502]: H
+          - generic [ref=f9e503]:
+            - text: o
+            - generic [ref=f9e504]: o
+          - generic [ref=f9e505]:
+            - text: m
+            - generic [ref=f9e506]: m
+          - generic [ref=f9e507]:
+            - text: e
+            - generic [ref=f9e508]: e
+      - link [ref=f9e509] [cursor=pointer]:
+        - /url: "#about"
+        - generic "About" [ref=f9e510]:
+          - generic [ref=f9e511]:
+            - text: A
+            - generic [ref=f9e512]: A
+          - generic [ref=f9e513]:
+            - text: b
+            - generic [ref=f9e514]: b
+          - generic [ref=f9e515]:
+            - text: o
+            - generic [ref=f9e516]: o
+          - generic [ref=f9e517]:
+            - text: u
+            - generic [ref=f9e518]: u
+          - generic [ref=f9e519]:
+            - text: t
+            - generic [ref=f9e520]: t
+      - link [ref=f9e521] [cursor=pointer]:
+        - /url: "#work"
+        - generic "Work" [ref=f9e522]:
+          - generic [ref=f9e523]:
+            - text: W
+            - generic [ref=f9e524]: W
+          - generic [ref=f9e525]:
+            - text: o
+            - generic [ref=f9e526]: o
+          - generic [ref=f9e527]:
+            - text: r
+            - generic [ref=f9e528]: r
+          - generic [ref=f9e529]:
+            - text: k
+            - generic [ref=f9e530]: k
+      - link [ref=f9e531] [cursor=pointer]:
+        - /url: "#skills"
+        - generic "Skills" [ref=f9e532]:
+          - generic [ref=f9e533]:
+            - text: S
+            - generic [ref=f9e534]: S
+          - generic [ref=f9e535]:
+            - text: k
+            - generic [ref=f9e536]: k
+          - generic [ref=f9e537]:
+            - text: i
+            - generic [ref=f9e538]: i
+          - generic [ref=f9e539]:
+            - text: l
+            - generic [ref=f9e540]: l
+          - generic [ref=f9e541]:
+            - text: l
+            - generic [ref=f9e542]: l
+          - generic [ref=f9e543]:
+            - text: s
+            - generic [ref=f9e544]: s
+      - link [ref=f9e545] [cursor=pointer]:
+        - /url: "#experience"
+        - generic "Experience" [ref=f9e546]:
+          - generic [ref=f9e547]:
+            - text: E
+            - generic [ref=f9e548]: E
+          - generic [ref=f9e549]:
+            - text: x
+            - generic [ref=f9e550]: x
+          - generic [ref=f9e551]:
+            - text: p
+            - generic [ref=f9e552]: p
+          - generic [ref=f9e553]:
+            - text: e
+            - generic [ref=f9e554]: e
+          - generic [ref=f9e555]:
+            - text: r
+            - generic [ref=f9e556]: r
+          - generic [ref=f9e557]:
+            - text: i
+            - generic [ref=f9e558]: i
+          - generic [ref=f9e559]:
+            - text: e
+            - generic [ref=f9e560]: e
+          - generic [ref=f9e561]:
+            - text: "n"
+            - generic [ref=f9e562]: "n"
+          - generic [ref=f9e563]:
+            - text: c
+            - generic [ref=f9e564]: c
+          - generic [ref=f9e565]:
+            - text: e
+            - generic [ref=f9e566]: e
+      - link [ref=f9e567] [cursor=pointer]:
+        - /url: "#education"
+        - generic "Education" [ref=f9e568]:
+          - generic [ref=f9e569]:
+            - text: E
+            - generic [ref=f9e570]: E
+          - generic [ref=f9e571]:
+            - text: d
+            - generic [ref=f9e572]: d
+          - generic [ref=f9e573]:
+            - text: u
+            - generic [ref=f9e574]: u
+          - generic [ref=f9e575]:
+            - text: c
+            - generic [ref=f9e576]: c
+          - generic [ref=f9e577]:
+            - text: a
+            - generic [ref=f9e578]: a
+          - generic [ref=f9e579]:
+            - text: t
+            - generic [ref=f9e580]: t
+          - generic [ref=f9e581]:
+            - text: i
+            - generic [ref=f9e582]: i
+          - generic [ref=f9e583]:
+            - text: o
+            - generic [ref=f9e584]: o
+          - generic [ref=f9e585]:
+            - text: "n"
+            - generic [ref=f9e586]: "n"
+      - link [ref=f9e587] [cursor=pointer]:
+        - /url: "#contact"
+        - generic "Contact" [ref=f9e588]:
+          - generic [ref=f9e589]:
+            - text: C
+            - generic [ref=f9e590]: C
+          - generic [ref=f9e591]:
+            - text: o
+            - generic [ref=f9e592]: o
+          - generic [ref=f9e593]:
+            - text: "n"
+            - generic [ref=f9e594]: "n"
+          - generic [ref=f9e595]:
+            - text: t
+            - generic [ref=f9e596]: t
+          - generic [ref=f9e597]:
+            - text: a
+            - generic [ref=f9e598]: a
+          - generic [ref=f9e599]:
+            - text: c
+            - generic [ref=f9e600]: c
+          - generic [ref=f9e601]:
+            - text: t
+            - generic [ref=f9e602]: t
+    - generic [ref=f9e603]:
+      - link "naveenkumar.dev@outlook.com" [ref=f9e604] [cursor=pointer]:
+        - /url: mailto:naveenkumar.dev@outlook.com
+      - generic [ref=f9e605]:
+        - link "LinkedIn" [ref=f9e606] [cursor=pointer]:
+          - /url: https://linkedin.com/in/naveen-kumar-e
+        - link "GitHub" [ref=f9e607] [cursor=pointer]:
+          - /url: https://github.com/naveenkumar-dev
+      - generic [ref=f9e608]: say hi
+  - dialog [ref=f9e609]:
+    - generic [ref=f9e610]:
+      - generic [ref=f9e611]:
+        - generic [ref=f9e612]: CATEGORY
+        - button "✕" [ref=f9e613] [cursor=pointer]
+      - heading "Project Title" [level=2] [ref=f9e614]
+      - paragraph
+      - generic [ref=f9e615]: Architectural Invariant
+      - generic [ref=f9e618]:
+        - generic [ref=f9e619]: Key Engineering Features
+        - list
+      - generic [ref=f9e620]: Technologies & Tools

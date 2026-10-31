@@ -1,0 +1,92 @@
+/* ==========================================================================
+   GLOBAL VARIABLES, RESET, TYPOGRAPHY & ATMOSPHERIC THEMES
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-grotesk: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', SFMono-Regular, monospace;
+
+  /* Typography Scale matching reference */
+  --fs-title: clamp(2.4rem, 1rem + 3.8vw, 5.2rem);
+  --fs-super: clamp(4.5rem, 3rem + 11vw, 13rem);
+  --fs-h2: clamp(2.2rem, 1.2rem + 2.8vw, 4.2rem);
+  --fs-h3: clamp(1.4rem, 0.8rem + 1.4vw, 2.2rem);
+  --fs-body: 1rem;
+  --fs-meta: 0.8125rem;
+
+  /* Spacing */
+  --page-x: clamp(1.25rem, 3.5vw, 4.5rem);
+  --hero-h: 370svh;
+
+  /* Color Palette - Day (Default) */
+  --bg-sky: linear-gradient(180deg, #dce4ed 0%, #edf3f8 40%, #fbfcfd 100%);
+  --bg-paper: #fbfaf8;
+  --bg-dark: #0a0a0c;
+  --bg-card-dark: #131316;
+  --ink: #111111;
+  --ink-muted: #55534f;
+  --ink-dim: #8d8a84;
+  --ink-inverted: #fbfaf8;
+  --border-light: rgba(17, 17, 17, 0.12);
+  --border-dark: rgba(255, 255, 255, 0.12);
+  --accent-orange: #d97736;
+  --accent-blue: #2563eb;
+  --accent-green: #dde4c3;
+  --accent-bone: #f6f4d4;
+
+  /* Cursor */
+  --cursor-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='3' fill='%23111111' stroke='white' stroke-width='1.2'/%3E%3C/svg%3E") 8 8, auto;
+}
+
+/* Atmospheric Theme Variations */
+[data-theme="sunset"] {
+  --bg-sky: linear-gradient(180deg, #fdba74 0%, #f472b6 45%, #fed7aa 100%);
+  --ink: #18181b;
+  --ink-muted: #4b5563;
+}
+
+[data-theme="night"] {
+  --bg-sky: linear-gradient(180deg, #090a10 0%, #111827 50%, #1e1b4b 100%);
+  --bg-paper: #0e0e12;
+  --ink: #f9fafb;
+  --ink-muted: #9ca3af;
+  --ink-dim: #6b7280;
+  --border-light: rgba(255, 255, 255, 0.14);
+}
+
+html {
+  font-family: var(--font-grotesk);
+  background-color: var(--bg-paper);
+  color: var(--ink);
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-paper);
+  color: var(--ink);
+  line-height: 1.45;
+  cursor: var(--cursor-dot);
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+a, button {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+

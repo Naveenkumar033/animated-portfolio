@@ -3,3681 +3,777 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naveen Kumar E — Software Developer</title>
-  <meta name="description" content="Building modern web applications with clean interfaces, practical engineering, and a focus on solving real-world problems. Full-stack development in React, Java, and Spring Boot." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <title>Naveen Kumar E — Full-stack Developer & Designer</title>
+  <meta name="description" content="Portfolio of Naveen Kumar E, full-stack software developer specializing in React, Node.js, Java, and Spring Boot. Websites and applications that refuse to look like everyone else." />
+  <meta name="theme-color" content="#fbfaf8" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Naveen Kumar E — Software Developer" />
-  <meta property="og:description" content="Building modern web applications with clean interfaces, practical engineering, and a focus on solving real-world problems." />
+  <meta property="og:title" content="Naveen Kumar E — Full-stack Developer & Designer" />
+  <meta property="og:description" content="Websites and applications that refuse to look like everyone else." />
   <meta property="og:type" content="website" />
 
-  <!-- Google Font: Onest only -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111111'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='14' fill='%23ffffff'%3ENK%3C/text%3E%3C/svg%3E" />
 
-  <!-- CDN Importmap for Lenis -->
-  <script type="importmap">
-  {
-    "imports": {
-      "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs"
-    }
-  }
-  </script>
-
-  <!-- Complete Lumora CSS -->
-  <style>
-    /* -------------------------------------------------------------------------
-       1. Base Reset & Adaptive Rem Grid
-       ------------------------------------------------------------------------- */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html {
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background: #fff;
-      color: #111;
-      scroll-behavior: auto;
-    }
-    body {
-      background: #fff;
-      color: #111;
-      font-family: 'Onest', sans-serif;
-      overflow-x: hidden;
-      line-height: 1.5;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
-    ul { list-style: none; }
-    img { display: block; max-width: 100%; }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    :focus-visible {
-      outline: 2px solid #b15f2c;
-      outline-offset: 2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-
-    @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
-    @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
-    @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
-    @media (max-width: 640px)  { html { font-size: 4.444444vw; } }
-
-    /* -------------------------------------------------------------------------
-       2. Lumora Design Tokens
-       ------------------------------------------------------------------------- */
-    :root {
-      --background: #fff;
-      --foreground: #111;
-      --ink: #0a0a0a;
-      --muted: #8d8d8d;
-      --subtle: #b6b6b6;
-      --line: #e6e5e2;
-      --surface: #f1f0ee;
-      --surface-2: #e3e2df;
-      --accent: #b15f2c;
-      --accent-from: #cf8047;
-      --accent-to: #97501f;
-      --hero-from: #ecebe9;
-      --hero-to: #c9c9c9;
-      --radius-pill: 9999px;
-      --radius-card: 2rem;
-      --radius-card-sm: 1.25rem;
-      --radius-control: .875rem;
-    }
-
-    .shell {
-      max-width: 88rem;
-      margin-inline: auto;
-    }
-
-    /* -------------------------------------------------------------------------
-       3. Shared Components
-       ------------------------------------------------------------------------- */
-    /* PillButton */
-    .pill-btn {
-      display: inline-block;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-      user-select: none;
-    }
-    .pill-btn:hover {
-      transform: scale(1.04);
-    }
-    .pill-btn-inner {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      border-radius: var(--radius-pill);
-      font-size: 0.875rem;
-      font-weight: 500;
-      line-height: 1;
-      transition: background 0.25s, color 0.25s, border-color 0.25s;
-    }
-    /* Variant: Dark */
-    .pill-btn-dark .pill-btn-inner {
-      background: var(--ink);
-      color: #fff;
-      padding: 0.375rem 0.375rem 0.375rem 1.5rem;
-    }
-    .pill-btn-dark .btn-arrow-badge {
-      background: #fff;
-      color: var(--ink);
-    }
-    /* Variant: Light */
-    .pill-btn-light .pill-btn-inner {
-      background: var(--surface);
-      color: #111;
-      padding: 0.375rem 0.375rem 0.375rem 1.5rem;
-    }
-    .pill-btn-light .btn-arrow-badge {
-      background: var(--ink);
-      color: #fff;
-    }
-    /* Variant: Outline */
-    .pill-btn-outline .pill-btn-inner {
-      border: 1px solid var(--line);
-      background: transparent;
-      color: #111;
-      padding: 0.875rem 1.75rem;
-    }
-    .pill-btn-outline.with-arrow .pill-btn-inner {
-      padding: 0.375rem 0.375rem 0.375rem 1.5rem;
-    }
-    .pill-btn-outline .btn-arrow-badge {
-      background: var(--ink);
-      color: #fff;
-    }
-    .btn-arrow-badge {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .pill-btn:hover .btn-arrow-badge.arrow-right {
-      transform: translateX(3px);
-    }
-    .pill-btn:hover .btn-arrow-badge.arrow-up-right {
-      transform: translate(2px, -2px);
-    }
-
-    /* Eyebrows */
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-    .eyebrow.dark-tone { color: rgba(17, 17, 17, 0.7); }
-    .eyebrow.light-tone { color: rgba(255, 255, 255, 0.7); }
-    .eyebrow-dot {
-      width: 0.375rem;
-      height: 0.375rem;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .eyebrow.dark-tone .eyebrow-dot { background: rgba(17, 17, 17, 0.5); }
-    .eyebrow.light-tone .eyebrow-dot { background: rgba(255, 255, 255, 0.6); }
-
-    /* TagChip */
-    .tag-chip {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.75rem;
-      font-weight: 500;
-      border-radius: var(--radius-pill);
-      padding: 0.35rem 0.75rem;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-    }
-    .tag-chip-outline-dark {
-      border: 1px solid rgba(17, 17, 17, 0.15);
-      color: rgba(17, 17, 17, 0.8);
-      background: transparent;
-    }
-    .tag-chip-light-surface {
-      border: 1px solid #e6e5e2;
-      color: #111;
-      background: #fff;
-    }
-    .tag-chip-dark-card {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      background: transparent;
-      padding: 0.4rem 0.85rem;
-    }
-
-    /* Animated Link */
-    .animated-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      opacity: 0.65;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s;
-    }
-    .animated-link:hover {
-      opacity: 1;
-      transform: translateX(4px);
-    }
-
-    /* Skip link */
-    .skip-link {
-      position: fixed;
-      left: 1rem;
-      top: -100px;
-      z-index: 1000;
-      border-radius: var(--radius-control);
-      background: var(--ink);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-      transition: top 0.2s ease;
-    }
-    .skip-link:focus { top: 1rem; }
-
-    /* -------------------------------------------------------------------------
-       4. Page Loader
-       ------------------------------------------------------------------------- */
-    .page-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 120;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      background: var(--ink);
-      color: #fff;
-      border-radius: 0 0 2rem 2rem;
-      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .page-loader.loaded {
-      transform: translateY(-100%);
-      pointer-events: none;
-    }
-    .loader-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.25rem;
-      text-align: center;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .page-loader.loaded .loader-center {
-      opacity: 0;
-      transform: translateY(-12px);
-    }
-    .loader-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    @media (min-width: 640px) { .loader-brand { font-size: 1.875rem; } }
-    .loader-brand svg {
-      width: 1.875rem;
-      height: 1.875rem;
-      fill: var(--accent-from);
-    }
-    .loader-tagline {
-      max-width: 24ch;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.55);
-    }
-    .loader-progress-block {
-      width: min(22rem, 72vw);
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .loader-track {
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-    .loader-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: var(--accent-from);
-      transition: width 0.1s ease-out;
-    }
-    .loader-meta-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: rgba(255, 255, 255, 0.45);
-    }
-    .loader-counter {
-      font-variant-numeric: tabular-nums;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* -------------------------------------------------------------------------
-       5. Header
-       ------------------------------------------------------------------------- */
-    .site-header {
-      position: absolute;
-      inset-inline: 0;
-      top: 0;
-      z-index: 50;
-      opacity: 0;
-      transform: translateY(-14px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .site-header.ready {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding: 1.25rem 1.25rem;
-    }
-    @media (min-width: 640px) { .header-inner { padding: 1.5rem 2rem; } }
-    .brand-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.125rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .brand-btn:hover { transform: scale(1.04); }
-    .brand-btn svg {
-      width: 1.25rem;
-      height: 1.25rem;
-      fill: var(--accent);
-    }
-    .header-nav {
-      display: none;
-      align-items: center;
-      gap: 2rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
-    @media (min-width: 1024px) { .header-nav { display: flex; } }
-    .header-nav a {
-      opacity: 0.8;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s;
-    }
-    .header-nav a:hover, .header-nav a[aria-current="page"] {
-      opacity: 1;
-      transform: translateY(-2px);
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .clock-chip {
-      display: none;
-      align-items: center;
-      border: 1px solid rgba(230, 229, 226, 0.8);
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-radius: var(--radius-control);
-      padding: 0.5rem 0.75rem;
-      gap: 0.75rem;
-      font-size: 0.75rem;
-      color: rgba(17, 17, 17, 0.7);
-    }
-    @media (min-width: 768px) { .clock-chip { display: flex; } }
-    .clock-label { color: rgba(17, 17, 17, 0.45); }
-    .clock-time { min-width: 3.5rem; font-variant-numeric: tabular-nums; font-weight: 500; color: #111; }
-    .clock-sep { opacity: 0.3; }
-    .menu-btn {
-      display: flex;
-      align-items: center;
-      border: 1px solid rgba(230, 229, 226, 0.8);
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-radius: var(--radius-control);
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      gap: 0.4rem;
-      transition: background 0.25s ease;
-    }
-    .menu-btn:hover { background: rgba(255, 255, 255, 0.7); }
-    .menu-btn span { transition: transform 0.25s ease; }
-    .menu-btn:hover span { transform: scale(1.05); }
-    .menu-word { display: none; }
-    @media (min-width: 640px) { .menu-word { display: inline; } }
-
-    /* -------------------------------------------------------------------------
-       6. Hero Section (#home)
-       ------------------------------------------------------------------------- */
-    .hero-section {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      border-radius: 0 0 2rem 2rem;
-      background: #c9c9c9;
-      min-height: 100lvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    /* Liquid reveal canvas + base image */
-    .hero-media-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .hero-base-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-    .hero-liquid-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    /* Vignette */
-    .hero-vignette {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent, rgba(255, 255, 255, 0.35));
-    }
-    /* Watermark text */
-    .hero-watermark {
-      pointer-events: none;
-      position: absolute;
-      inset-inline: 0;
-      bottom: 7rem;
-      z-index: 1;
-      text-align: center;
-      user-select: none;
-      font-weight: 700;
-      line-height: 1;
-      font-size: clamp(6rem, 16vw, 13rem);
-      color: rgba(255, 255, 255, 0.4);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .hero-watermark.ready {
-      opacity: 0.4;
-      transform: translateY(0);
-    }
-
-    /* Content grid */
-    .hero-content {
-      position: relative;
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 7rem 1.25rem 5rem;
-      width: 100%;
-    }
-    @media (min-width: 640px) { .hero-content { padding-inline: 2rem; } }
-    @media (min-width: 1024px) {
-      .hero-content {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        min-height: 100lvh;
-        gap: 2.5rem;
-        padding: 9rem 2rem 7rem;
-        align-items: center;
-      }
-    }
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
-    @media (min-width: 1024px) { .hero-left { grid-column: span 7; } }
-
-    .hero-eyebrow-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .hero-eyebrow-block.ready { opacity: 1; transform: translateY(0); }
-
-    .role-chips-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .hero-h1 {
-      max-width: 18ch;
-      font-size: 2.25rem;
-      font-weight: 600;
-      line-height: 0.98;
-      letter-spacing: -0.02em;
-      color: #111;
-    }
-    @media (min-width: 640px) { .hero-h1 { font-size: 3rem; } }
-    @media (min-width: 768px) { .hero-h1 { font-size: 3.75rem; } }
-
-    .line-reveal {
-      display: block;
-      overflow: hidden;
-    }
-    .line-reveal-inner {
-      display: block;
-      transform: translateY(100%);
-      opacity: 0;
-      transition: transform 0.9s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.9s ease;
-    }
-    .line-reveal-inner.ready {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .hero-rating-row {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .hero-rating-row.ready { opacity: 1; transform: translateY(0); }
-    .stars-cluster {
-      display: flex;
-      gap: 0.2rem;
-      color: var(--accent);
-    }
-    .stars-cluster svg { width: 1rem; height: 1rem; fill: currentColor; }
-    .hero-rating-text {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(17, 17, 17, 0.7);
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .hero-ctas.ready { opacity: 1; transform: translateY(0); }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2rem;
-    }
-    @media (min-width: 1024px) {
-      .hero-right {
-        grid-column: span 5;
-        align-items: flex-end;
-      }
-    }
-
-    /* HeroCard Carousel */
-    .hero-card {
-      width: 100%;
-      max-width: 24rem;
-      border-radius: var(--radius-card-sm);
-      background: rgba(255, 255, 255, 0.7);
-      padding: 0.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(230, 229, 226, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      opacity: 0;
-      transform: translateY(16px) scale(0.96);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @media (min-width: 1024px) { .hero-card { max-width: 19rem; } }
-    .hero-card.ready { opacity: 1; transform: translateY(0) scale(1); }
-
-    .hero-card-clickable {
-      display: flex;
-      gap: 0.5rem;
-      cursor: pointer;
-      border-radius: var(--radius-control);
-    }
-    .card-tile-left {
-      aspect-ratio: 1;
-      width: 6rem;
-      display: grid;
-      place-items: center;
-      border-radius: var(--radius-control);
-      background: var(--ink);
-      color: #fff;
-      font-size: 1.875rem;
-      flex-shrink: 0;
-    }
-    .card-tile-left svg {
-      width: 2.25rem;
-      height: 2.25rem;
-      fill: var(--accent-from);
-    }
-    .card-panel-right {
-      flex: 1;
-      border-radius: var(--radius-control);
-      background: rgba(241, 240, 238, 0.7);
-      padding: 0.75rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-width: 0;
-    }
-    .card-slot {
-      position: relative;
-      min-height: 3.25rem;
-      overflow: hidden;
-    }
-    .card-caption {
-      font-size: 0.65rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: rgba(17, 17, 17, 0.45);
-      margin-bottom: 0.2rem;
-    }
-    .card-title {
-      max-width: 10rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      line-height: 1.35;
-      color: #111;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .card-bottom-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 0.5rem;
-    }
-    .card-dots {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .card-dot {
-      height: 0.25rem;
-      border-radius: var(--radius-pill);
-      background: rgba(17, 17, 17, 0.2);
-      width: 0.375rem;
-      transition: width 0.3s ease, background 0.3s ease;
-    }
-    .card-dot.active {
-      width: 1rem;
-      background: rgba(17, 17, 17, 0.7);
-    }
-    .card-nav-btns {
-      display: flex;
-      gap: 0.35rem;
-    }
-    .card-nav-btn {
-      width: 1.75rem;
-      height: 1.75rem;
-      border-radius: 50%;
-      background: #fff;
-      color: rgba(17, 17, 17, 0.7);
-      border: 1px solid #e6e5e2;
-      display: grid;
-      place-items: center;
-      transition: color 0.2s, background 0.2s;
-    }
-    .card-nav-btn:hover { color: #111; background: #fafafa; }
-    .card-nav-btn.prev svg { transform: rotate(180deg); }
-
-    /* Partners / My Stack */
-    .hero-stack-block {
-      width: 100%;
-      max-width: 24rem;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    @media (min-width: 1024px) {
-      .hero-stack-block {
-        max-width: 19rem;
-        text-align: right;
-      }
-    }
-    .hero-stack-block.ready { opacity: 1; transform: translateY(0); }
-    .hero-stack-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: rgba(17, 17, 17, 0.45);
-      margin-bottom: 0.75rem;
-    }
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      column-gap: 1rem;
-      row-gap: 0.75rem;
-    }
-    .stack-item {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: rgba(17, 17, 17, 0.7);
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s;
-    }
-    .stack-item:hover {
-      opacity: 1;
-      transform: translateY(-2px);
-    }
-    .stack-item svg { width: 0.875rem; height: 0.875rem; fill: rgba(17, 17, 17, 0.4); }
-
-    /* Status Bar */
-    .hero-status-bar {
-      border-top: 1px solid rgba(17, 17, 17, 0.1);
-      padding: 1.25rem 1.25rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      color: rgba(17, 17, 17, 0.6);
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      position: relative;
-      z-index: 20;
-    }
-    @media (min-width: 640px) { .hero-status-bar { padding-inline: 2rem; } }
-    .hero-status-bar.ready { opacity: 1; }
-    .status-bar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-    .status-center { display: none; }
-    @media (min-width: 640px) { .status-center { display: block; } }
-
-    /* -------------------------------------------------------------------------
-       7. About Section (#about)
-       ------------------------------------------------------------------------- */
-    .about-section {
-      background: #fff;
-      padding: 5rem 1.25rem;
-    }
-    @media (min-width: 640px) { .about-section { padding: 5rem 2rem; } }
-    @media (min-width: 1024px) { .about-section { padding-block: 7rem; } }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: center;
-      gap: 3rem;
-    }
-    @media (min-width: 1024px) {
-      .about-grid {
-        grid-template-columns: 1fr 1.6fr;
-        gap: 4rem;
-      }
-    }
-
-    .about-left {
-      position: relative;
-      min-height: 14rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    @media (min-width: 1024px) { .about-left { min-height: 20rem; } }
-
-    .about-bg-globe {
-      position: absolute;
-      left: -1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12rem;
-      height: 12rem;
-      color: rgba(17, 17, 17, 0.08);
-      pointer-events: none;
-    }
-    @media (min-width: 640px) { .about-bg-globe { width: 16rem; height: 16rem; } }
-    @media (min-width: 1024px) { .about-bg-globe { width: 20rem; height: 20rem; left: -1.5rem; } }
-
-    .about-side-note-box {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.875rem;
-      color: rgba(17, 17, 17, 0.7);
-      margin-top: auto;
-      max-width: 16rem;
-      position: relative;
-      z-index: 2;
-    }
-    .about-side-note-box svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: #111;
-      flex-shrink: 0;
-    }
-
-    .about-right {
-      display: flex;
-      flex-direction: column;
-      gap: 2.25rem;
-    }
-
-    .about-h2 {
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.35;
-      letter-spacing: -0.01em;
-      color: #111;
-    }
-    @media (min-width: 640px) { .about-h2 { font-size: 1.875rem; } }
-    .about-h2-gray { color: #8d8d8d; }
-
-    .word-reveal-word {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-    .word-reveal-word.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .about-extra-para {
-      font-size: 0.875rem;
-      color: rgba(17, 17, 17, 0.6);
-      line-height: 1.65;
-    }
-
-    /* Education Block */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 1.25rem 0;
-    }
-    @media (max-width: 640px) {
-      .edu-grid { grid-template-columns: 1fr; gap: 0.85rem; }
-    }
-    .edu-col-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: rgba(17, 17, 17, 0.45);
-      margin-bottom: 0.35rem;
-    }
-    .edu-col-value {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #111;
-    }
-
-    /* Principles list */
-    .principles-list {
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid var(--line);
-    }
-    .principle-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.25rem;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .principle-idx {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(17, 17, 17, 0.4);
-      width: 2rem;
-      flex-shrink: 0;
-    }
-    .principle-body {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .principle-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #111;
-    }
-    .principle-desc {
-      font-size: 0.875rem;
-      color: rgba(17, 17, 17, 0.6);
-      line-height: 1.5;
-    }
-
-    /* About footer row */
-    .about-footer-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding-top: 1rem;
-    }
-    .social-chips-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .social-chips-label {
-      font-size: 0.875rem;
-      color: rgba(17, 17, 17, 0.45);
-    }
-    .social-chips-list {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .social-circle-chip {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .social-circle-chip:hover { transform: scale(1.18); }
-    .social-circle-chip.accent {
-      background: var(--accent);
-      color: #fff;
-    }
-    .social-circle-chip.neutral {
-      background: var(--surface);
-      color: rgba(17, 17, 17, 0.7);
-    }
-    .social-circle-chip svg { width: 1rem; height: 1rem; }
-
-    /* -------------------------------------------------------------------------
-       8. CreateBand
-       ------------------------------------------------------------------------- */
-    .create-band-wrap {
-      padding: 2.5rem 1.25rem;
-    }
-    @media (min-width: 640px) { .create-band-wrap { padding: 2.5rem 2rem; } }
-    .create-band-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    @media (min-width: 640px) {
-      .create-band-list {
-        flex-direction: row;
-        gap: 1rem;
-      }
-    }
-    .create-band-li {
-      flex: 1;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .create-band-li.revealed { opacity: 1; transform: translateY(0); }
-    .create-band-tile {
-      display: grid;
-      place-items: center;
-      height: 6rem;
-      border-radius: var(--radius-pill);
-      font-size: 1.875rem;
-      font-weight: 500;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    @media (min-width: 640px) {
-      .create-band-tile {
-        height: 10rem;
-        font-size: 2.25rem;
-      }
-    }
-    .create-band-tile:hover { transform: scale(1.03); }
-    .tile-light { background: var(--surface); color: #111; }
-    .tile-accent { background: linear-gradient(to bottom right, var(--accent-from), var(--accent-to)); color: #fff; }
-    .tile-dark { background: var(--ink); color: #fff; }
-    .tile-ghost { background: rgba(241, 240, 238, 0.6); color: rgba(17, 17, 17, 0.35); }
-    .tile-dark svg { width: 2.25rem; height: 2.25rem; }
-    @media (min-width: 640px) { .tile-dark svg { width: 3rem; height: 3rem; } }
-
-    /* -------------------------------------------------------------------------
-       9. Projects (#works)
-       ------------------------------------------------------------------------- */
-    .projects-section {
-      background: #fff;
-      padding: 2.5rem 1.25rem 5rem;
-    }
-    @media (min-width: 640px) { .projects-section { padding: 2.5rem 2rem 5rem; } }
-    @media (min-width: 1024px) { .projects-section { padding-bottom: 7rem; } }
-
-    .projects-header-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1rem;
-      margin-bottom: 3.5rem;
-    }
-    .projects-eyebrow-chip {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-pill);
-      padding: 0.375rem 1rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(17, 17, 17, 0.7);
-    }
-    .projects-h2 {
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #111;
-      width: fit-content;
-    }
-    @media (min-width: 640px) { .projects-h2 { font-size: 3rem; } }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    @media (min-width: 768px) {
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .project-card-full-span {
-        grid-column: 1 / -1;
-        min-height: 26rem;
-      }
-    }
-
-    .project-li {
-      opacity: 0;
-      transform: translateY(48px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .project-li.revealed { opacity: 1; transform: translateY(0); }
-
-    .project-card {
-      position: relative;
-      min-height: 24rem;
-      overflow: hidden;
-      border-radius: var(--radius-card);
-      background: var(--ink);
-      padding: 1.5rem;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    @media (min-width: 640px) { .project-card { padding: 2rem; min-height: 26rem; } }
-    .project-card:hover {
-      transform: translateY(-8px) scale(1.012);
-    }
-
-    .project-card-top {
-      position: relative;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      color: rgba(255, 255, 255, 0.45);
-    }
-    .project-badge-arrow {
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .project-badge-arrow svg { width: 1.1rem; height: 1.1rem; }
-    .project-card:hover .project-badge-arrow {
-      transform: rotate(45deg) scale(1.08);
-    }
-
-    /* Centered watermark or optional user screenshot */
-    .project-card-watermark {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .project-watermark-icon {
-      width: 4.5rem;
-      height: 4.5rem;
-      fill: rgba(255, 255, 255, 0.09);
-    }
-    .project-watermark-reg {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.15);
-      vertical-align: super;
-      margin-left: -0.25rem;
-    }
-    .project-card-cover-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.25;
-      filter: grayscale(1) contrast(1.1);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .project-card-bottom {
-      position: relative;
-      z-index: 5;
-      margin-top: 5rem;
-    }
-    .project-title {
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: #fff;
-    }
-    @media (min-width: 640px) { .project-title { font-size: 1.875rem; } }
-    .project-desc {
-      margin-top: 0.5rem;
-      max-width: 28rem;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.5;
-    }
-
-    /* Architectural formula chip row */
-    .arch-formula-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .arch-chip {
-      padding: 0.25rem 0.55rem;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: var(--radius-pill);
-      font-size: 0.72rem;
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .arch-chip.result {
-      border-color: var(--accent-from);
-      color: var(--accent-from);
-      background: rgba(207, 128, 71, 0.1);
-      font-weight: 600;
-    }
-
-    .project-key-features {
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.45);
-      line-height: 1.4;
-    }
-    .project-tags-wrap {
-      margin-top: 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .project-links-row {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1.25rem;
-    }
-    .project-text-link {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--accent-from);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      opacity: 0.85;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .project-text-link:hover {
-      opacity: 1;
-      transform: translateX(3px);
-    }
-
-    /* -------------------------------------------------------------------------
-       10. Services & Experience Rows
-       ------------------------------------------------------------------------- */
-    .services-section {
-      background: #fff;
-      padding: 5rem 1.25rem;
-    }
-    @media (min-width: 640px) { .services-section { padding: 5rem 2rem; } }
-    @media (min-width: 1024px) { .services-section { padding-block: 7rem; } }
-
-    .section-h2-spaced {
-      margin: 1.25rem 0 3rem;
-      max-width: 16ch;
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    @media (min-width: 640px) {
-      .section-h2-spaced {
-        margin-bottom: 3.5rem;
-        font-size: 3rem;
-      }
-    }
-
-    .services-list {
-      display: flex;
-      flex-direction: column;
-    }
-    .service-li {
-      border-top: 1px solid var(--line);
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .service-li:first-child { border-top: none; }
-    .service-li.revealed { opacity: 1; transform: translateY(0); }
-
-    .service-row-inner {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      border-radius: var(--radius-card-sm);
-      padding: 1.5rem 1.5rem;
-      background: rgba(241, 240, 238, 0);
-      transition: background 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  padding-left 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  padding-right 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-      cursor: pointer;
-    }
-    @media (min-width: 640px) {
-      .service-row-inner {
-        gap: 1.5rem;
-        padding-block: 2rem;
-      }
-    }
-    .service-row-inner:hover {
-      background: rgba(241, 240, 238, 1);
-      padding-left: 2rem;
-      padding-right: 1.25rem;
-    }
-
-    .service-idx {
-      width: 1.75rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(17, 17, 17, 0.4);
-      flex-shrink: 0;
-    }
-    @media (min-width: 640px) { .service-idx { width: 2.5rem; } }
-
-    .service-title-group {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-    .service-title {
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: #111;
-    }
-    @media (min-width: 640px) { .service-title { font-size: 1.875rem; } }
-    @media (min-width: 768px) { .service-title { font-size: 2.25rem; } }
-
-    .service-desc {
-      display: none;
-      max-width: 20rem;
-      font-size: 0.875rem;
-      color: rgba(17, 17, 17, 0.55);
-      line-height: 1.45;
-    }
-    @media (min-width: 1024px) { .service-desc { display: block; } }
-
-    .service-arrow-badge {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: var(--ink);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    @media (min-width: 640px) { .service-arrow-badge { width: 3rem; height: 3rem; } }
-    .service-arrow-badge svg { width: 1.2rem; height: 1.2rem; }
-    .service-row-inner:hover .service-arrow-badge {
-      transform: translateX(5px);
-    }
-
-    /* Expandable details container for Experience */
-    .exp-expand-body {
-      padding: 0 1.5rem 1.75rem 4.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-    @media (max-width: 640px) { .exp-expand-body { padding: 0 1rem 1.5rem 1rem; } }
-    .exp-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      font-size: 0.875rem;
-      color: rgba(17, 17, 17, 0.6);
-      line-height: 1.5;
-    }
-    .exp-bullets li {
-      position: relative;
-      padding-left: 1.25rem;
-    }
-    .exp-bullets li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 1.1rem;
-      line-height: 1;
-    }
-    .exp-highlight-text {
-      color: var(--accent);
-      font-weight: 500;
-    }
-    .exp-tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.35rem;
-    }
-
-    /* -------------------------------------------------------------------------
-       11. Stats
-       ------------------------------------------------------------------------- */
-    .stats-section {
-      background: #fff;
-      padding: 0 1.25rem 5rem;
-    }
-    @media (min-width: 640px) { .stats-section { padding: 0 2rem 5rem; } }
-    @media (min-width: 1024px) { .stats-section { padding-bottom: 7rem; } }
-
-    .stats-panel {
-      border-radius: var(--radius-card);
-      background: var(--ink);
-      padding: 3rem 1.5rem;
-      color: #fff;
-      opacity: 0;
-      transform: translateY(40px) scale(0.99);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @media (min-width: 640px) { .stats-panel { padding: 4rem 2rem; } }
-    @media (min-width: 768px) { .stats-panel { padding-inline: 4rem; } }
-    .stats-panel.revealed { opacity: 1; transform: translateY(0) scale(1); }
-
-    .stats-h2 {
-      margin-top: 1rem;
-      max-width: 20ch;
-      font-size: 1.875rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: #fff;
-    }
-    @media (min-width: 768px) { .stats-h2 { font-size: 2.25rem; } }
-
-    .stats-grid {
-      margin-top: 3.5rem;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 2rem;
-      row-gap: 3rem;
-    }
-    @media (min-width: 1024px) {
-      .stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    .stat-li {
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .stat-li.revealed { opacity: 1; transform: translateY(0); }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    @media (min-width: 640px) { .stat-number { font-size: 3.75rem; } }
-    @media (min-width: 768px) { .stat-number { font-size: 4.5rem; } }
-
-    .stat-label {
-      margin-top: 0.75rem;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.45;
-    }
-
-    /* -------------------------------------------------------------------------
-       12. Footer
-       ------------------------------------------------------------------------- */
-    .site-footer {
-      position: relative;
-      overflow: hidden;
-      border-radius: 2rem 2rem 0 0;
-      background: var(--ink);
-      color: #fff;
-    }
-    .footer-inner {
-      position: relative;
-      z-index: 10;
-      padding: 5rem 1.25rem 2.5rem;
-    }
-    @media (min-width: 640px) { .footer-inner { padding: 5rem 2rem 2.5rem; } }
-    @media (min-width: 1024px) { .footer-inner { padding-top: 6rem; } }
-
-    .footer-cta-row {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 4rem;
-    }
-    @media (min-width: 1024px) {
-      .footer-cta-row {
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: space-between;
-      }
-    }
-    .footer-cta-h2 {
-      max-width: 18ch;
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    @media (min-width: 640px) { .footer-cta-h2 { font-size: 3rem; } }
-    @media (min-width: 768px) { .footer-cta-h2 { font-size: 3.75rem; } }
-    .footer-cta-sub {
-      margin-top: 0.75rem;
-      max-width: 32rem;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.5;
-    }
-
-    /* Giant email link */
-    .footer-giant-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 2.25rem;
-      font-weight: 600;
-      color: var(--accent-from);
-      margin-top: 1rem;
-      transition: color 0.25s, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    @media (min-width: 640px) { .footer-giant-email { font-size: 3rem; } }
-    .footer-giant-email svg {
-      width: 2rem;
-      height: 2rem;
-      color: var(--accent-from);
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .footer-giant-email:hover {
-      color: #fff;
-    }
-    .footer-giant-email:hover svg {
-      transform: translateX(6px);
-      color: #fff;
-    }
-
-    .footer-cols-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      padding-block: 4rem;
-    }
-    @media (min-width: 768px) { .footer-cols-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .footer-cols-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
-
-    .footer-brand-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .footer-brand-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-    .footer-brand-title svg { width: 1.25rem; height: 1.25rem; fill: var(--accent-from); }
-    .footer-brand-tagline {
-      max-width: 20rem;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.5;
-    }
-
-    .footer-nav-col {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .footer-col-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      color: rgba(255, 255, 255, 0.4);
-    }
-    .footer-col-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.875rem;
-    }
-
-    .footer-legal-bar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 2rem;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.45);
-    }
-    @media (min-width: 640px) {
-      .footer-legal-bar {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-
-    .footer-watermark {
-      position: absolute;
-      inset-inline: 0;
-      bottom: -1.5rem;
-      z-index: 0;
-      text-align: center;
-      pointer-events: none;
-      user-select: none;
-      font-weight: 700;
-      line-height: 1;
-      font-size: clamp(6rem, 16vw, 13rem);
-      color: rgba(255, 255, 255, 0.05);
-    }
-
-    /* -------------------------------------------------------------------------
-       13. NavMenu Overlay
-       ------------------------------------------------------------------------- */
-    .nav-menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 115;
-      display: flex;
-      flex-direction: column;
-      background: var(--ink);
-      color: #fff;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .nav-menu-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .nav-menu-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 1.25rem;
-    }
-    @media (min-width: 640px) { .nav-menu-top { padding: 1.5rem 2rem; } }
-
-    .nav-menu-close-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: var(--radius-control);
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: rgba(255, 255, 255, 0.7);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .nav-menu-close-btn:hover {
-      border-color: rgba(255, 255, 255, 0.4);
-      color: #fff;
-    }
-
-    .nav-menu-nav {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-inline: 1.25rem;
-    }
-    @media (min-width: 640px) { .nav-menu-nav { padding-inline: 2rem; } }
-
-    .nav-menu-ul {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .nav-menu-item-btn {
-      width: 100%;
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      padding-block: 0.5rem;
-      text-align: left;
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      opacity: 0;
-      transform: translateY(1rem);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    @media (min-width: 640px) { .nav-menu-item-btn { font-size: 3.75rem; } }
-    .nav-menu-overlay.open .nav-menu-item-btn {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav-item-idx {
-      font-size: 1rem;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.3);
-      transition: color 0.2s;
-    }
-    .nav-item-label {
-      color: rgba(255, 255, 255, 0.7);
-      transition: color 0.25s;
-    }
-    .nav-menu-item-btn:hover .nav-item-idx { color: var(--accent-from); }
-    .nav-menu-item-btn:hover .nav-item-label { color: #fff; }
-
-    .nav-menu-bottom {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1.5rem 1.25rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      color: rgba(255, 255, 255, 0.45);
-    }
-    @media (min-width: 640px) {
-      .nav-menu-bottom {
-        flex-direction: row;
-        justify-content: space-between;
-        padding-inline: 2rem;
-      }
-    }
-    .nav-bottom-action-btn {
-      color: rgba(255, 255, 255, 0.7);
-      transition: color 0.2s;
-    }
-    .nav-bottom-action-btn:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    /* -------------------------------------------------------------------------
-       14. Modals (RequestModal & ProjectModal)
-       ------------------------------------------------------------------------- */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 110;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 1rem;
-      background: rgba(17, 17, 17, 0.3);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-    }
-    @media (min-width: 640px) { .modal-backdrop { align-items: center; } }
-    .modal-backdrop.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal-panel {
-      position: relative;
-      width: 100%;
-      max-width: 32rem;
-      overflow-y: auto;
-      max-height: 90vh;
-      border-radius: var(--radius-card);
-      background: #fff;
-      padding: 1.5rem;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--line);
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    @media (min-width: 640px) { .modal-panel { padding: 2rem; } }
-    .modal-backdrop.open .modal-panel {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .modal-close-btn {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 50%;
-      background: var(--surface);
-      color: rgba(17, 17, 17, 0.6);
-      display: grid;
-      place-items: center;
-      transition: background 0.2s, color 0.2s;
-    }
-    .modal-close-btn:hover {
-      background: var(--surface-2);
-      color: #111;
-    }
-
-    .modal-header-block {
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.375rem;
-    }
-    .modal-h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: #111;
-    }
-    @media (min-width: 640px) { .modal-h2 { font-size: 1.875rem; } }
-
-    .modal-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .form-field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-    .field-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      color: rgba(17, 17, 17, 0.5);
-    }
-    .field-input, .field-textarea {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: rgba(241, 240, 238, 0.5);
-      border-radius: var(--radius-control);
-      padding: 0.75rem 1rem;
-      font-size: 0.875rem;
-      font-family: inherit;
-      color: #111;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .field-textarea { resize: none; }
-    .field-input:focus, .field-textarea:focus {
-      border-color: rgba(17, 17, 17, 0.3);
-      background: #fff;
-    }
-
-    .form-bottom-row {
-      margin-top: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .form-note {
-      font-size: 0.75rem;
-      color: rgba(17, 17, 17, 0.45);
-    }
-
-    /* Modal Success State */
-    .modal-success-state {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding-block: 2rem;
-      gap: 1rem;
-    }
-    .modal-success-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 50%;
-      background: var(--ink);
-      color: var(--accent-from);
-      display: grid;
-      place-items: center;
-    }
-    .modal-success-icon svg { width: 1.5rem; height: 1.5rem; fill: currentColor; }
-
-    /* Project Detail Modal Custom Style (reusing RequestModal shell) */
-    .project-modal-panel {
-      max-width: 38rem;
-    }
-    .modal-project-category {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .modal-project-features-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      font-size: 0.85rem;
-      color: rgba(17, 17, 17, 0.7);
-      margin-top: 0.75rem;
-    }
-    .modal-project-features-list li {
-      position: relative;
-      padding-left: 1.25rem;
-    }
-    .modal-project-features-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-  </style>
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
-<body>
-
-  <!-- Skip link for keyboard navigation -->
-  <a href="#main" class="skip-link">Skip to content</a>
+<body class="grain-surface">
 
   <!-- =========================================================================
-       1. PAGE LOADER
+       1. MECHANICAL PRELOADER (000 -> 100)
        ========================================================================= -->
-  <div class="page-loader" id="pageLoader" aria-hidden="true">
-    <div class="loader-center">
-      <div class="loader-brand">
-        <!-- LogoMark SVG -->
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/>
-        </svg>
-        <span>Naveen</span>
-      </div>
-      <p class="loader-tagline">Designed with curiosity. Built with purpose.</p>
+  <div class="page-preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-header">
+      <span>Naveen Kumar E · Software Developer</span>
+      <span>2026</span>
     </div>
-
-    <div class="loader-progress-block">
-      <div class="loader-track">
-        <div class="loader-fill" id="loaderFill"></div>
-      </div>
-      <div class="loader-meta-row">
-        <span>Loading</span>
-        <span class="loader-counter" id="loaderCounter">000</span>
+    <div class="preloader-digits-wrap">
+      <span id="preloaderDigits">000</span>
+    </div>
+    <div class="preloader-footer">
+      <span>Loading workspace</span>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar" id="preloaderBar"></div>
       </div>
     </div>
   </div>
 
   <!-- =========================================================================
-       2. FIXED HEADER (ABSOLUTE OVERLAY)
+       2. STICKY HEADER & CONTROLS
        ========================================================================= -->
   <header class="site-header" id="siteHeader">
-    <div class="shell header-inner">
-      <button class="brand-btn" id="brandLogoBtn" aria-label="Naveen — Scroll to top">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/>
+    <div class="nav-brand-wrap">
+      <!-- Interactive Exploding Monogram Logo -->
+      <a href="#hero" class="monogram-btn" aria-label="Naveen Kumar E - Home" onclick="scrollToSection('heroScrollContainer'); return false;">
+        <svg viewBox="0 0 44 44" fill="currentColor" class="monogram-mark">
+          <g>
+            <path d="M6 34 A7 7 0 1 0 20 34 A7 7 0 1 0 6 34 Z" class="monogram-piece piece-3"></path>
+            <path d="M22 14 C22 14 26 22 30 25 C34 28 38 34 38 34 L22 34 Z" class="monogram-piece piece-2"></path>
+            <path d="M6 10 C6 10 16 10 20 18 C24 26 28 34 28 34 L6 34 Z" class="monogram-piece piece-0"></path>
+            <path d="M24 10 L38 10 L38 24 C38 24 34 16 28 14 Z" class="monogram-piece piece-1"></path>
+          </g>
         </svg>
-        <span>Naveen</span>
+      </a>
+      <a href="#hero" class="nav-brand-title has-roll" data-roll-text="CodeofNaveen" onclick="scrollToSection('heroScrollContainer'); return false;">
+        CodeofNaveen
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Ambient Sound Button with Equalizer Wave -->
+      <button class="sound-btn" id="soundBtn" aria-label="Toggle ambient sound">
+        <span>Sound</span>
+        <div class="sound-wave">
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+        </div>
       </button>
 
-      <nav class="header-nav" aria-label="Primary Navigation">
-        <a href="#home" aria-current="page" data-scroll-to="home">Home</a>
-        <a href="#works" data-scroll-to="works">Work</a>
-        <a href="#services" data-scroll-to="services">Services</a>
-        <a href="#about" data-scroll-to="about">About</a>
-        <a href="#experience" data-scroll-to="experience">Experience</a>
-        <button type="button" id="headerContactBtn">Contact</button>
-      </nav>
-
-      <div class="header-right">
-        <div class="clock-chip" id="clockChip" aria-label="Current local time">
-          <span class="clock-label">Local time</span>
-          <span class="clock-time" id="clockTime">9:41am</span>
-          <span class="clock-sep">•</span>
-          <span id="clockDate">12 March, 2025</span>
-        </div>
-
-        <button class="menu-btn" id="openMenuBtn" aria-label="Open menu" aria-haspopup="dialog">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <line x1="4" y1="6" x2="20" y2="6"/>
-            <line x1="4" y1="12" x2="20" y2="12"/>
-            <line x1="4" y1="18" x2="20" y2="18"/>
-          </svg>
-          <span class="menu-word">Menu</span>
-        </button>
-      </div>
+      <!-- Circular MENU Button -->
+      <button class="menu-toggle-btn has-roll" id="menuOpenBtn" aria-label="Open menu drawer" data-roll-text="MENU">
+        MENU
+      </button>
     </div>
   </header>
 
-  <!-- =========================================================================
-       3. MAIN CONTENT
-       ========================================================================= -->
-  <main id="main">
+  <!-- Procedural 3D Page Curl WebGL Overlay -->
+  <canvas id="pageCurlCanvas" class="page-curl-canvas"></canvas>
 
-    <!-- HERO SECTION (#home) -->
-    <section class="hero-section" id="home">
-      <!-- A) Liquid reveal canvas + background image -->
-      <div class="hero-media-wrap">
-        <img id="heroBaseImage" class="hero-base-image" alt="" aria-hidden="true" />
-        <canvas id="heroLiquidCanvas" class="hero-liquid-canvas" aria-hidden="true"></canvas>
+  <!-- =========================================================================
+       3. HERO STAGE (370svh PINNED 3D HANDS & CHARACTER STAGE)
+       ========================================================================= -->
+  <div class="hero-scroll-container" id="heroScrollContainer">
+    <section class="hero-stage" id="heroStage">
+      <!-- Procedural Volumetric Sky & Clouds Canvas -->
+      <canvas id="heroSkyCanvas" class="hero-sky-canvas"></canvas>
+
+      <!-- Left Michelangelo Stone Hand -->
+      <img src="/assets/hero/hand-left.webp" alt="3D Left Hand" class="hero-hand hero-hand-left" id="heroHandLeft" />
+
+      <!-- Right Michelangelo Stone Hand -->
+      <img src="/assets/hero/hand-right.webp" alt="3D Right Hand" class="hero-hand hero-hand-right" id="heroHandRight" />
+
+      <!-- 3D Three.js Interactive Character Canvas -->
+      <div class="hero-canvas-wrap">
+        <canvas id="heroCanvas"></canvas>
       </div>
 
-      <!-- B) Vignette -->
-      <div class="hero-vignette" aria-hidden="true"></div>
+      <!-- Hero Layer 1: Headline, Bio & Hand-Drawn Annotation -->
+      <div class="hero-text-layer-1" id="heroLayer1">
+        <h1 class="hero-headline">
+          <span class="line-mask revealed"><span class="line">Websites That Refuse To</span></span>
+          <span class="line-mask revealed"><span class="line">Look Like Everyone Else.</span></span>
+        </h1>
+      </div>
 
-      <!-- C) Watermark text -->
-      <div class="hero-watermark" id="heroWatermark" aria-hidden="true">NAVEEN</div>
+      <div class="hero-bio-corner" id="heroBio">
+        Naveen Kumar E, full-stack developer. I design and build web applications, enterprise systems, and AI tools for brands that want to stand out, and scale.
+      </div>
 
-      <!-- D) Content grid -->
-      <div class="shell hero-content">
-        <!-- Left Column -->
-        <div class="hero-left">
-          <div class="hero-eyebrow-block" id="heroEyebrowBlock">
-            <div class="eyebrow dark-tone">
-              <span class="eyebrow-dot"></span>
-              <span>Software Developer — React · Full-Stack</span>
-            </div>
+      <div class="hero-arrow-annotation" id="heroArrow">
+        <svg width="44" height="32" viewBox="0 0 50 40" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M 44 26 C 28 28, 14 18, 6 6 M 6 6 L 16 7 M 6 6 L 7 17" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span style="display:flex; flex-direction:column; line-height:1.25;">
+          <span>That's me,</span>
+          <span>on my third coffee.</span>
+        </span>
+      </div>
 
-            <!-- Role Labels: 4 TagChips -->
-            <div class="role-chips-row">
-              <span class="tag-chip tag-chip-outline-dark">Software Developer</span>
-              <span class="tag-chip tag-chip-outline-dark">React Developer</span>
-              <span class="tag-chip tag-chip-outline-dark">Full-Stack Development</span>
-              <span class="tag-chip tag-chip-outline-dark">Problem Solver</span>
-            </div>
-          </div>
+      <!-- Hero Layer 2: Gigantic Name Sequential Scroll Reveal -->
+      <div class="hero-text-layer-2" id="heroLayer2">
+        <h2 class="hero-scroll-name" id="heroScrollName">
+          <span>N</span><span>A</span><span>V</span><span>E</span><span>E</span><span>N</span>
+          <span>&nbsp;</span>
+          <span>K</span><span>U</span><span>M</span><span>A</span><span>R</span>
+          <span>&nbsp;</span>
+          <span>E</span>
+        </h2>
+      </div>
 
-          <!-- Line-by-line Headline -->
-          <h1 class="hero-h1">
-            <span class="line-reveal"><span class="line-reveal-inner hero-line">Building modern</span></span>
-            <span class="line-reveal"><span class="line-reveal-inner hero-line">web applications,</span></span>
-            <span class="line-reveal"><span class="line-reveal-inner hero-line">with purpose.</span></span>
-          </h1>
+      <!-- Hero Layer 3: "Let's make it simple." -->
+      <div class="hero-text-layer-3" id="heroLayer3">
+        <h2>Let's make it simple.</h2>
+      </div>
 
-          <!-- Rating Row -->
-          <div class="hero-rating-row" id="heroRatingRow">
-            <div class="stars-cluster" aria-label="5 stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2.5 14.9 8.38 21.39 9.32 16.69 13.9 17.8 20.36 12 17.31 6.2 20.36 7.31 13.9 2.62 9.32 9.11 8.38 12 2.5"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2.5 14.9 8.38 21.39 9.32 16.69 13.9 17.8 20.36 12 17.31 6.2 20.36 7.31 13.9 2.62 9.32 9.11 8.38 12 2.5"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2.5 14.9 8.38 21.39 9.32 16.69 13.9 17.8 20.36 12 17.31 6.2 20.36 7.31 13.9 2.62 9.32 9.11 8.38 12 2.5"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2.5 14.9 8.38 21.39 9.32 16.69 13.9 17.8 20.36 12 17.31 6.2 20.36 7.31 13.9 2.62 9.32 9.11 8.38 12 2.5"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2.5 14.9 8.38 21.39 9.32 16.69 13.9 17.8 20.36 12 17.31 6.2 20.36 7.31 13.9 2.62 9.32 9.11 8.38 12 2.5"/></svg>
-            </div>
-            <span class="hero-rating-text">2 internships · 3 featured projects</span>
-          </div>
-
-          <!-- CTAs -->
-          <div class="hero-ctas" id="heroCtas">
-            <button class="pill-btn pill-btn-dark" id="heroLetTalkBtn" type="button">
-              <span class="pill-btn-inner">
-                <span>Let's Talk</span>
-                <span class="btn-arrow-badge arrow-up-right">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
-                </span>
-              </span>
+      <!-- Hero Dynamic Sky Dial (Minimalist SVG Icons & Continuous Running/Scrubbing Slider) -->
+      <div class="hero-lighting-wrap" id="heroLighting">
+        <div class="sky-dial-container" data-sky-dial="true">
+          <div class="sky-dial-buttons">
+            <!-- Day / Sun Icon -->
+            <button type="button" class="sky-dial-btn active" data-time="day" aria-label="Day" title="Day" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="sky-dial-icon">
+                <circle cx="12" cy="12" r="4.2" />
+                <path d="M12 2.6v2.2M12 19.2v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6" />
+              </svg>
             </button>
+            <!-- Sunset / Horizon Icon -->
+            <button type="button" class="sky-dial-btn" data-time="sunset" aria-label="Sunset" title="Sunset" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="sky-dial-icon">
+                <path d="M3 18.5h18" />
+                <path d="M8 18.5a4 4 0 0 1 8 0" />
+                <path d="M12 4.2v2M6.3 7.3l1.4 1.4M16.3 8.7l1.4-1.4M3.6 13h2M18.4 13h2" />
+              </svg>
+            </button>
+            <!-- Night / Crescent Moon Icon -->
+            <button type="button" class="sky-dial-btn" data-time="night" aria-label="Night" title="Night" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="sky-dial-icon">
+                <path d="M20 14.2A8.4 8.4 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Continuous 2px Slider Track with Ticks & Sliding Dot Indicator -->
+          <div class="sky-dial-slider" id="skyDialSlider" title="Dynamic sky cycle">
+            <span class="sky-dial-tick" style="left: 0%"></span>
+            <span class="sky-dial-tick" style="left: 50%"></span>
+            <span class="sky-dial-tick" style="left: 100%"></span>
+            <span class="sky-dial-dot-wrap" id="skyDialDotWrap">
+              <span class="sky-dial-dot"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
-            <a href="#works" class="pill-btn pill-btn-outline" data-scroll-to="works">
-              <span class="pill-btn-inner">
-                <span>View Work</span>
-              </span>
+  <!-- =========================================================================
+       4. WHY CUSTOM & PAGE TURN ("GET FOUND. GET CHOSEN. GET BUILT.")
+       ========================================================================= -->
+  <div class="page-turn-container" id="pageTurnContainer">
+    <section class="why-section grain-surface" id="about">
+      <div style="max-width: 1400px; width: 100%; margin-inline: auto; padding-inline: var(--page-x);">
+        <div class="why-grid">
+          <!-- Left: Core Thesis -->
+          <div>
+            <h2 class="why-headline">
+              <span class="line-mask"><span class="line">Get Found. Get Chosen.</span></span>
+              <span class="line-mask"><span class="line">Get Built.</span></span>
+            </h2>
+
+            <div class="why-handwritten-note">
+              <span>Me, building your next system.</span>
+              <svg width="45" height="30" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M10 10 C 50 15, 80 40, 100 70 M 90 60 L 102 72 L 108 55" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <div class="why-points-list">
+              <div class="why-point-item">
+                <span class="mono">01</span>
+                <span class="line-mask"><span class="line">Fast on any phone</span></span>
+              </div>
+              <div class="why-point-item">
+                <span class="mono">02</span>
+                <span class="line-mask"><span class="line">Seen on Google and in AI answers</span></span>
+              </div>
+              <div class="why-point-item">
+                <span class="mono">03</span>
+                <span class="line-mask"><span class="line">Built to turn visits into users</span></span>
+              </div>
+            </div>
+
+            <p style="color:var(--ink-muted); font-size:1.1rem; max-width:44ch; line-height:1.6; margin-bottom:2rem;">
+              A website should do more than sit there. It should work for you every day, long after launch.
+            </p>
+
+            <a href="#work" class="link-draw mono" onclick="scrollToSection('work'); return false;">
+              View selected projects →
             </a>
           </div>
-        </div>
 
-        <!-- Right Column -->
-        <div class="hero-right">
-          <!-- HeroCard Carousel -->
-          <div class="hero-card" id="heroCard">
-            <div class="hero-card-clickable" id="heroCardClickable" role="button" aria-label="Next slide" tabindex="0">
-              <div class="card-tile-left">
-                <svg viewBox="0 0 48 48" aria-hidden="true">
-                  <path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/>
-                </svg>
-              </div>
-              <div class="card-panel-right">
-                <div class="card-slot">
-                  <div class="card-caption" id="cardCaption">Frontend</div>
-                  <div class="card-title" id="cardTitle">React, built responsive.</div>
-                </div>
-                <div class="card-bottom-row">
-                  <div class="card-dots">
-                    <span class="card-dot active" data-index="0"></span>
-                    <span class="card-dot" data-index="1"></span>
-                    <span class="card-dot" data-index="2"></span>
-                  </div>
-                  <div class="card-nav-btns">
-                    <button type="button" class="card-nav-btn prev" id="cardPrevBtn" aria-label="Previous slide">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </button>
-                    <button type="button" class="card-nav-btn next" id="cardNextBtn" aria-label="Next slide">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- Center: 3D Developer at Mechanical Desk -->
+          <div class="why-desk-container" id="whyDeskContainer">
+            <canvas id="whyDeskCanvas"></canvas>
           </div>
 
-          <!-- My Stack (relabelled from Trusted by) -->
-          <div class="hero-stack-block" id="heroStackBlock">
-            <div class="hero-stack-label">My stack</div>
-            <div class="stack-grid">
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>React</span>
-              </div>
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>Spring Boot</span>
-              </div>
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>Java</span>
-              </div>
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>Node.js</span>
-              </div>
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>PostgreSQL</span>
-              </div>
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>MongoDB</span>
-              </div>
-              <div class="stack-item">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
-                <span>GCP</span>
-              </div>
+          <!-- Right: Client Review Carousel with Auto-Fill Progress -->
+          <div class="why-review-box">
+            <div class="review-track-bar">
+              <div class="review-track-fill" id="reviewTrackFill"></div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- E) Status Bar -->
-      <div class="hero-status-bar" id="heroStatusBar">
-        <div class="shell status-bar-inner">
-          <div class="status-left">B.Tech IT · KCG College of Technology</div>
-          <div class="status-center">Open to software development roles</div>
-          <div class="status-right">Scroll to explore &darr;</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION (#about) -->
-    <section class="about-section" id="about">
-      <div class="shell about-grid">
-        <!-- Left Column -->
-        <div class="about-left">
-          <svg class="about-bg-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-            <circle cx="12" cy="12" r="9.25"/>
-            <path d="M12 2.75c2.6 2.3 4 5.8 4 9.25s-1.4 6.95-4 9.25c-2.6-2.3-4-5.8-4-9.25s1.4-6.95 4-9.25zM2.75 12h18.5"/>
-          </svg>
-
-          <div class="eyebrow dark-tone">
-            <span class="eyebrow-dot"></span>
-            <span>The Developer</span>
-          </div>
-
-          <div class="about-side-note-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <circle cx="12" cy="12" r="9.25"/>
-              <path d="M12 2.75c2.6 2.3 4 5.8 4 9.25s-1.4 6.95-4 9.25c-2.6-2.3-4-5.8-4-9.25s1.4-6.95 4-9.25zM2.75 12h18.5"/>
-            </svg>
-            <span>B.Tech Information Technology, KCG College of Technology, 2022–2026 · CGPA 7.52</span>
-          </div>
-        </div>
-
-        <!-- Right Column -->
-        <div class="about-right">
-          <!-- Word reveal H2 statement -->
-          <h2 class="about-h2" id="aboutH2">
-            <!-- Words injected via JS for fine-grained stagger -->
-          </h2>
-
-          <p class="about-extra-para">
-            Through internships and hands-on projects, I've gained experience with frontend development, API integration, backend fundamentals, and database-driven applications. I enjoy understanding how complete applications work and building interfaces that are intuitive, responsive, and useful.
-          </p>
-
-          <!-- Education 3-col block -->
-          <div class="edu-grid">
-            <div>
-              <div class="edu-col-label">Degree</div>
-              <div class="edu-col-value">B.Tech Information Technology</div>
-            </div>
-            <div>
-              <div class="edu-col-label">Institution</div>
-              <div class="edu-col-value">KCG College of Technology</div>
-            </div>
-            <div>
-              <div class="edu-col-label">Timeline &amp; CGPA</div>
-              <div class="edu-col-value">2022–2026 · CGPA 7.52</div>
-            </div>
-          </div>
-
-          <!-- 4 Principles list -->
-          <div class="principles-list">
-            <div class="principle-row">
-              <div class="principle-idx">01</div>
-              <div class="principle-body">
-                <div class="principle-title">Build with purpose</div>
-                <div class="principle-desc">Create applications that solve practical problems and offer clear value to users.</div>
-              </div>
-            </div>
-            <div class="principle-row">
-              <div class="principle-idx">02</div>
-              <div class="principle-body">
-                <div class="principle-title">Learn by building</div>
-                <div class="principle-desc">Strengthen knowledge through implementation, experimentation, debugging, and iteration.</div>
-              </div>
-            </div>
-            <div class="principle-row">
-              <div class="principle-idx">03</div>
-              <div class="principle-body">
-                <div class="principle-title">Think full stack</div>
-                <div class="principle-desc">Understand how interfaces, APIs, business logic, and databases work together.</div>
-              </div>
-            </div>
-            <div class="principle-row">
-              <div class="principle-idx">04</div>
-              <div class="principle-body">
-                <div class="principle-title">Improve every detail</div>
-                <div class="principle-desc">Focus on readable code, responsive design, usability, accessibility, and maintainability.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Footer Row -->
-          <div class="about-footer-row">
-            <div class="social-chips-block" id="aboutSocialChipsBlock">
-              <div class="social-chips-label">Find me online</div>
-              <div class="social-chips-list" id="aboutSocialChipsList">
-                <!-- Dynamically populated or hidden if empty -->
+            <div class="review-top-bar">
+              <span class="mono" id="reviewCount" style="font-size:0.85rem; color:var(--ink-dim);">01/03</span>
+              <div style="display:flex; gap:0.5rem;">
+                <button class="sound-btn" id="reviewPrevBtn" aria-label="Previous review" style="padding:0.4rem 0.8rem;">←</button>
+                <button class="sound-btn" id="reviewNextBtn" aria-label="Next review" style="padding:0.4rem 0.8rem;">→</button>
               </div>
             </div>
 
-            <div id="aboutResumeAction">
-              <!-- Dynamically rendered based on CONFIG.resumeUrl -->
+            <div class="review-quote" id="reviewQuote">
+              “Consistently delivered production-ready React modules and demonstrated strong grasp of component state, API integrations, and frontend workflows.”
             </div>
+
+            <div class="review-footer">
+              <div>
+                <div id="reviewAuthor" style="font-weight:700; font-size:1.05rem;">Enterprise Project Review</div>
+                <div id="reviewRole" style="font-size:0.85rem; color:var(--ink-muted);">Engineering Mentor</div>
+              </div>
+              <div id="reviewRating" class="mono" style="font-weight:700; color:#d97706; font-size:0.85rem;">
+                ★ 5.0 · FULL-STACK
+              </div>
+            </div>
+
+            <!-- Cute Reference Panda Watermark -->
+            <img src="/assets/images/panda.svg" alt="" class="panda-watermark" />
           </div>
         </div>
       </div>
     </section>
+  </div>
 
-    <!-- CREATE_BAND (4 pills) -->
-    <section class="create-band-wrap" aria-label="Statement band">
-      <ul class="shell create-band-list">
-        <li class="create-band-li">
-          <div class="create-band-tile tile-light">I</div>
-        </li>
-        <li class="create-band-li">
-          <div class="create-band-tile tile-accent">Build</div>
-        </li>
-        <li class="create-band-li">
-          <div class="create-band-tile tile-dark" aria-label="Forward">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
-        </li>
-        <li class="create-band-li">
-          <div class="create-band-tile tile-ghost">Better</div>
-        </li>
-      </ul>
-    </section>
+  <!-- =========================================================================
+       5. DUAL INFINITE MARQUEE RIBBON
+       ========================================================================= -->
+  <section class="marquee-ribbon" aria-hidden="true">
+    <div class="marquee-strip">
+      <div class="marquee-cell"><span>Live ●</span><span>Sites that earn their keep</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">01</span><span>Full-stack Development (React, TypeScript &amp; Node)</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">02</span><span>Backend &amp; APIs (Java, Spring Boot &amp; REST)</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">03</span><span>Databases &amp; Cloud (PostgreSQL, MongoDB &amp; GCP)</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">04</span><span>AI Automation (NLP &amp; Intelligent Workflows)</span><span class="mono">—</span></div>
+      <!-- Loop duplicate -->
+      <div class="marquee-cell"><span>Live ●</span><span>Sites that earn their keep</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">01</span><span>Full-stack Development (React, TypeScript &amp; Node)</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">02</span><span>Backend &amp; APIs (Java, Spring Boot &amp; REST)</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">03</span><span>Databases &amp; Cloud (PostgreSQL, MongoDB &amp; GCP)</span><span class="mono">—</span></div>
+      <div class="marquee-cell"><span class="mono">04</span><span>AI Automation (NLP &amp; Intelligent Workflows)</span><span class="mono">—</span></div>
+    </div>
 
-    <!-- PROJECTS SECTION (#works) -->
-    <section class="projects-section" id="works">
-      <div class="shell">
-        <div class="projects-header-block">
-          <div class="projects-eyebrow-chip">Selected Projects</div>
-          <h2 class="projects-h2">
-            <span class="line-reveal"><span class="line-reveal-inner">Projects built to solve real problems.</span></span>
-          </h2>
-        </div>
+    <div class="marquee-strip reverse">
+      <div class="marquee-cell"><span>Open for engineering roles</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>Ford Motor Co. Intern</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>NSIC Chennai Intern</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>B.Tech IT · KCG College of Tech</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>CGPA 7.52</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>Open for engineering roles</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>Ford Motor Co. Intern</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>NSIC Chennai Intern</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>B.Tech IT · KCG College of Tech</span><span class="mono">®</span></div>
+      <div class="marquee-cell"><span>CGPA 7.52</span><span class="mono">®</span></div>
+    </div>
+  </section>
 
-        <div class="projects-grid" id="projectsGrid">
-          <!-- Cards rendered dynamically from CONFIG.projects -->
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION (#experience) -->
-    <section class="services-section" id="experience">
-      <div class="shell">
-        <div class="eyebrow dark-tone">
-          <span class="eyebrow-dot"></span>
-          <span>Professional Experience</span>
-        </div>
-
-        <h2 class="section-h2-spaced">
-          <span class="line-reveal"><span class="line-reveal-inner">Learning by building real applications.</span></span>
+  <!-- =========================================================================
+       6. SELECTED WORK '25–26 (DARK EDITORIAL STAGE)
+       ========================================================================= -->
+  <section class="work-stage col-lines grain-surface" id="work">
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
+      <div class="work-stage-header">
+        <h2 class="work-title-gigantic">
+          <span>WORK</span>
+          <span class="work-year-pill">’25–26</span>
         </h2>
-
-        <ul class="services-list" id="experienceList">
-          <!-- Item 01: Ford -->
-          <li class="service-li">
-            <div class="service-row-inner" tabindex="0" role="button" aria-expanded="true" aria-controls="exp-details-01">
-              <span class="service-idx">01</span>
-              <div class="service-title-group">
-                <h3 class="service-title">React Developer Intern</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content;">Ford</span>
-              </div>
-              <div class="service-desc">Enterprise React &amp; Spring Boot API integration</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
-            </div>
-            <div class="exp-expand-body" id="exp-details-01">
-              <ul class="exp-bullets">
-                <li>React.js frontend development;</li>
-                <li><span class="exp-highlight-text">Java and Spring Boot learning and development; Integrating React interfaces with Spring Boot REST APIs;</span></li>
-                <li>UI development and modernization;</li>
-                <li>Bug fixing and performance improvements;</li>
-                <li>Git-based collaboration and Agile practices;</li>
-                <li>Deployment using Google Cloud Platform (GCP).</li>
-              </ul>
-              <div class="exp-tags-row">
-                <span class="tag-chip tag-chip-light-surface">React.js</span>
-                <span class="tag-chip tag-chip-light-surface">Java</span>
-                <span class="tag-chip tag-chip-light-surface">Spring Boot</span>
-                <span class="tag-chip tag-chip-light-surface">REST APIs</span>
-                <span class="tag-chip tag-chip-light-surface">Git</span>
-                <span class="tag-chip tag-chip-light-surface">Agile</span>
-                <span class="tag-chip tag-chip-light-surface">GCP</span>
-              </div>
-            </div>
-          </li>
-
-          <!-- Item 02: NSIC Chennai -->
-          <li class="service-li">
-            <div class="service-row-inner" tabindex="0" role="button" aria-expanded="true" aria-controls="exp-details-02">
-              <span class="service-idx">02</span>
-              <div class="service-title-group">
-                <h3 class="service-title">Web Development Intern</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content;">National Small Industries Corporation (NSIC), Chennai · 3 weeks</span>
-              </div>
-              <div class="service-desc">Responsive frontend fundamentals &amp; React components</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
-            </div>
-            <div class="exp-expand-body" id="exp-details-02">
-              <ul class="exp-bullets">
-                <li>HTML and CSS;</li>
-                <li>JavaScript fundamentals;</li>
-                <li>React concepts including components and props;</li>
-                <li>Responsive frontend development;</li>
-                <li>Practical website development.</li>
-              </ul>
-              <div class="exp-tags-row">
-                <span class="tag-chip tag-chip-light-surface">HTML</span>
-                <span class="tag-chip tag-chip-light-surface">CSS</span>
-                <span class="tag-chip tag-chip-light-surface">JavaScript</span>
-                <span class="tag-chip tag-chip-light-surface">React</span>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <p class="work-lede">
+          Good code solves problems.<br />Great software gets remembered.
+        </p>
       </div>
-    </section>
 
-    <!-- SKILLS / SERVICES SECTION (#services) -->
-    <section class="services-section" id="services" style="padding-top:0;">
-      <div class="shell">
-        <div class="eyebrow dark-tone">
-          <span class="eyebrow-dot"></span>
-          <span>Technical Toolkit</span>
+      <!-- Offset 2-Column Staggered Grid -->
+      <div class="work-cards-grid">
+        <!-- Col 1 -->
+        <div>
+          <!-- Card 1: AgroEquipAI -->
+          <article class="work-project-tile" data-project-idx="0">
+            <p class="work-card-line">Agricultural equipment, priced from the real address.</p>
+            <div class="work-image-frame">
+              <img src="/assets/images/project-agroequip.jpg" alt="AgroEquipAI project preview" class="work-image" loading="lazy" />
+            </div>
+            <div class="work-meta-footer">
+              <span>AGROEQUIPAI</span>
+              <time datetime="2026">2026</time>
+            </div>
+          </article>
+
+          <!-- Card 3: Smart Support Ticket Classifier -->
+          <article class="work-project-tile" data-project-idx="2">
+            <p class="work-card-line">Automated support triage, classified as you submit.</p>
+            <div class="work-image-frame">
+              <img src="/assets/images/project-classifier.jpg" alt="Smart Support Ticket Classifier preview" class="work-image" loading="lazy" />
+            </div>
+            <div class="work-meta-footer">
+              <span>SMART SUPPORT TICKET CLASSIFIER</span>
+              <time datetime="2025">2025</time>
+            </div>
+          </article>
         </div>
 
-        <h2 class="section-h2-spaced">
-          <span class="line-reveal"><span class="line-reveal-inner">Tools I use to build.</span></span>
-        </h2>
-
-        <ul class="services-list">
-          <!-- 01 Frontend -->
-          <li class="service-li">
-            <div class="service-row-inner">
-              <span class="service-idx">01</span>
-              <div class="service-title-group">
-                <h3 class="service-title">Frontend Development</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content;">Practical</span>
-              </div>
-              <div class="service-desc">React.js, React Native, HTML, CSS, JavaScript, Responsive UI</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
+        <!-- Col 2: Staggered Lower -->
+        <div class="work-col-staggered">
+          <!-- Card 2: Multi-Tenant Sales Platform -->
+          <article class="work-project-tile" data-project-idx="1">
+            <p class="work-card-line">A storefront &amp; platform that stays up when others don't.</p>
+            <div style="margin-bottom:0.75rem;">
+              <span class="formula-chip">Access = Tenant + Feature + Role</span>
             </div>
-          </li>
-
-          <!-- 02 Backend -->
-          <li class="service-li">
-            <div class="service-row-inner">
-              <span class="service-idx">02</span>
-              <div class="service-title-group">
-                <h3 class="service-title">Backend Development</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content; border-color:var(--accent); color:var(--accent);">Practical / Learning</span>
-              </div>
-              <div class="service-desc">Java &amp; Spring Boot (Learning), REST API integration, Python &amp; Flask, Node.js &amp; Express.js</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
+            <div class="work-image-frame">
+              <img src="/assets/images/project-crm.jpg" alt="Multi-Tenant Sales Platform preview" class="work-image" loading="lazy" />
             </div>
-          </li>
-
-          <!-- 03 Databases -->
-          <li class="service-li">
-            <div class="service-row-inner">
-              <span class="service-idx">03</span>
-              <div class="service-title-group">
-                <h3 class="service-title">Databases</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content;">Practical / Foundational</span>
-              </div>
-              <div class="service-desc">PostgreSQL, Microsoft SQL, MongoDB (fundamentals)</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
+            <div class="work-meta-footer">
+              <span>MULTI-TENANT SALES PLATFORM</span>
+              <time datetime="2026">2025–2026</time>
             </div>
-          </li>
-
-          <!-- 04 Tools & Platforms -->
-          <li class="service-li">
-            <div class="service-row-inner">
-              <span class="service-idx">04</span>
-              <div class="service-title-group">
-                <h3 class="service-title">Tools &amp; Platforms</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content;">Practical</span>
-              </div>
-              <div class="service-desc">Git, GitHub, Google Cloud Platform, Power BI, Excel, Canva</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
-            </div>
-          </li>
-
-          <!-- 05 Additional Knowledge -->
-          <li class="service-li">
-            <div class="service-row-inner">
-              <span class="service-idx">05</span>
-              <div class="service-title-group">
-                <h3 class="service-title">Additional Knowledge</h3>
-                <span class="tag-chip tag-chip-light-surface" style="width:fit-content;">Foundational</span>
-              </div>
-              <div class="service-desc">Basic Java &amp; C, Selenium fundamentals, Agile concepts</div>
-              <div class="service-arrow-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- CONTINUOUS LEARNING SECTION (#learning) -->
-    <section class="services-section" id="learning" style="padding-top:0;">
-      <div class="shell">
-        <div class="eyebrow dark-tone">
-          <span class="eyebrow-dot"></span>
-          <span>Continuous Learning</span>
+          </article>
         </div>
-
-        <h2 class="section-h2-spaced">
-          <span class="line-reveal"><span class="line-reveal-inner">Growing through experience.</span></span>
-        </h2>
-
-        <ul class="services-list" id="learningList">
-          <!-- Dynamically filled with honest items & CONFIG.nptel -->
-        </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- STATS SECTION -->
-    <section class="stats-section" aria-label="Portfolio Statistics">
-      <div class="shell">
-        <div class="stats-panel" id="statsPanel">
-          <div class="eyebrow light-tone">
-            <span class="eyebrow-dot"></span>
-            <span>By the numbers</span>
+  <!-- =========================================================================
+       7. CLIENT TRUST MARQUEE ("IN GOOD COMPANY")
+       ========================================================================= -->
+  <section class="clients-strip" id="clients">
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x); margin-bottom: 2.5rem;">
+      <h2 style="font-size: var(--fs-h3); font-weight: 500; margin-bottom: 0.5rem;">In good company.</h2>
+      <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">
+        Organizations, academic teams, and enterprise environments where I've delivered software and sharpened engineering standards.
+      </p>
+    </div>
+
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="client-badge-item"><span>Ford Motor Company · React Intern</span></div>
+      <div class="client-badge-item"><span>NSIC Chennai · Web Development Intern</span></div>
+      <div class="client-badge-item"><span>KCG College of Technology · B.Tech IT</span></div>
+      <div class="client-badge-item"><span>Infosys Springboard · Certified</span></div>
+      <div class="client-badge-item"><span>Accenture · Certified</span></div>
+      <div class="client-badge-item"><span>Google Digital Marketing · Certified</span></div>
+      <div class="client-badge-item"><span>NPTEL IIT · Certified</span></div>
+      <!-- Loop -->
+      <div class="client-badge-item"><span>Ford Motor Company · React Intern</span></div>
+      <div class="client-badge-item"><span>NSIC Chennai · Web Development Intern</span></div>
+      <div class="client-badge-item"><span>KCG College of Technology · B.Tech IT</span></div>
+      <div class="client-badge-item"><span>Infosys Springboard · Certified</span></div>
+      <div class="client-badge-item"><span>Accenture · Certified</span></div>
+      <div class="client-badge-item"><span>Google Digital Marketing · Certified</span></div>
+      <div class="client-badge-item"><span>NPTEL IIT · Certified</span></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. SERVICES SPREAD ("FOUR THINGS I DO, BUILT END TO END")
+       ========================================================================= -->
+  <section class="services-spread" id="skills">
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
+      <h2 style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 3.5rem;">
+        Four things I do, built end to end.
+      </h2>
+
+      <div class="services-columns-grid">
+        <!-- 01 Frontend -->
+        <div class="service-column-card">
+          <div>
+            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">01 FULL-STACK DEVELOPMENT</div>
+            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">Frontend Engineering</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Sites that earn their keep. Fluid, responsive, and performance-tuned.</p>
           </div>
+          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
+            <li>React, Next.js &amp; TypeScript</li>
+            <li>Tailwind CSS &amp; Vanilla CSS</li>
+            <li>State management &amp; custom hooks</li>
+            <li>Cross-browser performance QA</li>
+          </ul>
+        </div>
 
-          <h2 class="stats-h2">
-            <span class="line-reveal"><span class="line-reveal-inner">A snapshot of the work.</span></span>
-          </h2>
+        <!-- 02 Backend -->
+        <div class="service-column-card">
+          <div>
+            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">02 WEBGL &amp; DESIGN</div>
+            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">Backend &amp; APIs</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Resilient servers, structured webhooks, and secure authentication.</p>
+          </div>
+          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
+            <li>Node.js &amp; Express.js</li>
+            <li>Java &amp; Spring Boot</li>
+            <li>RESTful API architectures</li>
+            <li>Tenant isolation &amp; RBAC security</li>
+          </ul>
+        </div>
 
-          <ul class="stats-grid">
-            <li class="stat-li">
-              <div class="stat-number" data-target="3" data-padded="true">00</div>
-              <div class="stat-label">Featured projects documented</div>
-            </li>
-            <li class="stat-li">
-              <div class="stat-number" data-target="2" data-padded="true">00</div>
-              <div class="stat-label">Internship experiences</div>
-            </li>
-            <li class="stat-li">
-              <div class="stat-number" data-target="4" data-padded="true">00</div>
-              <div class="stat-label">Core focus areas: frontend, backend, APIs, databases</div>
-            </li>
-            <li class="stat-li">
-              <div class="stat-number" data-target="2026" data-padded="false">0000</div>
-              <div class="stat-label">Graduation year</div>
-            </li>
+        <!-- 03 Databases -->
+        <div class="service-column-card">
+          <div>
+            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">03 DATABASES &amp; CLOUD</div>
+            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">Databases &amp; Cloud</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Relational &amp; document stores optimized for queries and zero loss.</p>
+          </div>
+          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
+            <li>PostgreSQL &amp; MongoDB</li>
+            <li>Google Cloud Platform (GCP)</li>
+            <li>Docker containerization</li>
+            <li>Git &amp; GitHub CI pipelines</li>
+          </ul>
+        </div>
+
+        <!-- 04 AI Automation -->
+        <div class="service-column-card">
+          <div>
+            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">04 AI AUTOMATION</div>
+            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">AI Automation</h3>
+            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Machine learning services and automated queues that work while you sleep.</p>
+          </div>
+          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
+            <li>Python &amp; Flask services</li>
+            <li>NLP text classification</li>
+            <li>Automated triage pipelines</li>
+            <li>Webhook integrations</li>
           </ul>
         </div>
       </div>
-    </section>
 
-  </main>
+      <!-- Services Showreel Film -->
+      <div style="margin-top: 3rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); aspect-ratio: 16/9; max-width: 960px; margin-inline: auto; background: #0f0f0f; box-shadow: 0 20px 40px rgba(0,0,0,0.06);">
+        <video src="/video/work-reel-cut.mp4" poster="/video/work-reel-sm.jpg" muted loop playsinline autoplay style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+      </div>
+    </div>
+  </section>
 
   <!-- =========================================================================
-       4. FOOTER
+       9. PROCESS ON FILM (LOOPING MP4 VIDEOS)
        ========================================================================= -->
-  <footer class="site-footer">
-    <div class="shell footer-inner">
-      <div class="footer-cta-row">
-        <div>
-          <h2 class="footer-cta-h2">
-            <span class="line-reveal"><span class="line-reveal-inner">Have an idea worth building?</span></span>
-          </h2>
-          <p class="footer-cta-sub">
-            I'm interested in software development opportunities where I can contribute, learn from experienced engineers, and build useful applications. Let's connect and discuss what we can create.
-          </p>
+  <section class="process-film-section" id="experience">
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
+      <div style="margin-bottom: 3.5rem;">
+        <h2 style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 0.75rem;">
+          How a project runs.
+        </h2>
+        <p style="color:var(--ink-muted); font-size:1.05rem;">
+          Four steps, each with something you can see and approve before the next one starts.
+        </p>
+      </div>
 
-          <div id="footerEmailContainer">
-            <!-- Rendered if CONFIG.email is provided -->
+      <!-- Step 01: Discovery -->
+      <div class="process-step-layout">
+        <div>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 01 · DISCOVERY</div>
+          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">01</div>
+          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">The awkward questions</h3>
+          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+            Who is it for, what does it have to sell, and what went wrong last time? You get a written plan back: the pages, what matters most, and a launch date.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Brand positioning</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">User research</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Information architecture</span>
+          </div>
+        </div>
+        <div class="step-film-box">
+          <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+        </div>
+      </div>
+
+      <!-- Step 02: Design -->
+      <div class="process-step-layout">
+        <div>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 02 · DESIGN</div>
+          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">02</div>
+          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Designed in motion</h3>
+          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+            Type, colour, layout and motion made for your brand, as a prototype you can click through. You approve it before a line of final code is written.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">UI/UX design</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Interactive prototypes</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Typography specimen</span>
+          </div>
+        </div>
+        <div class="step-film-box">
+          <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+        </div>
+      </div>
+
+      <!-- Step 03: Engineering -->
+      <div class="process-step-layout">
+        <div>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 03 · ENGINEERING</div>
+          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">03</div>
+          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Built to hold up</h3>
+          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+            Everything you can see, and everything behind it: payments, data and integrations. Built to stay fast on an older phone, not only on a new laptop.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">React &amp; TypeScript</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Three.js / WebGL</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">GSAP animations</span>
+          </div>
+        </div>
+        <div class="step-film-box">
+          <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+        </div>
+      </div>
+
+      <!-- Step 04: Launch -->
+      <div class="process-step-layout">
+        <div>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 04 · LAUNCH</div>
+          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">04</div>
+          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Launch, then stay</h3>
+          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+            Tested on every screen, set up for Google and AI search, and launched on your domain. Then a walkthrough of how it all works, and 90 days of support.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Cross-device QA</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Technical SEO</span>
+            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Global deployment</span>
+          </div>
+        </div>
+        <div class="step-film-box">
+          <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. EDUCATION & CONTINUOUS LEARNING
+       ========================================================================= -->
+  <section class="education-strip" id="education">
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem, 5vw, 5rem);">
+        <!-- Degree -->
+        <div style="padding:clamp(2rem, 3.5vw, 3rem); background:#ffffff; border:1px solid var(--border-light); border-radius:1.5rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1rem;">DEGREE PROGRAM</div>
+            <h3 style="font-size:clamp(1.5rem, 1.2rem + 1vw, 2.2rem); font-weight:600; margin-bottom:0.5rem;">B.Tech in Information Technology</h3>
+            <div style="font-size:1.05rem; color:var(--ink-muted); margin-bottom:1.5rem;">KCG College of Technology, Chennai</div>
+            <p style="color:var(--ink-muted); font-size:0.95rem; line-height:1.6;">
+              Curriculum focused on algorithms, software architecture, distributed databases, cloud systems, and full-stack engineering.
+            </p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; border-top:1px solid var(--border-light); padding-top:1.5rem; margin-top:2rem;">
+            <div>
+              <div class="mono" style="font-size:0.75rem; color:var(--ink-dim);">GRADUATION</div>
+              <div class="mono" style="font-size:1.6rem; font-weight:700;">2022–2026</div>
+            </div>
+            <div>
+              <div class="mono" style="font-size:0.75rem; color:var(--ink-dim);">CUMULATIVE GPA</div>
+              <div class="mono" style="font-size:1.6rem; font-weight:700;">7.52 / 10</div>
+            </div>
           </div>
         </div>
 
+        <!-- Continuous Learning -->
         <div>
-          <button class="pill-btn pill-btn-light" id="footerStartProjectBtn" type="button">
-            <span class="pill-btn-inner">
-              <span>Start a project</span>
-              <span class="btn-arrow-badge arrow-up-right">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </span>
-            </span>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">CONTINUOUS LEARNING</div>
+          <div style="display:flex; flex-direction:column; gap:0.85rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
+              <span style="font-weight:500;">Infosys Springboard Certifications</span>
+              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">INFOSYS</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
+              <span style="font-weight:500;">Accenture Industry Readiness Certifications</span>
+              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">ACCENTURE</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
+              <span style="font-weight:500;">Python Essential Training</span>
+              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">LINKEDIN LEARNING</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
+              <span style="font-weight:500;">Fundamentals of Digital Marketing</span>
+              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">GOOGLE</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
+              <span style="font-weight:500;">NPTEL Course — Foundational Computer Science</span>
+              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">NPTEL / IIT</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
+              <span style="font-weight:500;">NPTEL Course — Web Technology &amp; Systems</span>
+              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">NPTEL / IIT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       11. INTERACTIVE CONTACT FOOTER
+       ========================================================================= -->
+  <footer class="contact-footer-stage" id="contact">
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
+      <div class="contact-hero-grid">
+        <div class="contact-left-col">
+          <div class="mono" style="font-size:0.9rem; color:var(--ink-dim); margin-bottom:1.5rem;">Still scrolling? Good sign.</div>
+          
+          <h2 class="contact-giant-headline">
+            Got something worth building?
+          </h2>
+
+          <div style="margin-bottom:2rem;">
+            <div class="mono" style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:0.5rem;">Email me</div>
+            <a href="mailto:naveenkumar.dev@outlook.com" class="contact-email-hero has-roll" data-roll-text="naveenkumar.dev@outlook.com">
+              naveenkumar.dev@outlook.com
+            </a>
+            <div class="mono" style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.5rem;">I usually reply within a day.</div>
+          </div>
+
+          <!-- Quick Contact Message Form -->
+          <form id="contactForm" style="max-width:640px; display:flex; flex-direction:column; gap:1rem; margin-top:2rem;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <input type="text" id="contactName" placeholder="Your name" required style="padding:0.9rem 1.25rem; border-radius:0.75rem; border:1px solid var(--border-light); font-family:inherit; font-size:0.95rem; background:#fff;" />
+              <input type="email" id="contactEmail" placeholder="Your email address" required style="padding:0.9rem 1.25rem; border-radius:0.75rem; border:1px solid var(--border-light); font-family:inherit; font-size:0.95rem; background:#fff;" />
+            </div>
+            <textarea id="contactMessage" rows="3" placeholder="Tell me about your project, timeline, or engineering opportunity..." required style="padding:0.9rem 1.25rem; border-radius:0.75rem; border:1px solid var(--border-light); font-family:inherit; font-size:0.95rem; background:#fff;"></textarea>
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <button type="submit" class="sound-btn" style="padding:0.75rem 1.75rem; background:var(--ink); color:#fff; cursor:pointer;">
+                Send inquiry →
+              </button>
+              <span id="contactStatus" class="mono" style="font-size:0.85rem; color:#16a34a; display:none;"></span>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right: 3D Standing & Waving Developer -->
+        <div class="contact-character-container" id="contactCharacterContainer">
+          <canvas id="footerCharacterCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Footer Data Grid -->
+      <div class="footer-meta-grid">
+        <!-- Col 1 -->
+        <div>
+          <div class="mono" style="font-size:0.75rem; color:var(--ink-dim); text-transform:uppercase; margin-bottom:1.25rem;">Pages</div>
+          <ul style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.95rem;">
+            <li><a href="#hero" class="link-draw" onclick="scrollToSection('heroScrollContainer'); return false;">Home</a></li>
+            <li><a href="#about" class="link-draw" onclick="scrollToSection('about'); return false;">About</a></li>
+            <li><a href="#work" class="link-draw" onclick="scrollToSection('work'); return false;">Work</a></li>
+            <li><a href="#skills" class="link-draw" onclick="scrollToSection('skills'); return false;">Skills</a></li>
+            <li><a href="#experience" class="link-draw" onclick="scrollToSection('experience'); return false;">Experience</a></li>
+            <li><a href="#education" class="link-draw" onclick="scrollToSection('education'); return false;">Education</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <div class="mono" style="font-size:0.75rem; color:var(--ink-dim); text-transform:uppercase; margin-bottom:1.25rem;">Social</div>
+          <ul style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.95rem;">
+            <li><a href="https://linkedin.com/in/naveen-kumar-e" target="_blank" rel="noopener noreferrer" class="link-draw">LinkedIn ↗</a></li>
+            <li><a href="https://github.com/naveenkumar-dev" target="_blank" rel="noopener noreferrer" class="link-draw">GitHub ↗</a></li>
+            <li><a href="mailto:naveenkumar.dev@outlook.com" class="link-draw">Email ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <div class="mono" style="font-size:0.75rem; color:var(--ink-dim); text-transform:uppercase; margin-bottom:1.25rem;">Local Time</div>
+          <div class="mono" id="liveClock" style="font-size:1.35rem; font-weight:700; margin-bottom:0.25rem;">--:--:-- in India</div>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim);">GMT +5:30 · Chennai, TN</div>
+        </div>
+
+        <!-- Col 4 -->
+        <div>
+          <div class="mono" style="font-size:0.75rem; color:var(--ink-dim); text-transform:uppercase; margin-bottom:1.25rem;">Status</div>
+          <div style="font-size:0.95rem; font-weight:500; margin-bottom:0.5rem;">Open for new projects</div>
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.25rem;">© 2026 Naveen Kumar E</div>
+          <button class="link-draw mono" id="backToTopBtn" style="font-size:0.85rem; font-weight:700;">
+            Back to top ↑
           </button>
         </div>
       </div>
-
-      <div class="footer-cols-grid">
-        <div class="footer-brand-col">
-          <div class="footer-brand-title">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/>
-            </svg>
-            <span>Naveen Kumar E</span>
-          </div>
-          <p class="footer-brand-tagline">Designed with curiosity. Built with purpose.</p>
-        </div>
-
-        <div class="footer-nav-col">
-          <div class="footer-col-title">Navigate</div>
-          <div class="footer-col-links">
-            <a href="#about" class="animated-link" data-scroll-to="about">About</a>
-            <a href="#experience" class="animated-link" data-scroll-to="experience">Experience</a>
-            <a href="#works" class="animated-link" data-scroll-to="works">Projects</a>
-            <a href="#services" class="animated-link" data-scroll-to="services">Skills</a>
-            <button type="button" class="animated-link footer-contact-btn" style="text-align:left;">Contact</button>
-          </div>
-        </div>
-
-        <div class="footer-nav-col">
-          <div class="footer-col-title">Skills</div>
-          <div class="footer-col-links">
-            <span class="animated-link">React</span>
-            <span class="animated-link">Spring Boot</span>
-            <span class="animated-link">Java</span>
-            <span class="animated-link">Node.js</span>
-          </div>
-        </div>
-
-        <div class="footer-nav-col">
-          <div class="footer-col-title">Connect</div>
-          <div class="footer-col-links" id="footerConnectLinks">
-            <!-- Dynamically populated or hidden if empty in CONFIG -->
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-legal-bar">
-        <div>&copy; 2026 Naveen Kumar E. All rights reserved.</div>
-      </div>
     </div>
-
-    <!-- Background Watermark -->
-    <div class="footer-watermark" aria-hidden="true">NAVEEN</div>
   </footer>
 
   <!-- =========================================================================
-       5. NAVMENU OVERLAY
+       12. FULL-SCREEN MENU DRAWER
        ========================================================================= -->
-  <div class="nav-menu-overlay" id="navMenuOverlay" role="dialog" aria-modal="true" aria-label="Navigation Menu">
-    <div class="shell nav-menu-top">
-      <div class="brand-btn" style="color:#fff;">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/>
-        </svg>
-        <span>Naveen</span>
+  <div class="site-menu-curtain" id="siteMenu" role="dialog" aria-modal="true" aria-label="Menu navigation">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div style="font-weight:700; font-size:1.15rem; letter-spacing:-0.03em;">CodeofNaveen</div>
+      <button class="menu-toggle-btn" id="menuCloseBtn" aria-label="Close menu">✕</button>
+    </div>
+
+    <nav class="menu-nav-row">
+      <a href="#hero" class="menu-link-giant has-roll" data-menu-link="heroScrollContainer" data-roll-text="Home">Home</a>
+      <a href="#about" class="menu-link-giant has-roll" data-menu-link="about" data-roll-text="About">About</a>
+      <a href="#work" class="menu-link-giant has-roll" data-menu-link="work" data-roll-text="Work">Work</a>
+      <a href="#skills" class="menu-link-giant has-roll" data-menu-link="skills" data-roll-text="Skills">Skills</a>
+      <a href="#experience" class="menu-link-giant has-roll" data-menu-link="experience" data-roll-text="Experience">Experience</a>
+      <a href="#education" class="menu-link-giant has-roll" data-menu-link="education" data-roll-text="Education">Education</a>
+      <a href="#contact" class="menu-link-giant has-roll" data-menu-link="contact" data-roll-text="Contact">Contact</a>
+    </nav>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-light); padding-top:2rem; flex-wrap:wrap; gap:1.5rem;">
+      <a href="mailto:naveenkumar.dev@outlook.com" class="link-draw mono">naveenkumar.dev@outlook.com</a>
+      <div style="display:flex; gap:1.75rem;">
+        <a href="https://linkedin.com/in/naveen-kumar-e" target="_blank" rel="noopener noreferrer" class="link-draw mono">LinkedIn</a>
+        <a href="https://github.com/naveenkumar-dev" target="_blank" rel="noopener noreferrer" class="link-draw mono">GitHub</a>
       </div>
-
-      <button class="nav-menu-close-btn" id="closeMenuBtn" aria-label="Close navigation menu">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        <span>Close</span>
-      </button>
-    </div>
-
-    <div class="shell nav-menu-nav">
-      <ul class="nav-menu-ul">
-        <li>
-          <button class="nav-menu-item-btn" data-menu-target="home">
-            <span class="nav-item-idx">01</span>
-            <span class="nav-item-label">Home</span>
-          </button>
-        </li>
-        <li>
-          <button class="nav-menu-item-btn" data-menu-target="works">
-            <span class="nav-item-idx">02</span>
-            <span class="nav-item-label">Work</span>
-          </button>
-        </li>
-        <li>
-          <button class="nav-menu-item-btn" data-menu-target="services">
-            <span class="nav-item-idx">03</span>
-            <span class="nav-item-label">Services</span>
-          </button>
-        </li>
-        <li>
-          <button class="nav-menu-item-btn" data-menu-target="about">
-            <span class="nav-item-idx">04</span>
-            <span class="nav-item-label">About</span>
-          </button>
-        </li>
-        <li>
-          <button class="nav-menu-item-btn" data-menu-target="experience">
-            <span class="nav-item-idx">05</span>
-            <span class="nav-item-label">Experience</span>
-          </button>
-        </li>
-        <li>
-          <button class="nav-menu-item-btn" data-menu-action="contact">
-            <span class="nav-item-idx">06</span>
-            <span class="nav-item-label">Contact</span>
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="shell nav-menu-bottom">
-      <div>Local time — <span id="navMenuTime">9:41am</span></div>
-      <button class="nav-bottom-action-btn" id="navMenuStartBtn">Start a project &rarr;</button>
+      <span class="mono" style="font-size:0.8rem; color:var(--ink-dim);">say hi</span>
     </div>
   </div>
 
   <!-- =========================================================================
-       6. REQUEST MODAL (CONTACT FORM)
+       13. PROJECT DETAIL MODAL
        ========================================================================= -->
-  <div class="modal-backdrop" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
-    <div class="modal-panel" id="requestModalPanel">
-      <button class="modal-close-btn" id="closeRequestModalBtn" aria-label="Close dialog">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-
-      <!-- Form State -->
-      <div id="modalFormState">
-        <div class="modal-header-block">
-          <div class="eyebrow dark-tone">
-            <span class="eyebrow-dot" style="background:var(--accent);"></span>
-            <span>Start a project</span>
-          </div>
-          <h2 class="modal-h2" id="modalHeading">Tell me what you're building.</h2>
-        </div>
-
-        <form class="modal-form" id="contactForm">
-          <div class="form-field-group">
-            <label class="field-label" for="formName">Name</label>
-            <input class="field-input" id="formName" type="text" placeholder="Your name" required />
-          </div>
-
-          <div class="form-field-group">
-            <label class="field-label" for="formEmail">Email</label>
-            <input class="field-input" id="formEmail" type="email" placeholder="you@company.com" required />
-          </div>
-
-          <div class="form-field-group">
-            <label class="field-label" for="formProject">Project</label>
-            <textarea class="field-textarea" id="formProject" rows="4" placeholder="A few words about your project, timeline, and budget." required></textarea>
-          </div>
-
-          <div class="form-bottom-row">
-            <span class="form-note">I reply within one business day.</span>
-            <button class="pill-btn pill-btn-dark" id="submitFormBtn" type="submit">
-              <span class="pill-btn-inner">
-                <span id="submitBtnText">Send request</span>
-                <span class="btn-arrow-badge arrow-up-right">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
-                </span>
-              </span>
-            </button>
-          </div>
-        </form>
+  <div class="site-menu-curtain" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="background:rgba(10,10,12,0.85); backdrop-filter:blur(16px); color:#fff; padding:clamp(2rem, 5vw, 4rem); overflow-y:auto;">
+    <div style="max-width:760px; margin-inline:auto; width:100%; display:flex; flex-direction:column; gap:1.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="mono" id="modalCategory" style="font-size:0.8rem; text-transform:uppercase; color:var(--accent-orange);">CATEGORY</span>
+        <button id="closeProjectModalBtn" class="menu-toggle-btn" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.2);">✕</button>
       </div>
 
-      <!-- Success State -->
-      <div class="modal-success-state" id="modalSuccessState">
-        <div class="modal-success-icon">
-          <svg viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/></svg>
-        </div>
-        <h2 class="modal-h2">Request received</h2>
-        <p style="font-size:0.875rem; color:rgba(17,17,17,0.6); max-width:32ch;">
-          Thanks for reaching out — I'll get back to you within one business day.
-        </p>
-        <button class="pill-btn pill-btn-dark" id="modalSuccessCloseBtn" type="button" style="margin-top:0.5rem;">
-          <span class="pill-btn-inner" style="padding:0.875rem 1.75rem;">
-            <span>Close</span>
-          </span>
-        </button>
+      <h2 id="modalTitle" style="font-size:clamp(2rem, 1.5rem + 2vw, 3.2rem); font-weight:600; letter-spacing:-0.03em;">Project Title</h2>
+
+      <p id="modalDesc" style="color:rgba(255,255,255,0.7); font-size:1.1rem; line-height:1.6;"></p>
+
+      <div>
+        <div class="mono" style="font-size:0.75rem; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;">Architectural Invariant</div>
+        <div id="modalArch" class="formula-chip" style="font-size:0.85rem; padding:0.6rem 1rem;"></div>
+      </div>
+
+      <div>
+        <div class="mono" style="font-size:0.75rem; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.75rem;">Key Engineering Features</div>
+        <ul id="modalFeatures" style="list-style:disc; padding-left:1.25rem; font-size:0.95rem; color:rgba(255,255,255,0.85); line-height:1.7;"></ul>
+      </div>
+
+      <div>
+        <div class="mono" style="font-size:0.75rem; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.75rem;">Technologies &amp; Tools</div>
+        <div id="modalTags" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
       </div>
     </div>
   </div>
 
-  <!-- =========================================================================
-       7. PROJECT DETAIL MODAL (REUSING SHELL / STYLES)
-       ========================================================================= -->
-  <div class="modal-backdrop" id="projectDetailModal" role="dialog" aria-modal="true" aria-labelledby="projectModalHeading">
-    <div class="modal-panel project-modal-panel" id="projectDetailPanel">
-      <button class="modal-close-btn" id="closeProjectModalBtn" aria-label="Close dialog">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-
-      <div class="modal-header-block">
-        <span class="modal-project-category" id="pmCategory">Category</span>
-        <h2 class="modal-h2" id="projectModalHeading">Project Title</h2>
-      </div>
-
-      <p id="pmDescription" style="font-size:0.875rem; color:rgba(17,17,17,0.7); line-height:1.6;"></p>
-
-      <div id="pmArchBlock" style="margin-top:1rem; display:none;">
-        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.025em; color:rgba(17,17,17,0.45); font-weight:600;">Architectural Invariant</span>
-        <div id="pmArchContent" style="margin-top:0.35rem;"></div>
-      </div>
-
-      <div style="margin-top:1.25rem;">
-        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.025em; color:rgba(17,17,17,0.45); font-weight:600;">Key Engineering Features</span>
-        <ul class="modal-project-features-list" id="pmFeaturesList"></ul>
-      </div>
-
-      <div style="margin-top:1.25rem;">
-        <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.025em; color:rgba(17,17,17,0.45); font-weight:600;">Tech Stack</span>
-        <div class="project-tags-wrap" id="pmTagsWrap" style="margin-top:0.5rem;"></div>
-      </div>
-
-      <div id="pmLinksBlock" style="margin-top:1.5rem; display:flex; gap:1.25rem;"></div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       8. ALL JAVASCRIPT IN ONE ES MODULE SCRIPT
-       ========================================================================= -->
-  <script type="module">
-    import Lenis from 'lenis';
-
-    /* =========================================================================
-       CONFIGURATION — EDITABLE DATA STORE (NO DEAD LINKS)
-       ========================================================================= */
-    const CONFIG = {
-      name: "Naveen Kumar E",
-      brandShort: "Naveen",
-      initials: "NK",
-      role: "Software Developer — React · Full-Stack",
-      tagline: "Designed with curiosity. Built with purpose.",
-      email: "", // Set when available; empty hides direct mailto buttons
-      linkedin: "", // Set when available; empty hides until filled
-      github: "", // Set when available; empty hides until filled
-      resumeUrl: "", // Set when available; empty hides "Download résumé" button
-      // TODO: set CONFIG.photoUrl to your portrait.
-      photoUrl: "", // If empty, procedural soft gradient base + orange reveal layers are rendered
-      nptel: [
-        "NPTEL Course — Foundational Computer Science",
-        "NPTEL Course — Web Technology & Systems"
-      ],
-      projects: [
-        {
-          id: "agroequip",
-          name: "AgroEquipAI",
-          category: "AI-Assisted Smart Agriculture",
-          year: "",
-          desc: "An agriculture-focused mobile application designed to help farmers discover and rent agricultural machinery through a digital platform.",
-          image: "", // If provided, shows cover image behind dark watermark
-          url: "", // Set when available
-          codeUrl: "", // Set when available
-          tags: ["React Native", "Expo", "Node.js", "Express.js", "MongoDB", "React Navigation", "AsyncStorage"],
-          features: [
-            "User and equipment-owner roles",
-            "OTP-based login flow",
-            "Multilingual interface (English and Indian languages)",
-            "Equipment discovery and rental booking",
-            "Booking history",
-            "Equipment-owner dashboard",
-            "Backend CRUD operations",
-            "Planned AI insights, weather, and agricultural recommendations"
-          ]
-        },
-        {
-          id: "crm",
-          name: "Multi-Tenant Sales & Calling Platform",
-          category: "CRM / Enterprise Software",
-          year: "",
-          desc: "A multi-tenant sales platform designed around tenant isolation, role-based permissions, and feature-level access control for business workflows.",
-          image: "",
-          url: "",
-          codeUrl: "",
-          tags: ["React / Next.js", "C# / .NET", "REST APIs", "PostgreSQL", "Git & GitHub"],
-          archHighlight: "Access = Tenant Access + Feature Enabled + Role Permission.",
-          features: [
-            "Tenant-aware authentication and authorization",
-            "Role-based access control (RBAC)",
-            "Feature entitlements",
-            "Leads and customers",
-            "Calling and follow-ups",
-            "Deals and reports",
-            "Property and booking workflows",
-            "Dev/staging/production deployment planning"
-          ]
-        },
-        {
-          id: "classifier",
-          name: "Smart Support Ticket Classifier",
-          category: "AI / Automation",
-          year: "",
-          desc: "A Flask-based application that classifies support tickets to help organize support requests and improve the ticket-handling workflow.",
-          image: "",
-          url: "",
-          codeUrl: "",
-          tags: ["Python", "Flask", "Text classification", "HTML & CSS"],
-          features: [
-            "Support ticket ingestion and automated classification",
-            "NLP-driven text tokenization & queue routing",
-            "Urgency assessment and sentiment tag detection",
-            "Clean support representative queue interface"
-          ]
-        }
-      ]
-    };
-
-    /* -------------------------------------------------------------------------
-       1. Adaptive Rem Grid Scale-up above 1920px
-       ------------------------------------------------------------------------- */
-    function applyAdaptiveGrid() {
-      const FONT_BASE = 16, baseWidth = 1920, coef = 0.6666, w = window.innerWidth;
-      const red = ((baseWidth - w) / baseWidth) * 100;
-      const size = FONT_BASE - (FONT_BASE * (red * coef)) / 100;
-      if (size > FONT_BASE) {
-        document.documentElement.style.fontSize = size + 'px';
-      } else {
-        document.documentElement.style.removeProperty('font-size');
-      }
-    }
-    applyAdaptiveGrid();
-    window.addEventListener('resize', applyAdaptiveGrid);
-
-    /* -------------------------------------------------------------------------
-       2. Lenis Smooth Scrolling & Scroll Lock Helpers
-       ------------------------------------------------------------------------- */
-    window.scrollTo(0, 0);
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let lenis = null;
-
-    if (!prefersReducedMotion) {
-      try {
-        lenis = new Lenis({ smoothWheel: true });
-        function raf(t) {
-          lenis.raf(t);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-      } catch (err) {
-        console.warn('Lenis unavailable, fallback to native', err);
-      }
-    }
-
-    function stopScroll() {
-      if (lenis) lenis.stop();
-      document.documentElement.style.position = 'relative';
-      document.documentElement.style.overflow = 'hidden';
-      document.documentElement.style.height = '100%';
-    }
-
-    function startScroll() {
-      if (lenis) lenis.start();
-      document.documentElement.style.removeProperty('position');
-      document.documentElement.style.removeProperty('overflow');
-      document.documentElement.style.removeProperty('height');
-    }
-
-    function scrollToSection(id) {
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const top = rect.top + window.pageYOffset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }, 50);
-    }
-
-    // Scroll listeners on links with data-scroll-to
-    document.querySelectorAll('[data-scroll-to]').forEach((elem) => {
-      elem.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = elem.getAttribute('data-scroll-to');
-        scrollToSection(targetId);
-      });
-    });
-
-    document.getElementById('brandLogoBtn')?.addEventListener('click', () => {
-      scrollToSection('home');
-    });
-
-    /* -------------------------------------------------------------------------
-       3. Live Local Clock
-       ------------------------------------------------------------------------- */
-    const clockTime = document.getElementById('clockTime');
-    const clockDate = document.getElementById('clockDate');
-    const navMenuTime = document.getElementById('navMenuTime');
-
-    function updateLocalTime() {
-      const now = new Date();
-      let hours = now.getHours();
-      const mins = now.getMinutes().toString().padStart(2, '0');
-      const ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // no leading zero
-      const timeStr = `${hours}:${mins}${ampm}`;
-
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const dateStr = `${now.getDate()} ${months[now.getMonth()]}, ${now.getFullYear()}`;
-
-      if (clockTime) clockTime.textContent = timeStr;
-      if (clockDate) clockDate.textContent = dateStr;
-      if (navMenuTime) navMenuTime.textContent = timeStr;
-    }
-    updateLocalTime();
-    setInterval(updateLocalTime, 1000);
-
-    /* -------------------------------------------------------------------------
-       4. Liquid Reveal Hero Canvas
-       ------------------------------------------------------------------------- */
-    const liquidCanvas = document.getElementById('heroLiquidCanvas');
-    const heroBaseImg = document.getElementById('heroBaseImage');
-    const heroSection = document.getElementById('home');
-
-    // Procedural texture generator for when CONFIG.photoUrl is empty
-    function createProceduralLayer(isReveal) {
-      const off = document.createElement('canvas');
-      off.width = 1200;
-      off.height = 800;
-      const ctx = off.getContext('2d');
-
-      const grad = ctx.createLinearGradient(0, 0, 1200, 800);
-      if (!isReveal) {
-        grad.addColorStop(0, '#d8d7d4');
-        grad.addColorStop(0.5, '#c9c8c4');
-        grad.addColorStop(1, '#bebcb7');
-      } else {
-        grad.addColorStop(0, '#e5a57a');
-        grad.addColorStop(0.5, '#cf8047');
-        grad.addColorStop(1, '#97501f');
-      }
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 1200, 800);
-
-      // Monogram watermark
-      ctx.fillStyle = isReveal ? 'rgba(255, 255, 255, 0.22)' : 'rgba(17, 17, 17, 0.08)';
-      ctx.font = '700 240px Onest, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(CONFIG.initials, 600, 400);
-
-      return off;
-    }
-
-    let coverCanvas = null;
-    let brushCanvas = null;
-    let mainCtx = null;
-    let brushCtx = null;
-    let brushRadius = 143;
-    let decay = 0.016;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let idleFrames = 0;
-    let queuedPoints = [];
-    let lastPoint = null;
-
-    function initHeroLiquid() {
-      if (prefersReducedMotion || !liquidCanvas) return;
-      mainCtx = liquidCanvas.getContext('2d');
-
-      const offBase = CONFIG.photoUrl ? null : createProceduralLayer(false);
-      const offReveal = CONFIG.photoUrl ? null : createProceduralLayer(true);
-
-      if (offBase) {
-        heroBaseImg.src = offBase.toDataURL();
-      } else {
-        heroBaseImg.src = CONFIG.photoUrl;
-      }
-
-      function buildCoverCanvas() {
-        const rect = heroSection.getBoundingClientRect();
-        liquidCanvas.width = rect.width * dpr;
-        liquidCanvas.height = rect.height * dpr;
-
-        coverCanvas = document.createElement('canvas');
-        coverCanvas.width = liquidCanvas.width;
-        coverCanvas.height = liquidCanvas.height;
-        const cCtx = coverCanvas.getContext('2d');
-
-        if (offReveal) {
-          cCtx.drawImage(offReveal, 0, 0, coverCanvas.width, coverCanvas.height);
-        } else {
-          // If photoUrl was set, draw photo with warm tint / contrast filter
-          const img = new Image();
-          img.crossOrigin = 'anonymous';
-          img.onload = () => {
-            cCtx.filter = 'contrast(1.15) sepia(0.3) saturate(1.4)';
-            cCtx.drawImage(img, 0, 0, coverCanvas.width, coverCanvas.height);
-          };
-          img.src = CONFIG.photoUrl;
-        }
-
-        const radius = brushRadius * dpr;
-        const diam = Math.ceil(radius * 2);
-        brushCanvas = document.createElement('canvas');
-        brushCanvas.width = diam;
-        brushCanvas.height = diam;
-        brushCtx = brushCanvas.getContext('2d');
-      }
-
-      buildCoverCanvas();
-      window.addEventListener('resize', buildCoverCanvas);
-
-      function stamp(x, y) {
-        const radius = brushRadius * dpr;
-        const diam = Math.ceil(radius * 2);
-        brushCtx.clearRect(0, 0, diam, diam);
-
-        brushCtx.globalCompositeOperation = 'source-over';
-        const grad = brushCtx.createRadialGradient(radius, radius, 0, radius, radius, radius);
-        grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
-        grad.addColorStop(0.55, 'rgba(255, 255, 255, 0.82)');
-        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        brushCtx.fillStyle = grad;
-        brushCtx.beginPath();
-        brushCtx.arc(radius, radius, radius, 0, Math.PI * 2);
-        brushCtx.fill();
-
-        brushCtx.globalCompositeOperation = 'source-in';
-        brushCtx.drawImage(coverCanvas, x - radius, y - radius, diam, diam, 0, 0, diam, diam);
-
-        mainCtx.globalCompositeOperation = 'source-over';
-        mainCtx.drawImage(brushCanvas, x - radius, y - radius);
-      }
-
-      window.addEventListener('pointermove', (e) => {
-        const rect = liquidCanvas.getBoundingClientRect();
-        const px = (e.clientX - rect.left) * dpr;
-        const py = (e.clientY - rect.top) * dpr;
-        const radius = brushRadius * dpr;
-
-        if (px < -radius || py < -radius || px > liquidCanvas.width + radius || py > liquidCanvas.height + radius) {
-          lastPoint = null;
-          return;
-        }
-
-        if (!lastPoint) {
-          queuedPoints.push({ x: px, y: py });
-          lastPoint = { x: px, y: py };
-        } else {
-          const dx = px - lastPoint.x;
-          const dy = py - lastPoint.y;
-          const dist = Math.hypot(dx, dy);
-          const step = Math.max(radius * 0.3, 1);
-          const n = Math.min(Math.ceil(dist / step), 60);
-          for (let i = 1; i <= n; i++) {
-            queuedPoints.push({
-              x: lastPoint.x + (dx * i) / n,
-              y: lastPoint.y + (dy * i) / n
-            });
-          }
-          lastPoint = { x: px, y: py };
-        }
-      });
-
-      function tick() {
-        const hasPoints = queuedPoints.length > 0;
-        if (hasPoints) {
-          idleFrames = 0;
-        } else {
-          idleFrames++;
-        }
-
-        if (idleFrames <= 120) {
-          const fade = hasPoints ? decay : Math.min(decay + idleFrames * 0.004, 0.5);
-          mainCtx.globalCompositeOperation = 'destination-out';
-          mainCtx.fillStyle = `rgba(0, 0, 0, ${fade})`;
-          mainCtx.fillRect(0, 0, liquidCanvas.width, liquidCanvas.height);
-
-          if (hasPoints) {
-            for (const pt of queuedPoints) {
-              stamp(pt.x, pt.y);
-            }
-            queuedPoints = [];
-          }
-
-          if (idleFrames === 120) {
-            mainCtx.clearRect(0, 0, liquidCanvas.width, liquidCanvas.height);
-          }
-        }
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-
-    /* -------------------------------------------------------------------------
-       5. Hero Card Carousel (3 items)
-       ------------------------------------------------------------------------- */
-    const heroCardItems = [
-      { caption: "Frontend", title: "React, built responsive." },
-      { caption: "Backend", title: "Java & Spring Boot, learning fast." },
-      { caption: "Full stack", title: "APIs to databases." }
-    ];
-    let activeCardIndex = 0;
-    const cardCaption = document.getElementById('cardCaption');
-    const cardTitle = document.getElementById('cardTitle');
-    const cardDots = document.querySelectorAll('.card-dot');
-
-    function updateHeroCard(index, direction = 1) {
-      activeCardIndex = (index + heroCardItems.length) % heroCardItems.length;
-      const item = heroCardItems[activeCardIndex];
-
-      cardTitle.style.transform = `translateY(${direction * 14}px)`;
-      cardTitle.style.opacity = '0';
-
-      setTimeout(() => {
-        cardCaption.textContent = item.caption;
-        cardTitle.textContent = item.title;
-        cardTitle.style.transform = 'translateY(0)';
-        cardTitle.style.opacity = '1';
-      }, 150);
-
-      cardDots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === activeCardIndex);
-      });
-    }
-
-    document.getElementById('cardNextBtn')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      updateHeroCard(activeCardIndex + 1, 1);
-    });
-    document.getElementById('cardPrevBtn')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      updateHeroCard(activeCardIndex - 1, -1);
-    });
-    document.getElementById('heroCardClickable')?.addEventListener('click', () => {
-      updateHeroCard(activeCardIndex + 1, 1);
-    });
-
-    /* -------------------------------------------------------------------------
-       6. Populate About Word Reveal & Dynamic Sections
-       ------------------------------------------------------------------------- */
-    const aboutH2 = document.getElementById('aboutH2');
-    if (aboutH2) {
-      const darkPart = "I'm an Information Technology graduate who turns ideas into ";
-      const grayPart = "working software — modern web apps, API integrations, and database-driven products built with practical engineering.";
-
-      const darkWords = darkPart.split(' ').filter(Boolean).map(w => `<span class="word-reveal-word">${w} </span>`).join('');
-      const grayWords = grayPart.split(' ').filter(Boolean).map(w => `<span class="word-reveal-word about-h2-gray">${w} </span>`).join('');
-      aboutH2.innerHTML = darkWords + grayWords;
-    }
-
-    // About Resume Button vs About Me Fallback
-    const aboutResumeAction = document.getElementById('aboutResumeAction');
-    if (aboutResumeAction) {
-      if (CONFIG.resumeUrl) {
-        aboutResumeAction.innerHTML = `
-          <a href="${CONFIG.resumeUrl}" target="_blank" rel="noopener noreferrer" class="pill-btn pill-btn-outline with-arrow">
-            <span class="pill-btn-inner">
-              <span>Download résumé</span>
-              <span class="btn-arrow-badge arrow-up-right">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </span>
-            </span>
-          </a>
-        `;
-      } else {
-        // Fallback: hide "Download résumé" button entirely per prompt rule
-        aboutResumeAction.style.display = 'none';
-      }
-    }
-
-    // About Social Chips (hide if empty)
-    const aboutSocialChipsBlock = document.getElementById('aboutSocialChipsBlock');
-    const aboutSocialChipsList = document.getElementById('aboutSocialChipsList');
-    if (aboutSocialChipsList) {
-      const socials = [];
-      if (CONFIG.linkedin) socials.push({ name: 'LinkedIn', url: CONFIG.linkedin, icon: 'L' });
-      if (CONFIG.github) socials.push({ name: 'GitHub', url: CONFIG.github, icon: 'G' });
-
-      if (socials.length === 0) {
-        aboutSocialChipsBlock.style.display = 'none';
-      } else {
-        socials.forEach((s, idx) => {
-          const a = document.createElement('a');
-          a.href = s.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = `social-circle-chip ${idx === 0 ? 'accent' : 'neutral'}`;
-          a.setAttribute('aria-label', s.name);
-          a.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>`;
-          aboutSocialChipsList.appendChild(a);
-        });
-      }
-    }
-
-    // Populate Projects Grid
-    const projectsGrid = document.getElementById('projectsGrid');
-    if (projectsGrid) {
-      CONFIG.projects.forEach((proj, idx) => {
-        const li = document.createElement('div');
-        li.className = `project-li ${idx === 2 ? 'project-card-full-span' : ''}`;
-
-        const keyFeatsLine = proj.features.slice(0, 3).join(' · ');
-        const archHtml = proj.archHighlight ? `
-          <div class="arch-formula-row">
-            <span class="arch-chip">Tenant Access</span>
-            <span>+</span>
-            <span class="arch-chip">Feature Enabled</span>
-            <span>+</span>
-            <span class="arch-chip">Role Permission</span>
-            <span>=</span>
-            <span class="arch-chip result">Access Granted</span>
-          </div>
-        ` : '';
-
-        const linksHtml = `
-          <div class="project-links-row">
-            ${proj.url ? `<a href="${proj.url}" target="_blank" rel="noopener noreferrer" class="project-text-link">View Project &rarr;</a>` : ''}
-            ${proj.codeUrl ? `<a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="project-text-link">View Code &rarr;</a>` : ''}
-          </div>
-        `;
-
-        li.innerHTML = `
-          <article class="project-card" data-project-idx="${idx}">
-            <div class="project-card-top">
-              <span>${proj.category}</span>
-              <div class="project-badge-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </div>
-            </div>
-
-            <div class="project-card-watermark">
-              ${proj.image ? `<img src="${proj.image}" alt="" class="project-card-cover-img" />` : ''}
-              <div>
-                <svg class="project-watermark-icon" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/></svg>
-                <span class="project-watermark-reg">&reg;</span>
-              </div>
-            </div>
-
-            <div class="project-card-bottom">
-              <h3 class="project-title">${proj.name}</h3>
-              <p class="project-desc">${proj.desc}</p>
-              ${archHtml}
-              <div class="project-key-features">Key features: ${keyFeatsLine}</div>
-              <div class="project-tags-wrap">
-                ${proj.tags.map(t => `<span class="tag-chip tag-chip-dark-card">${t}</span>`).join('')}
-              </div>
-              ${(proj.url || proj.codeUrl) ? linksHtml : ''}
-            </div>
-          </article>
-        `;
-        projectsGrid.appendChild(li);
-      });
-    }
-
-    // Populate Continuous Learning Section
-    const learningList = document.getElementById('learningList');
-    if (learningList) {
-      const learningItems = [
-        "Infosys Springboard certifications",
-        "Accenture certifications",
-        "LinkedIn Python course",
-        "Google Digital Marketing certificate course",
-        CONFIG.nptel[0] || "NPTEL course — Foundational Computing",
-        CONFIG.nptel[1] || "NPTEL course — Information Technology",
-        "B.Tech Information Technology (2022–2026)",
-        "Internships: Ford, NSIC"
-      ];
-
-      learningItems.forEach((item, idx) => {
-        const li = document.createElement('li');
-        li.className = 'service-li';
-        const num = idx < 9 ? `0${idx + 1}` : `${idx + 1}`;
-        li.innerHTML = `
-          <div class="service-row-inner" style="cursor:default;">
-            <span class="service-idx">${num}</span>
-            <div class="service-title-group">
-              <h3 class="service-title" style="font-size:1.35rem;">${item}</h3>
-            </div>
-          </div>
-        `;
-        learningList.appendChild(li);
-      });
-    }
-
-    // Footer Giant Email Link & Connect column
-    const footerEmailContainer = document.getElementById('footerEmailContainer');
-    const footerConnectLinks = document.getElementById('footerConnectLinks');
-
-    if (CONFIG.email) {
-      if (footerEmailContainer) {
-        footerEmailContainer.innerHTML = `
-          <a href="mailto:${CONFIG.email}" class="footer-giant-email">
-            <span>${CONFIG.email}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        `;
-      }
-      if (footerConnectLinks) {
-        const a = document.createElement('a');
-        a.href = `mailto:${CONFIG.email}`;
-        a.className = 'animated-link';
-        a.textContent = 'Email';
-        footerConnectLinks.appendChild(a);
-      }
-    }
-
-    if (CONFIG.linkedin && footerConnectLinks) {
-      const a = document.createElement('a');
-      a.href = CONFIG.linkedin;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      a.className = 'animated-link';
-      a.textContent = 'LinkedIn';
-      footerConnectLinks.appendChild(a);
-    }
-    if (CONFIG.github && footerConnectLinks) {
-      const a = document.createElement('a');
-      a.href = CONFIG.github;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      a.className = 'animated-link';
-      a.textContent = 'GitHub';
-      footerConnectLinks.appendChild(a);
-    }
-
-    /* -------------------------------------------------------------------------
-       7. Intro Page Loader (000 -> 100)
-       ------------------------------------------------------------------------- */
-    const pageLoader = document.getElementById('pageLoader');
-    const loaderCounter = document.getElementById('loaderCounter');
-    const loaderFill = document.getElementById('loaderFill');
-
-    stopScroll();
-    let loadStart = performance.now();
-    const loadDuration = prefersReducedMotion ? 100 : 1300;
-
-    function easeInOutCubic(t) {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function stepLoader(now) {
-      const elapsed = now - loadStart;
-      const progress = Math.min(elapsed / loadDuration, 1);
-      const eased = easeInOutCubic(progress);
-      const count = Math.round(eased * 100);
-
-      if (loaderCounter) loaderCounter.textContent = count.toString().padStart(3, '0');
-      if (loaderFill) loaderFill.style.width = `${count}%`;
-
-      if (progress < 1) {
-        requestAnimationFrame(stepLoader);
-      } else {
-        setTimeout(finishLoader, 120);
-      }
-    }
-    requestAnimationFrame(stepLoader);
-
-    function finishLoader() {
-      pageLoader.classList.add('loaded');
-      startScroll();
-      initHeroLiquid();
-
-      // Trigger entrance timeline
-      setTimeout(() => {
-        document.getElementById('siteHeader')?.classList.add('ready');
-      }, 150);
-
-      setTimeout(() => {
-        document.getElementById('heroEyebrowBlock')?.classList.add('ready');
-      }, 200);
-
-      setTimeout(() => {
-        document.querySelectorAll('.hero-line').forEach((line, i) => {
-          setTimeout(() => line.classList.add('ready'), i * 120);
-        });
-      }, 250);
-
-      setTimeout(() => {
-        document.getElementById('heroWatermark')?.classList.add('ready');
-      }, 300);
-
-      setTimeout(() => {
-        document.getElementById('heroCard')?.classList.add('ready');
-      }, 400);
-
-      setTimeout(() => {
-        document.getElementById('heroStackBlock')?.classList.add('ready');
-      }, 550);
-
-      setTimeout(() => {
-        document.getElementById('heroRatingRow')?.classList.add('ready');
-      }, 650);
-
-      setTimeout(() => {
-        document.getElementById('heroCtas')?.classList.add('ready');
-      }, 750);
-
-      setTimeout(() => {
-        document.getElementById('heroStatusBar')?.classList.add('ready');
-      }, 900);
-    }
-
-    /* -------------------------------------------------------------------------
-       8. Intersection Observers (Line Reveal, Word Reveal, Stagger)
-       ------------------------------------------------------------------------- */
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    // Observe CreateBand pills, projects, services, stats
-    document.querySelectorAll('.create-band-li, .project-li, .service-li, .stats-panel, .stat-li').forEach((el) => {
-      revealObserver.observe(el);
-    });
-
-    // Word reveal observer for About H2
-    const aboutObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const words = entry.target.querySelectorAll('.word-reveal-word');
-          words.forEach((w, idx) => {
-            setTimeout(() => w.classList.add('revealed'), idx * 35);
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    if (aboutH2) aboutObserver.observe(aboutH2);
-
-    // Stats counter observer
-    let statsCounted = false;
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !statsCounted) {
-          statsCounted = true;
-          document.querySelectorAll('.stat-number').forEach((statEl) => {
-            const target = parseInt(statEl.getAttribute('data-target'), 10);
-            const isPadded = statEl.getAttribute('data-padded') === 'true';
-            let start = null;
-            const duration = 1600;
-
-            function animateStat(t) {
-              if (!start) start = t;
-              const p = Math.min((t - start) / duration, 1);
-              const val = Math.round(p * target);
-              statEl.textContent = isPadded ? val.toString().padStart(2, '0') : val.toString();
-              if (p < 1) requestAnimationFrame(animateStat);
-            }
-            requestAnimationFrame(animateStat);
-          });
-        }
-      });
-    }, { threshold: 0.25 });
-
-    const statsPanel = document.getElementById('statsPanel');
-    if (statsPanel) statsObserver.observe(statsPanel);
-
-    /* -------------------------------------------------------------------------
-       9. Navigation Overlay Drawer
-       ------------------------------------------------------------------------- */
-    const navMenuOverlay = document.getElementById('navMenuOverlay');
-    const openMenuBtn = document.getElementById('openMenuBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-    function openNavMenu() {
-      navMenuOverlay.classList.add('open');
-      stopScroll();
-    }
-    function closeNavMenu() {
-      navMenuOverlay.classList.remove('open');
-      startScroll();
-    }
-
-    openMenuBtn?.addEventListener('click', openNavMenu);
-    closeMenuBtn?.addEventListener('click', closeNavMenu);
-
-    document.querySelectorAll('[data-menu-target]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-menu-target');
-        closeNavMenu();
-        scrollToSection(targetId);
-      });
-    });
-
-    document.querySelectorAll('[data-menu-action="contact"]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        closeNavMenu();
-        openRequestModal();
-      });
-    });
-
-    document.getElementById('navMenuStartBtn')?.addEventListener('click', () => {
-      closeNavMenu();
-      openRequestModal();
-    });
-
-    /* -------------------------------------------------------------------------
-       10. Request Modal (Contact) Logic
-       ------------------------------------------------------------------------- */
-    const requestModal = document.getElementById('requestModal');
-    const closeRequestModalBtn = document.getElementById('closeRequestModalBtn');
-    const modalFormState = document.getElementById('modalFormState');
-    const modalSuccessState = document.getElementById('modalSuccessState');
-    const contactForm = document.getElementById('contactForm');
-    const submitBtnText = document.getElementById('submitBtnText');
-
-    function openRequestModal() {
-      requestModal.classList.add('open');
-      stopScroll();
-    }
-    function closeRequestModal() {
-      requestModal.classList.remove('open');
-      startScroll();
-      // Reset form after transition
-      setTimeout(() => {
-        modalFormState.style.display = 'block';
-        modalSuccessState.style.display = 'none';
-        contactForm?.reset();
-        if (submitBtnText) submitBtnText.textContent = 'Send request';
-      }, 350);
-    }
-
-    document.getElementById('headerContactBtn')?.addEventListener('click', openRequestModal);
-    document.getElementById('heroLetTalkBtn')?.addEventListener('click', openRequestModal);
-    document.getElementById('footerStartProjectBtn')?.addEventListener('click', openRequestModal);
-    document.querySelectorAll('.footer-contact-btn').forEach(b => b.addEventListener('click', openRequestModal));
-    closeRequestModalBtn?.addEventListener('click', closeRequestModal);
-    document.getElementById('modalSuccessCloseBtn')?.addEventListener('click', closeRequestModal);
-
-    requestModal?.addEventListener('click', (e) => {
-      if (e.target === requestModal) closeRequestModal();
-    });
-
-    contactForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('formName').value;
-      const email = document.getElementById('formEmail').value;
-      const project = document.getElementById('formProject').value;
-
-      if (submitBtnText) submitBtnText.textContent = 'Sending…';
-
-      if (CONFIG.email) {
-        const subject = encodeURIComponent(`Project inquiry from ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject details:\n${project}`);
-        window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
-      }
-
-      setTimeout(() => {
-        modalFormState.style.display = 'none';
-        modalSuccessState.style.display = 'flex';
-      }, 600);
-    });
-
-    /* -------------------------------------------------------------------------
-       11. Project Detail Modal
-       ------------------------------------------------------------------------- */
-    const projectDetailModal = document.getElementById('projectDetailModal');
-    const closeProjectModalBtn = document.getElementById('closeProjectModalBtn');
-    const pmCategory = document.getElementById('pmCategory');
-    const projectModalHeading = document.getElementById('projectModalHeading');
-    const pmDescription = document.getElementById('pmDescription');
-    const pmArchBlock = document.getElementById('pmArchBlock');
-    const pmArchContent = document.getElementById('pmArchContent');
-    const pmFeaturesList = document.getElementById('pmFeaturesList');
-    const pmTagsWrap = document.getElementById('pmTagsWrap');
-    const pmLinksBlock = document.getElementById('pmLinksBlock');
-
-    function openProjectDetail(idx) {
-      const proj = CONFIG.projects[idx];
-      if (!proj) return;
-
-      pmCategory.textContent = proj.category;
-      projectModalHeading.textContent = proj.name;
-      pmDescription.textContent = proj.desc;
-
-      if (proj.archHighlight) {
-        pmArchBlock.style.display = 'block';
-        pmArchContent.innerHTML = `
-          <div class="arch-formula-row">
-            <span class="arch-chip" style="color:#111; border-color:#ccc; background:#f5f5f5;">Tenant Access</span>
-            <span style="color:#111;">+</span>
-            <span class="arch-chip" style="color:#111; border-color:#ccc; background:#f5f5f5;">Feature Enabled</span>
-            <span style="color:#111;">+</span>
-            <span class="arch-chip" style="color:#111; border-color:#ccc; background:#f5f5f5;">Role Permission</span>
-            <span style="color:#111;">=</span>
-            <span class="arch-chip result" style="background:rgba(207,128,71,0.15);">${proj.archHighlight}</span>
-          </div>
-        `;
-      } else {
-        pmArchBlock.style.display = 'none';
-      }
-
-      pmFeaturesList.innerHTML = proj.features.map(f => `<li>${f}</li>`).join('');
-      pmTagsWrap.innerHTML = proj.tags.map(t => `<span class="tag-chip tag-chip-light-surface">${t}</span>`).join('');
-
-      pmLinksBlock.innerHTML = `
-        ${proj.url ? `<a href="${proj.url}" target="_blank" rel="noopener noreferrer" class="project-text-link" style="font-size:0.875rem;">View Project &rarr;</a>` : ''}
-        ${proj.codeUrl ? `<a href="${proj.codeUrl}" target="_blank" rel="noopener noreferrer" class="project-text-link" style="font-size:0.875rem;">View Code &rarr;</a>` : ''}
-      `;
-
-      projectDetailModal.classList.add('open');
-      stopScroll();
-    }
-
-    function closeProjectDetail() {
-      projectDetailModal.classList.remove('open');
-      startScroll();
-    }
-
-    closeProjectModalBtn?.addEventListener('click', closeProjectDetail);
-    projectDetailModal?.addEventListener('click', (e) => {
-      if (e.target === projectDetailModal) closeProjectDetail();
-    });
-
-    document.querySelectorAll('.project-card').forEach((card) => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return; // Allow direct link clicks
-        const idx = parseInt(card.getAttribute('data-project-idx'), 10);
-        openProjectDetail(idx);
-      });
-    });
-
-    /* -------------------------------------------------------------------------
-       12. Global Escape Key Listener
-       ------------------------------------------------------------------------- */
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (navMenuOverlay.classList.contains('open')) closeNavMenu();
-        if (requestModal.classList.contains('open')) closeRequestModal();
-        if (projectDetailModal.classList.contains('open')) closeProjectDetail();
-      }
-    });
-
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,425 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [aria-hidden] [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - generic [ref=f1e5]: Naveen
+      - paragraph [ref=f1e9]: Designed with curiosity. Built with purpose.
+    - generic [ref=f1e12]:
+      - generic [ref=f1e13]: Loading
+      - generic [ref=f1e14]: "000"
+  - banner [ref=f1e15]:
+    - generic [ref=f1e16]:
+      - button "Naveen — Scroll to top" [ref=f1e17] [cursor=pointer]:
+        - generic [ref=f1e20]: Naveen
+      - generic [ref=f1e21]:
+        - generic "Current local time" [ref=f1e22]:
+          - generic [ref=f1e23]: Local time
+          - generic [ref=f1e24]: 1:17pm
+          - generic [ref=f1e25]: •
+          - generic [ref=f1e26]: 27 October, 2026
+        - button "Open menu" [ref=f1e27] [cursor=pointer]:
+          - generic [ref=f1e29]: Menu
+  - main [ref=f1e30]:
+    - generic [ref=f1e31]:
+      - generic [aria-hidden]: NAVEEN
+      - generic [ref=f1e33]:
+        - generic [ref=f1e34]:
+          - generic [ref=f1e35]:
+            - generic [ref=f1e36]: Software Developer — React · Full-Stack
+            - generic [ref=f1e39]:
+              - generic [ref=f1e40]: Software Developer
+              - generic [ref=f1e41]: React Developer
+              - generic [ref=f1e42]: Full-Stack Development
+              - generic [ref=f1e43]: Problem Solver
+          - heading "Building modern web applications, with purpose." [level=1] [ref=f1e44]:
+            - generic [ref=f1e45]: Building modern
+            - generic [ref=f1e47]: web applications,
+            - generic [ref=f1e49]: with purpose.
+          - generic [ref=f1e51]:
+            - generic "5 stars" [ref=f1e52]
+            - generic [ref=f1e63]: 2 internships · 3 featured projects
+          - generic [ref=f1e64]:
+            - button "Let's Talk" [ref=f1e65] [cursor=pointer]
+            - link "View Work" [ref=f1e71] [cursor=pointer]:
+              - /url: "#works"
+        - generic [ref=f1e74]:
+          - button "Next slide" [ref=f1e76] [cursor=pointer]:
+            - generic [ref=f1e80]:
+              - generic [ref=f1e81]:
+                - generic [ref=f1e82]: Frontend
+                - generic [ref=f1e83]: React, built responsive.
+              - generic [ref=f1e89]:
+                - button "Previous slide" [ref=f1e90]
+                - button "Next slide" [ref=f1e93]
+          - generic [ref=f1e96]:
+            - generic [ref=f1e97]: My stack
+            - generic [ref=f1e98]:
+              - generic [ref=f1e99]: React
+              - generic [ref=f1e104]: Spring Boot
+              - generic [ref=f1e109]: Java
+              - generic [ref=f1e114]: Node.js
+              - generic [ref=f1e119]: PostgreSQL
+              - generic [ref=f1e124]: MongoDB
+              - generic [ref=f1e129]: GCP
+      - generic [ref=f1e135]:
+        - generic [ref=f1e136]: B.Tech IT · KCG College of Technology
+        - generic [ref=f1e137]: Open to software development roles
+        - generic [ref=f1e138]: Scroll to explore ↓
+    - generic [ref=f1e140]:
+      - generic [ref=f1e141]:
+        - generic [ref=f1e142]: The Developer
+        - generic [ref=f1e145]: B.Tech Information Technology, KCG College of Technology, 2022–2026 · CGPA 7.52
+      - generic [ref=f1e150]:
+        - heading "I'm an Information Technology graduate who turns ideas into working software — modern web apps, API integrations, and database-driven products built with practical engineering." [level=2] [ref=f1e151]:
+          - generic [ref=f1e152]: I'm
+          - generic [ref=f1e153]: an
+          - generic [ref=f1e154]: Information
+          - generic [ref=f1e155]: Technology
+          - generic [ref=f1e156]: graduate
+          - generic [ref=f1e157]: who
+          - generic [ref=f1e158]: turns
+          - generic [ref=f1e159]: ideas
+          - generic [ref=f1e160]: into
+          - generic [ref=f1e161]: working
+          - generic [ref=f1e162]: software
+          - generic [ref=f1e163]: —
+          - generic [ref=f1e164]: modern
+          - generic [ref=f1e165]: web
+          - generic [ref=f1e166]: apps,
+          - generic [ref=f1e167]: API
+          - generic [ref=f1e168]: integrations,
+          - generic [ref=f1e169]: and
+          - generic [ref=f1e170]: database-driven
+          - generic [ref=f1e171]: products
+          - generic [ref=f1e172]: built
+          - generic [ref=f1e173]: with
+          - generic [ref=f1e174]: practical
+          - generic [ref=f1e175]: engineering.
+        - paragraph [ref=f1e176]: Through internships and hands-on projects, I've gained experience with frontend development, API integration, backend fundamentals, and database-driven applications. I enjoy understanding how complete applications work and building interfaces that are intuitive, responsive, and useful.
+        - generic [ref=f1e177]:
+          - generic [ref=f1e178]:
+            - generic [ref=f1e179]: Degree
+            - generic [ref=f1e180]: B.Tech Information Technology
+          - generic [ref=f1e181]:
+            - generic [ref=f1e182]: Institution
+            - generic [ref=f1e183]: KCG College of Technology
+          - generic [ref=f1e184]:
+            - generic [ref=f1e185]: Timeline & CGPA
+            - generic [ref=f1e186]: 2022–2026 · CGPA 7.52
+        - generic [ref=f1e187]:
+          - generic [ref=f1e188]:
+            - generic [ref=f1e189]: "01"
+            - generic [ref=f1e190]:
+              - generic [ref=f1e191]: Build with purpose
+              - generic [ref=f1e192]: Create applications that solve practical problems and offer clear value to users.
+          - generic [ref=f1e193]:
+            - generic [ref=f1e194]: "02"
+            - generic [ref=f1e195]:
+              - generic [ref=f1e196]: Learn by building
+              - generic [ref=f1e197]: Strengthen knowledge through implementation, experimentation, debugging, and iteration.
+          - generic [ref=f1e198]:
+            - generic [ref=f1e199]: "03"
+            - generic [ref=f1e200]:
+              - generic [ref=f1e201]: Think full stack
+              - generic [ref=f1e202]: Understand how interfaces, APIs, business logic, and databases work together.
+          - generic [ref=f1e203]:
+            - generic [ref=f1e204]: "04"
+            - generic [ref=f1e205]:
+              - generic [ref=f1e206]: Improve every detail
+              - generic [ref=f1e207]: Focus on readable code, responsive design, usability, accessibility, and maintainability.
+    - region "Statement band" [ref=f1e209]:
+      - list [ref=f1e210]:
+        - listitem [ref=f1e211]:
+          - generic [ref=f1e212]: I
+        - listitem [ref=f1e213]:
+          - generic [ref=f1e214]: Build
+        - listitem [ref=f1e215]:
+          - generic "Forward" [ref=f1e216]
+        - listitem [ref=f1e219]:
+          - generic [ref=f1e220]: Better
+    - generic [ref=f1e222]:
+      - generic [ref=f1e223]:
+        - generic [ref=f1e224]: Selected Projects
+        - heading "Projects built to solve real problems." [level=2] [ref=f1e225]
+      - generic [ref=f1e228]:
+        - article [ref=f1e230] [cursor=pointer]:
+          - generic [ref=f1e231]: AI-Assisted Smart Agriculture
+          - generic: ®
+          - generic [ref=f1e236]:
+            - heading "AgroEquipAI" [level=3] [ref=f1e237]
+            - paragraph [ref=f1e238]: An agriculture-focused mobile application designed to help farmers discover and rent agricultural machinery through a digital platform.
+            - generic [ref=f1e239]: "Key features: User and equipment-owner roles · OTP-based login flow · Multilingual interface (English and Indian languages)"
+            - generic [ref=f1e240]:
+              - generic [ref=f1e241]: React Native
+              - generic [ref=f1e242]: Expo
+              - generic [ref=f1e243]: Node.js
+              - generic [ref=f1e244]: Express.js
+              - generic [ref=f1e245]: MongoDB
+              - generic [ref=f1e246]: React Navigation
+              - generic [ref=f1e247]: AsyncStorage
+        - article [ref=f1e249] [cursor=pointer]:
+          - generic [ref=f1e250]: CRM / Enterprise Software
+          - generic: ®
+          - generic [ref=f1e255]:
+            - heading "Multi-Tenant Sales & Calling Platform" [level=3] [ref=f1e256]
+            - paragraph [ref=f1e257]: A multi-tenant sales platform designed around tenant isolation, role-based permissions, and feature-level access control for business workflows.
+            - generic [ref=f1e258]:
+              - generic [ref=f1e259]: Tenant Access
+              - generic [ref=f1e260]: +
+              - generic [ref=f1e261]: Feature Enabled
+              - generic [ref=f1e262]: +
+              - generic [ref=f1e263]: Role Permission
+              - generic [ref=f1e264]: =
+              - generic [ref=f1e265]: Access Granted
+            - generic [ref=f1e266]: "Key features: Tenant-aware authentication and authorization · Role-based access control (RBAC) · Feature entitlements"
+            - generic [ref=f1e267]:
+              - generic [ref=f1e268]: React / Next.js
+              - generic [ref=f1e269]: C# / .NET
+              - generic [ref=f1e270]: REST APIs
+              - generic [ref=f1e271]: PostgreSQL
+              - generic [ref=f1e272]: Git & GitHub
+        - article [ref=f1e274] [cursor=pointer]:
+          - generic [ref=f1e275]: AI / Automation
+          - generic: ®
+          - generic [ref=f1e280]:
+            - heading "Smart Support Ticket Classifier" [level=3] [ref=f1e281]
+            - paragraph [ref=f1e282]: A Flask-based application that classifies support tickets to help organize support requests and improve the ticket-handling workflow.
+            - generic [ref=f1e283]: "Key features: Support ticket ingestion and automated classification · NLP-driven text tokenization & queue routing · Urgency assessment and sentiment tag detection"
+            - generic [ref=f1e284]:
+              - generic [ref=f1e285]: Python
+              - generic [ref=f1e286]: Flask
+              - generic [ref=f1e287]: Text classification
+              - generic [ref=f1e288]: HTML & CSS
+    - generic [ref=f1e290]:
+      - generic [ref=f1e291]: Professional Experience
+      - heading "Learning by building real applications." [level=2] [ref=f1e294]
+      - list [ref=f1e297]:
+        - listitem [ref=f1e298]:
+          - button "01 React Developer Intern Ford" [expanded] [ref=f1e299] [cursor=pointer]:
+            - generic [ref=f1e300]: "01"
+            - generic [ref=f1e301]:
+              - heading "React Developer Intern" [level=3] [ref=f1e302]
+              - generic [ref=f1e303]: Ford
+          - generic [ref=f1e307]:
+            - list [ref=f1e308]:
+              - listitem [ref=f1e309]: • React.js frontend development;
+              - listitem [ref=f1e310]: • Java and Spring Boot learning and development; Integrating React interfaces with Spring Boot REST APIs;
+              - listitem [ref=f1e311]: • UI development and modernization;
+              - listitem [ref=f1e312]: • Bug fixing and performance improvements;
+              - listitem [ref=f1e313]: • Git-based collaboration and Agile practices;
+              - listitem [ref=f1e314]: • Deployment using Google Cloud Platform (GCP).
+            - generic [ref=f1e315]:
+              - generic [ref=f1e316]: React.js
+              - generic [ref=f1e317]: Java
+              - generic [ref=f1e318]: Spring Boot
+              - generic [ref=f1e319]: REST APIs
+              - generic [ref=f1e320]: Git
+              - generic [ref=f1e321]: Agile
+              - generic [ref=f1e322]: GCP
+        - listitem [ref=f1e323]:
+          - button "02 Web Development Intern National Small Industries Corporation (NSIC), Chennai · 3 weeks" [expanded] [ref=f1e324] [cursor=pointer]:
+            - generic [ref=f1e325]: "02"
+            - generic [ref=f1e326]:
+              - heading "Web Development Intern" [level=3] [ref=f1e327]
+              - generic [ref=f1e328]: National Small Industries Corporation (NSIC), Chennai · 3 weeks
+          - generic [ref=f1e332]:
+            - list [ref=f1e333]:
+              - listitem [ref=f1e334]: • HTML and CSS;
+              - listitem [ref=f1e335]: • JavaScript fundamentals;
+              - listitem [ref=f1e336]: • React concepts including components and props;
+              - listitem [ref=f1e337]: • Responsive frontend development;
+              - listitem [ref=f1e338]: • Practical website development.
+            - generic [ref=f1e339]:
+              - generic [ref=f1e340]: HTML
+              - generic [ref=f1e341]: CSS
+              - generic [ref=f1e342]: JavaScript
+              - generic [ref=f1e343]: React
+    - generic [ref=f1e345]:
+      - generic [ref=f1e346]: Technical Toolkit
+      - heading "Tools I use to build." [level=2] [ref=f1e349]
+      - list [ref=f1e352]:
+        - listitem [ref=f1e353]:
+          - generic [ref=f1e354] [cursor=pointer]:
+            - generic [ref=f1e355]: "01"
+            - generic [ref=f1e356]:
+              - heading "Frontend Development" [level=3] [ref=f1e357]
+              - generic [ref=f1e358]: Practical
+        - listitem [ref=f1e362]:
+          - generic [ref=f1e363] [cursor=pointer]:
+            - generic [ref=f1e364]: "02"
+            - generic [ref=f1e365]:
+              - heading "Backend Development" [level=3] [ref=f1e366]
+              - generic [ref=f1e367]: Practical / Learning
+        - listitem [ref=f1e371]:
+          - generic [ref=f1e372] [cursor=pointer]:
+            - generic [ref=f1e373]: "03"
+            - generic [ref=f1e374]:
+              - heading "Databases" [level=3] [ref=f1e375]
+              - generic [ref=f1e376]: Practical / Foundational
+        - listitem [ref=f1e380]:
+          - generic [ref=f1e381] [cursor=pointer]:
+            - generic [ref=f1e382]: "04"
+            - generic [ref=f1e383]:
+              - heading "Tools & Platforms" [level=3] [ref=f1e384]
+              - generic [ref=f1e385]: Practical
+        - listitem [ref=f1e389]:
+          - generic [ref=f1e390] [cursor=pointer]:
+            - generic [ref=f1e391]: "05"
+            - generic [ref=f1e392]:
+              - heading "Additional Knowledge" [level=3] [ref=f1e393]
+              - generic [ref=f1e394]: Foundational
+    - generic [ref=f1e399]:
+      - generic [ref=f1e400]: Continuous Learning
+      - heading "Growing through experience." [level=2] [ref=f1e403]
+      - list [ref=f1e406]:
+        - listitem [ref=f1e407]:
+          - generic [ref=f1e408]:
+            - generic [ref=f1e409]: "01"
+            - heading "Infosys Springboard certifications" [level=3] [ref=f1e411]
+        - listitem [ref=f1e412]:
+          - generic [ref=f1e413]:
+            - generic [ref=f1e414]: "02"
+            - heading "Accenture certifications" [level=3] [ref=f1e416]
+        - listitem [ref=f1e417]:
+          - generic [ref=f1e418]:
+            - generic [ref=f1e419]: "03"
+            - heading "LinkedIn Python course" [level=3] [ref=f1e421]
+        - listitem [ref=f1e422]:
+          - generic [ref=f1e423]:
+            - generic [ref=f1e424]: "04"
+            - heading "Google Digital Marketing certificate course" [level=3] [ref=f1e426]
+        - listitem [ref=f1e427]:
+          - generic [ref=f1e428]:
+            - generic [ref=f1e429]: "05"
+            - heading "NPTEL Course — Foundational Computer Science" [level=3] [ref=f1e431]
+        - listitem [ref=f1e432]:
+          - generic [ref=f1e433]:
+            - generic [ref=f1e434]: "06"
+            - heading "NPTEL Course — Web Technology & Systems" [level=3] [ref=f1e436]
+        - listitem [ref=f1e437]:
+          - generic [ref=f1e438]:
+            - generic [ref=f1e439]: "07"
+            - heading "B.Tech Information Technology (2022–2026)" [level=3] [ref=f1e441]
+        - listitem [ref=f1e442]:
+          - generic [ref=f1e443]:
+            - generic [ref=f1e444]: "08"
+            - 'heading "Internships: Ford, NSIC" [level=3] [ref=f1e446]'
+    - region "Portfolio Statistics" [ref=f1e447]:
+      - generic [ref=f1e449]:
+        - generic [ref=f1e450]: By the numbers
+        - heading "A snapshot of the work." [level=2] [ref=f1e453]
+        - list [ref=f1e456]:
+          - listitem [ref=f1e457]:
+            - generic [ref=f1e458]: "00"
+            - generic [ref=f1e459]: Featured projects documented
+          - listitem [ref=f1e460]:
+            - generic [ref=f1e461]: "00"
+            - generic [ref=f1e462]: Internship experiences
+          - listitem [ref=f1e463]:
+            - generic [ref=f1e464]: "00"
+            - generic [ref=f1e465]: "Core focus areas: frontend, backend, APIs, databases"
+          - listitem [ref=f1e466]:
+            - generic [ref=f1e467]: "0000"
+            - generic [ref=f1e468]: Graduation year
+  - contentinfo [ref=f1e469]:
+    - generic [ref=f1e470]:
+      - generic [ref=f1e471]:
+        - generic [ref=f1e472]:
+          - heading "Have an idea worth building?" [level=2] [ref=f1e473]
+          - paragraph [ref=f1e476]: I'm interested in software development opportunities where I can contribute, learn from experienced engineers, and build useful applications. Let's connect and discuss what we can create.
+        - button "Start a project" [ref=f1e478] [cursor=pointer]
+      - generic [ref=f1e484]:
+        - generic [ref=f1e485]:
+          - generic [ref=f1e486]: Naveen Kumar E
+          - paragraph [ref=f1e490]: Designed with curiosity. Built with purpose.
+        - generic [ref=f1e491]:
+          - generic [ref=f1e492]: Navigate
+          - generic [ref=f1e493]:
+            - link "About" [ref=f1e494] [cursor=pointer]:
+              - /url: "#about"
+            - link "Experience" [ref=f1e495] [cursor=pointer]:
+              - /url: "#experience"
+            - link "Projects" [ref=f1e496] [cursor=pointer]:
+              - /url: "#works"
+            - link "Skills" [ref=f1e497] [cursor=pointer]:
+              - /url: "#services"
+            - button "Contact" [ref=f1e498] [cursor=pointer]
+        - generic [ref=f1e499]:
+          - generic [ref=f1e500]: Skills
+          - generic [ref=f1e501]:
+            - generic [ref=f1e502]: React
+            - generic [ref=f1e503]: Spring Boot
+            - generic [ref=f1e504]: Java
+            - generic [ref=f1e505]: Node.js
+        - generic [ref=f1e506]: Connect
+      - generic [ref=f1e508]: © 2026 Naveen Kumar E. All rights reserved.
+    - generic [aria-hidden]: NAVEEN
+  - dialog "Navigation Menu":
+    - generic:
+      - generic: Naveen
+      - button "Close navigation menu":
+        - generic: Close
+    - generic:
+      - list:
+        - listitem:
+          - button "01 Home":
+            - generic: "01"
+            - generic: Home
+        - listitem:
+          - button "02 Work":
+            - generic: "02"
+            - generic: Work
+        - listitem:
+          - button "03 Services":
+            - generic: "03"
+            - generic: Services
+        - listitem:
+          - button "04 About":
+            - generic: "04"
+            - generic: About
+        - listitem:
+          - button "05 Experience":
+            - generic: "05"
+            - generic: Experience
+        - listitem:
+          - button "06 Contact":
+            - generic: "06"
+            - generic: Contact
+    - generic:
+      - generic: Local time — 1:17pm
+      - button "Start a project →"
+  - dialog "Tell me what you're building.":
+    - generic:
+      - button "Close dialog"
+      - generic:
+        - generic:
+          - generic: Start a project
+          - heading "Tell me what you're building." [level=2]
+        - generic:
+          - generic:
+            - generic: Name
+            - textbox "Name":
+              - /placeholder: Your name
+          - generic:
+            - generic: Email
+            - textbox "Email":
+              - /placeholder: you@company.com
+          - generic:
+            - generic: Project
+            - textbox "Project":
+              - /placeholder: A few words about your project, timeline, and budget.
+          - generic:
+            - generic: I reply within one business day.
+            - button "Send request"
+  - dialog "Project Title":
+    - generic:
+      - button "Close dialog"
+      - generic:
+        - generic: Category
+        - heading "Project Title" [level=2]
+      - paragraph
+      - generic:
+        - text: Key Engineering Features
+        - list
+      - generic: Tech Stack
