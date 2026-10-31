@@ -43,7 +43,8 @@ export function initPageTurn() {
       heroStage.style.height = '100vh';
       heroStage.style.zIndex = '15';
       heroStage.style.visibility = 'visible';
-      heroStage.style.pointerEvents = curl > 0.85 ? 'none' : 'auto';
+      heroStage.style.display = 'block';
+      heroStage.style.pointerEvents = 'none';
 
       const poly = pageCurlInstance.getClipPolygon(curl);
       if (poly) {
@@ -51,7 +52,7 @@ export function initPageTurn() {
         heroStage.style.webkitClipPath = poly;
       }
     } else if (curl >= 0.999) {
-      // Completed turn: heroStage is completely hidden
+      // Completed turn: heroStage is completely hidden and removed from layout flow
       heroStage.style.position = '';
       heroStage.style.top = '';
       heroStage.style.left = '';
@@ -59,6 +60,7 @@ export function initPageTurn() {
       heroStage.style.height = '';
       heroStage.style.zIndex = '';
       heroStage.style.visibility = 'hidden';
+      heroStage.style.display = 'none';
       heroStage.style.clipPath = 'polygon(0 0, 0 0, 0 0)';
       heroStage.style.webkitClipPath = 'polygon(0 0, 0 0, 0 0)';
       heroStage.style.pointerEvents = 'none';
@@ -71,6 +73,7 @@ export function initPageTurn() {
       heroStage.style.height = '';
       heroStage.style.zIndex = '';
       heroStage.style.visibility = 'visible';
+      heroStage.style.display = 'block';
       heroStage.style.clipPath = '';
       heroStage.style.webkitClipPath = '';
       heroStage.style.pointerEvents = 'auto';
@@ -89,6 +92,15 @@ export function initPageTurn() {
     onUpdate: (self) => {
       const curl = Math.min(1, Math.max(0, self.progress));
       updateTurn(curl);
+    },
+    onLeave: () => {
+      updateTurn(1.0);
+    },
+    onEnterBack: () => {
+      updateTurn(1.0);
+    },
+    onLeaveBack: () => {
+      updateTurn(0.0);
     }
   });
 

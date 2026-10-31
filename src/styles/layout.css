@@ -419,7 +419,7 @@
 
 .page-turn-container {
   position: relative;
-  z-index: 5;
+  z-index: 12;
   margin-top: -100svh;
   height: 200svh;
   width: 100%;

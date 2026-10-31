@@ -55,36 +55,7 @@ export function getLenis() {
 }
 
 export function initSectionScrollTriggers() {
-  // 1. Why Custom Desk Entrance Animation (Fly-in matching reference)
-  const whyDeskContainer = document.getElementById('whyDeskContainer');
-  if (whyDeskContainer) {
-    gsap.fromTo(
-      whyDeskContainer,
-      {
-        x: 80,
-        y: 100,
-        rotation: 4,
-        scale: 0.94,
-        opacity: 0
-      },
-      {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        scale: 1,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#pageTurnContainer',
-          start: 'top 20%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-  }
-
-  // 2. Global Line Mask reveals for all sections
+  // 1. Global Line Mask reveals for all sections
   ScrollTrigger.batch('.line-mask', {
     onEnter: (batch) => batch.forEach((el) => el.classList.add('revealed')),
     start: 'top 85%',
