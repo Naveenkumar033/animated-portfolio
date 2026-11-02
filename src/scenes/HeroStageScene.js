@@ -643,7 +643,7 @@ export class HeroStageScene {
     const d = (deskXAt(p) - (-4.8)) / (11 - (-4.8));
     const deskX = pushStartX + (pushEndX - pushStartX) * d;
 
-    this.desk.visible = deskInP > 0.001 && p < 0.95;
+    this.desk.visible = deskInP > 0.001;
     this.desk.scale.setScalar(THREE.MathUtils.lerp(0, 0.35 * u, deskInP));
     this.desk.position.set(deskX, vHeight * -0.01, -1.5);
     this.desk.rotation.y = deskRotYAt(p, Math.PI - 15 * Math.PI / 180, span);
@@ -674,7 +674,7 @@ export class HeroStageScene {
     this.character.position.set(charX, charY, charZ);
     this.character.rotation.set(0, charRotY, 0);
     this.character.scale.setScalar(charScale);
-    this.character.visible = p < 0.95;
+    this.character.visible = true;
 
     // 5. Continuous animation blend weights & scrubbing
     const fallBlend = Math.min(1, Math.max(0, toDeskP / 0.12));

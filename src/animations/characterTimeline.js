@@ -123,14 +123,14 @@ export function initHeroTimeline(heroStageScene) {
       }
 
       // 5. Layer 3 ("Let's make it simple.") - Dedicated Separate Page View (Zero overlap with Name)
-      const layer3InP = beat(p, [0.75, 0.82]);
-      const layer3OutP = beat(p, [0.94, 0.99]);
+      // Fades in cleanly after Name has dissolved, and stays active as the page that turns/curls
+      const layer3InP = beat(p, [0.74, 0.82]);
       if (layer3) {
         if (p < 0.73) {
           layer3.style.opacity = '0';
           layer3.style.visibility = 'hidden';
         } else {
-          const op = Math.max(0, layer3InP - layer3OutP);
+          const op = layer3InP;
           layer3.style.opacity = String(op);
           layer3.style.visibility = op > 0.001 ? 'visible' : 'hidden';
           layer3.style.transform = `translateY(${20 * (1 - layer3InP)}px)`;
