@@ -408,13 +408,9 @@
 
 /* --- 3. Page Turn & Why Custom Section --- */
 .page-curl-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 25;
-  pointer-events: none;
-  display: block;
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .page-turn-container {
@@ -428,7 +424,8 @@
 
 .why-section {
   position: relative;
-  height: 100svh;
+  min-height: 100svh;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
