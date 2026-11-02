@@ -80,17 +80,10 @@ export class PageCurlScene {
         float axis = mix(sMax, sMin - END, uCurl);
         float d = dot(p, dir) - axis;
 
-        // 1. Turned-over sheet lying flat on the back
+        // 1. Turned-over area behind roll: transparent so revealed page is completely clean and unobscured
         if (d <= 0.0) {
-          vec2 q = p + dir * (HALF_TURN * R - 2.0 * d);
-          if (onSheet(q, aspect)) {
-            // Brightest near the crown, settling slightly darker flat
-            float backShade = 0.88 + 0.12 * exp(d / (2.0 * R));
-            // Realistic crisp paper tone (#fbfaf8)
-            vec3 paperBack = vec3(0.96, 0.96, 0.95) * backShade;
-            gl_FragColor = vec4(paperBack, 0.98);
-            return;
-          }
+          gl_FragColor = vec4(0.0);
+          return;
         }
         // 2. Curled cylinder roll
         else if (d < R) {

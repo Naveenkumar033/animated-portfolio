@@ -98,19 +98,20 @@ export function initHeroTimeline(heroStageScene) {
         heroStageScene.updateScrub(p);
 
         // 4. Sequential Name Reveal in direct lockstep with character body position
-        // Layer 2 fades in between [0.38, 0.42] and fades out between [0.92, 0.96]
-        const nameInP = beat(p, [0.38, 0.42]);
-        const nameOutP = beat(p, [0.92, 0.96]);
+        // Layer 2 reveals during character push and fades out cleanly BEFORE Layer 3
+        const nameInP = beat(p, [0.32, 0.40]);
+        const nameOutP = beat(p, [0.64, 0.72]);
         const layer2Opacity = nameInP * (1 - nameOutP);
 
         if (layer2) {
           layer2.style.opacity = String(layer2Opacity);
+          layer2.style.visibility = layer2Opacity > 0.001 ? 'visible' : 'hidden';
         }
 
         const bodyFrac = heroStageScene.getCharacterScreenFraction();
 
         nameSpans.forEach((span, idx) => {
-          if (p < 0.38 || layer2Opacity <= 0) {
+          if (p < 0.32 || layer2Opacity <= 0) {
             span.style.opacity = '0';
             return;
           }
@@ -121,15 +122,17 @@ export function initHeroTimeline(heroStageScene) {
         });
       }
 
-      // 5. Layer 3 ("Let's make it simple.") Fade In & Out before the curl
-      const layer3InP = beat(p, [0.84, 0.90]);
-      const layer3OutP = beat(p, [0.95, 0.99]);
+      // 5. Layer 3 ("Let's make it simple.") - Dedicated Separate Page View (Zero overlap with Name)
+      const layer3InP = beat(p, [0.75, 0.82]);
+      const layer3OutP = beat(p, [0.94, 0.99]);
       if (layer3) {
-        if (p < 0.82) {
+        if (p < 0.73) {
           layer3.style.opacity = '0';
+          layer3.style.visibility = 'hidden';
         } else {
           const op = Math.max(0, layer3InP - layer3OutP);
           layer3.style.opacity = String(op);
+          layer3.style.visibility = op > 0.001 ? 'visible' : 'hidden';
           layer3.style.transform = `translateY(${20 * (1 - layer3InP)}px)`;
         }
       }
