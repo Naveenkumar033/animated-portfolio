@@ -12,6 +12,8 @@ import { SkyScene } from '../scenes/SkyScene.js';
 import { HeroStageScene } from '../scenes/HeroStageScene.js';
 import { WhyDeskScene } from '../scenes/WhyDeskScene.js';
 import { FooterCharacterScene } from '../scenes/FooterCharacterScene.js';
+import { CreativeCharScene } from '../scenes/CreativeCharScene.js';
+import { initCreativeTimeline } from '../animations/creativeTimeline.js';
 
 export function initializeApp() {
   if (typeof history !== 'undefined' && history.scrollRestoration) {
@@ -32,6 +34,7 @@ export function initializeApp() {
   const skyScene = new SkyScene('heroSkyCanvas');
   const heroStageScene = new HeroStageScene('heroCanvas');
   const whyDeskScene = new WhyDeskScene('whyDeskCanvas');
+  const creativeCharScene = new CreativeCharScene('creativeCharCanvas');
   const footerScene = new FooterCharacterScene('footerCharacterCanvas');
 
   // 3. Preloader completion triggers opening hands touch & zoom animation
@@ -44,6 +47,7 @@ export function initializeApp() {
   heroStageScene.onReady(() => {
     initHeroTimeline(heroStageScene);
     initPageTurn();
+    initCreativeTimeline(creativeCharScene);
     initSectionScrollTriggers();
     ScrollTrigger.refresh();
   });

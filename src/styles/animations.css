@@ -173,10 +173,11 @@
 
 /* Transitional Editorial Marquee Ribbon */
 .marquee-ribbon {
-  padding-block: 1.75rem;
-  background: #0f1013;
-  color: #a1a1aa;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  padding-block: 2.2rem;
+  background: #dde4c3;
+  color: #0f0f0f;
+  border-top: 1px solid rgba(15, 15, 15, 0.12);
+  border-bottom: 1px solid rgba(15, 15, 15, 0.12);
   overflow: hidden;
   position: relative;
   z-index: 20;
@@ -185,22 +186,27 @@
 .marquee-strip {
   display: flex;
   width: max-content;
-  gap: 2.5rem;
+  gap: 3rem;
   animation: strip-marquee 36s linear infinite;
 }
 
 .marquee-strip.reverse {
   animation-direction: reverse;
-  margin-top: 1.25rem;
+  margin-top: 1.2rem;
 }
 
 .marquee-cell {
   display: inline-flex;
   align-items: center;
   gap: 1.5rem;
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-size: 1.18rem;
+  font-weight: 600;
   white-space: nowrap;
+  color: #0f0f0f;
+}
+
+.marquee-cell .mono {
+  color: rgba(15, 15, 15, 0.55);
 }
 
 @keyframes strip-marquee {

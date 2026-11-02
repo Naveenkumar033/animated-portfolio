@@ -84,6 +84,40 @@ export function initPageTurn() {
 
   updateTurn(trigger.progress ? Math.min(1, trigger.progress) : 0);
 
+  // Why Desk Character stand-up scrub:
+  // After the curl completes, as the user scrolls through the Why Custom section,
+  // the character smoothly rises from typing at the desk and steps out in front into a confident standing pose
+  const whyContainer = document.getElementById('pageTurnContainer');
+  if (whyContainer) {
+    ScrollTrigger.create({
+      trigger: whyContainer,
+      start: () => whyContainer.offsetTop + window.innerHeight,
+      end: () => whyContainer.offsetTop + whyContainer.offsetHeight - window.innerHeight,
+      scrub: 0.5,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        if (window.__whyDeskScene) {
+          window.__whyDeskScene.updateScrub(self.progress);
+        }
+      },
+      onLeave: () => {
+        if (window.__whyDeskScene) {
+          window.__whyDeskScene.updateScrub(1.0);
+        }
+      },
+      onEnterBack: (self) => {
+        if (window.__whyDeskScene) {
+          window.__whyDeskScene.updateScrub(self.progress);
+        }
+      },
+      onLeaveBack: () => {
+        if (window.__whyDeskScene) {
+          window.__whyDeskScene.updateScrub(0.0);
+        }
+      }
+    });
+  }
+
   return pageCurlInstance;
 }
 

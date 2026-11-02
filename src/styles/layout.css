@@ -422,7 +422,7 @@
   position: relative;
   z-index: 10;
   margin-top: -100svh;
-  height: 200svh;
+  height: 250svh;
   width: 100%;
 }
 
@@ -559,6 +559,23 @@
   width: 90px;
   opacity: 0.7;
   pointer-events: none;
+}
+
+.why-panda {
+  z-index: 2;
+  pointer-events: none;
+  width: clamp(7.5rem, 10vw, 12rem);
+  display: block;
+  position: absolute;
+  bottom: clamp(1.5rem, 4svh, 2.5rem);
+  left: clamp(18rem, 24%, 27rem);
+}
+
+.why-panda img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.88;
 }
 
 /* --- 4. Work Section --- */
@@ -865,3 +882,196 @@
   line-height: 1;
 }
 
+
+
+/* =========================================================================
+   4.5 Creative Developer Section & Dynamic Dive Sequence
+   ========================================================================= */
+.creative-intro-section {
+  position: relative;
+  z-index: 12;
+  background: var(--bg-paper);
+  height: 220svh;
+  color: var(--ink);
+}
+
+.creative-intro-pin {
+  --line: rgba(15, 15, 15, 0.08);
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-paper);
+}
+
+.creative-guides {
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 0 7.5%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  z-index: 1;
+}
+
+.creative-guides i {
+  border-left: 1px solid var(--line);
+  height: 100%;
+  display: block;
+}
+
+.creative-title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-grotesk);
+  font-size: clamp(3.8rem, 8.4vw, 10rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+  color: var(--ink);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+.creative-why {
+  position: absolute;
+  top: clamp(6rem, 15svh, 10rem);
+  left: 7.5%;
+  width: min(34rem, 33vw);
+  padding-left: clamp(0.5rem, 0.8vw, 1rem);
+  font-family: var(--font-grotesk);
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.1vw, 1.25rem);
+  line-height: 1.45;
+  color: var(--ink);
+  z-index: 3;
+}
+
+.creative-why p {
+  margin: 0;
+}
+
+.creative-what {
+  position: absolute;
+  bottom: clamp(4.5rem, 13svh, 8rem);
+  right: var(--page-x);
+  left: 62%;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 clamp(0.5rem, 0.8vw, 1rem);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.creative-what li {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.creative-what .cap-title {
+  font-family: var(--font-grotesk);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.2vw, 1.35rem);
+  color: var(--ink);
+}
+
+.creative-what .cap-sub {
+  font-family: var(--font-grotesk);
+  font-weight: 400;
+  font-size: clamp(0.85rem, 1vw, 1.1rem);
+  color: var(--ink-muted);
+}
+
+.creative-where {
+  position: absolute;
+  bottom: 1.6rem;
+  left: var(--page-x);
+  right: var(--page-x);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  z-index: 3;
+}
+
+.creative-char-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  display: block;
+}
+
+.creative-band-wedge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48svh;
+  background: #dde4c3;
+  color: #0f0f0f;
+  clip-path: polygon(0 80px, 22vw 80px, 27vw 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 5;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 2.2rem var(--page-x) 0 0;
+  transform: translateY(105%);
+  will-change: transform;
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.04);
+}
+
+.creative-wave-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.creative-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 2.2rem;
+}
+
+.creative-wave i {
+  width: 2px;
+  height: calc(var(--h) * 100%);
+  transform-origin: 50% center;
+  background: currentColor;
+  display: block;
+  animation: wave-equalizer 0.9s ease-in-out var(--d) infinite alternate;
+}
+
+@keyframes wave-equalizer {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1.0); }
+}
+
+.creative-live-tag {
+  font-family: var(--font-grotesk);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  margin-left: 1.2rem;
+  color: #0f0f0f;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}

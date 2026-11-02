@@ -14,10 +14,15 @@ export class WhyDeskScene {
     this.mixer = null;
 
     this.group = null;
+    this.charGroup = null;
     this.character = null;
     this.headBone = null;
     this.chair = null;
     this.desk = null;
+    this.standingShadow = null;
+    this.typingAction = null;
+    this.stretchAction = null;
+    this.scrubProgress = 0;
 
     this.target = new THREE.Vector3(-0.14, 0.6, 0.4);
     this.fromDir = new THREE.Vector3(0.683, 0.36, 0.636).normalize();
@@ -143,14 +148,15 @@ export class WhyDeskScene {
 
   async loadAssets() {
     try {
-      const [deskGltf, chairGltf, sagarGltf, animGltf] = await Promise.all([
+      const [deskGltf, chairGltf, sagarGltf, typingGltf, stretchGltf] = await Promise.all([
         loadGLTF('/models/desk2.glb'),
         loadGLTF('/models/chair.glb'),
         loadGLTF('/models/sagar.glb'),
-        loadGLTF('/models/anim/typing.glb')
+        loadGLTF('/models/anim/typing.glb'),
+        loadGLTF('/models/anim/armStretch.glb')
       ]);
 
-      // 1. Soft Ground Shadow
+      // 1. Soft Ground Shadow under desk & chair
       this.createGroundShadow();
 
       // 2. 4 Desk Legs
@@ -188,26 +194,89 @@ export class WhyDeskScene {
       chairGroup.add(this.chair);
       this.group.add(chairGroup);
 
-      // 5. Developer Character in Seated Typing Position
-      // Exact reference scale: SAGAR_MODEL_SCALE = 100, position: [0, 0, 0]
-      const charGroup = new THREE.Group();
-      charGroup.scale.setScalar(100);
+      // 5. Standing Contact Shadow (appears when character steps out to standing pose)
+      const shadowCanvas = document.createElement('canvas');
+      shadowCanvas.width = shadowCanvas.height = 128;
+      const ctx = shadowCanvas.getContext('2d');
+      if (ctx) {
+        const grad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+        grad.addColorStop(0, 'rgba(0,0,0,0.48)');
+        grad.addColorStop(0.5, 'rgba(0,0,0,0.18)');
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 128, 128);
+      }
+      const shadowTex = new THREE.CanvasTexture(shadowCanvas);
+      const shadowGeo = new THREE.PlaneGeometry(0.85, 0.85);
+      const shadowMat = new THREE.MeshBasicMaterial({
+        map: shadowTex,
+        transparent: true,
+        opacity: 0,
+        depthWrite: false,
+        toneMapped: false
+      });
+      this.standingShadow = new THREE.Mesh(shadowGeo, shadowMat);
+      this.standingShadow.rotation.x = -Math.PI / 2;
+      this.standingShadow.position.set(-0.26, 0.003, 0.42);
+      this.group.add(this.standingShadow);
+
+      // 6. Developer Character
+      // Exact reference scale: SAGAR_MODEL_SCALE = 100
+      this.charGroup = new THREE.Group();
+      this.charGroup.scale.setScalar(100);
 
       this.character = tuneSagarMaterials(SkeletonUtils.clone(sagarGltf.scene));
       this.headBone = this.character.getObjectByName('mixamorigHead') || this.character.getObjectByName('mixamorig:Head');
-      charGroup.add(this.character);
-      this.group.add(charGroup);
+      this.charGroup.add(this.character);
+      this.group.add(this.charGroup);
 
-      // 6. Typing Animation Clip trimmed to [1.3s, 15.9s] loop
+      // 7. Animations Mixer
       this.mixer = new THREE.AnimationMixer(this.character);
-      let typingClip = sanitizeClip(animGltf.animations[0]);
+
+      // (a) Typing loop
+      let typingClip = sanitizeClip(typingGltf.animations[0]);
       typingClip = THREE.AnimationUtils.subclip(typingClip, 'typing', Math.round(30 * 1.3), Math.round(30 * 15.9), 30);
-      const typingAction = this.mixer.clipAction(typingClip);
-      typingAction.setLoop(THREE.LoopRepeat, Infinity);
-      typingAction.play();
+      this.typingAction = this.mixer.clipAction(typingClip);
+      this.typingAction.setLoop(THREE.LoopRepeat, Infinity);
+      this.typingAction.play();
+
+      // (b) Arm Stretch standing pose
+      let stretchClip = sanitizeClip(stretchGltf.animations[0]);
+      this.stretchAction = this.mixer.clipAction(stretchClip);
+      this.stretchAction.setLoop(THREE.LoopRepeat, Infinity);
+      this.stretchAction.play();
+      this.stretchAction.setEffectiveWeight(0);
+
+      // Apply initial scrub state
+      this.updateScrub(this.scrubProgress || 0);
 
     } catch (err) {
       console.error('Error loading WhyDesk assets:', err);
+    }
+  }
+
+  updateScrub(progress) {
+    this.scrubProgress = Math.max(0, Math.min(1, progress || 0));
+    if (!this.charGroup || !this.typingAction || !this.stretchAction) return;
+
+    // Smooth hermite ease: s in [0, 1]
+    const p = this.scrubProgress;
+    const ease = p * p * (3 - 2 * p);
+
+    // Crossfade weights between typing (seated) and arm stretch (standing)
+    this.typingAction.setEffectiveWeight(1 - ease);
+    this.stretchAction.setEffectiveWeight(ease);
+
+    // When standing, move character forward and slightly to the left (out in front of desk)
+    this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.26, ease);
+    this.charGroup.position.y = THREE.MathUtils.lerp(0, 0, ease);
+    this.charGroup.position.z = THREE.MathUtils.lerp(0, 0.42, ease);
+    this.charGroup.rotation.y = THREE.MathUtils.lerp(0, 0.35, ease);
+
+    if (this.standingShadow) {
+      this.standingShadow.material.opacity = THREE.MathUtils.lerp(0, 0.52, ease);
+      this.standingShadow.position.x = this.charGroup.position.x;
+      this.standingShadow.position.z = this.charGroup.position.z;
     }
   }
 
