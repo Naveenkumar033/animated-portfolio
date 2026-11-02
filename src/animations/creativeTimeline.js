@@ -19,11 +19,11 @@ export function initCreativeTimeline(scene) {
         scene.updateScrub(p);
       }
       if (wedge) {
-        // Olive green wedge banner slides up from translateY(105%) to translateY(0%) during dive phase (p: 0.42 -> 1.0)
-        if (p <= 0.4) {
+        // Olive green wedge banner slides up from translateY(105%) to translateY(0%) during dive phase (p: 0.48 -> 1.0)
+        if (p <= 0.48) {
           wedge.style.transform = 'translateY(105%)';
         } else {
-          const t = Math.min(1, Math.max(0, (p - 0.4) / 0.6));
+          const t = Math.min(1, Math.max(0, (p - 0.48) / 0.52));
           const ease = t * t * (3 - 2 * t);
           const y = (1 - ease) * 105;
           wedge.style.transform = `translateY(${y.toFixed(2)}%)`;

@@ -22,6 +22,7 @@ export class WhyDeskScene {
     this.standingShadow = null;
     this.typingAction = null;
     this.stretchAction = null;
+    this.jumpAction = null;
     this.scrubProgress = 0;
 
     this.target = new THREE.Vector3(-0.14, 0.6, 0.4);
@@ -148,12 +149,13 @@ export class WhyDeskScene {
 
   async loadAssets() {
     try {
-      const [deskGltf, chairGltf, sagarGltf, typingGltf, stretchGltf] = await Promise.all([
+      const [deskGltf, chairGltf, sagarGltf, typingGltf, stretchGltf, jumpGltf] = await Promise.all([
         loadGLTF('/models/desk2.glb'),
         loadGLTF('/models/chair.glb'),
         loadGLTF('/models/sagar.glb'),
         loadGLTF('/models/anim/typing.glb'),
-        loadGLTF('/models/anim/armStretch.glb')
+        loadGLTF('/models/anim/armStretch.glb'),
+        loadGLTF('/models/anim/jumping.glb')
       ]);
 
       // 1. Soft Ground Shadow under desk & chair
@@ -247,6 +249,15 @@ export class WhyDeskScene {
       this.stretchAction.play();
       this.stretchAction.setEffectiveWeight(0);
 
+      // (c) Jump forward & down transition to next section
+      let jumpClip = keptInPlace(jumpGltf.animations[0], 'jump');
+      this.jumpAction = this.mixer.clipAction(jumpClip);
+      this.jumpAction.setLoop(THREE.LoopOnce, 1);
+      this.jumpAction.clampWhenFinished = true;
+      this.jumpAction.play();
+      this.jumpAction.paused = true;
+      this.jumpAction.setEffectiveWeight(0);
+
       // Apply initial scrub state
       this.updateScrub(this.scrubProgress || 0);
 
@@ -257,26 +268,71 @@ export class WhyDeskScene {
 
   updateScrub(progress) {
     this.scrubProgress = Math.max(0, Math.min(1, progress || 0));
-    if (!this.charGroup || !this.typingAction || !this.stretchAction) return;
+    if (!this.charGroup || !this.typingAction || !this.stretchAction || !this.jumpAction) return;
 
-    // Smooth hermite ease: s in [0, 1]
     const p = this.scrubProgress;
-    const ease = p * p * (3 - 2 * p);
 
-    // Crossfade weights between typing (seated) and arm stretch (standing)
-    this.typingAction.setEffectiveWeight(1 - ease);
-    this.stretchAction.setEffectiveWeight(ease);
+    if (p <= 0.38) {
+      // Phase 1 (0 -> 0.38): Seated typing -> rises to stand in front of desk
+      const t = p / 0.38;
+      const ease = t * t * (3 - 2 * t);
 
-    // When standing, move character forward and slightly to the left (out in front of desk)
-    this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.26, ease);
-    this.charGroup.position.y = THREE.MathUtils.lerp(0, 0, ease);
-    this.charGroup.position.z = THREE.MathUtils.lerp(0, 0.42, ease);
-    this.charGroup.rotation.y = THREE.MathUtils.lerp(0, 0.35, ease);
+      this.typingAction.setEffectiveWeight(1 - ease);
+      this.stretchAction.setEffectiveWeight(ease);
+      this.jumpAction.setEffectiveWeight(0);
 
-    if (this.standingShadow) {
-      this.standingShadow.material.opacity = THREE.MathUtils.lerp(0, 0.52, ease);
-      this.standingShadow.position.x = this.charGroup.position.x;
-      this.standingShadow.position.z = this.charGroup.position.z;
+      this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.26, ease);
+      this.charGroup.position.y = 0;
+      this.charGroup.position.z = THREE.MathUtils.lerp(0, 0.42, ease);
+      this.charGroup.rotation.set(0, THREE.MathUtils.lerp(0, 0.35, ease), 0);
+
+      if (this.standingShadow) {
+        this.standingShadow.material.opacity = THREE.MathUtils.lerp(0, 0.52, ease);
+        this.standingShadow.position.x = this.charGroup.position.x;
+        this.standingShadow.position.z = this.charGroup.position.z;
+      }
+    } else if (p <= 0.58) {
+      // Phase 2 (0.38 -> 0.58): Confident standing stretch pose in front of desk (matching reference photo)
+      this.typingAction.setEffectiveWeight(0);
+      this.stretchAction.setEffectiveWeight(1);
+      this.jumpAction.setEffectiveWeight(0);
+
+      this.charGroup.position.set(-0.26, 0, 0.42);
+      this.charGroup.rotation.set(0, 0.35, 0);
+
+      if (this.standingShadow) {
+        this.standingShadow.material.opacity = 0.52;
+        this.standingShadow.position.set(-0.26, 0.003, 0.42);
+      }
+    } else {
+      // Phase 3 (0.58 -> 1.0): Crouches and JUMPS forward & down out of the Why page towards next page!
+      const u = (p - 0.58) / 0.42;
+      const ease = u * u * (3 - 2 * u);
+
+      const fade = Math.min(1, u * 3.2);
+      this.typingAction.setEffectiveWeight(0);
+      this.stretchAction.setEffectiveWeight(1 - fade);
+      this.jumpAction.setEffectiveWeight(fade);
+
+      // Scrub jump animation from anticipation crouch (0s) to takeoff (0.42s) to mid-air flight (1.15s)
+      this.jumpAction.time = ease * 1.15;
+
+      // Parabolic jump arc: initial lift off the ground, then descending leap downwards
+      const jumpArcY = Math.sin(Math.PI * Math.min(1, u * 1.25)) * 0.32 - (u > 0.6 ? Math.pow((u - 0.6) / 0.4, 2) * 1.15 : 0);
+
+      this.charGroup.position.x = THREE.MathUtils.lerp(-0.26, -0.05, ease);
+      this.charGroup.position.y = jumpArcY;
+      this.charGroup.position.z = THREE.MathUtils.lerp(0.42, 1.45, ease);
+
+      this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.28, ease);
+      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.35, 0.15, ease);
+      this.charGroup.rotation.z = 0;
+
+      if (this.standingShadow) {
+        this.standingShadow.material.opacity = Math.max(0, (1 - u * 2.2) * 0.52);
+        this.standingShadow.position.x = this.charGroup.position.x;
+        this.standingShadow.position.z = this.charGroup.position.z * 0.7;
+      }
     }
   }
 
@@ -301,7 +357,7 @@ export class WhyDeskScene {
       this.camera.lookAt(this.target);
     }
 
-    if (this.headBone) {
+    if (this.headBone && this.scrubProgress <= 0.58) {
       this.headBone.rotation.y = THREE.MathUtils.lerp(this.headBone.rotation.y, this.mouseTarget * 0.25, 0.08);
       this.headBone.rotation.x = THREE.MathUtils.lerp(this.headBone.rotation.x, -0.12, 0.08);
     }

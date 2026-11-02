@@ -167,9 +167,34 @@ export class CreativeCharScene {
 
     const p = this.progress;
 
-    // Phase 1 (0 -> 0.42): Confident standing pose in center, facing user
-    // Phase 2 (0.42 -> 1.0): Superhero dive / leap forward towards camera
-    if (p <= 0.42) {
+    if (p <= 0.22) {
+      // Phase 1 (0 -> 0.22): Character leaps in from above, lands on feet, and stands up
+      const w = p / 0.22;
+      const ease = w * w * (3 - 2 * w);
+
+      // Scrub jump action through touchdown and absorption: 1.15s -> 1.93s
+      this.diveAction.time = 1.15 + ease * (1.93 - 1.15);
+
+      // Blend from landing into upright standing pose
+      const blendToStand = Math.min(1, Math.max(0, (ease - 0.35) / 0.65));
+      this.diveAction.setEffectiveWeight(1 - blendToStand);
+      this.standingAction.setEffectiveWeight(blendToStand);
+
+      // Drops down from mid-air to floor (0.75m -> 0m)
+      this.charGroup.position.x = THREE.MathUtils.lerp(-0.05, 0, ease);
+      this.charGroup.position.y = THREE.MathUtils.lerp(0.75, 0, ease);
+      this.charGroup.position.z = THREE.MathUtils.lerp(0.65, 0, ease);
+
+      this.charGroup.rotation.x = THREE.MathUtils.lerp(0.28, 0, ease);
+      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.15, 0.05, ease);
+      this.charGroup.rotation.z = 0;
+
+      if (this.groundShadow) {
+        this.groundShadow.material.opacity = ease * 0.55;
+        this.groundShadow.position.set(this.charGroup.position.x, 0.002, this.charGroup.position.z);
+      }
+    } else if (p <= 0.48) {
+      // Phase 2 (0.22 -> 0.48): Confident standing pose in center, facing user (matching reference Image 8)
       this.standingAction.setEffectiveWeight(1);
       this.diveAction.setEffectiveWeight(0);
       this.charGroup.position.set(0, 0, 0);
@@ -180,8 +205,8 @@ export class CreativeCharScene {
         this.groundShadow.position.set(0, 0.002, 0);
       }
     } else {
-      // Dive phase normalized t in [0, 1]
-      const t = (p - 0.42) / 0.58;
+      // Phase 3 (0.48 -> 1.0): Superhero dive / leap forward towards camera over the rising green equalizer wedge
+      const t = (p - 0.48) / 0.52;
       const ease = t * t * (3 - 2 * t);
 
       // Crossfade weights
@@ -196,8 +221,7 @@ export class CreativeCharScene {
       this.charGroup.position.y = THREE.MathUtils.lerp(0, -0.15, ease);
       this.charGroup.position.z = THREE.MathUtils.lerp(0, 1.45, ease);
 
-      // Dynamic dive angles matching reference Image 3:
-      // Rotates forward headfirst (x), angled towards camera (y), slight bank (z)
+      // Dynamic dive angles: rotates forward headfirst (x), angled towards camera (y), slight bank (z)
       this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.38, ease);
       this.charGroup.rotation.y = THREE.MathUtils.lerp(0.05, -0.55, ease);
       this.charGroup.rotation.z = THREE.MathUtils.lerp(0, 0.22, ease);
@@ -227,7 +251,7 @@ export class CreativeCharScene {
       this.camera.lookAt(this.target);
     }
 
-    if (this.headBone && this.progress <= 0.42) {
+    if (this.headBone && this.progress >= 0.22 && this.progress <= 0.48) {
       this.headBone.rotation.y = THREE.MathUtils.lerp(this.headBone.rotation.y, this.mouseTarget * 0.22, 0.08);
     }
 
