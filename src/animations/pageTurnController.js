@@ -51,6 +51,18 @@ export function initPageTurn() {
         heroStage.style.clipPath = poly;
         heroStage.style.webkitClipPath = poly;
       }
+
+      // Pin aboutSection locked to viewport while the peel reveals it underneath
+      if (aboutSection) {
+        aboutSection.style.position = 'fixed';
+        aboutSection.style.top = '0px';
+        aboutSection.style.left = '0px';
+        aboutSection.style.width = '100vw';
+        aboutSection.style.height = '100vh';
+        aboutSection.style.zIndex = '11';
+        aboutSection.style.visibility = 'visible';
+        aboutSection.style.display = 'flex';
+      }
     } else if (curl >= 0.999) {
       // Completed turn: heroStage is completely hidden and removed from layout flow
       heroStage.style.position = '';
@@ -64,6 +76,18 @@ export function initPageTurn() {
       heroStage.style.clipPath = 'polygon(0 0, 0 0, 0 0)';
       heroStage.style.webkitClipPath = 'polygon(0 0, 0 0, 0 0)';
       heroStage.style.pointerEvents = 'none';
+
+      // Release aboutSection back to natural document flow: directly scrolls into WORK
+      if (aboutSection) {
+        aboutSection.style.position = '';
+        aboutSection.style.top = '';
+        aboutSection.style.left = '';
+        aboutSection.style.width = '';
+        aboutSection.style.height = '';
+        aboutSection.style.zIndex = '';
+        aboutSection.style.visibility = 'visible';
+        aboutSection.style.display = 'flex';
+      }
     } else {
       // Hero active (curl <= 0.001): normal sticky flow
       heroStage.style.position = '';
@@ -77,6 +101,15 @@ export function initPageTurn() {
       heroStage.style.clipPath = '';
       heroStage.style.webkitClipPath = '';
       heroStage.style.pointerEvents = 'auto';
+
+      if (aboutSection) {
+        aboutSection.style.position = '';
+        aboutSection.style.top = '';
+        aboutSection.style.left = '';
+        aboutSection.style.width = '';
+        aboutSection.style.height = '';
+        aboutSection.style.zIndex = '';
+      }
     }
   }
 
@@ -96,8 +129,8 @@ export function initPageTurn() {
     onLeave: () => {
       updateTurn(1.0);
     },
-    onEnterBack: () => {
-      updateTurn(1.0);
+    onEnterBack: (self) => {
+      updateTurn(self.progress);
     },
     onLeaveBack: () => {
       updateTurn(0.0);

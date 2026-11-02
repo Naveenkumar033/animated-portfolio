@@ -420,14 +420,14 @@
 .page-turn-container {
   position: relative;
   z-index: 12;
-  margin-top: -100svh;
-  height: 200svh;
+  margin-top: 0;
+  height: auto;
+  min-height: 100svh;
   width: 100%;
 }
 
 .why-section {
-  position: sticky !important;
-  top: 0 !important;
+  position: relative;
   height: 100svh;
   width: 100%;
   display: flex;

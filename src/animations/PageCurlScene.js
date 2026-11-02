@@ -162,7 +162,9 @@ export class PageCurlScene {
   }
 
   /**
-   * Calculates the exact SVG / CSS polygon clip-path for DOM elements matching the curl axis
+   * Calculates the exact SVG / CSS polygon clip-path for DOM elements matching the curl axis.
+   * Cuts out a growing hole from the peeled corner (bottom-right across to top-left)
+   * while keeping the unpeeled sheet intact until fully turned.
    */
   getClipPolygon(curl) {
     if (curl <= 1e-4) return '';
@@ -195,13 +197,21 @@ export class PageCurlScene {
 
     if (c.length < 3) return '';
 
-    const pts = c.map(([x, y]) => {
-      const px = Math.round(x * h * 10) / 10;
-      const py = Math.round((1 - y) * h * 10) / 10;
-      return `${px}px ${py}px`;
-    });
+    let u = 0;
+    for (let i = 0; i < c.length; i++) {
+      const [x1, y1] = c[i];
+      const [x2, y2] = c[(i + 1) % c.length];
+      u += x1 * y2 - x2 * y1;
+    }
+    if (u > 0) c.reverse();
 
-    return `polygon(${pts.join(', ')})`;
+    const m = (val) => `${Math.round(10 * val) / 10}px`;
+    const p = `${m(-1)} ${m(-1)}`;
+    const n = w + 1;
+    const d_h = h + 1;
+
+    const f = c.map(([x, y]) => `${m(x * h)} ${m((1 - y) * h)}`);
+    return `polygon(${[p, `${m(n)} ${m(-1)}`, `${m(n)} ${m(d_h)}`, `${m(-1)} ${m(d_h)}`, p, ...f, f[0], p].join(', ')})`;
   }
 
   render() {
