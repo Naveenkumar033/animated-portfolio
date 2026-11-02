@@ -1,46 +1,92 @@
-/**
- * Page Turn Controller
- * Curl animation completely removed as requested.
- * Enables natural, smooth document scrolling between Hero, Why Custom, and Work sections.
- */
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PageCurlScene } from './PageCurlScene.js';
+
+gsap.registerPlugin(ScrollTrigger);
+
+let pageCurlInstance = null;
 
 export function initPageTurn() {
-  // Ensure any dynamically created or existing curl canvas is completely removed
-  const canvas = document.getElementById('pageCurlCanvas');
-  if (canvas) {
-    canvas.style.display = 'none';
-    canvas.remove();
-  }
-
   const heroStage = document.getElementById('heroStage');
-  if (heroStage) {
-    heroStage.style.clipPath = '';
-    heroStage.style.webkitClipPath = '';
-    heroStage.style.position = '';
-    heroStage.style.top = '';
-    heroStage.style.left = '';
-    heroStage.style.width = '';
-    heroStage.style.height = '';
-    heroStage.style.zIndex = '';
-    heroStage.style.visibility = '';
-    heroStage.style.display = '';
-  }
-
+  const heroContainer = document.getElementById('heroScrollContainer');
   const aboutSection = document.getElementById('about');
-  if (aboutSection) {
-    aboutSection.style.position = '';
-    aboutSection.style.top = '';
-    aboutSection.style.left = '';
-    aboutSection.style.width = '';
-    aboutSection.style.height = '';
-    aboutSection.style.zIndex = '';
-    aboutSection.style.visibility = '';
-    aboutSection.style.display = '';
+
+  if (!heroStage || !heroContainer) return null;
+
+  let canvas = document.getElementById('pageCurlCanvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'pageCurlCanvas';
+    canvas.className = 'page-curl-canvas';
+    heroStage.appendChild(canvas);
   }
 
-  return null;
+  pageCurlInstance = new PageCurlScene('pageCurlCanvas');
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    return pageCurlInstance;
+  }
+
+  function updateTurn(rawProg) {
+    const curl = Math.min(1, Math.max(0, rawProg || 0));
+    pageCurlInstance.setCurl(curl);
+
+    if (curl > 0.001 && curl < 0.999) {
+      heroStage.style.visibility = 'visible';
+      heroStage.style.display = 'block';
+      heroStage.style.pointerEvents = 'none';
+
+      const poly = pageCurlInstance.getClipPolygon(curl);
+      if (poly) {
+        heroStage.style.clipPath = poly;
+        heroStage.style.webkitClipPath = poly;
+      }
+    } else if (curl >= 0.999) {
+      // Completed turn: heroStage (Image 1) is cleanly hidden, fully revealing Image 2
+      heroStage.style.visibility = 'hidden';
+      heroStage.style.display = 'none';
+      heroStage.style.clipPath = 'polygon(0 0, 0 0, 0 0)';
+      heroStage.style.webkitClipPath = 'polygon(0 0, 0 0, 0 0)';
+      heroStage.style.pointerEvents = 'none';
+    } else {
+      // Image 1 active: full uncurled sheet
+      heroStage.style.visibility = 'visible';
+      heroStage.style.display = 'block';
+      heroStage.style.clipPath = '';
+      heroStage.style.webkitClipPath = '';
+      heroStage.style.pointerEvents = 'auto';
+    }
+  }
+
+  // Create dedicated ScrollTrigger for the realistic page curl peel:
+  // Starts when Image 1 is reached at the end of the hero timeline,
+  // curling Image 1 smoothly away to reveal Image 2 directly underneath.
+  const trigger = ScrollTrigger.create({
+    trigger: heroContainer,
+    start: () => `${heroContainer.offsetHeight - window.innerHeight} top`,
+    end: () => `${heroContainer.offsetHeight} top`,
+    scrub: true,
+    invalidateOnRefresh: true,
+    onUpdate: (self) => {
+      updateTurn(self.progress);
+    },
+    onLeave: () => {
+      updateTurn(1.0);
+    },
+    onEnterBack: (self) => {
+      updateTurn(self.progress);
+    },
+    onLeaveBack: () => {
+      updateTurn(0.0);
+    }
+  });
+
+  updateTurn(trigger.progress ? Math.min(1, trigger.progress) : 0);
+
+  return pageCurlInstance;
 }
 
 export function getPageCurl() {
-  return null;
+  return pageCurlInstance;
 }

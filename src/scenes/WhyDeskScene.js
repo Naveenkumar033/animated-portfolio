@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { loadGLTF, tuneSagarMaterials, sanitizeClip } from '../utils/assetLoader.js';
-import { globalLighting } from './Lighting.js';
 
 export class WhyDeskScene {
   constructor(canvasId = 'whyDeskCanvas') {
@@ -67,8 +66,7 @@ export class WhyDeskScene {
     this.scene.add(fillLight);
     this.scene.add(rimLight);
 
-    globalLighting.register(hemiLight, keyLight, fillLight, rimLight);
-
+    
     this.group = new THREE.Group();
     this.scene.add(this.group);
 

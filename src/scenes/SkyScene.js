@@ -266,6 +266,15 @@ export class SkyScene {
     }
   }
 
+  applyTheme(mode) {
+    const hero = document.getElementById('heroScrollContainer');
+    const stage = document.getElementById('heroStage');
+    const dial = document.querySelector('.sky-dial-container');
+    if (hero) hero.setAttribute('data-theme', mode);
+    if (stage) stage.setAttribute('data-theme', mode);
+    if (dial) dial.setAttribute('data-theme', mode);
+  }
+
   setMode(mode) {
     playSound('click');
     let targetVal = 0.0;
@@ -277,7 +286,7 @@ export class SkyScene {
     this.isRushing = true;
     this.userPauseUntil = performance.now() + 15000;
 
-    document.documentElement.setAttribute('data-theme', mode);
+    this.applyTheme(mode);
     this.buttons.forEach((btn) => {
       const isActive = btn.getAttribute('data-time') === mode;
       btn.classList.toggle('active', isActive);
@@ -314,9 +323,10 @@ export class SkyScene {
         currentMode = 'night';
       }
 
-      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const stage = document.getElementById('heroStage');
+      const currentTheme = stage ? stage.getAttribute('data-theme') : null;
       if (currentTheme !== currentMode) {
-        document.documentElement.setAttribute('data-theme', currentMode);
+        this.applyTheme(currentMode);
         this.buttons.forEach((btn) => {
           const isActive = btn.getAttribute('data-time') === currentMode;
           btn.classList.toggle('active', isActive);
