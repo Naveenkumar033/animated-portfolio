@@ -7,6 +7,7 @@ import * as THREE from 'three';
  * Simulates a realistic cylindrical paper roll peeling diagonally across the screen:
  * - Radius R = 0.12 of viewport
  * - Crease sweeping from bottom-right towards top-left
+ * - Turned-over paper sheet flap with realistic paper back
  * - Specular paper sheen on crown of roll
  * - Diffuse illumination on underside
  * - Soft exponential ambient occlusion / drop shadow cast along the crease line
@@ -76,44 +77,53 @@ export class PageCurlScene {
         float axis = mix(sMax, sMin - END, uCurl);
         float d = dot(p, dir) - axis;
 
-        // 1. Turned-over area behind roll: transparent so revealed page is clean
+        float back = -1.0;
+
         if (d <= 0.0) {
-          gl_FragColor = vec4(0.0);
-          return;
-        }
-        // 2. Curled cylinder roll
-        else if (d < R) {
+          // The sheet, rolled over and lying back across the page face down
+          vec2 q = p + dir * (HALF_TURN * R - 2.0 * d);
+          if (onSheet(q, aspect)) {
+            // Brightest where it comes off the crown of the roll,
+            // settling a little darker as it lies flat
+            back = 0.84 + 0.16 * exp(d / (2.0 * R));
+          }
+        } else if (d < R) {
           float a = asin(d / R);
+          // The top of the roll: the back of the sheet, lit from above,
+          // brightest along the crown and falling off to the silhouette
           vec2 top = p + dir * (R * (HALF_TURN - a) - d);
           if (onSheet(top, aspect)) {
-            // Crown highlight + soft roll falloff
-            float backShade = 0.58 + 0.42 * cos(a) + 0.14 * exp(-pow((a - 0.45) * 3.5, 2.0));
-            vec3 paperRoll = vec3(0.98, 0.97, 0.96) * backShade;
-            gl_FragColor = vec4(paperRoll, 1.0);
-            return;
+            back = 0.52 + 0.48 * cos(a) + 0.10 * exp(-pow((a - 0.45) * 3.5, 2.0));
           } else {
-            // Underside of curling sheet bending into the cylinder
+            // The underside: the front of the sheet bending up into the roll
             vec2 under = p + dir * (R * a - d);
             if (onSheet(under, aspect)) {
               float frontShade = 0.35 + 0.65 * cos(a);
               vec3 underColor = vec3(0.92, 0.91, 0.90) * frontShade;
-              gl_FragColor = vec4(underColor, 0.95);
+              gl_FragColor = vec4(underColor, 0.98);
               return;
             } else {
-              // Edge of paper
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.35);
               return;
             }
           }
-        }
-        // 3. Drop shadow cast on the surface below the roll
-        else {
+        } else {
+          // Uncovered, in the roll's shadow
           float shadowDist = d - R;
-          float shadow = 0.35 * exp(-shadowDist / 0.06);
-          if (shadow > 0.01) {
+          float shadow = 0.35 * exp(-shadowDist / 0.055);
+          if (shadow > 0.008) {
             gl_FragColor = vec4(0.0, 0.0, 0.0, shadow);
             return;
           }
+          gl_FragColor = vec4(0.0);
+          return;
+        }
+
+        if (back >= 0.0) {
+          // The BACK of the sheet: realistic light paper with soft lighting
+          vec3 paper = vec3(0.965, 0.96, 0.955) * back;
+          gl_FragColor = vec4(paper, 1.0);
+          return;
         }
 
         gl_FragColor = vec4(0.0);
@@ -142,7 +152,9 @@ export class PageCurlScene {
   setCurl(val) {
     this.curlValue = Math.max(0, Math.min(1, val));
     if (this.canvas) {
-      this.canvas.style.visibility = (this.curlValue > 0.001 && this.curlValue < 0.999) ? 'visible' : 'hidden';
+      const isVisible = (this.curlValue > 0.001 && this.curlValue < 0.999);
+      this.canvas.style.display = isVisible ? 'block' : 'none';
+      this.canvas.style.visibility = isVisible ? 'visible' : 'hidden';
     }
     if (this.uniforms) {
       this.uniforms.uCurl.value = this.curlValue;
