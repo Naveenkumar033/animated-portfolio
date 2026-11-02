@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { loadGLTF, tuneSagarMaterials, sanitizeClip } from '../utils/assetLoader.js';
+import { loadGLTF, tuneSagarMaterials, keptInPlace } from '../utils/assetLoader.js';
 
 export class CreativeCharScene {
   constructor(canvasId = 'creativeCharCanvas') {
@@ -139,13 +139,13 @@ export class CreativeCharScene {
       this.mixer = new THREE.AnimationMixer(this.character);
 
       // 1. Standing pose (arm stretch)
-      const stretchClip = sanitizeClip(stretchGltf.animations[0]);
+      const stretchClip = keptInPlace(stretchGltf.animations[0], 'stretch');
       this.standingAction = this.mixer.clipAction(stretchClip);
       this.standingAction.setLoop(THREE.LoopRepeat, Infinity);
       this.standingAction.play();
 
       // 2. Dive / Leap forward pose (jumping)
-      const jumpClip = sanitizeClip(jumpGltf.animations[0]);
+      const jumpClip = keptInPlace(jumpGltf.animations[0], 'jump');
       this.diveAction = this.mixer.clipAction(jumpClip);
       this.diveAction.setLoop(THREE.LoopOnce, 1);
       this.diveAction.clampWhenFinished = true;
@@ -191,16 +191,16 @@ export class CreativeCharScene {
       // Scrub dive action from start of jump (0.4s) to the peak forward reaching pose (1.37s)
       this.diveAction.time = 0.4 + ease * (1.37 - 0.4);
 
-      // Dynamic trajectory: translate forward & down towards the camera
-      this.charGroup.position.x = THREE.MathUtils.lerp(0, 0.12, ease);
-      this.charGroup.position.y = THREE.MathUtils.lerp(0, 0.28, ease);
-      this.charGroup.position.z = THREE.MathUtils.lerp(0, 1.75, ease);
+      // Dynamic trajectory: translate forward towards the camera and lower slightly to keep diving hands centered
+      this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.05, ease);
+      this.charGroup.position.y = THREE.MathUtils.lerp(0, -0.15, ease);
+      this.charGroup.position.z = THREE.MathUtils.lerp(0, 1.45, ease);
 
       // Dynamic dive angles matching reference Image 3:
       // Rotates forward headfirst (x), angled towards camera (y), slight bank (z)
-      this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.42, ease);
-      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.05, -0.62, ease);
-      this.charGroup.rotation.z = THREE.MathUtils.lerp(0, 0.26, ease);
+      this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.38, ease);
+      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.05, -0.55, ease);
+      this.charGroup.rotation.z = THREE.MathUtils.lerp(0, 0.22, ease);
 
       // Ground shadow fades away as character leaps up and forward
       if (this.groundShadow) {
@@ -236,3 +236,4 @@ export class CreativeCharScene {
     }
   };
 }
+

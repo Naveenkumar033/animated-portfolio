@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { loadGLTF, tuneSagarMaterials, sanitizeClip } from '../utils/assetLoader.js';
+import { loadGLTF, tuneSagarMaterials, sanitizeClip, keptInPlace } from '../utils/assetLoader.js';
 
 export class WhyDeskScene {
   constructor(canvasId = 'whyDeskCanvas') {
@@ -241,7 +241,7 @@ export class WhyDeskScene {
       this.typingAction.play();
 
       // (b) Arm Stretch standing pose
-      let stretchClip = sanitizeClip(stretchGltf.animations[0]);
+      let stretchClip = keptInPlace(stretchGltf.animations[0], 'stretch');
       this.stretchAction = this.mixer.clipAction(stretchClip);
       this.stretchAction.setLoop(THREE.LoopRepeat, Infinity);
       this.stretchAction.play();
