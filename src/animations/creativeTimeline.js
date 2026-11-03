@@ -9,26 +9,26 @@ export function initCreativeTimeline(scene) {
   const canvas = document.getElementById('creativeCharCanvas');
   if (!introSec) return;
 
-  // Reveal 3D character smoothly as the section slides over the desk,
-  // creating a continuous jump transition from the Why desk scene
+  // Ensure 3D character canvas is visible inside pinned section
+  if (canvas) {
+    canvas.style.opacity = '1';
+    canvas.style.visibility = 'visible';
+  }
+
+  // 1. Entrance Touchdown: Character lands as the section slides up over the desk
   ScrollTrigger.create({
     trigger: introSec,
-    start: 'top 50%',
+    start: 'top bottom',
     end: 'top top',
-    scrub: true,
+    scrub: 0.2,
     onUpdate: (self) => {
-      if (canvas) {
-        canvas.style.opacity = self.progress.toFixed(3);
+      if (scene && typeof scene.updateEntrance === 'function') {
+        scene.updateEntrance(self.progress);
       }
-    },
-    onEnterBack: () => {
-      if (canvas) canvas.style.opacity = '1';
-    },
-    onLeaveBack: () => {
-      if (canvas) canvas.style.opacity = '0';
     }
   });
 
+  // 2. Pinned Sequence: Standing pose in center of "Creative Developer", then dive over equalizer wedge
   ScrollTrigger.create({
     trigger: introSec,
     start: 'top top',
@@ -36,18 +36,15 @@ export function initCreativeTimeline(scene) {
     scrub: 0.5,
     onUpdate: (self) => {
       const p = self.progress;
-      if (canvas && parseFloat(canvas.style.opacity) < 1) {
-        canvas.style.opacity = '1';
-      }
       if (scene && typeof scene.updateScrub === 'function') {
         scene.updateScrub(p);
       }
       if (wedge) {
-        // Olive green wedge banner slides up from translateY(105%) to translateY(0%) during dive phase (p: 0.45 -> 1.0)
-        if (p <= 0.45) {
+        // Olive green wedge banner slides up during dive phase (p: 0.38 -> 1.0)
+        if (p <= 0.38) {
           wedge.style.transform = 'translateY(105%)';
         } else {
-          const t = Math.min(1, Math.max(0, (p - 0.45) / 0.55));
+          const t = Math.min(1, Math.max(0, (p - 0.38) / 0.62));
           const ease = t * t * (3 - 2 * t);
           const y = (1 - ease) * 105;
           wedge.style.transform = `translateY(${y.toFixed(2)}%)`;

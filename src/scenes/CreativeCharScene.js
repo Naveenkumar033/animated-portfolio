@@ -138,11 +138,12 @@ export class CreativeCharScene {
 
       this.mixer = new THREE.AnimationMixer(this.character);
 
-      // 1. Standing pose (arm stretch)
+      // 1. Standing pose (arm stretch) - active looping
       const stretchClip = keptInPlace(stretchGltf.animations[0], 'stretch');
       this.standingAction = this.mixer.clipAction(stretchClip);
       this.standingAction.setLoop(THREE.LoopRepeat, Infinity);
       this.standingAction.play();
+      this.standingAction.setEffectiveWeight(1);
 
       // 2. Dive / Leap forward pose (jumping)
       const jumpClip = keptInPlace(jumpGltf.animations[0], 'jump');
@@ -153,11 +154,38 @@ export class CreativeCharScene {
       this.diveAction.paused = true;
       this.diveAction.setEffectiveWeight(0);
 
+      // Initial upright standing position in front of "Creative Developer"
+      this.charGroup.position.set(0, 0, 0);
+      this.charGroup.rotation.set(0, 0, 0);
+      if (this.groundShadow) {
+        this.groundShadow.material.opacity = 0.55;
+        this.groundShadow.position.set(0, 0.002, 0);
+        this.groundShadow.scale.set(1, 1, 1);
+      }
+
       this.isReady = true;
       this.updateScrub(this.progress || 0);
 
     } catch (err) {
       console.error('Error loading CreativeCharScene assets:', err);
+    }
+  }
+
+  updateEntrance(progress) {
+    if (!this.isReady || !this.charGroup) return;
+    const w = Math.min(1, Math.max(0, progress || 0));
+    const ease = w * w * (3 - 2 * w);
+
+    // As section slides up, character descends smoothly from jump into solid floor standing
+    this.charGroup.position.x = 0;
+    this.charGroup.position.y = (1 - ease) * 0.22;
+    this.charGroup.position.z = (1 - ease) * 0.18;
+    this.charGroup.rotation.set((1 - ease) * 0.15, 0, 0);
+
+    if (this.groundShadow) {
+      this.groundShadow.material.opacity = THREE.MathUtils.lerp(0.35, 0.55, ease);
+      this.groundShadow.position.set(0, 0.002, this.charGroup.position.z);
+      this.groundShadow.scale.setScalar(THREE.MathUtils.lerp(0.7, 1, ease));
     }
   }
 
@@ -167,39 +195,12 @@ export class CreativeCharScene {
 
     const p = this.progress;
 
-    if (p <= 0.22) {
-      // Phase 1 (0 -> 0.22): Completes mid-air jump from previous page, lands on feet, and stands up
-      const w = p / 0.22;
-      const ease = w * w * (3 - 2 * w);
-
-      // Scrub jump action through touchdown and absorption: 1.15s -> 1.93s
-      this.diveAction.time = 1.15 + ease * (1.93 - 1.15);
-
-      // Blend from landing impact absorption into upright standing pose
-      const blendToStand = Math.min(1, Math.max(0, (ease - 0.35) / 0.65));
-      this.diveAction.setEffectiveWeight(1 - blendToStand);
-      this.standingAction.setEffectiveWeight(blendToStand);
-
-      // Drops down smoothly from peak jump (+0.28m) to floor (0m) — always well framed, never cut off
-      this.charGroup.position.x = THREE.MathUtils.lerp(-0.10, 0, ease);
-      this.charGroup.position.y = THREE.MathUtils.lerp(0.28, 0, ease);
-      this.charGroup.position.z = THREE.MathUtils.lerp(0.40, 0, ease);
-
-      this.charGroup.rotation.x = THREE.MathUtils.lerp(0.22, 0, ease);
-      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.12, 0.05, ease);
-      this.charGroup.rotation.z = 0;
-
-      if (this.groundShadow) {
-        this.groundShadow.material.opacity = ease * 0.55;
-        this.groundShadow.position.set(this.charGroup.position.x, 0.002, this.charGroup.position.z);
-        this.groundShadow.scale.setScalar(THREE.MathUtils.lerp(0.4, 1, ease));
-      }
-    } else if (p <= 0.45) {
-      // Phase 2 (0.22 -> 0.45): Confident standing pose in center, facing user in front of "Creative Developer"
+    if (p <= 0.38) {
+      // Phase 1 (0 -> 0.38): Confident standing pose in center, facing user in front of "Creative Developer"
       this.standingAction.setEffectiveWeight(1);
       this.diveAction.setEffectiveWeight(0);
       this.charGroup.position.set(0, 0, 0);
-      this.charGroup.rotation.set(0, 0.05, 0);
+      this.charGroup.rotation.set(0, 0, 0);
 
       if (this.groundShadow) {
         this.groundShadow.material.opacity = 0.55;
@@ -207,16 +208,16 @@ export class CreativeCharScene {
         this.groundShadow.scale.set(1, 1, 1);
       }
     } else {
-      // Phase 3 (0.45 -> 1.0): Superhero dive / leap forward towards camera over the rising green wedge
-      const t = (p - 0.45) / 0.55;
+      // Phase 2 (0.38 -> 1.0): Superhero dive / leap forward towards camera over the rising green wedge
+      const t = (p - 0.38) / 0.62;
       const ease = t * t * (3 - 2 * t);
 
       // Crossfade weights
       this.standingAction.setEffectiveWeight(1 - ease);
       this.diveAction.setEffectiveWeight(ease);
 
-      // Scrub dive action from start of jump (0.4s) to the peak forward reaching pose (1.37s)
-      this.diveAction.time = 0.4 + ease * (1.37 - 0.4);
+      // Scrub dive action from start of jump (0.35s) to the peak forward reaching pose (1.35s)
+      this.diveAction.time = 0.35 + ease * (1.35 - 0.35);
 
       // Dynamic trajectory: translate forward towards the camera and lower slightly to keep diving hands centered
       this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.05, ease);
@@ -226,8 +227,8 @@ export class CreativeCharScene {
       // Dynamic dive angles matching reference:
       // Rotates forward headfirst (x), angled towards camera (y), slight bank (z)
       this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.38, ease);
-      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.05, -0.55, ease);
-      this.charGroup.rotation.z = THREE.MathUtils.lerp(0, 0.22, ease);
+      this.charGroup.rotation.y = THREE.MathUtils.lerp(0, -0.45, ease);
+      this.charGroup.rotation.z = THREE.MathUtils.lerp(0, 0.20, ease);
 
       // Ground shadow fades away as character leaps up and forward
       if (this.groundShadow) {
@@ -254,8 +255,9 @@ export class CreativeCharScene {
       this.camera.lookAt(this.target);
     }
 
-    if (this.headBone && this.progress >= 0.20 && this.progress <= 0.45) {
-      this.headBone.rotation.y = THREE.MathUtils.lerp(this.headBone.rotation.y, this.mouseTarget * 0.22, 0.08);
+    if (this.headBone && this.progress <= 0.40) {
+      this.headBone.rotation.y = THREE.MathUtils.lerp(this.headBone.rotation.y, this.mouseTarget * 0.25, 0.08);
+      this.headBone.rotation.x = THREE.MathUtils.lerp(this.headBone.rotation.x, -0.08, 0.08);
     }
 
     if (this.renderer && this.scene && this.camera) {

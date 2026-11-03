@@ -86,14 +86,15 @@ export function initPageTurn() {
 
   // Why Desk Character stand-up scrub:
   // After the curl completes, as the user scrolls through the Why Custom section,
-  // the character smoothly rises from typing at the desk and steps out in front into a confident standing pose
+  // the character smoothly rises from typing at the desk and steps out in front into a confident standing pose,
+  // then leaps forward as the section transitions into Creative Developer
   const whyContainer = document.getElementById('pageTurnContainer');
   if (whyContainer) {
     ScrollTrigger.create({
       trigger: whyContainer,
       start: () => whyContainer.offsetTop + window.innerHeight,
-      end: () => whyContainer.offsetTop + whyContainer.offsetHeight - window.innerHeight,
-      scrub: 0.5,
+      end: () => whyContainer.offsetTop + whyContainer.offsetHeight,
+      scrub: 0.4,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         if (window.__whyDeskScene) {
