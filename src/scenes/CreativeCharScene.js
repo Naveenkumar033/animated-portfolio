@@ -167,9 +167,35 @@ export class CreativeCharScene {
 
     const p = this.progress;
 
-    // Phase 1 (0 -> 0.40): Confident standing pose in center, facing user in front of "Creative Developer"
-    // Phase 2 (0.40 -> 1.0): Superhero dive / leap forward towards camera over the rising green wedge
-    if (p <= 0.40) {
+    if (p <= 0.22) {
+      // Phase 1 (0 -> 0.22): Completes mid-air jump from previous page, lands on feet, and stands up
+      const w = p / 0.22;
+      const ease = w * w * (3 - 2 * w);
+
+      // Scrub jump action through touchdown and absorption: 1.15s -> 1.93s
+      this.diveAction.time = 1.15 + ease * (1.93 - 1.15);
+
+      // Blend from landing impact absorption into upright standing pose
+      const blendToStand = Math.min(1, Math.max(0, (ease - 0.35) / 0.65));
+      this.diveAction.setEffectiveWeight(1 - blendToStand);
+      this.standingAction.setEffectiveWeight(blendToStand);
+
+      // Drops down smoothly from peak jump (+0.28m) to floor (0m) — always well framed, never cut off
+      this.charGroup.position.x = THREE.MathUtils.lerp(-0.10, 0, ease);
+      this.charGroup.position.y = THREE.MathUtils.lerp(0.28, 0, ease);
+      this.charGroup.position.z = THREE.MathUtils.lerp(0.40, 0, ease);
+
+      this.charGroup.rotation.x = THREE.MathUtils.lerp(0.22, 0, ease);
+      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.12, 0.05, ease);
+      this.charGroup.rotation.z = 0;
+
+      if (this.groundShadow) {
+        this.groundShadow.material.opacity = ease * 0.55;
+        this.groundShadow.position.set(this.charGroup.position.x, 0.002, this.charGroup.position.z);
+        this.groundShadow.scale.setScalar(THREE.MathUtils.lerp(0.4, 1, ease));
+      }
+    } else if (p <= 0.45) {
+      // Phase 2 (0.22 -> 0.45): Confident standing pose in center, facing user in front of "Creative Developer"
       this.standingAction.setEffectiveWeight(1);
       this.diveAction.setEffectiveWeight(0);
       this.charGroup.position.set(0, 0, 0);
@@ -178,10 +204,11 @@ export class CreativeCharScene {
       if (this.groundShadow) {
         this.groundShadow.material.opacity = 0.55;
         this.groundShadow.position.set(0, 0.002, 0);
+        this.groundShadow.scale.set(1, 1, 1);
       }
     } else {
-      // Dive phase normalized t in [0, 1]
-      const t = (p - 0.40) / 0.60;
+      // Phase 3 (0.45 -> 1.0): Superhero dive / leap forward towards camera over the rising green wedge
+      const t = (p - 0.45) / 0.55;
       const ease = t * t * (3 - 2 * t);
 
       // Crossfade weights
@@ -227,7 +254,7 @@ export class CreativeCharScene {
       this.camera.lookAt(this.target);
     }
 
-    if (this.headBone && this.progress <= 0.40) {
+    if (this.headBone && this.progress >= 0.20 && this.progress <= 0.45) {
       this.headBone.rotation.y = THREE.MathUtils.lerp(this.headBone.rotation.y, this.mouseTarget * 0.22, 0.08);
     }
 

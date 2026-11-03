@@ -18,6 +18,7 @@ export class WhyDeskScene {
     this.character = null;
     this.headBone = null;
     this.chair = null;
+    this.chairGroup = null;
     this.desk = null;
     this.standingShadow = null;
     this.typingAction = null;
@@ -195,6 +196,7 @@ export class WhyDeskScene {
       this.chair.scale.setScalar(0.0427);
       chairGroup.add(this.chair);
       this.group.add(chairGroup);
+      this.chairGroup = chairGroup;
 
       // 5. Standing Contact Shadow (appears when character steps out to standing pose)
       const shadowCanvas = document.createElement('canvas');
@@ -270,27 +272,90 @@ export class WhyDeskScene {
     this.scrubProgress = Math.max(0, Math.min(1, progress || 0));
     if (!this.charGroup || !this.typingAction || !this.stretchAction) return;
 
-    // Smooth hermite ease: s in [0, 1]
     const p = this.scrubProgress;
-    // Transition from seated typing to standing stretch in first 40% of scroll
-    const ease = Math.min(1, Math.max(0, p / 0.40));
-    const smoothEase = ease * ease * (3 - 2 * ease);
 
-    // Crossfade weights between typing (seated) and arm stretch (standing)
-    this.typingAction.setEffectiveWeight(1 - smoothEase);
-    this.stretchAction.setEffectiveWeight(smoothEase);
-    if (this.jumpAction) this.jumpAction.setEffectiveWeight(0);
+    if (p <= 0.38) {
+      // Phase 1 (0 -> 0.38): Seated typing -> chair rolls back, character stands up in front of desk
+      const t = p / 0.38;
+      const ease = t * t * (3 - 2 * t);
 
-    // Smoothly step out in front of the desk into confident standing stretch pose
-    this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.26, smoothEase);
-    this.charGroup.position.y = 0;
-    this.charGroup.position.z = THREE.MathUtils.lerp(0, 0.42, smoothEase);
-    this.charGroup.rotation.set(0, THREE.MathUtils.lerp(0, 0.35, smoothEase), 0);
+      // Chair rolls backward and swivels slightly as character rises
+      if (this.chairGroup) {
+        this.chairGroup.position.z = THREE.MathUtils.lerp(-0.065, -0.20, ease);
+        this.chairGroup.rotation.y = THREE.MathUtils.lerp(0, -0.08, ease);
+      }
 
-    if (this.standingShadow) {
-      this.standingShadow.material.opacity = THREE.MathUtils.lerp(0, 0.52, smoothEase);
-      this.standingShadow.position.x = this.charGroup.position.x;
-      this.standingShadow.position.z = this.charGroup.position.z;
+      this.typingAction.setEffectiveWeight(1 - ease);
+      this.stretchAction.setEffectiveWeight(ease);
+      if (this.jumpAction) this.jumpAction.setEffectiveWeight(0);
+
+      this.charGroup.position.x = THREE.MathUtils.lerp(0, -0.26, ease);
+      this.charGroup.position.y = 0;
+      this.charGroup.position.z = THREE.MathUtils.lerp(0, 0.42, ease);
+      this.charGroup.rotation.set(0, THREE.MathUtils.lerp(0, 0.35, ease), 0);
+
+      if (this.standingShadow) {
+        this.standingShadow.material.opacity = THREE.MathUtils.lerp(0, 0.52, ease);
+        this.standingShadow.position.x = this.charGroup.position.x;
+        this.standingShadow.position.z = this.charGroup.position.z;
+        this.standingShadow.scale.set(1, 1, 1);
+      }
+    } else if (p <= 0.62) {
+      // Phase 2 (0.38 -> 0.62): Confident standing stretch pose in front of desk
+      if (this.chairGroup) {
+        this.chairGroup.position.z = -0.20;
+        this.chairGroup.rotation.y = -0.08;
+      }
+
+      this.typingAction.setEffectiveWeight(0);
+      this.stretchAction.setEffectiveWeight(1);
+      if (this.jumpAction) this.jumpAction.setEffectiveWeight(0);
+
+      this.charGroup.position.set(-0.26, 0, 0.42);
+      this.charGroup.rotation.set(0, 0.35, 0);
+
+      if (this.standingShadow) {
+        this.standingShadow.material.opacity = 0.52;
+        this.standingShadow.position.set(-0.26, 0.003, 0.42);
+        this.standingShadow.scale.set(1, 1, 1);
+      }
+    } else {
+      // Phase 3 (0.62 -> 1.0): Crouches and JUMPS forward into the next page transition!
+      if (this.chairGroup) {
+        this.chairGroup.position.z = -0.20;
+        this.chairGroup.rotation.y = -0.08;
+      }
+
+      const u = (p - 0.62) / 0.38;
+      const ease = u * u * (3 - 2 * u);
+
+      if (this.jumpAction) {
+        const fade = Math.min(1, u * 2.8);
+        this.typingAction.setEffectiveWeight(0);
+        this.stretchAction.setEffectiveWeight(1 - fade);
+        this.jumpAction.setEffectiveWeight(fade);
+
+        // Scrub jump clip: crouch takeoff (0s) -> push-off (0.42s) -> airborne leap (1.15s)
+        this.jumpAction.time = ease * 1.15;
+      }
+
+      // Parabolic jump arc: rises smoothly up to +0.28m peak, stays comfortably framed
+      const jumpArcY = Math.sin(Math.PI * Math.min(1, u * 1.25)) * 0.28;
+
+      this.charGroup.position.x = THREE.MathUtils.lerp(-0.26, -0.10, ease);
+      this.charGroup.position.y = jumpArcY;
+      this.charGroup.position.z = THREE.MathUtils.lerp(0.42, 0.85, ease);
+
+      this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.22, ease);
+      this.charGroup.rotation.y = THREE.MathUtils.lerp(0.35, 0.12, ease);
+      this.charGroup.rotation.z = 0;
+
+      if (this.standingShadow) {
+        this.standingShadow.material.opacity = Math.max(0, (1 - u * 2.2) * 0.52);
+        this.standingShadow.scale.setScalar(THREE.MathUtils.lerp(1, 0.4, u));
+        this.standingShadow.position.x = this.charGroup.position.x;
+        this.standingShadow.position.z = this.charGroup.position.z * 0.7;
+      }
     }
   }
 

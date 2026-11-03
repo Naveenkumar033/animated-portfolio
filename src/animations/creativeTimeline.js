@@ -9,17 +9,16 @@ export function initCreativeTimeline(scene) {
   const canvas = document.getElementById('creativeCharCanvas');
   if (!introSec) return;
 
-  // Reveal 3D character smoothly as the section locks into place at top: 0,
-  // preventing any cut-off character rendering while entering from below
+  // Reveal 3D character smoothly as the section slides over the desk,
+  // creating a continuous jump transition from the Why desk scene
   ScrollTrigger.create({
     trigger: introSec,
-    start: 'top bottom',
+    start: 'top 50%',
     end: 'top top',
     scrub: true,
     onUpdate: (self) => {
       if (canvas) {
-        const alpha = self.progress > 0.85 ? 1 : Math.max(0, (self.progress - 0.6) / 0.25);
-        canvas.style.opacity = alpha.toFixed(3);
+        canvas.style.opacity = self.progress.toFixed(3);
       }
     },
     onEnterBack: () => {
@@ -44,11 +43,11 @@ export function initCreativeTimeline(scene) {
         scene.updateScrub(p);
       }
       if (wedge) {
-        // Olive green wedge banner slides up from translateY(105%) to translateY(0%) during dive phase (p: 0.40 -> 1.0)
-        if (p <= 0.40) {
+        // Olive green wedge banner slides up from translateY(105%) to translateY(0%) during dive phase (p: 0.45 -> 1.0)
+        if (p <= 0.45) {
           wedge.style.transform = 'translateY(105%)';
         } else {
-          const t = Math.min(1, Math.max(0, (p - 0.40) / 0.60));
+          const t = Math.min(1, Math.max(0, (p - 0.45) / 0.55));
           const ease = t * t * (3 - 2 * t);
           const y = (1 - ease) * 105;
           wedge.style.transform = `translateY(${y.toFixed(2)}%)`;
