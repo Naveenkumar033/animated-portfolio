@@ -173,19 +173,12 @@ export class CreativeCharScene {
 
   updateEntrance(progress) {
     if (!this.isReady || !this.charGroup) return;
-    const w = Math.min(1, Math.max(0, progress || 0));
-    const ease = w * w * (3 - 2 * w);
-
-    // As section slides up, character descends smoothly from jump into solid floor standing
-    this.charGroup.position.x = 0;
-    this.charGroup.position.y = (1 - ease) * 0.22;
-    this.charGroup.position.z = (1 - ease) * 0.18;
-    this.charGroup.rotation.set((1 - ease) * 0.15, 0, 0);
-
+    this.charGroup.position.set(0, 0, 0);
+    this.charGroup.rotation.set(0, 0, 0);
     if (this.groundShadow) {
-      this.groundShadow.material.opacity = THREE.MathUtils.lerp(0.35, 0.55, ease);
-      this.groundShadow.position.set(0, 0.002, this.charGroup.position.z);
-      this.groundShadow.scale.setScalar(THREE.MathUtils.lerp(0.7, 1, ease));
+      this.groundShadow.material.opacity = 0.55;
+      this.groundShadow.position.set(0, 0.002, 0);
+      this.groundShadow.scale.set(1, 1, 1);
     }
   }
 

@@ -20,13 +20,8 @@ export class WhyDeskScene {
     this.chair = null;
     this.chairGroup = null;
     this.desk = null;
-    this.standingShadow = null;
     this.typingAction = null;
-    this.stretchAction = null;
-    this.jumpAction = null;
     this.scrubProgress = 0;
-    this.smoothStand = 0;
-    this.smoothJump = 0;
 
     this.target = new THREE.Vector3(-0.14, 0.6, 0.4);
     this.fromDir = new THREE.Vector3(0.683, 0.36, 0.636).normalize();
@@ -152,13 +147,11 @@ export class WhyDeskScene {
 
   async loadAssets() {
     try {
-      const [deskGltf, chairGltf, sagarGltf, typingGltf, stretchGltf, jumpGltf] = await Promise.all([
+      const [deskGltf, chairGltf, sagarGltf, typingGltf] = await Promise.all([
         loadGLTF('/models/desk2.glb'),
         loadGLTF('/models/chair.glb'),
         loadGLTF('/models/sagar.glb'),
-        loadGLTF('/models/anim/typing.glb'),
-        loadGLTF('/models/anim/armStretch.glb'),
-        loadGLTF('/models/anim/jumping.glb')
+        loadGLTF('/models/anim/typing.glb')
       ]);
 
       // 1. Soft Ground Shadow under desk & chair
@@ -200,33 +193,7 @@ export class WhyDeskScene {
       this.group.add(chairGroup);
       this.chairGroup = chairGroup;
 
-      // 5. Standing Contact Shadow (appears when character steps out to standing pose)
-      const shadowCanvas = document.createElement('canvas');
-      shadowCanvas.width = shadowCanvas.height = 128;
-      const ctx = shadowCanvas.getContext('2d');
-      if (ctx) {
-        const grad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        grad.addColorStop(0, 'rgba(0,0,0,0.48)');
-        grad.addColorStop(0.5, 'rgba(0,0,0,0.18)');
-        grad.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, 128, 128);
-      }
-      const shadowTex = new THREE.CanvasTexture(shadowCanvas);
-      const shadowGeo = new THREE.PlaneGeometry(0.85, 0.85);
-      const shadowMat = new THREE.MeshBasicMaterial({
-        map: shadowTex,
-        transparent: true,
-        opacity: 0,
-        depthWrite: false,
-        toneMapped: false
-      });
-      this.standingShadow = new THREE.Mesh(shadowGeo, shadowMat);
-      this.standingShadow.rotation.x = -Math.PI / 2;
-      this.standingShadow.position.set(-0.26, 0.003, 0.42);
-      this.group.add(this.standingShadow);
-
-      // 6. Developer Character
+      // 5. Developer Character
       // Exact reference scale: SAGAR_MODEL_SCALE = 100
       this.charGroup = new THREE.Group();
       this.charGroup.scale.setScalar(100);
@@ -239,31 +206,23 @@ export class WhyDeskScene {
       // 7. Animations Mixer
       this.mixer = new THREE.AnimationMixer(this.character);
 
-      // (a) Typing loop
+      // (a) Typing loop — cartoon character remains sitting and typing continuously
       let typingClip = sanitizeClip(typingGltf.animations[0]);
       typingClip = THREE.AnimationUtils.subclip(typingClip, 'typing', Math.round(30 * 1.3), Math.round(30 * 15.9), 30);
       this.typingAction = this.mixer.clipAction(typingClip);
       this.typingAction.setLoop(THREE.LoopRepeat, Infinity);
       this.typingAction.play();
+      this.typingAction.setEffectiveWeight(1);
 
-      // (b) Arm Stretch standing pose
-      let stretchClip = keptInPlace(stretchGltf.animations[0], 'stretch');
-      this.stretchAction = this.mixer.clipAction(stretchClip);
-      this.stretchAction.setLoop(THREE.LoopRepeat, Infinity);
-      this.stretchAction.play();
-      this.stretchAction.setEffectiveWeight(0);
-
-      // (c) Jump forward transition
-      let jumpClip = keptInPlace(jumpGltf.animations[0], 'jump');
-      this.jumpAction = this.mixer.clipAction(jumpClip);
-      this.jumpAction.setLoop(THREE.LoopOnce, 1);
-      this.jumpAction.clampWhenFinished = true;
-      this.jumpAction.play();
-      this.jumpAction.paused = true;
-      this.jumpAction.setEffectiveWeight(0);
-
-      // Apply initial scrub state
-      this.updateScrub(this.scrubProgress || 0);
+      // Character remains seated at the desk
+      if (this.charGroup) {
+        this.charGroup.position.set(0, 0, 0);
+        this.charGroup.rotation.set(0, 0, 0);
+      }
+      if (this.chairGroup) {
+        this.chairGroup.position.set(0.02, 0.724, -0.065);
+        this.chairGroup.rotation.set(0, 0, 0);
+      }
 
     } catch (err) {
       console.error('Error loading WhyDesk assets:', err);
@@ -283,64 +242,15 @@ export class WhyDeskScene {
       this.mixer.update(delta);
     }
 
-    const p = this.scrubProgress;
-
-    // 1. Standing progression: Developer rises from desk in the first 28% of scroll
-    const targetStand = Math.min(1, Math.max(0, p / 0.28));
-    this.smoothStand += (targetStand - this.smoothStand) * (1 - Math.exp(-9 * delta));
-    const standEase = this.smoothStand * this.smoothStand * (3 - 2 * this.smoothStand);
-
-    // 2. Jump progression: Developer leaps forward as section transitions to Creative Developer (p > 0.78)
-    const targetJump = p >= 0.78 ? Math.min(1, (p - 0.78) / 0.22) : 0;
-    this.smoothJump += (targetJump - this.smoothJump) * (1 - Math.exp(-7 * delta));
-    const jumpEase = this.smoothJump * this.smoothJump * (3 - 2 * this.smoothJump);
-
-    // Chair rolls backward and swivels as developer stands up
-    if (this.chairGroup) {
-      this.chairGroup.position.z = THREE.MathUtils.lerp(-0.065, -0.20, standEase);
-      this.chairGroup.rotation.y = THREE.MathUtils.lerp(0, -0.08, standEase);
-    }
-
-    // Weight blending between Typing -> Standing Stretch -> Jump Leap
-    const typingWeight = (1 - standEase) * (1 - jumpEase);
-    const stretchWeight = standEase * (1 - jumpEase);
-    const jumpWeight = jumpEase;
-
-    if (this.typingAction) this.typingAction.setEffectiveWeight(typingWeight);
-    if (this.stretchAction) this.stretchAction.setEffectiveWeight(stretchWeight);
-    if (this.jumpAction) {
-      this.jumpAction.setEffectiveWeight(jumpWeight);
-      if (jumpWeight > 0.005) {
-        // Scrub through powerful takeoff spring (0.15s) to airborne forward leap (1.20s)
-        this.jumpAction.time = 0.15 + jumpEase * 1.05;
-      }
-    }
-
-    // Character position and rotation in scene
+    // Character always stays seated at the desk typing — does not stand when scrolling
     if (this.charGroup) {
-      // Base standing position beside the desk
-      const baseX = THREE.MathUtils.lerp(0, -0.26, standEase);
-      const baseZ = THREE.MathUtils.lerp(0, 0.38, standEase);
-      const baseRotY = THREE.MathUtils.lerp(0, 0.35, standEase);
-
-      // Smooth parabolic jump arc peaking at +0.30m
-      const arcY = Math.sin(Math.PI * jumpEase) * 0.30;
-
-      this.charGroup.position.x = THREE.MathUtils.lerp(baseX, -0.10, jumpEase);
-      this.charGroup.position.y = arcY;
-      this.charGroup.position.z = THREE.MathUtils.lerp(baseZ, 0.78, jumpEase);
-
-      this.charGroup.rotation.x = THREE.MathUtils.lerp(0, 0.20, jumpEase);
-      this.charGroup.rotation.y = THREE.MathUtils.lerp(baseRotY, 0.12, jumpEase);
-      this.charGroup.rotation.z = 0;
+      this.charGroup.position.set(0, 0, 0);
+      this.charGroup.rotation.set(0, 0, 0);
     }
 
-    // Ground shadow dynamics under standing character
-    if (this.standingShadow && this.charGroup) {
-      this.standingShadow.material.opacity = THREE.MathUtils.lerp(0, 0.52, standEase) * (1 - jumpEase * 1.2);
-      this.standingShadow.scale.setScalar(THREE.MathUtils.lerp(1, 0.45, jumpEase));
-      this.standingShadow.position.x = this.charGroup.position.x;
-      this.standingShadow.position.z = this.charGroup.position.z * (1 - jumpEase * 0.25);
+    if (this.chairGroup) {
+      this.chairGroup.position.set(0.02, 0.724, -0.065);
+      this.chairGroup.rotation.set(0, 0, 0);
     }
 
     if (this.camera) {
