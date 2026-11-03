@@ -2,6 +2,11 @@ import { playSound } from '../utils/audio.js';
 import { getLenis } from './scrollAnimations.js';
 import { PROJECTS, TESTIMONIALS } from '../data/portfolioData.js';
 
+let globalOpenModal = null;
+export function openProjectModal(index) {
+  if (globalOpenModal) globalOpenModal(index);
+}
+
 export function initProjectModal() {
   const modal = document.getElementById('projectModal');
   const closeBtn = document.getElementById('closeProjectModalBtn');
@@ -33,6 +38,7 @@ export function initProjectModal() {
     if (lenis) lenis.stop();
     document.body.style.overflow = 'hidden';
   }
+  globalOpenModal = openModal;
 
   function closeModal() {
     playSound('click');
@@ -147,5 +153,135 @@ export function initMenuDrawer() {
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeMenu();
   });
+}
+
+export function initShowcaseReel() {
+  const container = document.getElementById('portfolioShowcaseWrap');
+  if (!container || container.dataset.showcaseInit === 'true') return;
+  container.dataset.showcaseInit = 'true';
+
+  let currentIdx = 0;
+  let autoTimer = null;
+  let isHovered = false;
+  let pendingTimeout = null;
+
+  const imgEl = document.getElementById('showcaseImage');
+  const catEl = document.getElementById('showcaseCategory');
+  const titleEl = document.getElementById('showcaseTitle');
+  const taglineEl = document.getElementById('showcaseTagline');
+  const archEl = document.getElementById('showcaseArch');
+  const tagsEl = document.getElementById('showcaseTags');
+  const urlEl = document.getElementById('showcaseUrlText');
+  const counterEl = document.getElementById('showcaseCounter');
+  const progressFill = document.getElementById('showcaseProgressFill');
+  const inspectBtn = document.getElementById('showcaseInspectBtn');
+  const tabBtns = Array.from(document.querySelectorAll('[data-showcase-idx]'));
+
+  function setProject(idx, userInitiated = false) {
+    if (userInitiated) playSound('click');
+    currentIdx = (idx + PROJECTS.length) % PROJECTS.length;
+    const p = PROJECTS[currentIdx];
+    if (!p) return;
+
+    tabBtns.forEach((btn, i) => {
+      const active = i === currentIdx;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    if (counterEl) {
+      counterEl.textContent = `0${currentIdx + 1} / 0${PROJECTS.length}`;
+    }
+
+    if (inspectBtn) {
+      inspectBtn.setAttribute('data-project-idx', currentIdx);
+    }
+
+    if (pendingTimeout) {
+      clearTimeout(pendingTimeout);
+      pendingTimeout = null;
+    }
+
+    if (imgEl) {
+      imgEl.style.opacity = '0';
+      pendingTimeout = setTimeout(() => {
+        imgEl.src = p.image;
+        imgEl.alt = `${p.title} project preview`;
+        if (catEl) catEl.textContent = p.category;
+        if (titleEl) titleEl.textContent = p.title;
+        if (taglineEl) taglineEl.textContent = p.tagline;
+        if (urlEl) urlEl.textContent = `codeofnaveen.dev/systems/${p.id}`;
+        if (archEl) {
+          archEl.innerHTML = `<span class="formula-chip" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#fff; font-size:0.75rem;">${p.arch}</span>`;
+        }
+        if (tagsEl) {
+          tagsEl.innerHTML = p.tags.slice(0, 4).map((t) => `<span>${t}</span>`).join('');
+        }
+        imgEl.style.opacity = '1';
+        pendingTimeout = null;
+      }, 150);
+    }
+
+    resetProgressBar();
+  }
+
+  function resetProgressBar() {
+    if (progressFill) {
+      progressFill.style.transition = 'none';
+      progressFill.style.transform = 'scaleX(0)';
+      setTimeout(() => {
+        if (!isHovered) {
+          progressFill.style.transition = 'transform 6s linear';
+          progressFill.style.transform = 'scaleX(1)';
+        }
+      }, 50);
+    }
+  }
+
+  function startAutoCycle() {
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      if (!isHovered) {
+        setProject(currentIdx + 1);
+      }
+    }, 6000);
+  }
+
+  container.addEventListener('mouseenter', () => {
+    isHovered = true;
+    if (progressFill) {
+      progressFill.style.transition = 'none';
+    }
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isHovered = false;
+    resetProgressBar();
+  });
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.getAttribute('data-showcase-idx'), 10);
+      setProject(idx, true);
+      startAutoCycle();
+    });
+  });
+
+  document.getElementById('showcasePrevBtn')?.addEventListener('click', () => {
+    setProject(currentIdx - 1, true);
+    startAutoCycle();
+  });
+
+  document.getElementById('showcaseNextBtn')?.addEventListener('click', () => {
+    setProject(currentIdx + 1, true);
+    startAutoCycle();
+  });
+
+  inspectBtn?.addEventListener('click', () => {
+    openProjectModal(currentIdx);
+  });
+
+  setProject(0);
+  startAutoCycle();
 }
 

@@ -528,9 +528,118 @@
         </div>
       </div>
 
-      <!-- Services Showreel Film -->
-      <div style="margin-top: 3rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); aspect-ratio: 16/9; max-width: 960px; margin-inline: auto; background: #0f0f0f; box-shadow: 0 20px 40px rgba(0,0,0,0.06);">
-        <video src="/video/work-reel-cut.mp4" poster="/video/work-reel-sm.jpg" muted loop playsinline autoplay style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+      <!-- =====================================================================
+           PORTFOLIO WORK SHOWCASE STAGE (NAVEEN KUMAR E — REAL PRODUCTION WORK)
+           ===================================================================== -->
+      <div class="portfolio-showcase-wrap" id="portfolioShowcaseWrap" style="margin-top: 4.5rem;">
+        <!-- Top Bar: Header & Interactive Project Tabs -->
+        <div class="portfolio-showcase-header">
+          <div class="portfolio-showcase-brand">
+            <svg class="portfolio-showcase-mark" width="34" height="34" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="9" fill="#0f0f0f" />
+              <path d="M12 28V12L28 28V12" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <div class="mono" style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);">
+                Naveen Kumar E · Engineering Systems
+              </div>
+              <div style="font-weight:700; font-size:1.15rem; letter-spacing:-0.02em;">
+                Featured Work &amp; Architecture Showcase
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Selector Tabs -->
+          <div class="portfolio-showcase-tabs" role="tablist">
+            <button type="button" class="portfolio-tab-btn active" data-showcase-idx="0" role="tab" aria-selected="true">
+              <span class="mono">01</span> AgroEquipAI
+            </button>
+            <button type="button" class="portfolio-tab-btn" data-showcase-idx="1" role="tab" aria-selected="false">
+              <span class="mono">02</span> Multi-Tenant CRM
+            </button>
+            <button type="button" class="portfolio-tab-btn" data-showcase-idx="2" role="tab" aria-selected="false">
+              <span class="mono">03</span> Support Ticket AI
+            </button>
+          </div>
+        </div>
+
+        <!-- Sleek Laptop / Modern Device Mockup Stage -->
+        <div class="portfolio-stage-frame">
+          <!-- Window Top Bar -->
+          <div class="portfolio-window-bar">
+            <div class="window-dots" aria-hidden="true">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="portfolio-url-bar" id="showcaseUrlBar">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <span id="showcaseUrlText">codeofnaveen.dev/systems/agroequip-ai</span>
+            </div>
+            <div class="portfolio-live-badge">
+              <span class="pulse-dot"></span>
+              <span class="mono" style="font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;">LIVE PRODUCTION SYSTEM</span>
+            </div>
+          </div>
+
+          <!-- Screen Canvas / Image Display -->
+          <div class="portfolio-screen-view">
+            <img id="showcaseImage" src="/assets/images/project-agroequip.jpg" alt="AgroEquipAI project showcase" class="portfolio-screen-img" />
+
+            <!-- Dynamic Info Overlay Card (Glassmorphism & Crisp Engineering Detail) -->
+            <div class="portfolio-hud-overlay">
+              <div class="portfolio-hud-left">
+                <div class="mono" id="showcaseCategory" style="font-size:0.75rem; letter-spacing:0.1em; color:#d97706; text-transform:uppercase; margin-bottom:0.25rem; font-weight:700;">
+                  AI-ASSISTED SMART AGRICULTURE
+                </div>
+                <h3 id="showcaseTitle" style="font-size:clamp(1.25rem, 2vw, 1.75rem); font-weight:700; color:#fff; margin-bottom:0.35rem; line-height:1.2;">
+                  AgroEquipAI
+                </h3>
+                <p id="showcaseTagline" style="font-size:0.925rem; color:rgba(255, 255, 255, 0.75); line-height:1.45; max-width:48ch; margin-bottom:0.75rem;">
+                  Agricultural equipment, priced from the real address.
+                </p>
+                <div class="portfolio-formula-wrap" id="showcaseArch">
+                  <span class="formula-chip" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#fff; font-size:0.75rem;">
+                    Dual-Sided Marketplace = Farmer Rental Engine + Fleet Owner Management
+                  </span>
+                </div>
+              </div>
+
+              <div class="portfolio-hud-right">
+                <div class="portfolio-tech-chips" id="showcaseTags">
+                  <span>React Native</span>
+                  <span>Expo</span>
+                  <span>Node.js</span>
+                  <span>MongoDB</span>
+                </div>
+                <button type="button" class="portfolio-inspect-btn link-draw mono" id="showcaseInspectBtn" data-project-idx="0">
+                  Inspect System Architecture →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer Bar with Controls & Progress Track -->
+          <div class="portfolio-stage-footer">
+            <div class="portfolio-controls-left">
+              <button type="button" class="sound-btn" id="showcasePrevBtn" aria-label="Previous project" style="padding:0.4rem 0.85rem;">←</button>
+              <button type="button" class="sound-btn" id="showcaseNextBtn" aria-label="Next project" style="padding:0.4rem 0.85rem;">→</button>
+              <span class="mono" id="showcaseCounter" style="font-size:0.85rem; color:rgba(255,255,255,0.7); margin-left:0.5rem;">01 / 03</span>
+            </div>
+
+            <!-- Auto-Play Progress Track Bar -->
+            <div class="portfolio-progress-bar">
+              <div class="portfolio-progress-fill" id="showcaseProgressFill"></div>
+            </div>
+
+            <div class="portfolio-controls-right mono" style="font-size:0.75rem; color:rgba(255,255,255,0.5);">
+              <span>Autoplay active · Hover to pause</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

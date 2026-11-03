@@ -7,7 +7,7 @@ import { initSmoothScroll, initSectionScrollTriggers } from '../animations/scrol
 import { initRollingLetters } from '../animations/textAnimations.js';
 import { initHeroTimeline } from '../animations/characterTimeline.js';
 import { initPageTurn } from '../animations/pageTurnController.js';
-import { initMenuDrawer, initReviewCarousel, initProjectModal } from '../animations/transitions.js';
+import { initMenuDrawer, initReviewCarousel, initProjectModal, initShowcaseReel } from '../animations/transitions.js';
 import { SkyScene } from '../scenes/SkyScene.js';
 import { HeroStageScene } from '../scenes/HeroStageScene.js';
 import { WhyDeskScene } from '../scenes/WhyDeskScene.js';
@@ -29,6 +29,7 @@ export function initializeApp() {
   initMenuDrawer();
   initReviewCarousel();
   initProjectModal();
+  initShowcaseReel();
 
   // 2. 3D Scenes Initialization
   const skyScene = new SkyScene('heroSkyCanvas');
