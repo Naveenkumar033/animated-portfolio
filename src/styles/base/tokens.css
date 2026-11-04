@@ -1,0 +1,13 @@
+/* Design tokens: colours, type, easing. .t-cream / .t-green switch a section or element palette. */
+:root{
+  --ground:#e9efe3;--ground-2:#dfe8d5;--panel:#ffffff;--panel-2:#f4f8ef;
+  --line:rgba(31,70,35,.14);--line-strong:rgba(31,70,35,.3);
+  --ink:#1f4423;--muted:#4c6648;--faint:#7c9077;
+  --sage:#6f9e4c;--moss:#8cb86a;--leafy:#8db86b;--stage:#b6cba5;--forest:#24502a;
+  --cream:#24502a;--on-cream:#f4f8ef;--gold:#e3a21a;--glass:rgba(255,255,255,.5);--halo:rgba(140,184,106,.32);--tint:rgba(140,184,106,.3);
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;--f-body:"Archivo",system-ui,sans-serif;--f-hand:"Caveat","Segoe Print",cursive;--f-mono:"Archivo",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);--rail:0px;
+  color-scheme:light;
+}
+.t-cream{--ground:#e9efe3;--ground-2:#dfe8d5;--panel:#ffffff;--panel-2:#f4f8ef;--line:rgba(31,70,35,.14);--line-strong:rgba(31,70,35,.3);--ink:#1f4423;--muted:#4c6648;--faint:#7c9077;--sage:#6f9e4c;--moss:#8cb86a;--cream:#24502a;--on-cream:#f4f8ef;--gold:#d6a23a;--glass:rgba(255,255,255,.5);--halo:rgba(140,184,106,.32)}
+.t-green{--ground:#1d4424;--ground-2:#23502b;--panel:#265630;--panel-2:#2c5f36;--line:rgba(233,239,227,.15);--line-strong:rgba(233,239,227,.32);--ink:#eef3e8;--muted:#bfd1b6;--faint:#8fa889;--sage:#b3d78f;--moss:#86b562;--cream:#e9efe3;--on-cream:#1f4423;--gold:#e7c680;--glass:rgba(16,40,22,.5);--halo:rgba(150,200,110,.28)}

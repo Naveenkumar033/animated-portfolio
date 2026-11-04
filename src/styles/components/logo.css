@@ -1,0 +1,5 @@
+/* Logo parts (emblem, wordmark, light wordmark for dark backgrounds). */
+:root{--word-light:url('../../assets/logo/logo-word-light.webp')}
+.logo-em{display:block;aspect-ratio:640/381;background:url('../../assets/logo/logo-emblem.webp') center/contain no-repeat}
+.logo-word{display:block;aspect-ratio:1100/231;background:url('../../assets/logo/logo-word.webp') center/contain no-repeat}
+.logo-word.light{background-image:var(--word-light)}

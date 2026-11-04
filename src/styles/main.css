@@ -1,0 +1,22 @@
+/* Global stylesheet. Import order is the cascade order: tokens, base, components, sections, then breakpoints. */
+@import './base/tokens.css';
+@import './base/global.css';
+@import './components/logo.css';
+@import './components/loader.css';
+@import './components/nav.css';
+@import './components/dock.css';
+@import './components/menu.css';
+@import './components/drawer.css';
+@import './components/lightbox.css';
+@import './sections/hero.css';
+@import './sections/insider.css';
+@import './sections/product-story.css';
+@import './sections/benefits.css';
+@import './sections/pipeline.css';
+@import './sections/lab.css';
+@import './sections/science.css';
+@import './sections/finder.css';
+@import './sections/shop.css';
+@import './sections/contact.css';
+@import './sections/footer.css';
+@import './responsive.css';

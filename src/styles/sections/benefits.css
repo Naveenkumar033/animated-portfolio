@@ -1,0 +1,14 @@
+/* ---------- benefits ---------- */
+.ben{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,60px);background:#fff;border-radius:28px;padding:clamp(14px,1.6vw,22px);box-shadow:0 40px 80px -50px rgba(31,70,35,.35)}
+.ben-img{position:relative;border-radius:20px;overflow:hidden;background:var(--ground-2);min-height:420px}
+.ben-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ben-copy{padding:clamp(20px,3vw,44px) clamp(10px,2vw,30px) clamp(20px,3vw,40px) 0}
+.ben-copy .h2{font-size:clamp(2.6rem,5vw,4.4rem)}
+.tbl{margin-top:30px;width:100%;border-collapse:separate;border-spacing:0 6px;font-size:15px}
+.tbl th{font-weight:700;font-stretch:85%;font-size:13px;text-align:left;color:var(--sage);padding:0 10px 10px;border-bottom:2px solid var(--line)}
+.tbl th:nth-child(n+2),.tbl td:nth-child(n+2){text-align:center;width:120px}
+.tbl td{padding:12px 10px;border-bottom:1px solid var(--line);font-weight:600}
+.tbl .ok{display:inline-grid;place-items:center;width:64px;height:32px;border-radius:9px;background:var(--ground);color:var(--forest);font-weight:800}
+.tbl .no{color:var(--faint);font-weight:700}
+.tbl-note{margin-top:14px;font-size:12.5px;color:var(--faint)}
+.brandmark{font-family:var(--f-display);font-stretch:70%;font-weight:850;font-size:18px;color:var(--forest);text-transform:none}

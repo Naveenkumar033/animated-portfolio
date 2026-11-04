@@ -1,0 +1,25 @@
+/* ---------- insider ---------- */
+.insider{text-align:left}
+.in-h{text-align:center;font-size:clamp(3rem,7vw,6.4rem);line-height:.9;color:var(--forest)}
+.in-h .lt{display:block;color:var(--leafy)}
+.in-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px);align-items:center;margin-top:clamp(40px,6vw,80px)}
+.in-cards{position:relative;height:clamp(420px,46vw,600px)}
+.in-card{position:absolute;width:52%;aspect-ratio:3/4;border-radius:16px;background:#fff;padding:9px;box-shadow:0 30px 60px -28px rgba(31,70,35,.45);will-change:transform}
+.in-card>div{width:100%;height:100%;border-radius:10px;overflow:hidden;background:var(--ground-2)}
+.in-card img{width:100%;height:100%;object-fit:cover}
+.in-card:nth-child(1){left:0;top:12%;transform:rotate(-8deg)}
+.in-card:nth-child(2){left:26%;top:4%;z-index:2;transform:rotate(4deg)}
+.in-card:nth-child(3){left:48%;top:18%;transform:rotate(-3deg)}
+.in-copy{position:relative;isolation:isolate;overflow:hidden;border-radius:30px;padding:clamp(30px,3.6vw,56px);border:1px solid rgba(255,255,255,.8);box-shadow:0 40px 80px -48px rgba(31,70,35,.45);background:#f3f5ee}
+.in-copy::before{content:"";position:absolute;inset:-8%;z-index:-2;background:url('../../assets/images/botanical-background.jpg') 78% 50%/cover no-repeat;animation:drift 22s ease-in-out infinite alternate;will-change:transform}
+.in-copy::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(248,250,243,.86) 0%,rgba(248,250,243,.6) 46%,rgba(248,250,243,.08) 78%,rgba(248,250,243,0) 100%)}
+@keyframes drift{from{transform:translate3d(-2%,1.5%,0) scale(1.02)}to{transform:translate3d(2.5%,-2%,0) scale(1.1)}}
+.in-copy .in-lead{max-width:22ch}
+.in-copy .in-body{max-width:40ch}
+.in-copy .in-row span{max-width:21ch;line-height:1.3}
+.in-lead{font-size:clamp(22px,2.3vw,30px);font-weight:700;font-stretch:80%;line-height:1.12;color:var(--forest)}
+.in-body{margin-top:18px;color:var(--muted);max-width:46ch}
+.in-row{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:28px;font-weight:600;font-size:14px;color:var(--muted)}
+.in-why{display:flex;justify-content:flex-end;margin-top:30px;padding-right:12%}
+.in-why .hand{font-size:28px;transform:rotate(-5deg);text-align:center}
+.in-why svg{display:block;margin:6px auto 0;width:40px;height:70px;fill:none;stroke:var(--forest);stroke-width:2;stroke-linecap:round}

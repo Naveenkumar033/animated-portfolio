@@ -1,0 +1,5 @@
+numpy>=1.26
+opencv-python>=4.9
+Pillow>=10.0
+# only for make-product-assets.py --sr (EDSR super-resolution):
+# opencv-contrib-python>=4.9

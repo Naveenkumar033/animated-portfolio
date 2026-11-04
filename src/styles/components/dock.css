@@ -1,0 +1,53 @@
+/* ---------- dock: just the symbol at rest; touch or hover unfolds the full bar ---------- */
+.dock{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;align-items:center;padding:7px;border-radius:40px;background:rgba(255,255,255,0);border:1px solid rgba(255,255,255,0);color:var(--forest);transition:background .5s,border-color .5s,box-shadow .5s,color .5s,padding .5s var(--ease)}
+.dock.open{background:rgba(255,255,255,.62);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-color:rgba(255,255,255,.85);box-shadow:0 24px 60px -30px rgba(31,70,35,.55),inset 0 1px 0 rgba(255,255,255,.9)}
+.dock.t-green{color:#e9efe3}
+.dock.t-green.open{background:rgba(16,42,24,.6);border-color:rgba(233,239,227,.16);box-shadow:0 24px 60px -30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08)}
+.dock-menu{position:relative;width:52px;height:52px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -14px rgba(31,70,35,.75);transition:transform .45s var(--ease),background .4s,color .4s}
+.dock-menu:hover{transform:scale(1.06)}
+.dock.t-green .dock-menu{background:#e9efe3;color:var(--forest)}
+.dm-ring{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);transform:rotate(-90deg);pointer-events:none}
+.dm-ring circle{fill:none;stroke-width:2;stroke-linecap:round}
+.dm-ring circle:first-child{stroke:currentColor;opacity:.16;stroke-dasharray:1.2 3.2}
+.dock-menu .dm-ring circle:first-child{stroke:var(--forest)}
+.dock.t-green .dock-menu .dm-ring circle:first-child{stroke:#e9efe3}
+.dm-ring circle+circle{stroke:var(--gold);stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--sp,0)*100);transition:stroke-dashoffset .2s linear}
+.dm-ic{display:grid;gap:5px;width:18px}
+.dm-ic i{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .45s var(--ease),width .3s}
+.dm-ic i:last-child{width:11px;justify-self:end}
+.dock.open .dm-ic i:last-child,.dock-menu:hover .dm-ic i:last-child{width:18px}
+.dock-menu[aria-expanded=true] .dm-ic i:first-child{transform:translateY(3.5px) rotate(45deg)}
+.dock-menu[aria-expanded=true] .dm-ic i:last-child{width:18px;transform:translateY(-3.5px) rotate(-45deg)}
+/* the name of the current section peeks out beside the symbol */
+.dock-cur{position:absolute;left:calc(100% + 12px);top:7px;height:52px;display:flex;align-items:center;pointer-events:none}
+.dock-cur span{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-weight:800;font-stretch:80%;font-size:13.5px;color:var(--forest);white-space:nowrap;opacity:0;transform:translateX(-10px);transition:opacity .35s,transform .5s var(--ease);box-shadow:0 10px 24px -16px rgba(31,70,35,.6)}
+.dock-cur span::before{content:attr(data-no);margin-right:8px;color:var(--gold)}
+.dock.peek:not(.open) .dock-cur span{opacity:1;transform:none}
+.dock.t-green .dock-cur span{background:rgba(16,42,24,.7);color:#e9efe3}
+/* the fold */
+.dock-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.dock.open .dock-more{grid-template-rows:1fr}
+.dock-more>div{min-height:0;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+.dock.settled .dock-more>div{overflow:visible}
+.dock-sep{width:22px;height:1px;background:currentColor;opacity:.2;margin:12px 0 8px}
+.dock-track{position:relative}
+.dock-ind{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;background:var(--forest);box-shadow:0 8px 18px -8px rgba(31,70,35,.7);transition:transform .65s cubic-bezier(.34,1.45,.64,1),background .4s;pointer-events:none}
+.dock.t-green .dock-ind{background:#e9efe3}
+.dock-list{position:relative;list-style:none;margin:0;padding:0 0 2px;display:flex;flex-direction:column;gap:2px}
+.dock-list li{opacity:0;transform:translateY(-10px) scale(.6);transition:opacity .3s,transform .45s var(--ease);transition-delay:calc((10 - var(--i))*18ms)}
+.dock.open .dock-list li{opacity:1;transform:none;transition-delay:calc(var(--i)*32ms + 90ms)}
+.dock-list a{position:relative;z-index:1;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transition:color .35s,background .3s}
+.dock-list a:hover{background:rgba(31,70,35,.08)}
+.dock.t-green .dock-list a:hover{background:rgba(255,255,255,.08)}
+.dock-list a.on{color:#fff}
+.dock.t-green .dock-list a.on{color:var(--forest)}
+.dock-list svg{width:19px;height:19px}
+.dock-list a b{position:absolute;left:calc(100% + 16px);top:50%;transform:translate(-8px,-50%) scale(.95);transform-origin:left center;padding:7px 14px 7px 12px;border-radius:999px;background:var(--forest);color:#fff;font-weight:700;font-stretch:82%;font-size:14px;line-height:1.2;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,transform .4s var(--ease);box-shadow:0 10px 24px -12px rgba(31,70,35,.6)}
+.dock-list a b::before{content:"";position:absolute;left:-4px;top:50%;width:9px;height:9px;margin-top:-4.5px;background:inherit;transform:rotate(45deg);border-radius:2px}
+.dock.t-green .dock-list a b{background:#e9efe3;color:var(--forest)}
+.dock-list a:hover b,.dock-list a:focus-visible b{opacity:1;transform:translate(0,-50%) scale(1)}
+/* on touch screens the labels show with the bar, since there is no hover */
+.dock.touch.settled .dock-list a b{opacity:1;transform:translate(0,-50%) scale(1);transition-delay:calc(var(--i)*25ms)}
+.dock.touch .dock-list a b{pointer-events:auto}
+@media (max-height:740px){.dock-list a,.dock-ind{width:34px;height:34px}.dock-list svg{width:17px;height:17px}}
+@media (max-height:560px){.dock-list a,.dock-ind{width:28px;height:28px}.dock-list svg{width:15px;height:15px}.dock-list{gap:0}}

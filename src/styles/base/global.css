@@ -1,0 +1,34 @@
+/* Reset, typography, layout helpers and pill buttons. */
+[hidden]{display:none!important}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-body);font-stretch:88%;font-weight:500;font-size:17px;line-height:1.45;overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;font-weight:800;font-stretch:70%;letter-spacing:-.015em;line-height:.95;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1320px;margin-inline:auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.page{position:relative;isolation:isolate;overflow:clip;background:var(--ground);color:var(--ink)}
+.band{padding-block:clamp(84px,11vw,150px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.eyebrow{font-family:var(--f-body);font-stretch:90%;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";width:64px;height:2px;border-radius:2px;background:currentColor;opacity:.5}
+.h2{font-size:clamp(2.8rem,6.2vw,5.6rem);line-height:.92}
+.h2 em,.h2 .lt{font-style:normal;color:var(--leafy)}
+.sub{color:var(--muted);max-width:52ch;font-size:1.1rem}
+.hand{font-family:var(--f-hand);font-weight:600;font-stretch:normal;color:var(--forest);line-height:1}
+.wl{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em;margin-bottom:-.06em}
+.wl>span{display:inline-block}
+/* pills: dot + label, like stickers */
+.pill{display:inline-flex;align-items:center;gap:2px;font-weight:700;font-stretch:80%;font-size:16px;color:var(--on-cream);transition:transform .35s var(--ease)}
+.pill i{width:32px;height:32px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-style:normal;font-size:15px;transition:transform .4s var(--ease)}
+.pill b{background:var(--cream);border-radius:999px;padding:6px 14px;font-weight:700;line-height:1.25}
+.pill:hover i{transform:rotate(45deg)}
+.pill:hover{transform:translateY(-1px)}
+.pill.light{color:var(--forest)}.pill.light i,.pill.light b{background:#fff}
+/* keep content clear of the left dock on desktop */
+@media (min-width:981px){.wrap{padding-left:max(24px,calc(112px - (100vw - 1320px)/2))}}

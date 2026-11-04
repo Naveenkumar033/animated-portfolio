@@ -1,0 +1,34 @@
+/* ---------- science ---------- */
+.science{background:var(--ground-2);border-block:1px solid var(--line)}
+.sci-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.mol{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:32px;background:radial-gradient(60% 60% at 50% 45%,rgba(169,193,139,.16),transparent 70%),var(--ground);border:1px solid var(--line);overflow:hidden}
+.mol canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+.mol-cap{position:absolute;left:22px;bottom:20px;right:22px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;pointer-events:none}
+.mol-cap b{font-family:var(--f-mono);font-weight:400;font-size:13px;color:var(--sage)}
+.mol-cap small{font-size:12px;color:var(--faint)}
+.mol-orbit{position:absolute;inset:12%;border:1px dashed var(--line);border-radius:50%;pointer-events:none;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.herbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.herbs button{padding:9px 16px;border-radius:999px;border:1px solid var(--line-strong);font-size:14px;transition:all .3s}
+.herbs button.on{background:var(--cream);color:var(--on-cream);border-color:var(--cream)}
+.herb-info{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.herb-info h3{font-size:clamp(2rem,3.4vw,2.8rem);line-height:1.05}
+.herb-info .latin{font-family:var(--f-display);font-style:italic;color:var(--sage);font-size:18px;margin-top:4px}
+.herb-info p{color:var(--muted);margin-top:14px;max-width:52ch}
+.herb-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.herb-facts div{padding:14px;border-radius:14px;background:var(--panel);border:1px solid var(--line);min-width:0}
+.herb-facts small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.herb-facts b{display:block;font-weight:500;font-size:15px;margin-top:4px;overflow-wrap:anywhere}
+/* science: the DNA helix from the photo frames the molecule viewer */
+.sci{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.sci-art{position:relative;aspect-ratio:1/1.02;max-width:640px;width:100%;justify-self:end}
+.sci-art .dna{position:absolute;right:-6%;bottom:-4%;width:100%;height:auto;-webkit-mask-image:linear-gradient(90deg,#000 74%,transparent 98%),linear-gradient(180deg,#000 76%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,#000 74%,transparent 98%),linear-gradient(180deg,#000 76%,transparent 98%);mask-composite:intersect;filter:drop-shadow(0 24px 30px rgba(46,70,24,.16));will-change:transform}
+.sci-ring{position:absolute;left:2%;top:6%;width:62%;aspect-ratio:1;border-radius:50%;border:2px solid #fff;box-shadow:0 0 40px rgba(255,255,255,.45),inset 0 0 40px rgba(255,255,255,.2);background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.55),rgba(255,255,255,.1) 70%);overflow:hidden;backdrop-filter:blur(3px)}
+.sci-ring::after{content:"";position:absolute;inset:-7%;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);transform:translate(4%,-3%)}
+.sci-ring canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+.sci-cap{position:absolute;left:8%;top:calc(6% + 62% + 10px);font-weight:700;font-stretch:85%;font-size:14px;color:var(--forest)}
+.sci-cap small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.sci-bg{background:linear-gradient(180deg,var(--ground),#f1f0cf 60%,var(--ground))}
+.herbs button{font-weight:700;font-stretch:85%;background:rgba(255,255,255,.5)}
+.herb-info h3{font-stretch:66%;text-transform:uppercase}
+.herb-info .latin{font-family:var(--f-hand);font-size:24px;font-style:normal}

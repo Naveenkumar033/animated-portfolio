@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dist-single/
+
+# local environment (copy .env.example to .env)
+.env
+.env.local
+.env.*.local
+
+# tooling and OS noise
+.vite/
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+__pycache__/

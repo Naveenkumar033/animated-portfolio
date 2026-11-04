@@ -1,0 +1,24 @@
+{
+  "name": "tranzlife-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TranzLife Biosciences marketing and shop website: 3D product scenes, pinned scroll story, molecule pipeline.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:single": "vite build --mode single",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "gsap": "3.12.5",
+    "lenis": "1.1.13",
+    "three": "0.128.0"
+  },
+  "devDependencies": {
+    "vite": "5.4.21",
+    "vite-plugin-singlefile": "2.3.0",
+    "vitest": "2.1.9"
+  }
+}

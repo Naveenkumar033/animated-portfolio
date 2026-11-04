@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TranzLife Biosciences</title>
+<meta name="description" content="TranzLife Biosciences: nature meets science. Plant-based gummies, a calming inhaler, soothing roll-ons and a liver tonic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Caveat:wght@500;600&display=swap">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#b6cba5">
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <span class="logo-em" role="img" aria-label="TranzLife Biosciences"></span>
+    <span class="logo-word" aria-hidden="true"></span>
+    <p class="loader-tag">Innovating life beyond limits</p>
+    <div class="loader-bar"><i id="loadBar"></i></div>
+  </div>
+  <div class="loader-pct" id="loadPct">GROWING 0%</div>
+</div>
+
+<nav class="dock" id="dock" aria-label="Sections">
+  <button class="dock-menu" id="dockMenu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg class="dm-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" pathLength="100"/><circle cx="20" cy="20" r="18.5" pathLength="100"/></svg><span class="dm-ic" aria-hidden="true"><i></i><i></i></span></button>
+  <div class="dock-cur" aria-hidden="true"><span id="dockCur" data-no="01">Home</span></div>
+  <div class="dock-more"><div>
+    <span class="dock-sep" aria-hidden="true"></span>
+    <div class="dock-track"><span class="dock-ind" id="dockInd" aria-hidden="true"></span><ol class="dock-list" id="dockList"></ol></div>
+  </div></div>
+</nav>
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><path d="M-60 700C200 520 520 560 620 700s-40 300-260 260S80 640 420 470s700-260 900-80 260 360 200 520"/></svg>
+    <span class="logo-em menu-mark"></span>
+  </div>
+  <div class="menu-in">
+    <div class="menu-top"><a class="brand" href="#home"><span class="logo-em" aria-hidden="true"></span><span class="logo-word" role="img" aria-label="TranzLife Biosciences"></span></a><button class="menu-x" id="menuX" type="button">Close <i aria-hidden="true">×</i></button></div>
+    <ol class="menu-list" id="menuList"></ol>
+    <aside class="menu-side">
+      <div class="mf">
+        <div class="mf-img" id="mfImg"></div>
+        <div class="mf-row"><div><p class="k" id="mfNo">Featured product</p><h3 id="mfName">Calm Inhaler</h3></div><button class="add pill" id="mfAdd" data-id="inhaler"><i aria-hidden="true">+</i>Add to bag</button></div>
+      </div>
+      <div class="menu-note"><p class="hand">Innovating life<br>beyond limits</p><a href="#contact" class="menu-contact">Say hello →</a></div>
+    </aside>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#home" aria-label="TranzLife Biosciences home"><span class="logo-em" aria-hidden="true"></span><span class="logo-word" aria-hidden="true"></span></a>
+  <nav class="nav-pills" aria-label="Main"><a href="#products" data-sec="products">Products</a><a href="#benefits" data-sec="benefits">Benefits</a><a href="#process" data-sec="process">Process</a><a href="#science" data-sec="science">Science</a></nav>
+  <div class="nav-act">
+    <button class="bag" id="bagBtn" aria-label="Open bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><em id="bagCount">0</em></button>
+    <a class="pill" href="#shop"><i aria-hidden="true">↗</i><b>Shop all</b></a>
+  </div>
+</header>
+
+<main>
+<section class="page stage" id="home" data-theme="cream">
+  <div class="st-arc" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="49.2" pathLength="100"/></svg></div>
+  <div class="st-hill" aria-hidden="true"></div>
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="facts" aria-label="TranzLife in numbers">
+    <div class="fact" style="--a:30deg;--am:62deg"><b>5</b><span>plant-based products</span></div>
+    <div class="fact" style="--a:48deg;--am:90deg"><b>4</b><span>everyday formats</span></div>
+    <div class="fact" style="--a:66deg;--am:118deg"><b>6</b><span>stage testing</span></div>
+  </div>
+  <p class="st-note hand" aria-hidden="true">Real herbs,<br>honest care<svg viewBox="0 0 44 40"><path d="M6 4c-2 14 6 26 30 30m0 0l-9-7m9 7l-10 4"/></svg></p>
+  <a class="pill st-buy" href="#shop"><i aria-hidden="true">↗</i><b>Buy now</b></a>
+  <div class="st-copy">
+    <p class="st-tag">Innovating life beyond limits</p>
+    <h1 class="st-h"><span class="ln"><span class="wl"><span class="w">Nature</span></span></span><span class="ln"><span class="wl"><span class="w">meets</span></span></span><span class="ln"><span class="wl"><span class="w">science</span></span></span></h1>
+    <p class="st-lede">Plant-based care in gummies, a calming inhaler, soothing roll-ons and a liver tonic <u>you'll actually reach for.</u></p>
+  </div>
+  <div class="stage-space" aria-hidden="true"></div>
+  <div class="mq" aria-hidden="true"><div class="mq-track" id="mq"></div></div>
+</section>
+
+<section class="page insider" id="insider" data-theme="cream"><div class="band">
+  <div class="wrap">
+    <h2 class="in-h rv-words">You deserve the best. <span class="lt">You deserve TranzLife.</span></h2>
+    <div class="in-grid">
+      <div class="in-cards" aria-hidden="true"><div class="in-card"><div data-shot="reviva"></div></div><div class="in-card"><div data-shot="gummies"></div></div><div class="in-card"><div data-shot="liver"></div></div></div>
+      <div class="in-copy">
+        <p class="in-lead reveal">We want to make plant-based wellness simple, honest and easy to keep up, so you can feel a little better every single day.</p>
+        <p class="in-body reveal">Five products for everyday life: gummies for daily wellbeing, a calming nasal inhaler, a period relief roll-on, Reviva for tired feet and a liver tonic. Plant-based inside, sustainably packed outside.</p>
+        <div class="in-row reveal"><a class="pill" href="#shop"><i aria-hidden="true">↗</i><b>Shop now</b></a><span>Five products · Plant-based · Sustainable packs</span></div>
+      </div>
+    </div>
+    <div class="in-why" aria-hidden="true"><p class="hand">Why people<br>love it<svg viewBox="0 0 40 70"><path class="draw" d="M24 4C8 22 6 44 20 64m0 0l-8-9m8 9l6-10"/></svg></p></div>
+  </div>
+</div></section>
+
+<section class="page story" id="products" data-theme="cream">
+  <div class="seq" id="seq">
+    <div class="seq-pin" id="seqPin">
+      <h2 class="sr">Five TranzLife products</h2>
+      <svg class="seq-arcs" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <path d="M-80 760C120 560 420 520 560 640s40 320-160 300S120 700 380 520 980 300 1180 420s320 300 380 120"/>
+        <path d="M1520 180C1300 60 980 120 900 300s120 380 300 320 140-300-120-360S520 360 300 300-60 80-100 240"/>
+        <path d="M-60 300C200 120 560 140 700 330s-60 420-300 360-200-320 80-420 640-60 820 160 160 340 260 260"/>
+      </svg>
+      <div class="seq-cards" id="seqCards"></div>
+      <canvas id="seqCanvas" aria-hidden="true"></canvas>
+      <div class="seq-notes" id="seqNotes" aria-hidden="true"></div>
+      <div class="seq-final" id="seqFinal">
+        <h2 class="seq-title" id="seqTitle"><span data-split>Nature, just the way you need it.</span> <span class="l2" data-split>Which one is yours?</span></h2>
+        <div class="seq-labels" id="seqLabels" aria-hidden="true"></div>
+        <a class="pill seq-cta" href="#shop"><i aria-hidden="true">↗</i><b>Shop the products</b></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page benefits" id="benefits" data-theme="cream"><div class="band">
+  <div class="wrap">
+    <div class="ben">
+      <div class="ben-img"><div data-shot="gummies" style="position:absolute;inset:0"></div></div>
+      <div class="ben-copy">
+        <h2 class="h2 rv-words"><span class="lt">More of what matters.</span> See the difference.</h2>
+        <table class="tbl reveal">
+          <thead><tr><th>What goes in</th><th><span class="brandmark">TranzLife</span></th><th>Typical brand</th></tr></thead>
+          <tbody>
+            <tr><td>Plant-based formulas</td><td><span class="ok">✓</span></td><td><span class="no">–</span></td></tr>
+            <tr><td>Natural flavours and colours in our gummies</td><td><span class="ok">✓</span></td><td><span class="no">–</span></td></tr>
+            <tr><td>Biodegradable PLA and cellulose jar</td><td><span class="ok">✓</span></td><td><span class="no">–</span></td></tr>
+            <tr><td>Plant-fibre eco cap and food-grade inner seal</td><td><span class="ok">✓</span></td><td><span class="no">–</span></td></tr>
+            <tr><td>Recycled kraft paper outer sleeve</td><td><span class="ok">✓</span></td><td><span class="no">–</span></td></tr>
+            <tr><td>100% natural, organic inhaler ingredients</td><td><span class="ok">✓</span></td><td><span class="no">–</span></td></tr>
+          </tbody>
+        </table>
+        <p class="tbl-note">“Typical” varies by brand; a dash means not always stated.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="page process t-green" id="process" data-theme="green">
+  <div class="pin" id="pin">
+    <h2 class="sr">From seed to shelf in six stages</h2>
+    <div id="slides"></div>
+    <div class="wipe-ring" id="wipeRing"></div>
+    <canvas id="reactCanvas" aria-hidden="true"></canvas>
+    <div class="mol-tag" id="molTag"></div>
+  </div>
+</section>
+
+<section class="page sci-bg" id="science" data-theme="cream"><div class="band">
+  <div class="wrap sci">
+    <div>
+      <p class="eyebrow reveal">The science inside</p>
+      <h2 class="h2 rv-words">Rooted. Tested. <span class="lt">Trusted.</span></h2>
+      <p class="sub reveal" style="margin-top:18px">Rosemary, rose and peppermint from our Calm Roll-On, plus five more from our R&amp;D library. Each has a key compound we standardise and test. Pick one to see it up close.</p>
+      <div class="herbs reveal" id="herbs" role="group" aria-label="Botanicals"></div>
+      <div class="herb-info" id="herbInfo" aria-live="polite"></div>
+    </div>
+    <div class="sci-art reveal">
+      <img class="dna" id="sciDna" src="./src/assets/images/dna-helix.webp" alt="" width="992" height="1004" decoding="async">
+      <div class="sci-ring"><canvas id="molCanvas" aria-label="Rotating 3D model of the selected botanical's key compound"></canvas></div>
+      <p class="sci-cap"><b id="molName">Eugenol</b><small>Stylised model · drag to rotate</small></p>
+    </div>
+  </div>
+</div></section>
+
+<section class="page" id="lab" data-theme="cream"><div class="band">
+  <div class="wrap">
+    <div class="lab-head">
+      <div>
+        <p class="eyebrow reveal">R&amp;D pipeline</p>
+        <h2 class="h2 rv-words">What's growing <span class="lt">in the lab.</span></h2>
+      </div>
+      <p class="sub reveal">Every TranzLife product moves through the same four gates. Here is where our next formulations stand today.</p>
+    </div>
+    <div class="board reveal" id="board">
+      <div class="b-row hd"><span>Formulation</span><div class="b-cols"><span>Research</span><span>Formulation</span><span>Testing</span><span>Launch</span></div><span style="text-align:right">Target</span></div>
+    </div>
+    <p class="lab-note">Timelines are targets and may shift with testing results.</p>
+  </div>
+</div></section>
+
+<section class="page finder" id="finder" data-theme="cream"><div class="band">
+  <div class="wrap finder-grid">
+    <div>
+      <p class="eyebrow reveal">Product finder</p>
+      <h2 class="h2 rv-words">What does your <span class="lt">day need?</span></h2>
+      <div class="needs" id="needs" role="group" aria-label="Choose a need"></div>
+    </div>
+    <div class="match reveal" id="match" aria-live="polite"></div>
+  </div>
+</div></section>
+
+<section class="page" id="shop" data-theme="cream"><div class="band">
+  <div class="wrap">
+    <div class="shop-head">
+      <p class="eyebrow reveal" style="justify-content:center">The full shelf</p>
+      <h2 class="h2 rv-words">Five products. <span class="lt">One green root.</span></h2>
+      <div class="filters reveal" id="filters" role="group" aria-label="Filter products"><button class="on" data-f="all">All</button><button data-f="gummies">Gummies</button><button data-f="rollon">Roll-ons</button><button data-f="inhaler">Inhaler</button><button data-f="liquid">Liquid</button></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="cta reveal">
+      <svg viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true"><path d="M-40 420C180 260 420 300 520 400s300 60 380-140 220-260 360-120"/></svg>
+      <h2><span class="wh">Don't just wish for it.</span>Live it.</h2>
+      <p>Pick a product, add it to your bag, and start tomorrow morning.</p>
+      <a class="pill" href="#grid"><i aria-hidden="true">↗</i><b>Choose your product</b></a>
+    </div>
+  </div>
+</div></section>
+
+<section class="page" id="contact" data-theme="cream"><div class="band">
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2 rv-words" style="margin-top:14px">Let's talk <span class="lt">wellness.</span></h2>
+        <p class="sub" style="margin-top:16px">Questions about ingredients, bulk orders or retail partnerships. The TranzLife team replies within two working days.</p>
+        <div class="c-points">
+          <div><strong>Retail &amp; distribution</strong><span>Stock TranzLife in your pharmacy or wellness store.</span></div>
+          <div><strong>Corporate wellness</strong><span>Gift boxes and programmes for teams.</span></div>
+          <div><strong>Product questions</strong><span>Ingredients, dosage and allergens.</span></div>
+        </div>
+      </div>
+      <form id="form" novalidate>
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required placeholder="Your name"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+        <div class="field full"><label for="f-topic">Topic</label><select id="f-topic" name="topic"><option>Product question</option><option>Retail &amp; distribution</option><option>Corporate wellness</option><option>Press</option></select></div>
+        <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="msg" placeholder="How can we help?"></textarea></div>
+        <div class="field full"><button class="pill send" type="submit"><i aria-hidden="true">↗</i><b>Send message</b></button></div>
+        <p class="form-ok" id="formOk" hidden></p>
+      </form>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-brand"><span class="logo-em" aria-hidden="true"></span><span class="logo-word light" role="img" aria-label="TranzLife Biosciences"></span><p class="hand">Innovating life beyond limits</p></div>
+    <p class="f-big">Live naturally.<span>Live healthier.</span></p>
+    <div class="f-row">
+      <div><a class="pill" href="#shop"><i aria-hidden="true">↗</i><b>Shop all products</b></a></div>
+      <div class="f-col"><h4>Shop</h4><a href="#shop">All products</a><a href="#finder">Product finder</a><a href="#products">Products</a></div>
+      <div class="f-col"><h4>Company</h4><a href="#insider">Why TranzLife</a><a href="#process">Pipeline</a><a href="#lab">R&amp;D</a><a href="#science">Science</a></div>
+      <div class="f-col"><h4>Help</h4><a href="#contact">Contact</a><a href="#contact">Retail partners</a><a href="#contact">Corporate gifting</a></div>
+    </div>
+    <div class="f-bot">
+      <p>TranzLife products are plant-based wellness products and are not intended to diagnose, treat, cure or prevent any disease. *Supports healthy liver function as part of a balanced lifestyle. Consult your doctor before use if you are pregnant, nursing, managing diabetes or taking medication.</p>
+      <span>© 2026 TranzLife Biosciences</span>
+    </div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true">
+  <div class="d-head"><h3>Your bag</h3><button class="x" id="closeBag" aria-label="Close bag">×</button></div>
+  <div class="d-list" id="dList"></div>
+  <div class="d-foot">
+    <div class="d-total"><span>Subtotal</span><b id="dTotal">₹0</b></div>
+    <button class="btn-cream" id="checkout">Checkout <i aria-hidden="true">→</i></button>
+    <p class="d-note">Free delivery on orders over ₹999. Taxes calculated at checkout.</p>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

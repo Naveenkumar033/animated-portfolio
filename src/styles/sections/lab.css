@@ -1,0 +1,18 @@
+/* ---------- lab board ---------- */
+.lab-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:48px}
+.lab-head .h2{margin-top:18px}
+.board{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--ground-2)}
+.b-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,3fr) 120px;align-items:center;gap:24px;padding:22px 28px;border-bottom:1px solid var(--line)}
+.b-row:last-child{border-bottom:0}
+.b-row.hd{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding-block:16px;background:var(--panel)}
+.b-cols{display:grid;grid-template-columns:repeat(4,1fr)}
+.b-cols span{padding-left:10px;border-left:1px solid var(--line)}
+.b-name b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;line-height:1.2}
+.b-name small{color:var(--muted);font-size:13px}
+.b-bar{position:relative;height:38px;border-radius:999px;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),var(--line) calc(25% - 1px) 25%);border:1px solid var(--line)}
+.b-bar i{position:absolute;left:3px;top:3px;bottom:3px;width:calc(var(--p) - 6px);border-radius:999px;background:linear-gradient(90deg,var(--moss),var(--sage));transform-origin:left;transform:scaleX(var(--s,1));transition:transform 1.4s var(--ease)}
+.b-bar i::after{content:attr(data-stage);position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:600;color:var(--on-cream)}
+.b-bar.live i{background:linear-gradient(90deg,var(--sage),var(--gold))}
+.b-eta{font-family:var(--f-mono);font-size:13px;color:var(--muted);text-align:right}
+.b-eta b{display:block;color:var(--ink);font-weight:500}
+.lab-note{margin-top:16px;font-size:13px;color:var(--faint)}

@@ -1,0 +1,19 @@
+/* ---------- finder ---------- */
+.finder{background:#e2ead8}
+.finder-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.needs{display:grid;gap:10px;margin-top:30px}
+.needs button{display:flex;justify-content:space-between;align-items:center;text-align:left;padding:16px 22px;border-radius:999px;background:rgba(255,255,255,.6);font-weight:700;font-stretch:85%;font-size:18px;transition:all .35s var(--ease)}
+.needs button small{font-size:12px;color:var(--faint)}
+.needs button:hover{background:#fff}
+.needs button.on{background:var(--cream);color:var(--on-cream)}
+.needs button.on small{color:var(--on-cream)}
+.match{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:center;padding:16px;border-radius:26px;background:#fff;box-shadow:0 40px 80px -50px rgba(31,70,35,.35)}
+.m-img{border-radius:18px;overflow:hidden;background:var(--c,var(--stage))}
+.m-img img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
+.m-view{font-weight:800;font-stretch:82%;font-size:14px;color:var(--forest);border-bottom:2px solid currentColor;padding-bottom:1px}
+.m-body{padding:10px 14px 10px 0}
+.match .k{font-weight:700;font-stretch:85%;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+.match h3{font-size:clamp(2rem,3.4vw,3rem);font-stretch:66%;text-transform:uppercase;margin-top:8px}
+.match .why{color:var(--muted);margin-top:10px;font-size:15.5px}
+.match .row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:20px}
+.price{font-family:var(--f-display);font-stretch:70%;font-weight:800;font-size:26px}
