@@ -1,5 +1,6 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { BENEFITS } from '../../src/data/benefits.js';
 import { HERBS } from '../../src/data/herbs.js';
 import { NEEDS } from '../../src/data/needs.js';
 import { NSTAGE, RX } from '../../src/data/pipeline.js';
@@ -21,9 +22,12 @@ describe('catalogue data', () => {
     HERBS.forEach(h => { if (h.p != null) expect(PRODUCTS[h.p]).toBeDefined(); });
     expect(HERBS.some(h => h.p != null)).toBe(true);
   });
-  it('every product has a model and a product image', async () => {
-    const models = ['jar', 'inhaler', 'rollon', 'reviva', 'liver'];
-    PRODUCTS.forEach(p => expect(models).toContain(p.model));
+  it('every product has its product image, cut-out and design board', () => {
+    PRODUCTS.forEach(p => ['', '-cut', '-design'].forEach(k =>
+      expect(existsSync(new URL(`../../src/assets/products/${p.id}${k}.webp`, import.meta.url))).toBe(true)));
+  });
+  it('every product has benefits for the benefits panel', () => {
+    PRODUCTS.forEach(p => expect(BENEFITS[p.id]?.length).toBeGreaterThan(2));
   });
   it('the pipeline has one entry per stage', () => {
     expect(RX).toHaveLength(NSTAGE);

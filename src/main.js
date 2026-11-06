@@ -17,6 +17,7 @@ import { initReactor } from './features/pipeline/reactor.js';
 import { buildFilters, buildGrid, fillShots } from './features/products/product-grid.js';
 import { SHOTS } from './features/products/product-images.js';
 import { initLightbox } from './components/lightbox.js';
+import { initBenefits } from './features/benefits/benefit-slides.js';
 import { initStory } from './features/product-story/product-story.js';
 import { buildHerbs } from './features/science/herb-picker.js';
 import { initMolecule } from './features/science/molecule-viewer.js';
@@ -34,6 +35,7 @@ async function boot(){
   Object.assign(thumbs, SHOTS); initLightbox();
   setLoad(78);
   fillShots(); buildGrid(); buildFilters(); selectNeed(1, true);
+  try { initBenefits(); } catch(err){ console.warn('benefit slides unavailable', err); }
   try { state.mol = initMolecule(); } catch(err){ console.warn('molecule viewer unavailable', err); }
   buildHerbs();
   setLoad(88);

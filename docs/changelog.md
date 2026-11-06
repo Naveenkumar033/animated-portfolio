@@ -1,5 +1,29 @@
 # Changelog
 
+## v12.2 (6 Nov 2026): benefits change on click
+- The benefits panel no longer pins or changes while you scroll; the page scrolls straight on to the next section.
+- Pick a product with the dots on the photo, or tap the photo for the next one. The photo and the benefits then slide over with the motion blur.
+
+## v12.1 (5 Nov 2026): products on their own
+- The hero and product story cut-outs now show only the product itself: no carton, gift box, roses, mint or loose cap. The roll-on stands upright.
+- The white arcs in the product story always stay behind the products.
+
+## v12 (5 Nov 2026): real products instead of 3D
+- The hero and the product story now show the real products from the client's designs, cut out on transparent backgrounds, instead of 3D models. The floating 3D gummies and leaves are gone.
+- The hero jar rises in once with the intro. In the product story each product comes forward out of a soft blur while its card glides past, then all five line up.
+- New `scripts/make-product-cutouts.py`. Removed the 3D product models (`product-model.js`, `jar-layer.js`), their label artwork (`decal-*.webp`) and the studio lighting.
+
+## v11 (5 Nov 2026): benefits for every product
+- The hero headline is now the tagline "Innovating life beyond limits".
+- The benefits panel stays pinned while you scroll and steps through all five products. The product box slides to the next product with a motion blur, and the table swaps to that product's benefits (`features/benefits/benefit-slides.js`, content in `data/benefits.js`).
+
+## v10 (4 Nov 2026): realistic 3D products
+- Gummies rebuilt as moulded raspberry jelly: rounded drupelets with soft creases, a flatter base, glossy clearcoat, deep colour at the rims and light glowing through the middle. Richer red, orange and amber colours, and the jar is packed fuller.
+- The jar's clear lower half is now real clear glass: it only shows reflections, brighter at the edges, so the gummies read at full colour.
+- New photo-studio lighting for every product (`studioEnv` in `lib/environment.js`): a dim room with strip softboxes and an overhead box, prefiltered for glossy and matte surfaces.
+- Amber Reviva glass and the frosted Liver Booster bottle glow through the middle like tinted glass. The gummies jar top has a satin finish.
+- The Calm Roll-On label no longer shows the photo's shadowed edge.
+
 ## v9 (4 Nov 2026): the five real products
 - The catalogue is now the client's five products:
   - TranzLife Gummies (60 gummies, sustainable dual-finish jar)

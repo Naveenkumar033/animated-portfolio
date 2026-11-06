@@ -1,13 +1,27 @@
 /* ---------- benefits ---------- */
 .ben{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,60px);background:#fff;border-radius:28px;padding:clamp(14px,1.6vw,22px);box-shadow:0 40px 80px -50px rgba(31,70,35,.35)}
-.ben-img{position:relative;border-radius:20px;overflow:hidden;background:var(--ground-2);min-height:420px}
-.ben-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ben-img{position:relative;border-radius:20px;overflow:hidden;background:var(--ground-2);min-height:420px;height:min(70vh,640px)}
+/* product slides: stacked, moved and blurred by features/benefits/benefit-slides.js */
+.ben-slides{position:absolute;inset:0;cursor:pointer}
+.bs{position:absolute;inset:0;margin:0;will-change:transform,filter,opacity}
+.bs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bs-cap{position:absolute;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);font-weight:800;font-stretch:85%;font-size:14px;color:var(--forest)}
+.bs-cap span{padding:4px 9px;border-radius:999px;background:var(--forest);color:#fff;font-size:11.5px;letter-spacing:.06em}
+.ben-dots{position:absolute;right:16px;top:50%;transform:translateY(-50%);z-index:20;display:grid;gap:8px}
+.ben-dots button{display:block;width:10px;height:10px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.65);box-shadow:0 0 0 1px rgba(31,70,35,.2);cursor:pointer;transition:height .4s var(--ease, ease),background .4s}
+.ben-dots button.on{height:28px;border-radius:6px;background:#fff}
+.ben-dots button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .ben-copy{padding:clamp(20px,3vw,44px) clamp(10px,2vw,30px) clamp(20px,3vw,40px) 0}
 .ben-copy .h2{font-size:clamp(2.6rem,5vw,4.4rem)}
-.tbl{margin-top:30px;width:100%;border-collapse:separate;border-spacing:0 6px;font-size:15px}
-.tbl th{font-weight:700;font-stretch:85%;font-size:13px;text-align:left;color:var(--sage);padding:0 10px 10px;border-bottom:2px solid var(--line)}
-.tbl th:nth-child(n+2),.tbl td:nth-child(n+2){text-align:center;width:120px}
-.tbl td{padding:12px 10px;border-bottom:1px solid var(--line);font-weight:600}
+.tbl{margin-top:30px;width:100%;font-size:15px}
+.tbl .tr{display:grid;grid-template-columns:minmax(0,1fr) 120px 120px;align-items:center}
+.tbl .td{padding:12px 10px;font-weight:600}
+.tbl .td:nth-child(n+2){text-align:center}
+.tbl .th .td{font-weight:700;font-stretch:85%;font-size:13px;color:var(--sage);padding:0 10px 10px}
+.tbl .th{border-bottom:2px solid var(--line)}
+.tbl-sets{display:grid}
+.tbl-set{grid-area:1/1;align-self:start;will-change:transform,filter,opacity}
+.tbl-set .tr{border-bottom:1px solid var(--line);margin-top:6px}
 .tbl .ok{display:inline-grid;place-items:center;width:64px;height:32px;border-radius:9px;background:var(--ground);color:var(--forest);font-weight:800}
 .tbl .no{color:var(--faint);font-weight:700}
 .tbl-note{margin-top:14px;font-size:12.5px;color:var(--faint)}

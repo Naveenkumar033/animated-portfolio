@@ -35,10 +35,16 @@
   .seq-title{font-size:clamp(2.2rem,10vw,3.4rem);top:96px}
   .sl{font-size:17px}
   .ben{grid-template-columns:minmax(0,1fr)}
-  .ben-img{min-height:260px}
-  .ben-copy{padding:8px 10px 14px}
-  .tbl th:nth-child(n+2),.tbl td:nth-child(n+2){width:76px}
-  .tbl .ok{width:46px}
+  .ben-img{min-height:0;height:auto;aspect-ratio:1/1}
+  .ben-copy{padding:4px 6px 8px}
+  .ben-copy .h2{font-size:clamp(1.9rem,8.4vw,2.6rem)}
+  .tbl{margin-top:14px;font-size:13.5px}
+  .tbl .tr{grid-template-columns:minmax(0,1fr) 70px 62px}
+  .tbl .td{padding:8px 6px}
+  .tbl-set .tr{margin-top:2px}
+  .tbl .ok{width:44px;height:26px}
+  .tbl-note{margin-top:8px;font-size:11.5px}
+  .bs-cap{font-size:12.5px;left:10px;bottom:10px}
   .sci-art{justify-self:center}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pc,.pc:nth-child(4),.pc:nth-child(5){grid-column:span 1}

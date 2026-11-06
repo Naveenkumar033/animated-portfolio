@@ -11,5 +11,4 @@ function envCube(){
   cube.encoding = THREE.sRGBEncoding; cube.needsUpdate = true; return cube;
 }
 
-
 export { envCube };

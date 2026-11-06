@@ -53,11 +53,35 @@ function labelBand(prof, y0, y1, arc, grow, map, extra = {}){
   const m = new THREE.Mesh(new THREE.LatheGeometry(band(prof, y0, y1, grow), 96, -arc/2, arc), new THREE.MeshStandardMaterial({ map, transparent:true, roughness:.55, metalness:0, envMapIntensity:.6, depthWrite:false, polygonOffset:true, polygonOffsetFactor:-2, ...extra }));
   m.renderOrder = 4; return m;
 }
-// see-through glass: a faint front shell plus a back shell for depth
-function glassShell(geo, color, front = .12, back = .2){
-  const f = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color:lin(color), roughness:.05, clearcoat:1, clearcoatRoughness:.04, envMapIntensity:1.6, transparent:true, opacity:front, depthWrite:false }));
-  const b = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color:lin(color), roughness:.08, clearcoat:1, envMapIntensity:1.2, transparent:true, opacity:back, side:THREE.BackSide, depthWrite:false }));
+// clear glass: no body colour, only reflections; the edges catch more light (fresnel), like real glass
+function glassAlpha(mat, face, edge, gain){
+  mat.onBeforeCompile = sh => {
+    sh.fragmentShader = sh.fragmentShader.replace('gl_FragColor = vec4( outgoingLight, diffuseColor.a );',
+      `float fNdv = abs(dot(normalize(normal), normalize(vViewPosition)));
+      float fr = pow(1.0 - fNdv, 4.0);
+      float lum = dot(outgoingLight, vec3(.3, .59, .11));
+      gl_FragColor = vec4(outgoingLight/max(lum, .001)*min(lum, 1.0) + fr*.06, clamp(${face.toFixed(3)} + fr*${edge.toFixed(3)} + lum*${gain.toFixed(2)}, 0.0, 1.0));`);
+  };
+  mat.customProgramCacheKey = () => 'glass' + face + ':' + edge + ':' + gain;
+  return mat;
+}
+function glassShell(geo, tint = '#f4f6f1', front = .12, back = .2){
+  const base = { color:0x000000, metalness:0, roughness:.02, clearcoat:1, clearcoatRoughness:.02, reflectivity:.9, transparent:true, depthWrite:false, emissive:lin(tint), emissiveIntensity:.02 };
+  const f = new THREE.Mesh(geo, glassAlpha(new THREE.MeshPhysicalMaterial({ ...base, envMapIntensity:1.6 }), front*.1, .45, .5));
+  const b = new THREE.Mesh(geo, glassAlpha(new THREE.MeshPhysicalMaterial({ ...base, envMapIntensity:1, side:THREE.BackSide }), back*.05, .2, .3));
   f.renderOrder = 3; b.renderOrder = 1; return [b, f];
+}
+// tinted glass body: light passing through the middle glows, the thicker edges stay deep
+function throughGlow(mat, tint, amount, edge = .7){
+  const t = lin(tint);
+  mat.onBeforeCompile = sh => {
+    sh.fragmentShader = sh.fragmentShader.replace('vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;',
+      `float tNdv = clamp(abs(dot(normalize(normal), normalize(vViewPosition))), 0.0, 1.0);
+      vec3 outgoingLight = (reflectedLight.directDiffuse + reflectedLight.indirectDiffuse)*mix(${edge.toFixed(2)}, 1.0, tNdv) + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance
+        + vec3(${t.r.toFixed(4)}, ${t.g.toFixed(4)}, ${t.b.toFixed(4)})*${amount.toFixed(3)}*pow(tNdv, 2.2);`);
+  };
+  mat.customProgramCacheKey = () => 'glow' + tint + amount;
+  return mat;
 }
 // discard everything below a slanted plane (object space): y < y0 + k*x
 function slantCut(mat, y0, k){
@@ -69,40 +93,59 @@ function slantCut(mat, y0, k){
   return mat;
 }
 
-/* ---------- gummies: raspberry-shaped, glossy ---------- */
+/* ---------- gummies: raspberry-shaped jelly, glossy and slightly see-through ---------- */
 function berryGeometry(rad, detail = 1){
-  const g = new THREE.SphereGeometry(1, 30*detail, 22*detail), pos = g.attributes.position, n = 30, C = [];
-  for (let i = 0; i < n; i++){ const y = 1 - 2*(i + .5)/n, r = Math.sqrt(1 - y*y), a = i*2.39996; C.push(new THREE.Vector3(Math.cos(a)*r, y, Math.sin(a)*r)); }
-  const v = new THREE.Vector3();
+  // a soft raspberry: rounded body, flatter base, small drupelets that blend into each other
+  const g = new THREE.SphereGeometry(1, Math.round(56*detail), Math.round(42*detail)), pos = g.attributes.position, C = [];
+  const n = 36; for (let i = 0; i < n; i++){ const y = 1 - 1.75*(i + .5)/n, r = Math.sqrt(Math.max(0, 1 - y*y)), a = i*2.39996; C.push(new THREE.Vector3(Math.cos(a)*r, y, Math.sin(a)*r)); }
+  const v = new THREE.Vector3(), cr = .3, sk = .2;
   for (let i = 0; i < pos.count; i++){
-    v.fromBufferAttribute(pos, i).normalize(); let m = -1; for (const c of C){ const d = v.dot(c); if (d > m) m = d; }
-    const t = Math.min(1, (1 - m)/.052), dome = Math.sqrt(Math.max(0, 1 - t*t)), k = 1 + .2*dome;
-    pos.setXYZ(i, v.x*k*rad, v.y*k*rad*.86, v.z*k*rad);
+    v.fromBufferAttribute(pos, i).normalize();
+    // round drupelet domes; a smooth maximum keeps the creases between them soft, like moulded jelly
+    let h1 = 0, h2 = 0;
+    for (const c of C){ const d = Math.acos(Math.min(1, v.dot(c)))/cr, h = Math.sqrt(Math.max(0, 1 - d*d)); if (h > h1){ h2 = h1; h1 = h; } else if (h > h2) h2 = h; }
+    const q = Math.max(sk - (h1 - h2), 0)/sk, bump = h1 + q*q*sk*.25;
+    const fade = v.y > -.55 ? 1 : Math.max(0, 1 - (-.55 - v.y)*5);
+    const k = 1 + .085*bump*fade;
+    const yy = v.y > -.62 ? v.y : -.62 + (v.y + .62)*.35;   // flatten the base a little
+    pos.setXYZ(i, v.x*k*rad*(1 - .1*Math.max(0, v.y)), (yy*1.04 + .04)*k*rad, v.z*k*rad*(1 - .1*Math.max(0, v.y)));   // a little taller, narrowing to the top like a raspberry
   }
   g.computeVertexNormals(); return g;
 }
-const gummyMaterial = () => new THREE.MeshPhysicalMaterial({ roughness:.24, clearcoat:1, clearcoatRoughness:.18, envMapIntensity:.9 });
+// jelly: glossy clearcoat, deep colour at the rims and light glowing through the middle
+function gummyMaterial(spec = 1.6, rough = .12){
+  const m = new THREE.MeshPhysicalMaterial({ roughness:rough, clearcoat:1, clearcoatRoughness:.04, envMapIntensity:1.3, reflectivity:.75 });
+  m.onBeforeCompile = sh => {
+    sh.fragmentShader = sh.fragmentShader.replace('vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;',
+      `float gNdv = clamp(abs(dot(normalize(normal), normalize(vViewPosition))), 0.0, 1.0);
+      vec3 deep = pow(diffuseColor.rgb, vec3(1.6));
+      vec3 jelly = (reflectedLight.directDiffuse + reflectedLight.indirectDiffuse)*mix(0.4, 0.78, gNdv) + deep*(0.06 + 0.5*pow(gNdv, 2.5));
+      vec3 outgoingLight = jelly + (reflectedLight.directSpecular + reflectedLight.indirectSpecular)*${spec.toFixed(2)} + totalEmissiveRadiance;`);
+  };
+  m.customProgramCacheKey = () => 'jelly' + spec;
+  return m;
+}
 
 function gummiesJar(p, o){
   const G = new THREE.Group();
   const prof = [V2(0,0),V2(.8,0),V2(.94,.03),V2(.99,.14),V2(1,.4),V2(1.01,1.6),V2(1.02,2.55),V2(1.0,2.78),V2(.95,2.96),V2(.86,3.1),V2(.76,3.2),V2(.72,3.25),V2(.72,3.34)];
   const glass = new THREE.LatheGeometry(prof, 96);
   G.add(...glassShell(glass, '#f4f6f1', .1, .16));
-  const base = new THREE.Mesh(new THREE.CylinderGeometry(.9, .94, .07, 64), new THREE.MeshPhysicalMaterial({ color:lin('#eef2ec'), roughness:.08, transparent:true, opacity:.35, clearcoat:1 })); base.position.y = .04; G.add(base);
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(.9, .94, .07, 64), new THREE.MeshPhysicalMaterial({ color:lin('#eef2ec'), roughness:.05, transparent:true, opacity:.14, clearcoat:1, depthWrite:false })); base.position.y = .04; G.add(base);
   // red, orange and amber gummies fill the jar
-  const R = seeded(13), N = o.lite ? 80 : 150, geo = berryGeometry(.17, o.lite ? 1 : 1.2), pts = [];
+  const R = seeded(13), N = o.lite ? 130 : 170, geo = berryGeometry(.17, o.lite ? .8 : 1.1), pts = [];
   for (let tries = 0; pts.length < N && tries < 9000; tries++){
-    const a = R()*Math.PI*2, y = .2 + R()*2.55, rmax = radiusAt(prof, y) - .2, rr = Math.sqrt(R())*Math.max(0, rmax);
-    const v = new THREE.Vector3(Math.cos(a)*rr, y, Math.sin(a)*rr); if (pts.every(q => q.distanceTo(v) > .27)) pts.push(v);
+    const a = R()*Math.PI*2, y = .19 + R()*2.6, rmax = radiusAt(prof, y) - .19, rr = Math.sqrt(R())*Math.max(0, rmax);
+    const v = new THREE.Vector3(Math.cos(a)*rr, y, Math.sin(a)*rr); if (pts.every(q => q.distanceTo(v) > .255)) pts.push(v);
   }
   pts.sort((a, b) => a.y - b.y);
-  const gm = new THREE.InstancedMesh(geo, gummyMaterial(), pts.length), d = new THREE.Object3D(), c = new THREE.Color();
+  const gm = new THREE.InstancedMesh(geo, (m => (m.clearcoatRoughness = .12, m))(gummyMaterial(.75, .28)), pts.length), d = new THREE.Object3D(), c = new THREE.Color();
   pts.forEach((v, k) => { d.position.copy(v); d.rotation.set(R()*.8 - .4, R()*6.28, R()*.8 - .4); d.scale.setScalar(.9 + R()*.28); d.updateMatrix(); gm.setMatrixAt(k, d.matrix);
     c.set(p.gummy[k % p.gummy.length]).convertSRGBToLinear(); c.offsetHSL((R() - .5)*.02, 0, (R() - .5)*.04); gm.setColorAt(k, c); });
   G.add(gm);
   // frosted cream top with the diagonal edge, then the printed logo on it
   const cutY = 1.52, cutK = .37;
-  const frost = new THREE.Mesh(new THREE.LatheGeometry(band(prof, .9, 3.34, 1.008, 80), 96), slantCut(new THREE.MeshStandardMaterial({ color:lin('#ebe3d2'), roughness:.68, metalness:0, envMapIntensity:.55, side:THREE.DoubleSide }), cutY, cutK));
+  const frost = new THREE.Mesh(new THREE.LatheGeometry(band(prof, .9, 3.34, 1.008, 80), 96), slantCut(new THREE.MeshPhysicalMaterial({ color:lin('#ebe3d2'), roughness:.55, metalness:0, envMapIntensity:.7, clearcoat:.25, clearcoatRoughness:.5, side:THREE.DoubleSide }), cutY, cutK));
   frost.renderOrder = 2; G.add(frost);
   const print = labelBand(prof, 1.55, 2.98, 2*Math.asin(.86), 1.014, image(decalGummies)); slantCut(print.material, cutY + .02, cutK); G.add(print);
   // pressed plant-fibre eco cap with an embossed leaf
@@ -156,7 +199,7 @@ function calmRollOn(){
 function revivaRollOn(){
   const G = new THREE.Group();
   const prof = [V2(0,0),V2(.44,0),V2(.49,.03),V2(.5,.1),V2(.5,2.8),V2(.47,2.9),V2(.38,2.96),V2(.32,3.0),V2(.32,3.32)];
-  const amber = new THREE.MeshPhysicalMaterial({ color:lin('#5c240b'), roughness:.07, clearcoat:1, clearcoatRoughness:.03, envMapIntensity:1.5 });
+  const amber = throughGlow(new THREE.MeshPhysicalMaterial({ color:lin('#3e1505'), roughness:.04, clearcoat:1, clearcoatRoughness:.02, envMapIntensity:1.8, reflectivity:.8 }), '#b4500e', .55, .45);
   G.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 72), amber));
   for (let k = 0; k < 4; k++){ const t = new THREE.Mesh(new THREE.TorusGeometry(.322, .016, 8, 64), amber); t.rotation.x = Math.PI/2; t.position.y = 3.05 + k*.075; G.add(t); }
   // white roller housing and the steel ball
@@ -175,7 +218,7 @@ function liverBottle(){
   const G = new THREE.Group();
   const prof = [V2(0,0),V2(.4,0),V2(.47,.03),V2(.5,.12),V2(.5,2.9),V2(.48,2.98),V2(.44,3.04),V2(.42,3.06)];
   // frosted green glass
-  G.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 80), new THREE.MeshPhysicalMaterial({ color:lin('#c7d585'), roughness:.5, metalness:0, clearcoat:.4, clearcoatRoughness:.35, envMapIntensity:.8, emissive:lin('#2e3a08'), emissiveIntensity:.25 })));
+  G.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 80), throughGlow(new THREE.MeshPhysicalMaterial({ color:lin('#c3d27e'), roughness:.42, metalness:0, clearcoat:.5, clearcoatRoughness:.3, envMapIntensity:.9, emissive:lin('#2e3a08'), emissiveIntensity:.2 }), '#e4ecb0', .22, .78)));
   G.add(labelBand(prof, .61, 2.66, 2.24, 1.012, image(decalLiver), { roughness:.5 }));
   // light oak cap with the angled top
   const cap = new THREE.CylinderGeometry(.43, .43, 1, 72, 1), pos = cap.attributes.position;

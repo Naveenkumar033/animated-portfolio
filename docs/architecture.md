@@ -22,7 +22,7 @@ JavaScript only fills in and animates that markup.
 
 1. **Static UI.** Cart and contact handlers, marquee, lab board, product finder buttons, dock and menu.
 2. **Product images.** `features/products/product-images.js` imports the client's five product images into `thumbs`. The shop cards, finder, menu card, bag, Why TranzLife cards and benefits panel all use them. `components/lightbox.js` opens the full design board for any `[data-design]` button.
-3. **Hero jar.** `features/hero/hero-jar.js` (the 3D gummies jar), after the web fonts load.
+3. **Hero product.** `features/hero/hero-jar.js` places the real gummies jar (cut out of the design), after the web fonts load.
 4. **Content that needs the images.** Shop grid, finder match, molecule viewer and herb picker.
 5. **Scroll scenes.** The product story (`features/product-story`) and the molecule reactor (`features/pipeline`), plus `app/page-sections.js`, which tracks the current section and dispatches `tl:page` events.
 6. **Smooth scroll and reveals.** Lenis smooth scroll, the ScrollTrigger reveals, then the intro timeline hides the loader.
@@ -41,9 +41,8 @@ A 25-second fail-safe always hides the loader, even if a 3D scene fails.
 - **Events.**
   - `tl:page` fires when the current section or theme changes. The nav and dock listen to it.
   - `tl:goStage` jumps to a pipeline stage.
-- **3D.**
-  - `features/products/product-model.js` builds the five products from each product's `model` field (`jar`, `inhaler`, `rollon`, `reviva`, `liver`). The printed labels are artwork lifted from the client's designs (`src/assets/products/decal-*.webp`), wrapped onto the bottle shapes.
-  - `features/products/jar-layer.js` is a transparent Three.js canvas that places models in screen pixels. `fit` in `data/products.js` evens out their sizes. The hero and the product story use it.
+- **Product images.** Only the client's own product images are shown. `features/products/product-images.js` exports `SHOTS` (square shots), `CUTS` (transparent cut-outs for the hero and the product story) and `DESIGNS` (full boards for the lightbox).
+- **3D.** Three.js is used only for the molecule scenes (science viewer and pipeline reactor).
   - `lib/environment.js` provides the reflection cube maps.
 
 ## Styles
@@ -62,7 +61,7 @@ Colour themes are CSS custom properties. Adding `.t-green` or `.t-cream` to any 
 
 | File | Source |
 |---|---|
-| `src/assets/products/*` | Made by `scripts/make-product-assets.py` from the client's five product designs (Nov 2026): square product images, full design boards and the 3D label artwork |
+| `src/assets/products/*` | Made by `scripts/make-product-assets.py` from the client's five product designs (Nov 2026): square product images and full design boards; `*-cut.webp` cut-outs by `scripts/make-product-cutouts.py` |
 | `src/assets/logo/*` | Made by `scripts/cut-logo.py` from the client's banyan-tree logo (Nov 2026) |
 | `src/assets/images/botanical-background.jpg` | Original image made by `scripts/make-botanical-background.py` |
 | `src/assets/images/dna-helix.webp` | Client-supplied DNA reference image, cut out and upscaled. **Confirm usage rights before launch.** |

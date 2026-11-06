@@ -1,16 +1,16 @@
 // Transparent Three.js layer that places product models in screen pixels.
 import * as THREE from 'three';
 import { makeProduct } from './product-model.js';
-import { envCube } from '../../lib/environment.js';
+import { studioEnv } from '../../lib/environment.js';
 
 function jarLayer(canvas){
   const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
   renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1;
-  const scene = new THREE.Scene(); scene.environment = envCube();
+  const scene = new THREE.Scene(); scene.environment = studioEnv(renderer);
   const ZC = 24, cam = new THREE.PerspectiveCamera(30, 1, .5, 120); cam.position.set(0, 0, ZC);
-  scene.add(new THREE.HemisphereLight(0xfff8e6, 0x4a5c30, .75));
-  const key = new THREE.DirectionalLight(0xfff1d0, 1.1); key.position.set(-6, 9, 11); scene.add(key);
+  scene.add(new THREE.HemisphereLight(0xfff8e6, 0x4a5c30, 1.05));
+  const key = new THREE.DirectionalLight(0xfff1d0, 1.45); key.position.set(-6, 9, 11); scene.add(key);
   const rim = new THREE.DirectionalLight(0xe2f3c4, .6); rim.position.set(9, 4, -7); scene.add(rim);
   const T = c => { const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t; };
   const L = { renderer, scene, cam, T, W:1, H:1, halfH:1, halfW:1 };
