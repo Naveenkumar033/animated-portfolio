@@ -12,6 +12,7 @@ export class SkyScene {
     this.isRushing = false;
     this.userPauseUntil = 0;
     this.isDragging = false;
+    this.themeTarget = document.getElementById('heroScrollContainer') || document.getElementById('heroStage');
 
     this.initScene();
     this.initControls();
@@ -277,7 +278,10 @@ export class SkyScene {
     this.isRushing = true;
     this.userPauseUntil = performance.now() + 15000;
 
-    document.documentElement.setAttribute('data-theme', mode);
+    if (this.themeTarget) {
+      this.themeTarget.setAttribute('data-theme', mode);
+    }
+    window.dispatchEvent(new CustomEvent('hero-theme-change', { detail: mode }));
     this.buttons.forEach((btn) => {
       const isActive = btn.getAttribute('data-time') === mode;
       btn.classList.toggle('active', isActive);
@@ -314,9 +318,12 @@ export class SkyScene {
         currentMode = 'night';
       }
 
-      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const currentTheme = this.themeTarget?.getAttribute('data-theme');
       if (currentTheme !== currentMode) {
-        document.documentElement.setAttribute('data-theme', currentMode);
+        if (this.themeTarget) {
+          this.themeTarget.setAttribute('data-theme', currentMode);
+        }
+        window.dispatchEvent(new CustomEvent('hero-theme-change', { detail: currentMode }));
         this.buttons.forEach((btn) => {
           const isActive = btn.getAttribute('data-time') === currentMode;
           btn.classList.toggle('active', isActive);

@@ -3,7 +3,9 @@ window.ScrollTrigger = ScrollTrigger;
 import { initPreloader } from '../components/loader/Preloader.js';
 import { initHeader } from '../components/navigation/Header.js';
 import { initContactForm } from '../components/sections/ContactForm.js';
+import { initStackWorkingModel } from '../components/sections/StackWorkingModel.js';
 import { initSmoothScroll, initSectionScrollTriggers } from '../animations/scrollAnimations.js';
+import { initProcessAnimations } from '../animations/processAnimations.js';
 import { initRollingLetters } from '../animations/textAnimations.js';
 import { initHeroTimeline } from '../animations/characterTimeline.js';
 import { initPageTurn } from '../animations/pageTurnController.js';
@@ -27,6 +29,10 @@ export function initializeApp() {
   initMenuDrawer();
   initReviewCarousel();
   initProjectModal();
+  initStackWorkingModel();
+  initSectionScrollTriggers();
+  initProcessAnimations();
+  initPageTurn();
 
   // 2. 3D Scenes Initialization
   const skyScene = new SkyScene('heroSkyCanvas');
@@ -44,7 +50,6 @@ export function initializeApp() {
   heroStageScene.onReady(() => {
     initHeroTimeline(heroStageScene);
     initPageTurn();
-    initSectionScrollTriggers();
     ScrollTrigger.refresh();
   });
 

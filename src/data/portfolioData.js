@@ -4,7 +4,7 @@
 
 export const PERSONAL_INFO = {
   name: "Naveen Kumar E",
-  brandName: "CodeofNaveen",
+  brandName: "Naveen's Portfolio",
   role: "Full-stack Software Developer & Creative Technologist",
   email: "naveenkumar.dev@outlook.com",
   location: "Chennai, India",

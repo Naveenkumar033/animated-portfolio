@@ -19,8 +19,12 @@
   .work-col-staggered {
     margin-top: 0;
   }
-  .services-columns-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .services-sticky-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .services-sticky-intro {
+    position: static;
   }
   .process-step-layout {
     grid-template-columns: 1fr;
@@ -60,12 +64,27 @@
   }
 
   .contact-character-container {
-    height: 380px;
+    height: 360px;
+  }
+
+  .service-card-shell {
+    top: calc(4.75rem + var(--stack-i, 0) * 8px);
+  }
+
+  .process-step-shell {
+    position: sticky;
+    top: 0;
+    min-height: auto;
+    padding-block: 2.5rem;
+  }
+
+  .step-film-box {
+    aspect-ratio: 16 / 9;
   }
 }
 
 @media (max-width: 640px) {
-  .services-columns-grid {
+  .contact-form-row {
     grid-template-columns: 1fr;
   }
   .footer-meta-grid {
@@ -74,7 +93,7 @@
   .nav-brand-title {
     display: none;
   }
-  .sound-btn span {
+  .sound-btn > span {
     display: none;
   }
 }

@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naveen Kumar E — Full-stack Developer & Designer</title>
-  <meta name="description" content="Portfolio of Naveen Kumar E, full-stack software developer specializing in React, Node.js, Java, and Spring Boot. Websites and applications that refuse to look like everyone else." />
+  <meta name="description" content="Portfolio of Naveen Kumar E, full-stack software developer specializing in React, Node.js, Java, and Spring Boot. The future is built, not imagined. Modern web applications and digital experiences that stand out." />
   <meta name="theme-color" content="#fbfaf8" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Naveen Kumar E — Full-stack Developer & Designer" />
-  <meta property="og:description" content="Websites and applications that refuse to look like everyone else." />
+  <meta property="og:description" content="The future is built, not imagined." />
   <meta property="og:type" content="website" />
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111111'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='14' fill='%23ffffff'%3ENK%3C/text%3E%3C/svg%3E" />
@@ -53,8 +53,8 @@
           </g>
         </svg>
       </a>
-      <a href="#hero" class="nav-brand-title has-roll" data-roll-text="CodeofNaveen" onclick="scrollToSection('heroScrollContainer'); return false;">
-        CodeofNaveen
+      <a href="#hero" class="nav-brand-title has-roll" data-roll-text="Naveen's Portfolio" onclick="scrollToSection('heroScrollContainer'); return false;">
+        Naveen's Portfolio
       </a>
     </div>
 
@@ -86,12 +86,6 @@
       <!-- Procedural Volumetric Sky & Clouds Canvas -->
       <canvas id="heroSkyCanvas" class="hero-sky-canvas"></canvas>
 
-      <!-- Left Michelangelo Stone Hand -->
-      <img src="/assets/hero/hand-left.webp" alt="3D Left Hand" class="hero-hand hero-hand-left" id="heroHandLeft" />
-
-      <!-- Right Michelangelo Stone Hand -->
-      <img src="/assets/hero/hand-right.webp" alt="3D Right Hand" class="hero-hand hero-hand-right" id="heroHandRight" />
-
       <!-- 3D Three.js Interactive Character Canvas -->
       <div class="hero-canvas-wrap">
         <canvas id="heroCanvas"></canvas>
@@ -100,8 +94,8 @@
       <!-- Hero Layer 1: Headline, Bio & Hand-Drawn Annotation -->
       <div class="hero-text-layer-1" id="heroLayer1">
         <h1 class="hero-headline">
-          <span class="line-mask revealed"><span class="line">Websites That Refuse To</span></span>
-          <span class="line-mask revealed"><span class="line">Look Like Everyone Else.</span></span>
+          <span class="line-mask revealed"><span class="line">The Future Is Built,</span></span>
+          <span class="line-mask revealed"><span class="line">Not Imagined.</span></span>
         </h1>
       </div>
 
@@ -359,32 +353,111 @@
   </section>
 
   <!-- =========================================================================
-       7. CLIENT TRUST MARQUEE ("IN GOOD COMPANY")
+       7. PROFESSIONALLY BUILT FULL-STACK ARCHITECTURE (WORKING MODEL MARQUEE)
        ========================================================================= -->
   <section class="clients-strip" id="clients">
-    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x); margin-bottom: 2.5rem;">
-      <h2 style="font-size: var(--fs-h3); font-weight: 500; margin-bottom: 0.5rem;">In good company.</h2>
-      <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">
-        Organizations, academic teams, and enterprise environments where I've delivered software and sharpened engineering standards.
+    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x); margin-bottom: 2.25rem;">
+      <h2 style="font-size: var(--fs-h3); font-weight: 500; margin-bottom: 0.5rem; letter-spacing: -0.025em; color: #fff;">
+        Professionally built.
+      </h2>
+      <p style="color: rgba(255, 255, 255, 0.65); font-size: 0.95rem; max-width: 65ch; line-height: 1.55;">
+        End-to-end full-stack architecture operating as a live working model: WebGL &amp; GSAP frontend, Java Spring Boot backend, PostgreSQL database, and Google Cloud infrastructure.
       </p>
     </div>
 
     <div class="marquee-strip" aria-hidden="true">
-      <div class="client-badge-item"><span>Ford Motor Company · React Intern</span></div>
-      <div class="client-badge-item"><span>NSIC Chennai · Web Development Intern</span></div>
-      <div class="client-badge-item"><span>KCG College of Technology · B.Tech IT</span></div>
-      <div class="client-badge-item"><span>Infosys Springboard · Certified</span></div>
-      <div class="client-badge-item"><span>Accenture · Certified</span></div>
-      <div class="client-badge-item"><span>Google Digital Marketing · Certified</span></div>
-      <div class="client-badge-item"><span>NPTEL IIT · Certified</span></div>
-      <!-- Loop -->
-      <div class="client-badge-item"><span>Ford Motor Company · React Intern</span></div>
-      <div class="client-badge-item"><span>NSIC Chennai · Web Development Intern</span></div>
-      <div class="client-badge-item"><span>KCG College of Technology · B.Tech IT</span></div>
-      <div class="client-badge-item"><span>Infosys Springboard · Certified</span></div>
-      <div class="client-badge-item"><span>Accenture · Certified</span></div>
-      <div class="client-badge-item"><span>Google Digital Marketing · Certified</span></div>
-      <div class="client-badge-item"><span>NPTEL IIT · Certified</span></div>
+      <!-- Tier 1: Frontend -->
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">FRONTEND:</span>
+        <span class="stack-badge-title">WebGL &amp; GSAP</span>
+        <span class="stack-badge-sub mono">3D Canvas · 60 FPS</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ HTTPS / RESTful API →</span>
+      </div>
+
+      <!-- Tier 2: Backend -->
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">BACKEND:</span>
+        <span class="stack-badge-title">Java &amp; Spring Boot</span>
+        <span class="stack-badge-sub mono">High-Concurrency Services</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ HikariCP Pool →</span>
+      </div>
+
+      <!-- Tier 3: Database -->
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">DATABASE:</span>
+        <span class="stack-badge-title">PostgreSQL</span>
+        <span class="stack-badge-sub mono">ACID Relational Schemas</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ GCP VPC Peering →</span>
+      </div>
+
+      <!-- Tier 4: Cloud -->
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">CLOUD:</span>
+        <span class="stack-badge-title">Google Cloud</span>
+        <span class="stack-badge-sub mono">Cloud Run &amp; Cloud SQL</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ Live Pipeline Flow →</span>
+      </div>
+
+      <!-- Second Loop (Exact Duplicate for Seamless 100% Infinite Scroll) -->
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">FRONTEND:</span>
+        <span class="stack-badge-title">WebGL &amp; GSAP</span>
+        <span class="stack-badge-sub mono">3D Canvas · 60 FPS</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ HTTPS / RESTful API →</span>
+      </div>
+
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">BACKEND:</span>
+        <span class="stack-badge-title">Java &amp; Spring Boot</span>
+        <span class="stack-badge-sub mono">High-Concurrency Services</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ HikariCP Pool →</span>
+      </div>
+
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">DATABASE:</span>
+        <span class="stack-badge-title">PostgreSQL</span>
+        <span class="stack-badge-sub mono">ACID Relational Schemas</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ GCP VPC Peering →</span>
+      </div>
+
+      <div class="client-badge-item">
+        <span class="stack-badge-dot"></span>
+        <span class="stack-badge-tier mono">CLOUD:</span>
+        <span class="stack-badge-title">Google Cloud</span>
+        <span class="stack-badge-sub mono">Cloud Run &amp; Cloud SQL</span>
+      </div>
+
+      <div class="client-badge-item stack-badge-connector mono">
+        <span>→ Live Pipeline Flow →</span>
+      </div>
     </div>
   </section>
 
@@ -393,75 +466,97 @@
        ========================================================================= -->
   <section class="services-spread" id="skills">
     <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
-      <h2 style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 3.5rem;">
-        Four things I do, built end to end.
-      </h2>
-
-      <div class="services-columns-grid">
-        <!-- 01 Frontend -->
-        <div class="service-column-card">
-          <div>
-            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">01 FULL-STACK DEVELOPMENT</div>
-            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">Frontend Engineering</h3>
-            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Sites that earn their keep. Fluid, responsive, and performance-tuned.</p>
+      <div class="services-sticky-layout">
+        <div class="services-sticky-intro">
+          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1rem;">CAPABILITIES · <span id="servicesActiveIndex">01 / 04</span></div>
+          <h2 style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; line-height: 1.06; margin-bottom: 1.25rem;">
+            Four things I do, built end to end.
+          </h2>
+          <p style="color:var(--ink-muted); font-size:1.05rem; line-height:1.6; max-width:34ch; margin-bottom:1.75rem;">
+            From pixel-accurate interfaces to resilient APIs, cloud stores, and AI workflows — stacked in sequence as you scroll.
+          </p>
+          <div class="services-progress-track" aria-hidden="true">
+            <div class="services-progress-fill" id="servicesProgressFill"></div>
           </div>
-          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
-            <li>React, Next.js &amp; TypeScript</li>
-            <li>Tailwind CSS &amp; Vanilla CSS</li>
-            <li>State management &amp; custom hooks</li>
-            <li>Cross-browser performance QA</li>
-          </ul>
         </div>
 
-        <!-- 02 Backend -->
-        <div class="service-column-card">
-          <div>
-            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">02 WEBGL &amp; DESIGN</div>
-            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">Backend &amp; APIs</h3>
-            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Resilient servers, structured webhooks, and secure authentication.</p>
+        <div class="services-stack-column">
+          <!-- 01 Frontend -->
+          <div class="service-card-shell" style="--stack-i: 0;">
+            <div class="service-card-enter">
+              <div class="service-column-card">
+                <div>
+                  <div class="mono service-kicker">01 FULL-STACK DEVELOPMENT</div>
+                  <h3 class="service-title">Frontend Engineering</h3>
+                  <p class="service-desc">Sites that earn their keep. Fluid, responsive, and performance-tuned.</p>
+                </div>
+                <ul class="service-list">
+                  <li>React, Next.js &amp; TypeScript</li>
+                  <li>Tailwind CSS &amp; Vanilla CSS</li>
+                  <li>State management &amp; custom hooks</li>
+                  <li>Cross-browser performance QA</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
-            <li>Node.js &amp; Express.js</li>
-            <li>Java &amp; Spring Boot</li>
-            <li>RESTful API architectures</li>
-            <li>Tenant isolation &amp; RBAC security</li>
-          </ul>
-        </div>
 
-        <!-- 03 Databases -->
-        <div class="service-column-card">
-          <div>
-            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">03 DATABASES &amp; CLOUD</div>
-            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">Databases &amp; Cloud</h3>
-            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Relational &amp; document stores optimized for queries and zero loss.</p>
+          <!-- 02 Backend -->
+          <div class="service-card-shell" style="--stack-i: 1;">
+            <div class="service-card-enter">
+              <div class="service-column-card">
+                <div>
+                  <div class="mono service-kicker">02 WEBGL &amp; DESIGN</div>
+                  <h3 class="service-title">Backend &amp; APIs</h3>
+                  <p class="service-desc">Resilient servers, structured webhooks, and secure authentication.</p>
+                </div>
+                <ul class="service-list">
+                  <li>Node.js &amp; Express.js</li>
+                  <li>Java &amp; Spring Boot</li>
+                  <li>RESTful API architectures</li>
+                  <li>Tenant isolation &amp; RBAC security</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
-            <li>PostgreSQL &amp; MongoDB</li>
-            <li>Google Cloud Platform (GCP)</li>
-            <li>Docker containerization</li>
-            <li>Git &amp; GitHub CI pipelines</li>
-          </ul>
-        </div>
 
-        <!-- 04 AI Automation -->
-        <div class="service-column-card">
-          <div>
-            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">04 AI AUTOMATION</div>
-            <h3 style="font-size:1.35rem; font-weight:600; margin-bottom:0.4rem;">AI Automation</h3>
-            <p style="font-size:0.9rem; color:var(--ink-muted); line-height:1.5;">Machine learning services and automated queues that work while you sleep.</p>
+          <!-- 03 Databases -->
+          <div class="service-card-shell" style="--stack-i: 2;">
+            <div class="service-card-enter">
+              <div class="service-column-card">
+                <div>
+                  <div class="mono service-kicker">03 DATABASES &amp; CLOUD</div>
+                  <h3 class="service-title">Databases &amp; Cloud</h3>
+                  <p class="service-desc">Relational &amp; document stores optimized for queries and zero loss.</p>
+                </div>
+                <ul class="service-list">
+                  <li>PostgreSQL &amp; MongoDB</li>
+                  <li>Google Cloud Platform (GCP)</li>
+                  <li>Docker containerization</li>
+                  <li>Git &amp; GitHub CI pipelines</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <ul style="border-top:1px solid var(--border-light); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem;">
-            <li>Python &amp; Flask services</li>
-            <li>NLP text classification</li>
-            <li>Automated triage pipelines</li>
-            <li>Webhook integrations</li>
-          </ul>
-        </div>
-      </div>
 
-      <!-- Services Showreel Film -->
-      <div style="margin-top: 3rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); aspect-ratio: 16/9; max-width: 960px; margin-inline: auto; background: #0f0f0f; box-shadow: 0 20px 40px rgba(0,0,0,0.06);">
-        <video src="/video/work-reel-cut.mp4" poster="/video/work-reel-sm.jpg" muted loop playsinline autoplay style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+          <!-- 04 AI Automation -->
+          <div class="service-card-shell" style="--stack-i: 3;">
+            <div class="service-card-enter">
+              <div class="service-column-card">
+                <div>
+                  <div class="mono service-kicker">04 AI AUTOMATION</div>
+                  <h3 class="service-title">AI Automation</h3>
+                  <p class="service-desc">Machine learning services and automated queues that work while you sleep.</p>
+                </div>
+                <ul class="service-list">
+                  <li>Python &amp; Flask services</li>
+                  <li>NLP text classification</li>
+                  <li>Automated triage pipelines</li>
+                  <li>Webhook integrations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -471,18 +566,20 @@
        ========================================================================= -->
   <section class="process-film-section" id="experience">
     <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
-      <div style="margin-bottom: 3.5rem;">
-        <h2 style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 0.75rem;">
+      <div class="process-stage-header" style="margin-bottom: 3.5rem;">
+        <h2 class="process-title" style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 0.75rem;">
           How a project runs.
         </h2>
-        <p style="color:var(--ink-muted); font-size:1.05rem;">
+        <p class="process-lede" style="color:var(--ink-muted); font-size:1.05rem;">
           Four steps, each with something you can see and approve before the next one starts.
         </p>
       </div>
 
+      <div class="process-stack-list">
       <!-- Step 01: Discovery -->
-      <div class="process-step-layout">
-        <div>
+      <div class="process-step-shell" style="--stack-i: 0;" data-step-label="DISCOVERY">
+        <div class="process-step-layout">
+        <div class="process-step-copy">
           <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 01 · DISCOVERY</div>
           <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">01</div>
           <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">The awkward questions</h3>
@@ -490,19 +587,23 @@
             Who is it for, what does it have to sell, and what went wrong last time? You get a written plan back: the pages, what matters most, and a launch date.
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Brand positioning</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">User research</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Information architecture</span>
+            <span class="mono process-tag">Brand positioning</span>
+            <span class="mono process-tag">User research</span>
+            <span class="mono process-tag">Information architecture</span>
           </div>
         </div>
         <div class="step-film-box">
-          <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="step-film-zoom-wrap">
+            <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          </div>
+        </div>
         </div>
       </div>
 
       <!-- Step 02: Design -->
-      <div class="process-step-layout">
-        <div>
+      <div class="process-step-shell" style="--stack-i: 1;" data-step-label="DESIGN">
+        <div class="process-step-layout">
+        <div class="process-step-copy">
           <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 02 · DESIGN</div>
           <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">02</div>
           <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Designed in motion</h3>
@@ -510,19 +611,23 @@
             Type, colour, layout and motion made for your brand, as a prototype you can click through. You approve it before a line of final code is written.
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">UI/UX design</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Interactive prototypes</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Typography specimen</span>
+            <span class="mono process-tag">UI/UX design</span>
+            <span class="mono process-tag">Interactive prototypes</span>
+            <span class="mono process-tag">Typography specimen</span>
           </div>
         </div>
         <div class="step-film-box">
-          <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="step-film-zoom-wrap">
+            <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          </div>
+        </div>
         </div>
       </div>
 
       <!-- Step 03: Engineering -->
-      <div class="process-step-layout">
-        <div>
+      <div class="process-step-shell" style="--stack-i: 2;" data-step-label="ENGINEERING">
+        <div class="process-step-layout">
+        <div class="process-step-copy">
           <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 03 · ENGINEERING</div>
           <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">03</div>
           <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Built to hold up</h3>
@@ -530,19 +635,23 @@
             Everything you can see, and everything behind it: payments, data and integrations. Built to stay fast on an older phone, not only on a new laptop.
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">React &amp; TypeScript</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Three.js / WebGL</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">GSAP animations</span>
+            <span class="mono process-tag">React &amp; TypeScript</span>
+            <span class="mono process-tag">Three.js / WebGL</span>
+            <span class="mono process-tag">GSAP animations</span>
           </div>
         </div>
         <div class="step-film-box">
-          <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="step-film-zoom-wrap">
+            <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          </div>
+        </div>
         </div>
       </div>
 
       <!-- Step 04: Launch -->
-      <div class="process-step-layout">
-        <div>
+      <div class="process-step-shell" style="--stack-i: 3;" data-step-label="LAUNCH">
+        <div class="process-step-layout">
+        <div class="process-step-copy">
           <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 04 · LAUNCH</div>
           <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">04</div>
           <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Launch, then stay</h3>
@@ -550,82 +659,33 @@
             Tested on every screen, set up for Google and AI search, and launched on your domain. Then a walkthrough of how it all works, and 90 days of support.
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Cross-device QA</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Technical SEO</span>
-            <span class="mono" style="padding:0.35rem 0.75rem; border-radius:9999px; background:#fff; border:1px solid var(--border-light); font-size:0.75rem;">Global deployment</span>
+            <span class="mono process-tag">Cross-device QA</span>
+            <span class="mono process-tag">Technical SEO</span>
+            <span class="mono process-tag">Global deployment</span>
           </div>
         </div>
         <div class="step-film-box">
-          <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="step-film-zoom-wrap">
+            <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          </div>
         </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Sticky Scroll Progress Rail -->
+      <div class="process-sticky-bar" aria-hidden="true">
+        <span class="mono" id="processActiveIndex">01 / 04</span>
+        <div class="process-progress-track">
+          <div class="process-progress-fill" id="processProgressFill"></div>
+        </div>
+        <span class="mono" id="processActiveStage">DISCOVERY</span>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       10. EDUCATION & CONTINUOUS LEARNING
-       ========================================================================= -->
-  <section class="education-strip" id="education">
-    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem, 5vw, 5rem);">
-        <!-- Degree -->
-        <div style="padding:clamp(2rem, 3.5vw, 3rem); background:#ffffff; border:1px solid var(--border-light); border-radius:1.5rem; display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1rem;">DEGREE PROGRAM</div>
-            <h3 style="font-size:clamp(1.5rem, 1.2rem + 1vw, 2.2rem); font-weight:600; margin-bottom:0.5rem;">B.Tech in Information Technology</h3>
-            <div style="font-size:1.05rem; color:var(--ink-muted); margin-bottom:1.5rem;">KCG College of Technology, Chennai</div>
-            <p style="color:var(--ink-muted); font-size:0.95rem; line-height:1.6;">
-              Curriculum focused on algorithms, software architecture, distributed databases, cloud systems, and full-stack engineering.
-            </p>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; border-top:1px solid var(--border-light); padding-top:1.5rem; margin-top:2rem;">
-            <div>
-              <div class="mono" style="font-size:0.75rem; color:var(--ink-dim);">GRADUATION</div>
-              <div class="mono" style="font-size:1.6rem; font-weight:700;">2022–2026</div>
-            </div>
-            <div>
-              <div class="mono" style="font-size:0.75rem; color:var(--ink-dim);">CUMULATIVE GPA</div>
-              <div class="mono" style="font-size:1.6rem; font-weight:700;">7.52 / 10</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Continuous Learning -->
-        <div>
-          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:1.5rem;">CONTINUOUS LEARNING</div>
-          <div style="display:flex; flex-direction:column; gap:0.85rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
-              <span style="font-weight:500;">Infosys Springboard Certifications</span>
-              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">INFOSYS</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
-              <span style="font-weight:500;">Accenture Industry Readiness Certifications</span>
-              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">ACCENTURE</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
-              <span style="font-weight:500;">Python Essential Training</span>
-              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">LINKEDIN LEARNING</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
-              <span style="font-weight:500;">Fundamentals of Digital Marketing</span>
-              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">GOOGLE</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
-              <span style="font-weight:500;">NPTEL Course — Foundational Computer Science</span>
-              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">NPTEL / IIT</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:1.15rem 1.4rem; background:#fff; border:1px solid var(--border-light); border-radius:1rem;">
-              <span style="font-weight:500;">NPTEL Course — Web Technology &amp; Systems</span>
-              <span class="mono" style="font-size:0.75rem; color:var(--ink-dim);">NPTEL / IIT</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       11. INTERACTIVE CONTACT FOOTER
+       10. INTERACTIVE CONTACT FOOTER
        ========================================================================= -->
   <footer class="contact-footer-stage" id="contact">
     <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
@@ -646,14 +706,14 @@
           </div>
 
           <!-- Quick Contact Message Form -->
-          <form id="contactForm" style="max-width:640px; display:flex; flex-direction:column; gap:1rem; margin-top:2rem;">
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-              <input type="text" id="contactName" placeholder="Your name" required style="padding:0.9rem 1.25rem; border-radius:0.75rem; border:1px solid var(--border-light); font-family:inherit; font-size:0.95rem; background:#fff;" />
-              <input type="email" id="contactEmail" placeholder="Your email address" required style="padding:0.9rem 1.25rem; border-radius:0.75rem; border:1px solid var(--border-light); font-family:inherit; font-size:0.95rem; background:#fff;" />
+          <form id="contactForm" class="contact-form">
+            <div class="contact-form-row">
+              <input type="text" id="contactName" class="contact-input" placeholder="Your name" required />
+              <input type="email" id="contactEmail" class="contact-input" placeholder="Your email address" required />
             </div>
-            <textarea id="contactMessage" rows="3" placeholder="Tell me about your project, timeline, or engineering opportunity..." required style="padding:0.9rem 1.25rem; border-radius:0.75rem; border:1px solid var(--border-light); font-family:inherit; font-size:0.95rem; background:#fff;"></textarea>
-            <div style="display:flex; align-items:center; justify-content:space-between;">
-              <button type="submit" class="sound-btn" style="padding:0.75rem 1.75rem; background:var(--ink); color:#fff; cursor:pointer;">
+            <textarea id="contactMessage" class="contact-input" rows="3" placeholder="Tell me about your project, timeline, or engineering opportunity..." required></textarea>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+              <button type="submit" class="sound-btn contact-submit-btn">
                 Send inquiry →
               </button>
               <span id="contactStatus" class="mono" style="font-size:0.85rem; color:#16a34a; display:none;"></span>
@@ -678,7 +738,6 @@
             <li><a href="#work" class="link-draw" onclick="scrollToSection('work'); return false;">Work</a></li>
             <li><a href="#skills" class="link-draw" onclick="scrollToSection('skills'); return false;">Skills</a></li>
             <li><a href="#experience" class="link-draw" onclick="scrollToSection('experience'); return false;">Experience</a></li>
-            <li><a href="#education" class="link-draw" onclick="scrollToSection('education'); return false;">Education</a></li>
           </ul>
         </div>
 
@@ -717,7 +776,7 @@
        ========================================================================= -->
   <div class="site-menu-curtain" id="siteMenu" role="dialog" aria-modal="true" aria-label="Menu navigation">
     <div style="display:flex; justify-content:space-between; align-items:center;">
-      <div style="font-weight:700; font-size:1.15rem; letter-spacing:-0.03em;">CodeofNaveen</div>
+      <div style="font-weight:700; font-size:1.15rem; letter-spacing:-0.03em;">Naveen's Portfolio</div>
       <button class="menu-toggle-btn" id="menuCloseBtn" aria-label="Close menu">✕</button>
     </div>
 
@@ -727,7 +786,6 @@
       <a href="#work" class="menu-link-giant has-roll" data-menu-link="work" data-roll-text="Work">Work</a>
       <a href="#skills" class="menu-link-giant has-roll" data-menu-link="skills" data-roll-text="Skills">Skills</a>
       <a href="#experience" class="menu-link-giant has-roll" data-menu-link="experience" data-roll-text="Experience">Experience</a>
-      <a href="#education" class="menu-link-giant has-roll" data-menu-link="education" data-roll-text="Education">Education</a>
       <a href="#contact" class="menu-link-giant has-roll" data-menu-link="contact" data-roll-text="Contact">Contact</a>
     </nav>
 
@@ -744,7 +802,7 @@
   <!-- =========================================================================
        13. PROJECT DETAIL MODAL
        ========================================================================= -->
-  <div class="site-menu-curtain" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="background:rgba(10,10,12,0.85); backdrop-filter:blur(16px); color:#fff; padding:clamp(2rem, 5vw, 4rem); overflow-y:auto;">
+  <div class="site-menu-curtain" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="background:rgba(10,10,12,0.85); backdrop-filter:blur(16px); color:#fff; padding:clamp(2rem, 5vw, 4rem);">
     <div style="max-width:760px; margin-inline:auto; width:100%; display:flex; flex-direction:column; gap:1.5rem;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <span class="mono" id="modalCategory" style="font-size:0.8rem; text-transform:uppercase; color:var(--accent-orange);">CATEGORY</span>

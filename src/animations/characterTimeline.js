@@ -44,7 +44,8 @@ export function initHeroTimeline(heroStageScene) {
     invalidateOnRefresh: true,
     onRefresh: updateLetterFractions,
     onUpdate: (self) => {
-      const p = self.progress;
+      // Reserve final 100svh of 470svh hero scroll container for page-over-page overlap after "Let's make it simple."
+      const p = Math.min(1, self.progress / (270 / 370));
 
       // 1. Hands Slide Out & MacBook
       const handP = beat(p, [0.04, 0.28]);

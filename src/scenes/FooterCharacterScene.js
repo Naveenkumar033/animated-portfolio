@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { loadGLTF, tuneSagarMaterials, keptInPlace } from '../utils/assetLoader.js';
-import { globalLighting } from './Lighting.js';
 
 export class FooterCharacterScene {
   constructor(canvasId = 'footerCharacterCanvas') {
@@ -61,8 +60,6 @@ export class FooterCharacterScene {
     this.scene.add(keyLight);
     this.scene.add(fillLight);
     this.scene.add(rimLight);
-
-    globalLighting.register(hemiLight, keyLight, fillLight, rimLight);
 
     this.group = new THREE.Group();
     this.group.rotation.y = -0.35;

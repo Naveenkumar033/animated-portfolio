@@ -24,11 +24,15 @@
 
   /* Spacing */
   --page-x: clamp(1.25rem, 3.5vw, 4.5rem);
-  --hero-h: 370svh;
+  --hero-h: 470svh;
 
   /* Color Palette - Day (Default) */
   --bg-sky: linear-gradient(180deg, #dce4ed 0%, #edf3f8 40%, #fbfcfd 100%);
   --bg-paper: #fbfaf8;
+  --bg-paper-alt: #f4f3ef;
+  --bg-card: #ffffff;
+  --bg-footer-end: #ebe9e3;
+  --bg-glass: rgba(255, 255, 255, 0.78);
   --bg-dark: #0a0a0c;
   --bg-card-dark: #131316;
   --ink: #111111;
@@ -46,19 +50,18 @@
   --cursor-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='3' fill='%23111111' stroke='white' stroke-width='1.2'/%3E%3C/svg%3E") 8 8, auto;
 }
 
-/* Atmospheric Theme Variations */
-[data-theme="sunset"] {
+/* Atmospheric Theme Variations (Scoped strictly to Hero Stage) */
+#heroScrollContainer[data-theme="sunset"] {
   --bg-sky: linear-gradient(180deg, #fdba74 0%, #f472b6 45%, #fed7aa 100%);
   --ink: #18181b;
   --ink-muted: #4b5563;
 }
 
-[data-theme="night"] {
+#heroScrollContainer[data-theme="night"] {
   --bg-sky: linear-gradient(180deg, #090a10 0%, #111827 50%, #1e1b4b 100%);
-  --bg-paper: #0e0e12;
   --ink: #f9fafb;
   --ink-muted: #9ca3af;
-  --ink-dim: #6b7280;
+  --ink-dim: #71717a;
   --border-light: rgba(255, 255, 255, 0.14);
 }
 
@@ -72,7 +75,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--bg-paper);
   color: var(--ink);
   line-height: 1.45;
