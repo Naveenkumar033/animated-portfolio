@@ -7,7 +7,7 @@ export function initPreloader(onComplete) {
 
   let loadProgress = 0;
   const loadStartTime = performance.now();
-  const loadDuration = 1200;
+  const loadDuration = 550;
 
   function tick(now) {
     const elapsed = now - loadStartTime;
@@ -18,7 +18,9 @@ export function initPreloader(onComplete) {
       preloaderDigits.textContent = count.toString().padStart(3, '0');
     }
     if (preloaderBar) {
-      preloaderBar.style.width = `${count}%`;
+      preloaderBar.style.transform = `scaleX(${loadProgress})`;
+      preloaderBar.style.transformOrigin = 'left';
+      preloaderBar.style.width = '100%';
     }
 
     if (loadProgress < 1) {
@@ -32,10 +34,9 @@ export function initPreloader(onComplete) {
           ScrollTrigger.refresh();
         }
         if (onComplete) onComplete();
-      }, 180);
+      }, 60);
     }
   }
 
   requestAnimationFrame(tick);
 }
-

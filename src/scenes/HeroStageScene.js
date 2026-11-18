@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import gsap from 'gsap';
 import { loadGLTF, tuneSagarMaterials, tuneMacbookMaterials, sanitizeClip } from '../utils/assetLoader.js';
 import { globalLighting } from './Lighting.js';
@@ -88,10 +89,53 @@ export class HeroStageScene {
     this.preloaderDone = false;
     this.introStarted = false;
     this.onLoadedCallbacks = [];
+    this.isVisible = true;
+    this.rafId = null;
+    this._hwPos = new THREE.Vector3();
 
     this.initScene();
     this.loadAssets();
-    this.animate();
+    this.initVisibilityObserver();
+    this.startLoop();
+  }
+
+  initVisibilityObserver() {
+    const observeTarget = document.getElementById('heroScrollContainer') || this.canvas;
+    if (observeTarget && typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          this.isVisible = entry.isIntersecting;
+          if (this.isVisible && !document.hidden) {
+            this.startLoop();
+          } else {
+            this.stopLoop();
+          }
+        },
+        { rootMargin: '20px 0px', threshold: 0.01 }
+      );
+      observer.observe(observeTarget);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.stopLoop();
+      } else if (this.isVisible) {
+        this.startLoop();
+      }
+    });
+  }
+
+  startLoop() {
+    if (this.rafId !== null) return;
+    this.lastTime = performance.now();
+    this.rafId = requestAnimationFrame(this.animate);
+  }
+
+  stopLoop() {
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
   }
 
   startIntro() {
@@ -125,7 +169,7 @@ export class HeroStageScene {
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.45;
@@ -146,8 +190,8 @@ export class HeroStageScene {
 
     globalLighting.register(hemiLight, keyLight, fillLight, rimLight);
 
-    window.addEventListener('resize', this.onResize);
-    window.addEventListener('mousemove', this.onMouseMove);
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('mousemove', this.onMouseMove, { passive: true });
   }
 
   onResize = () => {
@@ -161,6 +205,7 @@ export class HeroStageScene {
   };
 
   onMouseMove = (e) => {
+    if (!this.isVisible) return;
     const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
     const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     this.targetHeadRotY = mouseX * 0.4;
@@ -215,7 +260,7 @@ export class HeroStageScene {
     const macOffsetZ = 0.415 * scaleRatio;
 
     const pushStartX = isMobile ? -(0.1 * vWidth) : -4.8 * a;
-    const pushEndX = isMobile ? 0.85 * vWidth : 11 * a;
+    const pushEndX = isMobile ? 1.05 * vWidth : 13.0 * a;
     const groundY = vHeight * -0.01 + (vHeight * -0.3 - vHeight * -0.01) * i;
 
     this.layout = {
@@ -337,8 +382,8 @@ export class HeroStageScene {
       this.rightHandGroup.add(this.rightMesh);
       this.scene.add(this.rightHandGroup);
 
-      // Character Model & Animations
-      this.character = tuneSagarMaterials(sagarGltf.scene);
+      // Character Model & Animations (clone from cache so other scenes are never mutated)
+      this.character = tuneSagarMaterials(SkeletonUtils.clone(sagarGltf.scene));
       this.headBone = this.character.getObjectByName('mixamorigHead') || this.character.getObjectByName('mixamorig:Head');
       this.rightHandBone = this.character.getObjectByName('mixamorigRightHand') || this.character.getObjectByName('mixamorig:RightHand');
       this.scene.add(this.character);
@@ -364,12 +409,12 @@ export class HeroStageScene {
       this.pushAction.paused = true;
       this.pushAction.setEffectiveWeight(0);
 
-      // Concept MacBook
-      this.macbook = tuneMacbookMaterials(macbookGltf.scene);
+      // Concept MacBook (clone from cache)
+      this.macbook = tuneMacbookMaterials(macbookGltf.scene.clone(true));
       this.scene.add(this.macbook);
 
-      // Mechanical Desk
-      this.desk = deskGltf.scene;
+      // Mechanical Desk (clone from cache so WhyDeskScene receives clean pristine desk2.glb)
+      this.desk = deskGltf.scene.clone(true);
       this.desk.traverse((child) => {
         if (child.isMesh && child.material) {
           const mats = Array.isArray(child.material) ? child.material : [child.material];
@@ -380,8 +425,14 @@ export class HeroStageScene {
           }
         }
       });
-      this.desk.visible = false;
+      this.desk.visible = true;
       this.scene.add(this.desk);
+
+      // Pre-compile all shaders (including hidden desk) during startup to prevent mid-scroll compile stutter
+      if (this.renderer && this.camera) {
+        this.renderer.compile(this.scene, this.camera);
+      }
+      this.desk.visible = false;
 
       this.updateLayout();
 
@@ -506,16 +557,16 @@ export class HeroStageScene {
       duration: 0.6,
       ease: 'power2.out'
     }, 1.1)
-    .to(this.handAnim, {
-      leftRotX: 0,
-      leftRotY: 0,
-      leftRotZ: 0,
-      rightRotX: 0,
-      rightRotY: 0,
-      rightRotZ: 0,
-      duration: 1.3,
-      ease: 'power3.inOut'
-    }, 1.7);
+      .to(this.handAnim, {
+        leftRotX: 0,
+        leftRotY: 0,
+        leftRotZ: 0,
+        rightRotX: 0,
+        rightRotY: 0,
+        rightRotZ: 0,
+        duration: 1.3,
+        ease: 'power3.inOut'
+      }, 1.7);
 
     // ------------------------------------------------------------------------
     // PHASE 3: Character drops down and lands squarely on the index finger
@@ -603,11 +654,11 @@ export class HeroStageScene {
     };
 
     const deskXAt = (prog) => {
-      return THREE.MathUtils.lerp(-4.8, 11, beat(prog, [0.44, 0.94]));
+      return THREE.MathUtils.lerp(-4.8, 13.0, beat(prog, [0.36, 0.78]));
     };
 
     const deskRotYAt = (prog, baseRot = Math.PI - 15 * Math.PI / 180, r = 1) => {
-      return baseRot - Math.atan2(deskXAt(prog) * r, 11.5) + Math.atan2(11 * r, 11.5);
+      return baseRot - Math.atan2(deskXAt(prog) * r, 11.5) + Math.atan2(13.0 * r, 11.5);
     };
 
     // 0. Absolute resting hero state
@@ -674,21 +725,22 @@ export class HeroStageScene {
     this.macbook.rotation.x = 0.04 + macbookP * 2.5;
     this.macbook.visible = macbookP < 0.99;
 
-    // 3. Desk positioning
-    const deskInP = beat(p, [0.20, 0.44]);
-    const pushP = beat(p, [0.44, 0.94]);
+    // 3. Desk positioning (completes full crossing off-screen by p = 0.78)
+    const deskInP = beat(p, [0.18, 0.36]);
+    const pushP = beat(p, [0.36, 0.78]);
 
-    const d = (deskXAt(p) - (-4.8)) / (11 - (-4.8));
+    const d = (deskXAt(p) - (-4.8)) / (13.0 - (-4.8));
     const deskX = pushStartX + (pushEndX - pushStartX) * d;
 
-    this.desk.visible = deskInP > 0.001;
+    const pushActive = p < 0.80;
+    this.desk.visible = deskInP > 0.001 && pushActive;
     this.desk.scale.setScalar(THREE.MathUtils.lerp(0, 0.35 * u, deskInP));
     this.desk.position.set(deskX, vHeight * -0.01, -1.5);
     this.desk.rotation.y = deskRotYAt(p, Math.PI - 15 * Math.PI / 180, span);
 
     // 4. Character positioning along arc to desk, then lockstep with desk
-    const toDeskP = beat(p, [0.04, 0.34]);
-    const toPushP = beat(p, [0.32, 0.42]);
+    const toDeskP = beat(p, [0.04, 0.30]);
+    const toPushP = beat(p, [0.28, 0.36]);
 
     const easeM = gsap.parseEase('power1.inOut')(toDeskP);
     const arcStart = [sittingX, sittingY];
@@ -712,7 +764,7 @@ export class HeroStageScene {
     this.character.position.set(charX, charY, charZ);
     this.character.rotation.set(0, charRotY, 0);
     this.character.scale.setScalar(charScale);
-    this.character.visible = true;
+    this.character.visible = pushActive;
 
     // 5. Continuous animation blend weights & scrubbing
     const fallBlend = Math.min(1, Math.max(0, toDeskP / 0.12));
@@ -740,10 +792,9 @@ export class HeroStageScene {
     // 7. Track Right Hand bone for dynamic screen fraction
     if (this.rightHandBone) {
       this.rightHandBone.updateWorldMatrix(true, false);
-      const hwPos = new THREE.Vector3();
-      this.rightHandBone.getWorldPosition(hwPos);
-      this.handOffsetX = hwPos.x - this.character.position.x;
-      this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (hwPos.x - 1.47) / vWidth));
+      this.rightHandBone.getWorldPosition(this._hwPos);
+      this.handOffsetX = this._hwPos.x - this.character.position.x;
+      this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (this._hwPos.x - 1.47) / vWidth));
     } else {
       this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (charX - 0.4) / vWidth));
     }
@@ -754,8 +805,12 @@ export class HeroStageScene {
   }
 
   animate = (now = performance.now()) => {
-    requestAnimationFrame(this.animate);
-    const delta = Math.min((now - (this.lastTime || now)) * 0.001, 0.1);
+    if (!this.isVisible || document.hidden) {
+      this.rafId = null;
+      return;
+    }
+    this.rafId = requestAnimationFrame(this.animate);
+    const delta = Math.min((now - (this.lastTime || now)) * 0.001, 0.05);
     this.lastTime = now;
 
     if (this.mixer) {

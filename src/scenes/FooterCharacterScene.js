@@ -18,10 +18,12 @@ export class FooterCharacterScene {
 
     this.mouseX = 0;
     this.mouseY = 0;
+    this.isVisible = false;
+    this.assetsRequested = false;
+    this.rafId = null;
 
     this.initScene();
-    this.loadAssets();
-    this.animate();
+    this.initVisibilityObservers();
   }
 
   initScene() {
@@ -42,7 +44,7 @@ export class FooterCharacterScene {
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.45;
@@ -65,12 +67,15 @@ export class FooterCharacterScene {
     this.group.rotation.y = -0.35;
     this.scene.add(this.group);
 
-    window.addEventListener('resize', this.onResize);
-    window.addEventListener('mousemove', (e) => {
-      this.mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      this.mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('mousemove', this.onMouseMove, { passive: true });
   }
+
+  onMouseMove = (e) => {
+    if (!this.isVisible) return;
+    this.mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    this.mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+  };
 
   onResize = () => {
     if (!this.canvas || !this.camera || !this.renderer) return;
@@ -80,6 +85,67 @@ export class FooterCharacterScene {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(w, h);
   };
+
+  initVisibilityObservers() {
+    const section = document.getElementById('contact') || this.canvas;
+    if (section && typeof IntersectionObserver !== 'undefined') {
+      const loadObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            this.warmUp();
+            loadObserver.disconnect();
+          }
+        },
+        { rootMargin: '800px 0px', threshold: 0.01 }
+      );
+      loadObserver.observe(section);
+
+      const renderObserver = new IntersectionObserver(
+        ([entry]) => {
+          this.isVisible = entry.isIntersecting;
+          if (this.isVisible && !document.hidden) {
+            this.warmUp();
+            this.startLoop();
+          } else {
+            this.stopLoop();
+          }
+        },
+        { rootMargin: '200px 0px', threshold: 0.01 }
+      );
+      renderObserver.observe(section);
+    } else {
+      this.isVisible = true;
+      this.warmUp();
+      this.startLoop();
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.stopLoop();
+      } else if (this.isVisible) {
+        this.startLoop();
+      }
+    });
+  }
+
+  warmUp() {
+    if (this.assetsRequested) return;
+    this.assetsRequested = true;
+    this.loadAssets();
+  }
+
+  startLoop() {
+    if (this.rafId !== null) return;
+    this.lastTime = performance.now();
+    this.rafId = requestAnimationFrame(this.animate);
+  }
+
+  stopLoop() {
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
+  }
 
   async loadAssets() {
     try {
@@ -91,6 +157,9 @@ export class FooterCharacterScene {
       ]);
 
       this.character = tuneSagarMaterials(SkeletonUtils.clone(sagarGltf.scene));
+      this.character.visible = true;
+      this.character.position.set(0, 0, 0);
+      this.character.rotation.set(0, 0, 0);
       this.headBone = this.character.getObjectByName('mixamorigHead') || this.character.getObjectByName('mixamorig:Head');
       this.character.scale.setScalar(100);
       this.group.add(this.character);
@@ -120,14 +189,24 @@ export class FooterCharacterScene {
         next.reset().setEffectiveWeight(1).play();
         next.crossFadeFrom(prev, 0.5, true);
       });
+
+      if (this.renderer && this.scene && this.camera) {
+        this.mixer.update(0);
+        this.renderer.compile(this.scene, this.camera);
+        this.renderer.render(this.scene, this.camera);
+      }
     } catch (err) {
       console.error('Error loading FooterCharacter assets:', err);
     }
   }
 
   animate = (now = performance.now()) => {
-    requestAnimationFrame(this.animate);
-    const delta = Math.min((now - (this.lastTime || now)) * 0.001, 0.1);
+    if (!this.isVisible || document.hidden) {
+      this.rafId = null;
+      return;
+    }
+    this.rafId = requestAnimationFrame(this.animate);
+    const delta = Math.min((now - (this.lastTime || now)) * 0.001, 0.05);
     this.lastTime = now;
 
     if (this.mixer) {
@@ -148,4 +227,3 @@ export class FooterCharacterScene {
     }
   };
 }
-

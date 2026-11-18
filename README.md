@@ -116,7 +116,7 @@ Previews the production build locally.
 ## 👤 User Identity & Content
 - **Developer**: Naveen Kumar E (`CodeofNaveen`)
 - **Education**: B.Tech Information Technology, KCG College of Technology (2022–2026)
-- **Email**: `naveenkumar.dev@outlook.com`
+- **Email**: `naveenkumar.develop@gmail.com`
 - **Featured Projects**:
   1. **AgroEquipAI** — AI-Powered Smart Agriculture & Farm Equipment Platform
   2. **Multi-Tenant Sales & Calling Platform** — Enterprise CRM with Role-Based Access Control

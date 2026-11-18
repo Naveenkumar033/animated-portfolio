@@ -15,6 +15,7 @@ export function initHeroTimeline(heroStageScene) {
   const arrow = document.getElementById('heroArrow');
   const lighting = document.getElementById('heroLighting');
   const nameSpans = Array.from(document.querySelectorAll('#heroScrollName span'));
+  const spanState = new Array(nameSpans.length).fill(false);
 
   if (!container || !stage) return null;
 
@@ -28,7 +29,7 @@ export function initHeroTimeline(heroStageScene) {
     });
   }
   updateLetterFractions();
-  window.addEventListener('resize', updateLetterFractions);
+  window.addEventListener('resize', updateLetterFractions, { passive: true });
 
   const beat = (val, [min, max]) => {
     if (max <= min) return val >= max ? 1 : 0;
@@ -40,30 +41,29 @@ export function initHeroTimeline(heroStageScene) {
     trigger: container,
     start: 'top top',
     end: 'bottom bottom',
-    scrub: 0.1,
+    scrub: 0.08,
     invalidateOnRefresh: true,
     onRefresh: updateLetterFractions,
     onUpdate: (self) => {
-      // Reserve final 100svh of 470svh hero scroll container for page-over-page overlap after "Let's make it simple."
       const p = Math.min(1, self.progress / (270 / 370));
 
-      // 1. Hands Slide Out & MacBook
+      // 1. Hands Slide Out & MacBook (GPU translate3d)
       const handP = beat(p, [0.04, 0.28]);
       if (handLeft) {
         if (p <= 0.04) {
-          handLeft.style.transform = 'translate(0px, 0px) rotate(1.5deg)';
+          handLeft.style.transform = 'translate3d(0px, 0px, 0) rotate(1.5deg)';
           handLeft.style.opacity = '1';
         } else {
-          handLeft.style.transform = `translate(${-55 * handP}vw, ${25 * handP}vh) scale(${1 - 0.4 * handP}) rotate(${2 - 10 * handP}deg)`;
+          handLeft.style.transform = `translate3d(${(-55 * handP).toFixed(2)}vw, ${(25 * handP).toFixed(2)}vh, 0) scale(${(1 - 0.4 * handP).toFixed(3)}) rotate(${(2 - 10 * handP).toFixed(2)}deg)`;
           handLeft.style.opacity = String(Math.max(0, 1 - handP * 1.2));
         }
       }
       if (handRight) {
         if (p <= 0.04) {
-          handRight.style.transform = 'translate(0px, 0px) rotate(-4deg)';
+          handRight.style.transform = 'translate3d(0px, 0px, 0) rotate(-4deg)';
           handRight.style.opacity = '1';
         } else {
-          handRight.style.transform = `translate(${55 * handP}vw, ${-25 * handP}vh) scale(${1 - 0.4 * handP}) rotate(${-4 + 10 * handP}deg)`;
+          handRight.style.transform = `translate3d(${(55 * handP).toFixed(2)}vw, ${(-25 * handP).toFixed(2)}vh, 0) scale(${(1 - 0.4 * handP).toFixed(3)}) rotate(${(-4 + 10 * handP).toFixed(2)}deg)`;
           handRight.style.opacity = String(Math.max(0, 1 - handP * 1.2));
         }
       }
@@ -74,12 +74,12 @@ export function initHeroTimeline(heroStageScene) {
         if (p <= 0.04) {
           layer1.style.opacity = '1';
           layer1.style.visibility = 'visible';
-          layer1.style.transform = 'translateY(0px)';
+          layer1.style.transform = 'translate3d(0, 0px, 0)';
         } else {
           const op = Math.max(0, 1 - textOutP);
           layer1.style.opacity = String(op);
           layer1.style.visibility = op <= 0.001 ? 'hidden' : 'visible';
-          layer1.style.transform = `translateY(${-40 * textOutP}px)`;
+          layer1.style.transform = `translate3d(0, ${(-40 * textOutP).toFixed(1)}px, 0)`;
         }
       }
       if (heroStageScene && heroStageScene.isIntroDone) {
@@ -98,10 +98,10 @@ export function initHeroTimeline(heroStageScene) {
       if (heroStageScene) {
         heroStageScene.updateScrub(p);
 
-        // 4. Sequential Name Reveal in direct lockstep with character body position
-        // Layer 2 reveals during character push and fades out cleanly BEFORE Layer 3
-        const nameInP = beat(p, [0.32, 0.40]);
-        const nameOutP = beat(p, [0.64, 0.72]);
+        // 4. Sequential Name Reveal — full "NAVEEN KUMAR E" completes as cartoon finishes crossing (p = 0.78),
+        // holds briefly so the full name is readable, then fades out cleanly BEFORE Layer 3
+        const nameInP = beat(p, [0.28, 0.34]);
+        const nameOutP = beat(p, [0.82, 0.88]);
         const layer2Opacity = nameInP * (1 - nameOutP);
 
         if (layer2) {
@@ -110,35 +110,32 @@ export function initHeroTimeline(heroStageScene) {
         }
 
         const bodyFrac = heroStageScene.getCharacterScreenFraction();
+        const showAny = p >= 0.28 && layer2Opacity > 0;
+        const allRevealed = p >= 0.76;
 
-        nameSpans.forEach((span, idx) => {
-          if (p < 0.32 || layer2Opacity <= 0) {
-            span.style.opacity = '0';
-            return;
+        for (let idx = 0; idx < nameSpans.length; idx++) {
+          const isRevealed = showAny && (allRevealed || bodyFrac >= (letterFractions[idx] ?? 1));
+          if (spanState[idx] !== isRevealed) {
+            spanState[idx] = isRevealed;
+            nameSpans[idx].style.opacity = isRevealed ? '1' : '0';
           }
-          const letterFrac = letterFractions[idx] ?? 1;
-          // Letter reveals ONLY once character's back has crossed to the right of the letter's center
-          const isRevealed = bodyFrac >= letterFrac;
-          span.style.opacity = isRevealed ? '1' : '0';
-        });
+        }
       }
 
-      // 5. Layer 3 ("Let's make it simple.") - Dedicated Separate Page View (Zero overlap with Name)
-      // Fades in cleanly after Name has dissolved, and stays active as the page that turns/curls
-      const layer3InP = beat(p, [0.74, 0.82]);
+      // 5. Layer 3 ("Let's make it simple.") — appears ONLY AFTER cartoon & full "NAVEEN KUMAR E" finish
+      const layer3InP = beat(p, [0.89, 0.96]);
       if (layer3) {
-        if (p < 0.73) {
+        if (p < 0.885) {
           layer3.style.opacity = '0';
           layer3.style.visibility = 'hidden';
         } else {
           const op = layer3InP;
           layer3.style.opacity = String(op);
           layer3.style.visibility = op > 0.001 ? 'visible' : 'hidden';
-          layer3.style.transform = `translateY(${20 * (1 - layer3InP)}px)`;
+          layer3.style.transform = `translate3d(0, ${(20 * (1 - layer3InP)).toFixed(1)}px, 0)`;
         }
       }
 
-      // 6. Hero Stage visibility and clipping handled by pageTurnController
       stage.style.opacity = '1';
     }
   });

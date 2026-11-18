@@ -5,6 +5,7 @@ import { initHeader } from '../components/navigation/Header.js';
 import { initContactForm } from '../components/sections/ContactForm.js';
 import { initStackWorkingModel } from '../components/sections/StackWorkingModel.js';
 import { initSmoothScroll, initSectionScrollTriggers } from '../animations/scrollAnimations.js';
+import { initWorkAnimations } from '../animations/workAnimations.js';
 import { initProcessAnimations } from '../animations/processAnimations.js';
 import { initRollingLetters } from '../animations/textAnimations.js';
 import { initHeroTimeline } from '../animations/characterTimeline.js';
@@ -31,6 +32,7 @@ export function initializeApp() {
   initProjectModal();
   initStackWorkingModel();
   initSectionScrollTriggers();
+  initWorkAnimations();
   initProcessAnimations();
   initPageTurn();
 

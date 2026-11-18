@@ -6,13 +6,13 @@ export const PERSONAL_INFO = {
   name: "Naveen Kumar E",
   brandName: "Naveen's Portfolio",
   role: "Full-stack Software Developer & Creative Technologist",
-  email: "naveenkumar.dev@outlook.com",
+  email: "naveenkumar.develop@gmail.com",
   location: "Chennai, India",
   timezone: "Asia/Kolkata",
   socials: [
-    { label: "LinkedIn", href: "https://linkedin.com/in/naveen-kumar-e" },
-    { label: "GitHub", href: "https://github.com/naveenkumar-dev" },
-    { label: "Email", href: "mailto:naveenkumar.dev@outlook.com" }
+    { label: "LinkedIn", href: "https://linkedin.com/in/Naveenkumar033" },
+    { label: "GitHub", href: "https://github.com/Naveenkumar033" },
+    { label: "Email", href: "mailto:naveenkumar.develop@gmail.com" }
   ],
   education: {
     degree: "B.Tech in Information Technology",
