@@ -11,10 +11,11 @@
 @media (max-width: 1024px) {
   .why-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
   .work-cards-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
   .work-col-staggered {
     margin-top: 0;
@@ -28,6 +29,7 @@
   }
   .process-step-layout {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   .footer-meta-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -36,50 +38,223 @@
 
 @media (max-width: 768px) {
   :root {
-    --page-x: 1.5rem;
+    --page-x: 1.25rem;
+    --fs-h2: clamp(1.9rem, 7.4vw, 2.6rem);
+    --fs-h3: clamp(1.35rem, 5.2vw, 1.85rem);
   }
 
-  .hero-hand-left {
-    left: -12vw;
-    bottom: -6svh;
-    width: clamp(260px, 60vw, 440px);
+  /* Header */
+  .site-header {
+    padding: 0.9rem var(--page-x);
   }
 
-  .hero-hand-right {
-    right: -14vw;
-    top: -6svh;
-    width: clamp(240px, 55vw, 400px);
+  .menu-toggle-btn {
+    width: 2.85rem;
+    height: 2.85rem;
+    font-size: 0.7rem;
   }
 
-  .hero-bio-corner {
-    display: none;
+  .sound-btn {
+    padding: 0.45rem 0.85rem;
+    min-height: 2.6rem;
   }
 
+  /* Hero */
+  .hero-text-layer-1 {
+    top: clamp(5rem, 10.5svh, 6.8rem);
+  }
+
+  .hero-headline {
+    font-size: clamp(1.9rem, 7.6vw, 2.7rem);
+    line-height: 1.1;
+    max-width: 18ch;
+  }
+
+  .hero-scroll-name {
+    font-size: clamp(1.65rem, 7.8vw, 2.6rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .hero-text-layer-3 h2 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    text-align: center;
+    padding-inline: var(--page-x);
+  }
+
+  .hero-bio-corner,
   .hero-arrow-annotation {
     display: none;
   }
 
-  .contact-hero-grid {
-    grid-template-columns: 1fr;
+  .hero-lighting-wrap {
+    bottom: max(1.4rem, env(safe-area-inset-bottom, 1.4rem));
   }
 
-  .contact-character-container {
-    height: 360px;
+  /* About / Why Custom */
+  .why-section {
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .why-desk-container {
+    height: clamp(320px, 46svh, 420px);
+    min-height: 320px;
+  }
+
+  .why-review-box {
+    padding: 1.5rem;
+  }
+
+  /* Marquee Ribbons */
+  .marquee-cell {
+    font-size: 0.9rem;
+    gap: 0.75rem;
+  }
+
+  /* Work Section */
+  .work-stage {
+    padding-top: 5.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .work-stage-header {
+    margin-bottom: 3rem;
+  }
+
+  .work-title-gigantic {
+    font-size: clamp(3.3rem, 15.5vw, 5rem);
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    letter-spacing: -0.045em;
+  }
+
+  .work-year-pill {
+    font-size: clamp(1.1rem, 4.6vw, 1.6rem);
+    letter-spacing: 0em;
+  }
+
+  .work-lede {
+    font-size: clamp(1.25rem, 5.2vw, 1.7rem);
+  }
+
+  .work-project-tile {
+    margin-bottom: 2.75rem;
+    gap: 0.9rem;
+  }
+
+  .work-card-line {
+    font-size: 1.1rem;
+  }
+
+  .work-meta-footer {
+    font-size: 0.75rem;
+  }
+
+  /* Full-Stack Marquee Strip */
+  .clients-strip {
+    padding-block: 1.75rem;
+  }
+
+  /* Capabilities / Services */
+  .services-spread {
+    padding-top: 5.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .services-stack-column {
+    gap: 3rem;
+    padding-bottom: 2.5rem;
   }
 
   .service-card-shell {
     top: calc(4.75rem + var(--stack-i, 0) * 8px);
   }
 
+  .service-column-card {
+    padding: 1.6rem;
+    min-height: clamp(18rem, 36svh, 22rem);
+    border-radius: 1.25rem;
+  }
+
+  /* Process / How a Project Runs */
+  .process-film-section {
+    padding-top: 5.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .process-stage-header {
+    margin-bottom: 2.5rem;
+  }
+
   .process-step-shell {
     position: sticky;
     top: 0;
     min-height: auto;
-    padding-block: 2.5rem;
+    padding-top: 4.5rem;
+    padding-bottom: 5.25rem;
+  }
+
+  .process-step-num {
+    font-size: clamp(3rem, 14vw, 4.5rem);
   }
 
   .step-film-box {
     aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+  }
+
+  .process-sticky-bar {
+    bottom: max(0.85rem, env(safe-area-inset-bottom, 0.85rem));
+    padding: 0.6rem 1rem;
+    gap: 0.75rem;
+    font-size: 0.68rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Contact & Footer */
+  .contact-footer-section {
+    padding-top: 5.5rem;
+  }
+
+  .contact-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .contact-giant-headline {
+    font-size: clamp(2rem, 8.5vw, 2.9rem);
+  }
+
+  .contact-email-hero {
+    font-size: clamp(1rem, 4.7vw, 1.4rem);
+    word-break: break-word;
+  }
+
+  .contact-input {
+    font-size: 16px;
+    padding: 0.9rem 1rem;
+  }
+
+  .contact-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 1.4rem;
+  }
+
+  .contact-character-container {
+    height: 360px;
+  }
+
+  /* Full-Screen Menu & Project Modal */
+  .site-menu-curtain {
+    padding: 1.25rem var(--page-x);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-link-giant {
+    font-size: clamp(2.1rem, 10vw, 3.2rem);
   }
 }
 
@@ -89,12 +264,21 @@
   }
   .footer-meta-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   .nav-brand-title {
-    display: none;
+    font-size: 0.92rem;
   }
   .sound-btn > span {
     display: none;
   }
 }
 
+@media (max-width: 390px) {
+  .nav-brand-title {
+    display: none;
+  }
+  .hero-scroll-name {
+    font-size: clamp(1.45rem, 7.6vw, 2rem);
+  }
+}

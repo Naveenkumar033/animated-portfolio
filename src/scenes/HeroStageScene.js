@@ -259,8 +259,8 @@ export class HeroStageScene {
     const macOffsetY = 1.07 * scaleRatio;
     const macOffsetZ = 0.415 * scaleRatio;
 
-    const pushStartX = isMobile ? -(0.1 * vWidth) : -4.8 * a;
-    const pushEndX = isMobile ? 1.05 * vWidth : 13.0 * a;
+    const pushStartX = isMobile ? -(0.58 * vWidth) : -4.8 * a;
+    const pushEndX = isMobile ? 0.95 * vWidth : 13.0 * a;
     const groundY = vHeight * -0.01 + (vHeight * -0.3 - vHeight * -0.01) * i;
 
     this.layout = {
@@ -760,7 +760,7 @@ export class HeroStageScene {
     const pushActive = p < 0.80;
     if (this.desk) {
       this.desk.visible = deskInP > 0.001 && pushActive;
-      this.desk.scale.setScalar(THREE.MathUtils.lerp(0, 0.35 * u, deskInP));
+      this.desk.scale.setScalar(THREE.MathUtils.lerp(0, (isMobile ? 0.24 : 0.35) * u, deskInP));
       this.desk.position.set(deskX, vHeight * -0.01, -1.5);
       this.desk.rotation.y = deskRotYAt(p, Math.PI - 15 * Math.PI / 180, span);
     }
@@ -816,14 +816,14 @@ export class HeroStageScene {
       this.camera.position.z = 10 - p * 1.5;
     }
 
-    // 7. Track Right Hand bone for dynamic screen fraction
+    // 7. Track Right Hand bone for dynamic screen fraction (scaled by span for mobile accuracy)
     if (this.rightHandBone) {
       this.rightHandBone.updateWorldMatrix(true, false);
       this.rightHandBone.getWorldPosition(this._hwPos);
       this.handOffsetX = this._hwPos.x - this.character.position.x;
-      this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (this._hwPos.x - 1.47) / vWidth));
+      this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (this._hwPos.x - 1.47 * span) / vWidth));
     } else {
-      this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (charX - 0.4) / vWidth));
+      this.bodyScreenFrac = Math.min(1, Math.max(0, 0.5 + (charX - 0.4 * span) / vWidth));
     }
   }
 

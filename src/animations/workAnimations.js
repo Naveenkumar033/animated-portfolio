@@ -28,16 +28,17 @@ export function initWorkAnimations() {
     const meta = tile.querySelector('.work-meta-footer');
 
     if (frame) {
+      const isMobile = window.innerWidth <= 768;
       gsap.fromTo(
         frame,
-        { clipPath: 'inset(0% 50% 0% 50% round 1.25rem)' },
+        { clipPath: isMobile ? 'inset(0% 30% 0% 30% round 1.25rem)' : 'inset(0% 50% 0% 50% round 1.25rem)' },
         {
           clipPath: 'inset(0% 0% 0% 0% round 1.25rem)',
           ease: 'none',
           scrollTrigger: {
             trigger: frame,
-            start: 'top bottom',   // matches offset "start end"
-            end: 'center center',  // matches offset "center center"
+            start: 'top bottom',
+            end: isMobile ? 'top 66%' : 'center center',
             scrub: 0.3
           }
         }

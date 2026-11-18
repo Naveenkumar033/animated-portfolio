@@ -278,6 +278,19 @@ export class SkyScene {
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
       });
+
+      this.slider.addEventListener('touchstart', (e) => {
+        this.isDragging = true;
+        handleScrub(e);
+        const onTouchMove = (ev) => handleScrub(ev);
+        const onTouchEnd = () => {
+          this.isDragging = false;
+          window.removeEventListener('touchmove', onTouchMove);
+          window.removeEventListener('touchend', onTouchEnd);
+        };
+        window.addEventListener('touchmove', onTouchMove, { passive: true });
+        window.addEventListener('touchend', onTouchEnd, { passive: true });
+      }, { passive: true });
     }
   }
 
