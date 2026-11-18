@@ -16,7 +16,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" /></noscript>
+
+  <!-- High-priority Hero asset preloads to eliminate waterfall latency -->
+  <link rel="preload" as="image" href="/hero/hand-left.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/hero/hand-right.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="fetch" href="/models/sagar.glb" crossorigin />
+  <link rel="preload" as="fetch" href="/models/macbook_ultra_concept.glb" crossorigin />
+
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body class="grain-surface">
@@ -251,7 +260,7 @@
             </div>
 
             <!-- Cute Reference Panda Watermark -->
-            <img src="/assets/images/panda.svg" alt="" class="panda-watermark" />
+            <img src="/assets/images/panda.svg" alt="" class="panda-watermark" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -584,7 +593,7 @@
         </div>
         <div class="step-film-box">
           <div class="step-film-zoom-wrap">
-            <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline preload="metadata"></video>
+            <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
         </div>
         </div>
@@ -608,7 +617,7 @@
         </div>
         <div class="step-film-box">
           <div class="step-film-zoom-wrap">
-            <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline preload="metadata"></video>
+            <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
         </div>
         </div>
@@ -632,7 +641,7 @@
         </div>
         <div class="step-film-box">
           <div class="step-film-zoom-wrap">
-            <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline preload="metadata"></video>
+            <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
         </div>
         </div>
@@ -656,7 +665,7 @@
         </div>
         <div class="step-film-box">
           <div class="step-film-zoom-wrap">
-            <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline preload="metadata"></video>
+            <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline preload="none"></video>
           </div>
         </div>
         </div>

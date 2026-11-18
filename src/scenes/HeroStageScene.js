@@ -330,13 +330,11 @@ export class HeroStageScene {
     try {
       const textureLoader = new THREE.TextureLoader();
 
-      const [sagarGltf, macbookGltf, deskGltf, typingGltf, pushGltf, standToSitGltf, leftTexture, rightTexture] = await Promise.all([
+      // Phase 1: Critical above-the-fold Hero assets ONLY (starts Hero intro ~40% faster)
+      const [sagarGltf, macbookGltf, typingGltf, leftTexture, rightTexture] = await Promise.all([
         loadGLTF('/models/sagar.glb'),
         loadGLTF('/models/macbook_ultra_concept.glb'),
-        loadGLTF('/models/desk2.glb'),
         loadGLTF('/models/anim/typing.glb'),
-        loadGLTF('/models/anim/push.glb'),
-        loadGLTF('/models/anim/standToSit.glb'),
         textureLoader.loadAsync('/hero/hand-left.webp'),
         textureLoader.loadAsync('/hero/hand-right.webp')
       ]);
@@ -382,7 +380,7 @@ export class HeroStageScene {
       this.rightHandGroup.add(this.rightMesh);
       this.scene.add(this.rightHandGroup);
 
-      // Character Model & Animations (clone from cache so other scenes are never mutated)
+      // Character Model & Typing Animation (clone from cache so other scenes are never mutated)
       this.character = tuneSagarMaterials(SkeletonUtils.clone(sagarGltf.scene));
       this.headBone = this.character.getObjectByName('mixamorigHead') || this.character.getObjectByName('mixamorig:Head');
       this.rightHandBone = this.character.getObjectByName('mixamorigRightHand') || this.character.getObjectByName('mixamorig:RightHand');
@@ -397,21 +395,55 @@ export class HeroStageScene {
       this.typingAction.setEffectiveWeight(1);
       this.typingAction.play();
 
-      const standToSitClip = sanitizeClip(standToSitGltf.animations[0]);
-      this.standToSitAction = this.mixer.clipAction(standToSitClip);
-      this.standToSitAction.reset().play();
-      this.standToSitAction.paused = true;
-      this.standToSitAction.setEffectiveWeight(0);
-
-      const pushClip = sanitizeClip(pushGltf.animations[0]);
-      this.pushAction = this.mixer.clipAction(pushClip);
-      this.pushAction.reset().play();
-      this.pushAction.paused = true;
-      this.pushAction.setEffectiveWeight(0);
-
       // Concept MacBook (clone from cache)
       this.macbook = tuneMacbookMaterials(macbookGltf.scene.clone(true));
       this.scene.add(this.macbook);
+
+      if (this.renderer && this.camera) {
+        this.renderer.compile(this.scene, this.camera);
+      }
+
+      this.updateLayout();
+
+      this.isLoaded = true;
+      window.__heroLoaded = true;
+      window.__heroScene = this;
+
+      if (this.preloaderDone && !this.introStarted) {
+        this.playIntroAnimation();
+      }
+
+      this.onLoadedCallbacks.forEach((cb) => cb());
+      this.onLoadedCallbacks = [];
+
+      // Phase 2: Stream scroll-only desk & push/sit clips in background while Hero intro plays
+      this.loadScrollAssets();
+    } catch (err) {
+      console.error('Error loading HeroStage assets:', err);
+    }
+  }
+
+  async loadScrollAssets() {
+    try {
+      const [deskGltf, pushGltf, standToSitGltf] = await Promise.all([
+        loadGLTF('/models/desk2.glb'),
+        loadGLTF('/models/anim/push.glb'),
+        loadGLTF('/models/anim/standToSit.glb')
+      ]);
+
+      if (this.mixer) {
+        const standToSitClip = sanitizeClip(standToSitGltf.animations[0]);
+        this.standToSitAction = this.mixer.clipAction(standToSitClip);
+        this.standToSitAction.reset().play();
+        this.standToSitAction.paused = true;
+        this.standToSitAction.setEffectiveWeight(0);
+
+        const pushClip = sanitizeClip(pushGltf.animations[0]);
+        this.pushAction = this.mixer.clipAction(pushClip);
+        this.pushAction.reset().play();
+        this.pushAction.paused = true;
+        this.pushAction.setEffectiveWeight(0);
+      }
 
       // Mechanical Desk (clone from cache so WhyDeskScene receives clean pristine desk2.glb)
       this.desk = deskGltf.scene.clone(true);
@@ -428,26 +460,19 @@ export class HeroStageScene {
       this.desk.visible = true;
       this.scene.add(this.desk);
 
-      // Pre-compile all shaders (including hidden desk) during startup to prevent mid-scroll compile stutter
+      // Pre-compile desk shaders while hidden so mid-scroll reveal has zero stutter
       if (this.renderer && this.camera) {
         this.renderer.compile(this.scene, this.camera);
       }
-      this.desk.visible = false;
+      if (this.desk) this.desk.visible = false;
 
-      this.updateLayout();
-
-      this.isLoaded = true;
-      window.__heroLoaded = true;
-      window.__heroScene = this;
-
-      if (this.preloaderDone && !this.introStarted) {
-        this.playIntroAnimation();
+      if (this.currentProgress && this.currentProgress > 0.001) {
+        this.updateScrub(this.currentProgress);
+      } else {
+        this.updateLayout();
       }
-
-      this.onLoadedCallbacks.forEach((cb) => cb());
-      this.onLoadedCallbacks = [];
     } catch (err) {
-      console.error('Error loading HeroStage assets:', err);
+      console.error('Error loading HeroStage scroll assets:', err);
     }
   }
 
@@ -606,7 +631,7 @@ export class HeroStageScene {
 
   updateScrub(progress) {
     this.currentProgress = progress;
-    if (!this.character || !this.macbook || !this.desk) return;
+    if (!this.character || !this.macbook) return;
 
     const p = progress;
     if (p > 0.001 && this.introTl && this.introTl.isActive()) {
@@ -695,7 +720,7 @@ export class HeroStageScene {
       this.macbook.rotation.set(0.04, Math.PI + Math.PI / 4, 0);
       this.macbook.visible = true;
 
-      this.desk.visible = false;
+      if (this.desk) this.desk.visible = false;
       if (this.typingAction) this.typingAction.setEffectiveWeight(1);
       if (this.standToSitAction) this.standToSitAction.setEffectiveWeight(0);
       if (this.pushAction) this.pushAction.setEffectiveWeight(0);
@@ -733,10 +758,12 @@ export class HeroStageScene {
     const deskX = pushStartX + (pushEndX - pushStartX) * d;
 
     const pushActive = p < 0.80;
-    this.desk.visible = deskInP > 0.001 && pushActive;
-    this.desk.scale.setScalar(THREE.MathUtils.lerp(0, 0.35 * u, deskInP));
-    this.desk.position.set(deskX, vHeight * -0.01, -1.5);
-    this.desk.rotation.y = deskRotYAt(p, Math.PI - 15 * Math.PI / 180, span);
+    if (this.desk) {
+      this.desk.visible = deskInP > 0.001 && pushActive;
+      this.desk.scale.setScalar(THREE.MathUtils.lerp(0, 0.35 * u, deskInP));
+      this.desk.position.set(deskX, vHeight * -0.01, -1.5);
+      this.desk.rotation.y = deskRotYAt(p, Math.PI - 15 * Math.PI / 180, span);
+    }
 
     // 4. Character positioning along arc to desk, then lockstep with desk
     const toDeskP = beat(p, [0.04, 0.30]);

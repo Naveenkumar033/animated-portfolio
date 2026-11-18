@@ -7,7 +7,7 @@ export function initPreloader(onComplete) {
 
   let loadProgress = 0;
   const loadStartTime = performance.now();
-  const loadDuration = 550;
+  const loadDuration = 260;
 
   function tick(now) {
     const elapsed = now - loadStartTime;
@@ -34,7 +34,7 @@ export function initPreloader(onComplete) {
           ScrollTrigger.refresh();
         }
         if (onComplete) onComplete();
-      }, 60);
+      }, 30);
     }
   }
 

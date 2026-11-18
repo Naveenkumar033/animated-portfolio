@@ -12,12 +12,12 @@ export function initSmoothScroll() {
 
   if (!prefersReducedMotion) {
     lenisInstance = new Lenis({
-      duration: 0.95,
+      duration: 0.78,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.4
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.5
     });
 
     // Sync Lenis once per scroll frame (no duplicate native scroll listener)
