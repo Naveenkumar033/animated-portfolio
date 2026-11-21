@@ -52,10 +52,10 @@ export class HeroStageScene {
       landingY: 0,
       sittingY: 0,
       sagarScale: 145,
-      baseMacScale: 1.20,
-      macOffsetX: 0.448,
-      macOffsetY: 1.07,
-      macOffsetZ: 0.415
+      baseMacScale: 1.58,
+      macOffsetX: 0.526,
+      macOffsetY: 1.071,
+      macOffsetZ: 0.425
     };
 
     this.handAnim = {
@@ -247,7 +247,7 @@ export class HeroStageScene {
 
     const sagarScale = 100 * (isMobile ? 1.15 : 1.48) * i;
     const scaleRatio = sagarScale / 148;
-    const baseMacScale = 1.20 * scaleRatio;
+    const baseMacScale = 1.58 * scaleRatio;
 
     // Character sitting position: glutes/thighs resting squarely on the index finger
     const sittingX = fingerWorldX * projRatio - 0.04 * scaleRatio;
@@ -255,9 +255,9 @@ export class HeroStageScene {
     const sittingY = fingerWorldY * projRatio - 0.74 * scaleRatio;
 
     // MacBook offset aligned directly on lap/thighs beneath typing hands
-    const macOffsetX = 0.448 * scaleRatio;
-    const macOffsetY = 1.07 * scaleRatio;
-    const macOffsetZ = 0.415 * scaleRatio;
+    const macOffsetX = 0.526 * scaleRatio;
+    const macOffsetY = 1.071 * scaleRatio;
+    const macOffsetZ = 0.425 * scaleRatio;
 
     const pushStartX = isMobile ? -(0.58 * vWidth) : -4.8 * a;
     const pushEndX = isMobile ? 0.95 * vWidth : 13.0 * a;
@@ -317,7 +317,7 @@ export class HeroStageScene {
       if (this.macbook) {
         this.macbook.position.set(sittingX + macOffsetX, sittingY + macOffsetY, 0.85 + macOffsetZ);
         this.macbook.scale.setScalar(baseMacScale);
-        this.macbook.rotation.set(0.04, Math.PI + Math.PI / 4, 0);
+        this.macbook.rotation.set(-0.02, Math.PI + Math.PI / 4 - 0.06, 0.02);
       }
     }
     if (this.desk && this.currentProgress === undefined) {
@@ -717,7 +717,7 @@ export class HeroStageScene {
 
       this.macbook.position.set(sittingX + macOffsetX, sittingY + macOffsetY, 0.85 + macOffsetZ);
       this.macbook.scale.setScalar(baseMacScale);
-      this.macbook.rotation.set(0.04, Math.PI + Math.PI / 4, 0);
+      this.macbook.rotation.set(-0.02, Math.PI + Math.PI / 4 - 0.06, 0.02);
       this.macbook.visible = true;
 
       if (this.desk) this.desk.visible = false;
@@ -747,7 +747,7 @@ export class HeroStageScene {
     this.macbook.position.x = sittingX + macOffsetX + macbookP * 0.45;
     this.macbook.position.y = sittingY + macOffsetY + macbookP * 1.5;
     this.macbook.position.z = 0.85 + macOffsetZ - macbookP * 3;
-    this.macbook.rotation.x = 0.04 + macbookP * 2.5;
+    this.macbook.rotation.x = -0.02 + macbookP * 2.5;
     this.macbook.visible = macbookP < 0.99;
 
     // 3. Desk positioning (completes full crossing off-screen by p = 0.78)
@@ -868,16 +868,16 @@ export class HeroStageScene {
       this.character.visible = true;
     }
     if (this.macbook && (!this.currentProgress || this.currentProgress <= 0.001)) {
-      const mx = this.layout.macOffsetX ?? 0.448;
-      const my = this.layout.macOffsetY ?? 1.07;
-      const mz = this.layout.macOffsetZ ?? 0.415;
+      const mx = this.layout.macOffsetX ?? 0.526;
+      const my = this.layout.macOffsetY ?? 1.071;
+      const mz = this.layout.macOffsetZ ?? 0.425;
       this.macbook.position.set(
         this.handAnim.sagarX + mx,
         this.handAnim.sagarY + my,
         this.handAnim.sagarZ + mz
       );
       this.macbook.scale.setScalar(this.handAnim.macbookScale);
-      this.macbook.rotation.set(0.04, Math.PI + Math.PI / 4, 0);
+      this.macbook.rotation.set(-0.02, Math.PI + Math.PI / 4 - 0.06, 0.02);
       this.macbook.visible = this.handAnim.macbookScale > 0.005;
     }
 
