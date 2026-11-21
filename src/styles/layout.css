@@ -938,21 +938,151 @@
   color: #ffffff;
 }
 
-/* --- 7. Process on Film (Cardless Pages Effect) --- */
+/* --- 7. Process on Film (Horizontal Parallax Scrolling) --- */
 .process-film-section {
   position: relative;
   z-index: 28;
-  padding-top: clamp(5rem, 8vw, 9rem);
-  padding-bottom: clamp(3rem, 5vw, 6rem);
   background: var(--bg-paper-alt);
   border-top: 1px solid var(--border-light);
   transition: background-color 0.6s ease;
-  overflow-x: clip;
+  overflow: clip;
+}
+
+.process-horizontal-pin {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: clamp(1.2rem, 2.5vh, 2.2rem);
+  box-sizing: border-box;
+}
+
+.process-header-wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .process-stage-header {
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 0;
   will-change: transform, opacity;
+}
+
+.process-title {
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  margin-bottom: 0.35rem;
+  line-height: 1.1;
+}
+
+.process-lede {
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Horizontal Track Viewport & Track */
+.process-track-viewport {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+  margin-block: auto;
+}
+
+.process-stack-list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: clamp(3.5rem, 6.5vw, 7.5rem);
+  padding-left: max(var(--page-x), calc((100vw - min(1320px, 92vw)) / 2));
+  padding-right: max(var(--page-x), calc((100vw - min(1320px, 92vw)) / 2));
+  will-change: transform;
+}
+
+/* Each Slide Panel */
+.process-step-shell {
+  flex: 0 0 clamp(720px, 78vw, 1150px);
+  width: clamp(720px, 78vw, 1150px);
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-top: none;
+  padding: 0;
+  min-height: auto;
+  position: relative;
+  will-change: transform, opacity;
+}
+
+.process-step-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.process-step-copy {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  will-change: transform;
+}
+
+.process-step-sub {
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+.process-step-num {
+  font-size: clamp(3.8rem, 5.5vw, 5rem);
+  font-weight: 300;
+  line-height: 0.88;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+  will-change: transform;
+  display: inline-block;
+  transform-origin: left center;
+}
+
+.process-step-heading {
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  margin-bottom: 0.65rem;
+  line-height: 1.2;
+}
+
+.process-step-desc {
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  max-width: 48ch;
+}
+
+.process-step-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .process-tag {
@@ -964,49 +1094,7 @@
   font-size: 0.75rem;
   color: var(--ink);
   letter-spacing: 0.02em;
-}
-
-.process-stack-list {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Cardless Full-Height Page Spread */
-.process-step-shell {
-  position: sticky;
-  top: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  background: var(--bg-paper-alt);
-  border-top: 1px solid var(--border-light);
-  padding-block: clamp(3rem, 6vh, 5rem);
-  transform-origin: center top;
-  will-change: transform, opacity;
-  z-index: calc(5 + var(--stack-i, 0));
-}
-
-/* 100% Cardless: No card borders, No card box, No shadows, No padding */
-.process-step-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transform-origin: center center;
-  will-change: transform, opacity;
-}
-
-.process-step-copy {
-  display: flex;
-  flex-direction: column;
+  white-space: nowrap;
 }
 
 .step-film-box {
@@ -1014,15 +1102,17 @@
   overflow: hidden;
   background: #000;
   aspect-ratio: 16 / 10;
+  max-height: clamp(270px, 46vh, 440px);
   position: relative;
   border: 1px solid var(--border-light);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.09);
-  will-change: transform, clip-path, opacity;
+  will-change: transform, opacity;
 }
 
 .step-film-zoom-wrap {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   will-change: transform;
 }
 
@@ -1030,22 +1120,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
 }
 
-.step-film-box:hover video {
-  transform: scale(1.03);
-}
-
+/* Docked Bottom Progress HUD Rail */
 .process-sticky-bar {
-  position: sticky;
-  bottom: 2rem;
+  position: relative;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  margin-top: 2.5rem;
+  max-width: 650px;
+  width: calc(100% - 2 * var(--page-x));
+  margin-inline: auto;
   padding: 0.85rem 1.4rem;
   border-radius: 9999px;
   background: rgba(251, 245, 238, 0.97);
@@ -1053,6 +1141,9 @@
   font-size: 0.75rem;
   color: var(--ink-muted);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
 }
 
 .process-progress-track {
@@ -1062,6 +1153,7 @@
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .process-progress-fill {

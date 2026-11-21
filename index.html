@@ -563,117 +563,124 @@
   <!-- =========================================================================
        9. PROCESS ON FILM (LOOPING MP4 VIDEOS)
        ========================================================================= -->
+  <!-- =========================================================================
+       SECTION 06: PROCESS ON FILM (HORIZONTAL PARALLAX SCROLLING)
+       ========================================================================= -->
   <section class="process-film-section" id="experience">
-    <div style="max-width: 1400px; margin-inline: auto; padding-inline: var(--page-x);">
-      <div class="process-stage-header" style="margin-bottom: 3.5rem;">
-        <h2 class="process-title" style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 0.75rem;">
-          How a project runs.
-        </h2>
-        <p class="process-lede" style="color:var(--ink-muted); font-size:1.05rem;">
-          Four steps, each with something you can see and approve before the next one starts.
-        </p>
-      </div>
-
-      <div class="process-stack-list">
-      <!-- Step 01: Discovery -->
-      <div class="process-step-shell" style="--stack-i: 0;" data-step-label="DISCOVERY">
-        <div class="process-step-layout">
-        <div class="process-step-copy">
-          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 01 · DISCOVERY</div>
-          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">01</div>
-          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">The awkward questions</h3>
-          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
-            Who is it for, what does it have to sell, and what went wrong last time? You get a written plan back: the pages, what matters most, and a launch date.
+    <div class="process-horizontal-pin">
+      <div class="process-header-wrap">
+        <div class="process-stage-header">
+          <h2 class="process-title" style="font-size: var(--fs-h2); font-weight: 400; letter-spacing: -0.035em; margin-bottom: 0.4rem; line-height: 1.1;">
+            How a project runs.
+          </h2>
+          <p class="process-lede" style="color:var(--ink-muted); font-size:1.05rem; margin: 0;">
+            Four steps, each with something you can see and approve before the next one starts.
           </p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono process-tag">Brand positioning</span>
-            <span class="mono process-tag">User research</span>
-            <span class="mono process-tag">Information architecture</span>
-          </div>
-        </div>
-        <div class="step-film-box">
-          <div class="step-film-zoom-wrap">
-            <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline preload="none"></video>
-          </div>
-        </div>
         </div>
       </div>
 
-      <!-- Step 02: Design -->
-      <div class="process-step-shell" style="--stack-i: 1;" data-step-label="DESIGN">
-        <div class="process-step-layout">
-        <div class="process-step-copy">
-          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 02 · DESIGN</div>
-          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">02</div>
-          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Designed in motion</h3>
-          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
-            Type, colour, layout and motion made for your brand, as a prototype you can click through. You approve it before a line of final code is written.
-          </p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono process-tag">UI/UX design</span>
-            <span class="mono process-tag">Interactive prototypes</span>
-            <span class="mono process-tag">Typography specimen</span>
+      <div class="process-track-viewport">
+        <div class="process-stack-list">
+          <!-- Step 01: Discovery -->
+          <div class="process-step-shell" style="--stack-i: 0;" data-step-index="0" data-step-label="DISCOVERY">
+            <div class="process-step-layout">
+              <div class="process-step-copy">
+                <div class="mono process-step-sub" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.4rem; letter-spacing: 0.04em;">STEP 01 · DISCOVERY</div>
+                <div class="mono process-step-num" style="font-size:clamp(3.8rem, 5.5vw, 5rem); font-weight:300; line-height:0.9; margin-bottom:0.6rem;">01</div>
+                <h3 class="process-step-heading" style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem; line-height: 1.2;">The awkward questions</h3>
+                <p class="process-step-desc" style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+                  Who is it for, what does it have to sell, and what went wrong last time? You get a written plan back: the pages, what matters most, and a launch date.
+                </p>
+                <div class="process-step-tags" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                  <span class="mono process-tag">Brand positioning</span>
+                  <span class="mono process-tag">User research</span>
+                  <span class="mono process-tag">Information architecture</span>
+                </div>
+              </div>
+              <div class="step-film-box">
+                <div class="step-film-zoom-wrap">
+                  <video src="/process/step1.mp4" poster="/process/step1-poster.jpg" muted loop playsinline preload="none"></video>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="step-film-box">
-          <div class="step-film-zoom-wrap">
-            <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline preload="none"></video>
+
+          <!-- Step 02: Design -->
+          <div class="process-step-shell" style="--stack-i: 1;" data-step-index="1" data-step-label="DESIGN">
+            <div class="process-step-layout">
+              <div class="process-step-copy">
+                <div class="mono process-step-sub" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.4rem; letter-spacing: 0.04em;">STEP 02 · DESIGN</div>
+                <div class="mono process-step-num" style="font-size:clamp(3.8rem, 5.5vw, 5rem); font-weight:300; line-height:0.9; margin-bottom:0.6rem;">02</div>
+                <h3 class="process-step-heading" style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem; line-height: 1.2;">Designed in motion</h3>
+                <p class="process-step-desc" style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+                  Type, colour, layout and motion made for your brand, as a prototype you can click through. You approve it before a line of final code is written.
+                </p>
+                <div class="process-step-tags" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                  <span class="mono process-tag">UI/UX design</span>
+                  <span class="mono process-tag">Interactive prototypes</span>
+                  <span class="mono process-tag">Typography specimen</span>
+                </div>
+              </div>
+              <div class="step-film-box">
+                <div class="step-film-zoom-wrap">
+                  <video src="/process/step2.mp4" poster="/process/step2-poster.jpg" muted loop playsinline preload="none"></video>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+
+          <!-- Step 03: Engineering -->
+          <div class="process-step-shell" style="--stack-i: 2;" data-step-index="2" data-step-label="ENGINEERING">
+            <div class="process-step-layout">
+              <div class="process-step-copy">
+                <div class="mono process-step-sub" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.4rem; letter-spacing: 0.04em;">STEP 03 · ENGINEERING</div>
+                <div class="mono process-step-num" style="font-size:clamp(3.8rem, 5.5vw, 5rem); font-weight:300; line-height:0.9; margin-bottom:0.6rem;">03</div>
+                <h3 class="process-step-heading" style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem; line-height: 1.2;">Built to hold up</h3>
+                <p class="process-step-desc" style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+                  Everything you can see, and everything behind it: payments, data and integrations. Built to stay fast on an older phone, not only on a new laptop.
+                </p>
+                <div class="process-step-tags" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                  <span class="mono process-tag">React &amp; TypeScript</span>
+                  <span class="mono process-tag">Three.js / WebGL</span>
+                  <span class="mono process-tag">GSAP animations</span>
+                </div>
+              </div>
+              <div class="step-film-box">
+                <div class="step-film-zoom-wrap">
+                  <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline preload="none"></video>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 04: Launch -->
+          <div class="process-step-shell" style="--stack-i: 3;" data-step-index="3" data-step-label="LAUNCH">
+            <div class="process-step-layout">
+              <div class="process-step-copy">
+                <div class="mono process-step-sub" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.4rem; letter-spacing: 0.04em;">STEP 04 · LAUNCH</div>
+                <div class="mono process-step-num" style="font-size:clamp(3.8rem, 5.5vw, 5rem); font-weight:300; line-height:0.9; margin-bottom:0.6rem;">04</div>
+                <h3 class="process-step-heading" style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem; line-height: 1.2;">Launch, then stay</h3>
+                <p class="process-step-desc" style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
+                  Tested on every screen, set up for Google and AI search, and launched on your domain. Then a walkthrough of how it all works, and 90 days of support.
+                </p>
+                <div class="process-step-tags" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                  <span class="mono process-tag">Cross-device QA</span>
+                  <span class="mono process-tag">Technical SEO</span>
+                  <span class="mono process-tag">Global deployment</span>
+                </div>
+              </div>
+              <div class="step-film-box">
+                <div class="step-film-zoom-wrap">
+                  <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline preload="none"></video>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Step 03: Engineering -->
-      <div class="process-step-shell" style="--stack-i: 2;" data-step-label="ENGINEERING">
-        <div class="process-step-layout">
-        <div class="process-step-copy">
-          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 03 · ENGINEERING</div>
-          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">03</div>
-          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Built to hold up</h3>
-          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
-            Everything you can see, and everything behind it: payments, data and integrations. Built to stay fast on an older phone, not only on a new laptop.
-          </p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono process-tag">React &amp; TypeScript</span>
-            <span class="mono process-tag">Three.js / WebGL</span>
-            <span class="mono process-tag">GSAP animations</span>
-          </div>
-        </div>
-        <div class="step-film-box">
-          <div class="step-film-zoom-wrap">
-            <video src="/process/step3.mp4" poster="/process/step3-poster.jpg" muted loop playsinline preload="none"></video>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <!-- Step 04: Launch -->
-      <div class="process-step-shell" style="--stack-i: 3;" data-step-label="LAUNCH">
-        <div class="process-step-layout">
-        <div class="process-step-copy">
-          <div class="mono" style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">STEP 04 · LAUNCH</div>
-          <div class="mono" style="font-size:4.5rem; font-weight:300; line-height:0.9; margin-bottom:0.75rem;">04</div>
-          <h3 style="font-size:var(--fs-h3); font-weight:500; margin-bottom:0.75rem;">Launch, then stay</h3>
-          <p style="color:var(--ink-muted); line-height:1.6; margin-bottom:1.5rem;">
-            Tested on every screen, set up for Google and AI search, and launched on your domain. Then a walkthrough of how it all works, and 90 days of support.
-          </p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="mono process-tag">Cross-device QA</span>
-            <span class="mono process-tag">Technical SEO</span>
-            <span class="mono process-tag">Global deployment</span>
-          </div>
-        </div>
-        <div class="step-film-box">
-          <div class="step-film-zoom-wrap">
-            <video src="/process/step4.mp4" poster="/process/step4-poster.jpg" muted loop playsinline preload="none"></video>
-          </div>
-        </div>
-        </div>
-      </div>
-      </div>
-
-      <!-- Sticky Scroll Progress Rail -->
-      <div class="process-sticky-bar" aria-hidden="true">
+      <!-- Docked Bottom HUD Rail -->
+      <div class="process-sticky-bar" aria-hidden="true" title="Click anywhere along the bar to jump across project steps">
         <span class="mono" id="processActiveIndex">01 / 04</span>
         <div class="process-progress-track">
           <div class="process-progress-fill" id="processProgressFill"></div>

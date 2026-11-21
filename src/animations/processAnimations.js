@@ -1,24 +1,41 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { getLenis } from './scrollAnimations.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Process Film Section: Horizontal Parallax Scrolling Animation
+ * Pins the section and translates the process steps track horizontally with
+ * multi-layer depth parallax (floating numbers, windowed video parallax, and progressive HUD).
+ */
 export function initProcessAnimations() {
   const processSection = document.getElementById('experience');
   if (!processSection) return;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const track = processSection.querySelector('.process-stack-list');
   const shells = gsap.utils.toArray('.process-step-shell', processSection);
+  const progressBar = document.getElementById('processProgressFill');
+  const progressTrack = processSection.querySelector('.process-progress-track');
+  const activeIndexEl = document.getElementById('processActiveIndex');
+  const activeStageEl = document.getElementById('processActiveStage');
   const videos = shells.map((s) => s.querySelector('video')).filter(Boolean);
 
-  // Debounced video playback: prevents rapid scrolling across steps from triggering synchronous MP4 decode spikes
+  if (!shells.length || !track) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Debounced video playback to prevent sync decode spikes during fast scrubbing
   const playTimers = new WeakMap();
   const schedulePlay = (vid) => {
     if (!vid || document.hidden) return;
     clearTimeout(playTimers.get(vid));
-    playTimers.set(vid, setTimeout(() => {
-      vid.play().catch(() => {});
-    }, 140));
+    playTimers.set(
+      vid,
+      setTimeout(() => {
+        vid.play().catch(() => {});
+      }, 120)
+    );
   };
   const cancelAndPause = (vid) => {
     if (!vid) return;
@@ -26,222 +43,177 @@ export function initProcessAnimations() {
     if (!vid.paused) vid.pause();
   };
 
-  if (typeof IntersectionObserver !== 'undefined' && videos.length) {
-    const vidObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const vid = entry.target;
-          if (entry.isIntersecting && !document.hidden) {
-            schedulePlay(vid);
-          } else {
-            cancelAndPause(vid);
+  if (prefersReducedMotion) {
+    // Accessible fallback: normal horizontal scroll or simple auto-play
+    if (typeof IntersectionObserver !== 'undefined' && videos.length) {
+      const vidObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const vid = entry.target;
+            if (entry.isIntersecting && !document.hidden) {
+              schedulePlay(vid);
+            } else {
+              cancelAndPause(vid);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      videos.forEach((v) => vidObserver.observe(v));
+    }
+    return;
+  }
+
+  // Calculate total horizontal travel distance
+  const getDistance = () => {
+    return Math.max(0, track.scrollWidth - window.innerWidth);
+  };
+
+  let activeIndex = 0;
+
+  // Master Horizontal Scroll Timeline with Pinning
+  const pinTl = gsap.timeline({
+    scrollTrigger: {
+      id: 'processHorizontalPin',
+      trigger: processSection,
+      pin: true,
+      start: 'top top',
+      end: () => `+=${Math.max(window.innerHeight * 2.2, getDistance() + window.innerHeight * 0.7)}`,
+      scrub: 0.6,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const p = self.progress;
+
+        // 1. Fill bottom progress HUD track
+        if (progressBar) {
+          progressBar.style.transform = `scaleX(${p})`;
+        }
+
+        // 2. Identify the active slide centered in the viewport
+        const screenCenter = window.innerWidth / 2;
+        let closestIdx = 0;
+        let minDistance = Infinity;
+
+        shells.forEach((shell, idx) => {
+          const rect = shell.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const dist = Math.abs(cardCenter - screenCenter);
+          if (dist < minDistance) {
+            minDistance = dist;
+            closestIdx = idx;
           }
         });
-      },
-      { rootMargin: '40px 0px', threshold: 0.1 }
-    );
-    videos.forEach((v) => {
-      v.pause();
-      vidObserver.observe(v);
-    });
-  }
 
-  if (prefersReducedMotion || !shells.length) return;
+        if (closestIdx !== activeIndex) {
+          activeIndex = closestIdx;
+          const targetShell = shells[activeIndex];
+          const stepLabel = targetShell ? targetShell.getAttribute('data-step-label') : `STEP 0${activeIndex + 1}`;
 
-  const header = processSection.querySelector('.process-stage-header');
-  const title = processSection.querySelector('.process-title');
-  const lede = processSection.querySelector('.process-lede');
-  const stackList = processSection.querySelector('.process-stack-list');
-  const progressBar = document.getElementById('processProgressFill');
-  const activeIndexEl = document.getElementById('processActiveIndex');
-  const activeStageEl = document.getElementById('processActiveStage');
-  const contactSection = document.getElementById('contact');
+          if (activeIndexEl) {
+            activeIndexEl.textContent = `0${activeIndex + 1} / 0${shells.length}`;
+          }
+          if (activeStageEl) {
+            activeStageEl.textContent = stepLabel;
+          }
 
-  // 1. Header scroll-triggered reveal
-  if (title) {
-    gsap.fromTo(
-      title,
-      { y: 36, opacity: 0.2, force3D: true },
-      {
-        y: 0,
-        opacity: 1,
-        force3D: true,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: processSection,
-          start: 'top 85%',
-          end: 'top 30%',
-          scrub: 0.35
+          // Play only active video, pause all others for silky 60fps performance
+          videos.forEach((vid, i) => {
+            if (i === activeIndex) {
+              schedulePlay(vid);
+            } else {
+              cancelAndPause(vid);
+            }
+          });
         }
-      }
-    );
-  }
-
-  if (lede) {
-    gsap.fromTo(
-      lede,
-      { y: 24, opacity: 0, force3D: true },
-      {
-        y: 0,
-        opacity: 1,
-        force3D: true,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: lede,
-          start: 'top 88%',
-          once: true
-        }
-      }
-    );
-  }
-
-  if (header && stackList) {
-    gsap.to(header, {
-      opacity: 0.2,
-      y: -24,
-      force3D: true,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: stackList,
-        start: 'top 75%',
-        end: 'top 25%',
-        scrub: 0.35
-      }
-    });
-  }
-
-  // 2. Global Scroll Progress Fill across all 4 pages
-  if (stackList && progressBar) {
-    gsap.fromTo(
-      progressBar,
-      { scaleX: 0 },
-      {
-        scaleX: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: stackList,
-          start: 'top 65%',
-          end: 'bottom 60%',
-          scrub: 0.25
-        }
-      }
-    );
-  }
-
-  // 3. Cardless Page-by-Page Transitions (Pure GPU Transform & Opacity, no video blur)
-  shells.forEach((shell, idx) => {
-    const copyItems = shell.querySelectorAll('.process-step-copy > *');
-    const filmBox = shell.querySelector('.step-film-box');
-    const zoomWrap = shell.querySelector('.step-film-zoom-wrap');
-    const video = shell.querySelector('video');
-    const stepLabel = shell.getAttribute('data-step-label') || `STEP 0${idx + 1}`;
-    const nextTarget = shells[idx + 1] || contactSection;
-
-    // A. Active Page State Tracker (Updates sticky HUD & debounces video playback)
-    ScrollTrigger.create({
-      trigger: shell,
-      start: 'top 55%',
-      end: 'bottom 45%',
-      onEnter: () => {
-        if (activeIndexEl) activeIndexEl.textContent = `0${idx + 1} / 0${shells.length}`;
-        if (activeStageEl) activeStageEl.textContent = stepLabel;
-        schedulePlay(video);
-      },
-      onEnterBack: () => {
-        if (activeIndexEl) activeIndexEl.textContent = `0${idx + 1} / 0${shells.length}`;
-        if (activeStageEl) activeStageEl.textContent = stepLabel;
-        schedulePlay(video);
       },
       onLeave: () => {
-        cancelAndPause(video);
+        videos.forEach((v) => cancelAndPause(v));
       },
       onLeaveBack: () => {
-        cancelAndPause(video);
-      }
-    });
-
-    // B. Incoming Page Content Reveal
-    if (idx > 0) {
-      if (copyItems.length) {
-        gsap.fromTo(
-          copyItems,
-          { y: 28, opacity: 0, force3D: true },
-          {
-            y: 0,
-            opacity: 1,
-            force3D: true,
-            stagger: 0.05,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: shell,
-              start: 'top 82%',
-              end: 'top 32%',
-              scrub: 0.35
-            }
-          }
-        );
-      }
-
-      if (filmBox) {
-        gsap.fromTo(
-          filmBox,
-          { scale: 0.94, opacity: 0.35, force3D: true },
-          {
-            scale: 1,
-            opacity: 1,
-            force3D: true,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: shell,
-              start: 'top 85%',
-              end: 'top 30%',
-              scrub: 0.35
-            }
-          }
-        );
+        videos.forEach((v) => cancelAndPause(v));
       }
     }
+  });
 
-    // C. Outgoing Page Depth Effect (GPU scale + opacity, zero live-video blur)
-    if (nextTarget) {
-      gsap.fromTo(
-        shell,
-        { scale: 1, opacity: 1, force3D: true },
-        {
-          scale: 0.95,
-          yPercent: -5,
-          opacity: 0.22,
-          force3D: true,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: nextTarget,
-            start: 'top 88%',
-            end: 'top 18%',
-            scrub: 0.35
-          }
-        }
+  // 1. Primary Track Horizontal Translation
+  pinTl.to(
+    track,
+    {
+      x: () => -getDistance(),
+      ease: 'none',
+      force3D: true
+    },
+    0
+  );
+
+  // 2. Multi-Layer Parallax Effects
+  shells.forEach((shell) => {
+    const num = shell.querySelector('.process-step-num');
+    const copy = shell.querySelector('.process-step-copy');
+    const filmBox = shell.querySelector('.step-film-box');
+    const zoomWrap = shell.querySelector('.step-film-zoom-wrap');
+
+    // Layer A: Giant Floating Step Number Parallax
+    if (num) {
+      pinTl.fromTo(
+        num,
+        { x: 55, force3D: true },
+        { x: -55, force3D: true, ease: 'none' },
+        0
       );
     }
 
-    // D. Video subtle parallax inside frame
+    // Layer B: Subtle Forward Copy Parallax
+    if (copy) {
+      pinTl.fromTo(
+        copy,
+        { x: 25, force3D: true },
+        { x: -25, force3D: true, ease: 'none' },
+        0
+      );
+    }
+
+    // Layer C: Video Frame Depth Parallax
     if (zoomWrap) {
-      gsap.fromTo(
+      pinTl.fromTo(
         zoomWrap,
-        { scale: 1.12, yPercent: -3, force3D: true },
-        {
-          scale: 1.0,
-          yPercent: 3,
-          force3D: true,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: shell,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.45
-          }
-        }
+        { xPercent: -14, scale: 1.1, force3D: true },
+        { xPercent: 14, scale: 1.05, force3D: true, ease: 'none' },
+        0
+      );
+    }
+
+    if (filmBox) {
+      pinTl.fromTo(
+        filmBox,
+        { scale: 0.96, force3D: true },
+        { scale: 1.0, force3D: true, ease: 'none' },
+        0
       );
     }
   });
+
+  // 3. Interactive Click on Progress Track to Jump Directly to Any Step
+  if (progressTrack) {
+    progressTrack.addEventListener('click', (e) => {
+      const rect = progressTrack.getBoundingClientRect();
+      const clickRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const st = ScrollTrigger.getById('processHorizontalPin');
+      if (st) {
+        const targetScroll = st.start + clickRatio * (st.end - st.start);
+        const lenis = getLenis();
+        if (lenis) {
+          lenis.scrollTo(targetScroll, { duration: 1.1 });
+        } else {
+          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  // Refresh on resize to recalculate horizontal distances
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  }, { passive: true });
 }
